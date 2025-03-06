@@ -72,19 +72,19 @@ Nesse contexto, a análise busca entender a influência de fatores como experiê
 ####    Objetivos específicos
 
 1. **Exploração e Análise dos Dados:**
-    - Examinar a base de dados *State of Data Brazil 2023* e bases auxiliares para identificar variáveis relevantes que impactam os salários.
+    - Extrair  da base de dados *State of Data Brazil 2023* e bases auxiliares, dados suficientes para identificar variáveis relevantes que impactam os salários.
       
 2. **Identificação de Fatores Relevantes:**
-    - Analisar variáveis como nível de experiência, localização geográfica, setor de atuação, nível educacional, habilidades técnicas, entre outras.
+    - Analisar variáveis e compreender a influência de cada uma na carreira profisional do cientista de dados brasileiro, como o nível de experiência, a localização geográfica, o setor de atuação, o nível educacional, as habilidades técnicas, o gênero e a etnia.
       
 3. **Aplicação de Modelos Preditivos:**
-    - Testar algoritmos de aprendizado de máquina para prever a variação salarial com base nos fatores identificados.
+    - Aplicar por meio de algoritmos de aprendizado de máquina, a previsão da variação salarial com base nos fatores identificados.
       
 4. **Interpretação dos Resultados:**
-    - Avaliar quais fatores apresentam maior impacto e como eles se relacionam com as diferenças salariais.
+    - Avaliar, determinar e publicar quais são fatores apresentam maior impacto e como eles se relacionam com as diferenças salariais.
       
 5. **Geração de Insights para o Mercado:**
-    - Fornecer recomendações baseadas nos achados, podendo auxiliar profissionais de dados e empresas na tomada de decisões estratégicas.
+    - Fornecer recomendações baseadas nos achados, para auxiliar profissionais de dados e empresas na atribuição de salários aos profissionais da área.
 
 
 

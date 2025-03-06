@@ -98,18 +98,59 @@ A desigualdade salarial na área de dados é um tema relevante, impactando profi
 
 ##    Público alvo
 
-Este estudo será de interesse para diversos grupos, incluindo:
+Os principais perfis de usuários da aplicação podem ser divididos nos seguintes grupos: 
 
-- **Profissionais de dados** (cientistas, engenheiros, analistas e gestores) que desejam entender como sua posição no mercado afeta seus rendimentos.
-- **Empresas de tecnologia e RH** interessadas em estruturar políticas salariais mais justas e competitivas.
-- **Pesquisadores e acadêmicos** que estudam desigualdade no mercado de trabalho e tendências salariais na tecnologia.
-- **Órgãos governamentais e associações da indústria** que buscam criar políticas de inclusão e equidade no setor de tecnologia e ciência de dados.
+Profissionais de dados : Os quais possuem conhecimento técnico variado. Estão familiarizados com ferramentas de análise e visualização de dados, além de linguagens como Python e SQL. No ambiente corporativo, ocupam cargos que vão de analistas a cientistas de dados sêniores.
 
+Gestores e recrutadores de RH:  Estes utilizam plataformas de análise salarial para embasar decisões estratégicas. Eles ocupam posições hierárquicas que incluem gerentes, diretores e especialistas em aquisição de talentos.
 
+Pesquisadores e acadêmicos: Aqueles que têm conhecimento analítico e estatístico. Utilizam tecnologias para explorar padrões e tendências em dados salariais e estão inseridos em universidades, centros de pesquisa e órgãos governamentais.
 
+Órgãos governamentais e associações da indústria: Esses utilizam a aplicação para obter informações detalhadas sobre o mercado de trabalho e salários, visando formular políticas públicas, regulamentações e padrões da indústria. Estão envolvidos com dados que ajudam a orientar legislações e relatórios sobre tendências econômicas e de emprego.
 
+A aplicação será útil para esses grupos ao oferecer maneiras de visualizar intuitivas, comparações salariais e insights baseados em machine learning.
 
-## Análise exploratórida dos dados
+# Mapa de Stakeholders
+
+## 🎯 Público-Alvo da Aplicação
+
+A aplicação tem como objetivo fornecer insights sobre disparidade salarial na área de dados no Brasil, ajudando diferentes perfis de usuários a tomar decisões estratégicas. 
+
+## 🏢 Stakeholders e seus Papéis
+
+| **Stakeholder**                 | **Nível de Interesse** | **Influência** | **Objetivos** |
+|---------------------------------|----------------------|--------------|--------------|
+| **Profissionais de Dados**          | Alto                 | Médio        | Avaliar sua posição no mercado e planejar crescimento. |
+| **Gestores e Recrutadores de RH**   | Alto                 | Alto         | Ajustar faixas salariais e estruturar políticas de retenção. |
+| **Pesquisadores e Acadêmicos**      | Médio                | Médio        | Explorar padrões e desigualdades no mercado. |
+| **Órgãos Governamentais**           | Médio                | Alto         | Criar regulamentações e políticas de inclusão. |
+
+## 👥 Perfis de Usuários (Personas)
+
+### **1️⃣ Persona: Analista de Dados Júnior**
+- **Nome:** Lucas Mendes  
+- **Idade:** 25 anos  
+- **Objetivo:** Comparar sua faixa salarial com o mercado para planejar seu crescimento profissional.  
+- **Desafios:** Não sabe quais habilidades influenciam no aumento salarial.  
+
+### **2️⃣ Persona: Gerente de RH em Tecnologia**
+- **Nome:** Mariana Costa  
+- **Idade:** 38 anos  
+- **Objetivo:** Definir pacotes salariais competitivos para atrair talentos na área de dados.  
+- **Desafios:** Falta de dados estruturados sobre o mercado e diferenças regionais.  
+
+### **3️⃣ Persona: Pesquisador de Mercado de Trabalho**
+- **Nome:** Dr. João Ribeiro  
+- **Idade:** 45 anos  
+- **Objetivo:** Estudar desigualdades salariais no setor de tecnologia.  
+- **Desafios:** Precisa de dados confiáveis e ferramentas estatísticas para análise.  
+
+### **4️⃣ Persona: Regulador de Políticas Públicas**
+- **Nome:** Ana Beatriz Oliveira  
+- **Idade:** 50 anos  
+- **Objetivo:** Criar diretrizes para reduzir a disparidade salarial na tecnologia.  
+- **Desafios:** Necessita de informações claras e de fácil interpretação.
+
 
 ###    Dicionário de dados
 

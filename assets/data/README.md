@@ -1,16 +1,12 @@
 # Artefatos relativos à coleta e preparação de dados
 
-Este diretório mantém os artefatos relatório à modelagem de dados do projeto. 
+📊 **Conjuntos de Dados**
 
-Os principais documentos a serem produzidos são:
+Base Principal - State of Data Brazil 2023
+https://www.kaggle.com/datasets/datahackers/state-of-data-brazil-2023
 
-* `data_raw.csv`
-	* base principal original. pode ser em qualquer formato tabular
+Base Auxiliar - 
 
-* `other_data_raw.csv`
-	* outras bases utilizadas no processo de enriquecimento
+Outras Bases -
 
-* `final_processed_data.csv`
-  * base final processada, limpa e selecionada
-	
-Demais artefatos que julgar pertinentes.
+Bade Final -

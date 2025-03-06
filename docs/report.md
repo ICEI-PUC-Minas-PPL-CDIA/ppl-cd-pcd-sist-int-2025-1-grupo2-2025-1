@@ -3,7 +3,7 @@
 
 **Pedro Dias Soares, [pedro3soares@gmail.com] / [pdsoares@sga.pucminas.br]**
 
-**Gabriel Bahia Leite, [bahiagabrie334@gmail.com] / [gabriel.bahia@sga.pucminas.br]
+**Gabriel Bahia Leite, [bahiagabrie334@gmail.com] / [gabriel.bahia@sga.pucminas.br]**
 
 **Gabriel Barroso Goulart Parreiras, email do aluno 3**
 

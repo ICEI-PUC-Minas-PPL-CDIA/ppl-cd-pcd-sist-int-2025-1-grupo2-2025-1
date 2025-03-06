@@ -67,7 +67,7 @@ Nesse contexto, a análise busca entender a influência de fatores como experiê
 
 ###    Objetivo geral
 
-**Desenvolver um sistema inteligente para compreender os fatores que influenciam a variação salarial dos profissionais de dados no Brasil, utilizando técnicas de ciência de dados para identificar padrões e tendências.**
+**Desenvolver um sistema inteligente para compreender os fatores que influenciam a variação salarial dos profissionais de dados no Brasil, e para auxiliar na equiparação salarial doesses, utilizando técnicas de ciência de dados para identificar padrões e tendências.**
 
 ####    Objetivos específicos
 

@@ -34,24 +34,27 @@ mostrar algum resultado relevante do trabalho (até 10 linhas)._
 
 ## Introdução
 
-O Brasil experimentou um crescimento exponencial na indústria de dados devido à transformação digital do país e à crescente necessidade de trabalhadores qualificados. Embora as oportunidades sejam abundantes, os salários variam amplamente entre os trabalhadores, com fatores como falta de experiência, gênero, educação e tipo de empresa influenciando essa disparidade.
+	O Brasil experimentou um crescimento exponencial na indústria de dados devido à transformação digital do país e à crescente necessidade de trabalhadores qualificados. Embora as oportunidades sejam abundantes, os salários variam amplamente entre os trabalhadores, com fatores como falta de experiência, gênero, educação e tipo de empresa influenciando essa disparidade.
 
-O objetivo deste estudo é identificar os principais fatores que influenciam a disparidade na remuneração dos profissionais de dados no Brasil com base em dados utilizando informações coletadas de uma ampla pesquisa setorial.
+	O objetivo deste estudo é identificar os principais fatores que influenciam a disparidade na remuneração dos profissionais de dados no Brasil com base em dados utilizando informações coletadas de uma ampla pesquisa setorial.
 
-As disparidades salariais entre os profissionais de dados no Brasil são influenciadas por diversos fatores como idade, gênero dos profissionais de dados, do setor de emprego ou modelo de contratação e ainda o seu histórico educacional e experiência profissional. A necessidade aparentemente interminável de especialistas contrasta fortemente com as desigualdades estruturais que afetam a remuneração dos profissionais de dados.
+	As disparidades salariais entre os profissionais de dados no Brasil são influenciadas por diversos fatores como idade, gênero dos profissionais de dados, do setor de emprego ou modelo de contratação e ainda o seu histórico educacional e experiência profissional. A necessidade aparentemente interminável de especialistas contrasta fortemente com as desigualdades estruturais que afetam a remuneração dos profissionais de dados.
 
-Este estudo investiga os principais elementos que influenciam a variação de salários no campo de dados ao utilizar o conjunto de dados State of Data Brazil 2023 e outras bases para complementar a pesquisa. Empregando métodos da ciência de dados, busca-se identificar padrões salariais e oferecer insights relevantes para profissionais, empresas e formuladores de políticas públicas.
+	Este estudo investiga os principais elementos que influenciam a variação de salários no campo de dados ao utilizar o conjunto de dados State of Data Brazil 2023 e outras bases para complementar a pesquisa. Empregando métodos da ciência de dados, busca-se identificar padrões salariais e oferecer insights relevantes para profissionais, empresas e formuladores de políticas públicas.
 
-Espera-se que os resultados tragam um maior entendimento das disparidades salariais no campo, ajudando a desenvolver estratégias que incentivem a igualdade no mercado de tecnologia e ciência de dados.
+	Espera-se que os resultados tragam um maior entendimento das disparidades salariais no campo, ajudando a desenvolver estratégias que incentivem a igualdade no mercado de tecnologia e ciência de dados.
 
 ###    Contextualização
 
-A disparidade salarial é um tema recorrente no mercado de trabalho, afetando diferentes setores da economia. No Brasil, estudos do IBGE apontam que fatores como gênero, raça e escolaridade influenciam diretamente os rendimentos dos profissionais. No setor de tecnologia, essas desigualdades se manifestam de maneira particular, dado o crescimento acelerado da área e a necessidade de qualificação constante.
+	A desigualdade salarial é desafio enfrentado no mercado de trabalho brasileiro, impactando diversos setores da economia.
 
-No campo da ciência de dados, a remuneração pode variar significativamente conforme experiência, formação acadêmica, setor de atuação e habilidades técnicas. O relatório State of Data Brazil 2023 destaca que profissionais com certificações específicas e atuação em empresas de grande porte tendem a ter salários mais altos, enquanto mulheres e grupos sub-representados ainda enfrentam desafios na equiparação salarial.
+	Estudos do IBGE apontam que gênero, etnia e escolaridade são fatores cruciais na determinação dos salários. 
 
-Diante desse cenário, este estudo busca analisar os fatores determinantes para a variação salarial dos profissionais de dados no Brasil, utilizando técnicas de ciência de dados para identificar padrões e oferecer insights para o mercado.
+	No setor de tecnologia, essas disparidades têm características particulares, especialmente devido ao desenvolvimento acelerado da área e à necessidade contínua de atualização profissional. Na ciência de dados, as diferenças salariais são significativas e influenciadas por fatores como a experiência, formação acadêmica, setor de atuação e habilidades técnicas. 
 
+	De acordo com o relatório State of Data Brazil 2023, profissionais que possuem certificações específicas em grandes empresas costumam receber remunerações mais altas, enquanto mulheres e grupos minoritários ainda encontram barreiras para alcançar igualdade salarial. 
+
+	Nossa pesquisa busca, portanto, analisar os fatores que influenciam as variações salariais dos profissionais de dados no Brasil, utilizando métodos de ciência de dados para identificar padrões e sugerir recomendações ao mercado.
 
 ###    Problema
 
@@ -146,6 +149,60 @@ A preparação dos dados consiste dos seguintes passos:
 > - Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
 > - Conversão de dados: p. ex. numérico para categórico, categórico para binário, etc.
 
+### Atributos banco de dados principal State of Data Brazil 2023;
+DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/datasets/datahackers/state-of-data-brazil-2023. Acesso em: 5 mar. 2025.
+
+### **Fatores Pessoais e Demográficos:**
+
+1. **Idade** → `('P1_a ', 'Idade')`
+2. **Faixa etária** → `('P1_a_1 ', 'Faixa idade')`
+3. **Gênero** → `('P1_b ', 'Genero')`
+4. **Cor/Raça/Etnia** → `('P1_c ', 'Cor/raca/etnia')`
+5. **PCD (Pessoa com Deficiência)** → `('P1_d ', 'PCD')`
+6. **Experiência profissional prejudicada (discriminação)** → `('P1_e ', 'experiencia_profissional_prejudicada')`
+
+### **Educação e Qualificações:**
+
+1. **Nível de escolaridade** → `('P2_a ', 'Escolaridade')`
+2. **Área de formação** → `('P2_b ', 'Área de formação')`
+3. **Universidade frequentada (pública ou privada)** → `('P2_c ', 'Tipo de instituição de ensino superior')`
+4. **Certificações e cursos adicionais** → `('P2_d ', 'Possui certificações na área de dados?')`
+5. **Idiomas estrangeiros falados e usados no trabalho** → `('P2_f ', 'Idiomas utilizados no trabalho')`
+
+### **Experiência e Carreira:**
+
+1. **Tempo de experiência profissional geral** → `('P3_a ', 'Tempo de experiência profissional')`
+2. **Tempo de experiência na área de dados** → `('P3_b ', 'Tempo de experiência na área de dados')`
+3. **Cargo atual** → `('P4_a ', 'Cargo atual')`
+4. **Nível de senioridade** → `('P4_b ', 'Nível de senioridade')`
+5. **Participação em projetos estratégicos ou inovação** → `('P4_c ', 'Participa de projetos estratégicos?')`
+6. **Publicações acadêmicas ou técnicas** → `('P4_d ', 'Publica artigos técnicos ou científicos?')`
+7. **Contribuições em projetos open source** → `('P4_e ', 'Contribui para projetos open-source?')`
+8. **Mentoria ou orientação de outros profissionais** → `('P4_f ', 'Atua como mentor ou instrutor?')`
+
+### **Empresa e Ambiente de Trabalho:**
+
+1. **Setor da empresa** → `('P5_a ', 'Setor de atuação da empresa')`
+2. **Tamanho da empresa** → `('P5_b ', 'Tamanho da empresa')`
+3. **Tipo de contratação** → `('P5_c ', 'Tipo de contrato de trabalho')`
+4. **Horas semanais trabalhadas** → `('P5_d ', 'Carga horária semanal')`
+5. **Trabalho remoto, híbrido ou presencial** → `('P5_e ', 'Modelo de trabalho')`
+6. **Localização da empresa (cidade/estado)** → `('P5_f ', 'Localização da empresa')`
+7. **Benefícios recebidos** → `('P5_g ', 'Benefícios recebidos')`
+8. **Plano de carreira estruturado** → `('P5_h ', 'Possui plano de carreira na empresa?')`
+9. **Número de promoções recebidas** → `('P5_i ', 'Já foi promovido na empresa atual?')`
+
+### **Habilidades e Ferramentas:**
+
+1. **Linguagens de programação utilizadas** → `('P6_a ', 'Linguagens de programação utilizadas')`
+2. **Ferramentas de BI utilizadas** → `('P6_b ', 'Ferramentas de BI utilizadas')`
+3. **Cloud Computing** → `('P6_c ', 'Experiência com Cloud Computing')`
+4. **Experiência com Machine Learning e IA** → `('P6_d ', 'Trabalha com Machine Learning?')`
+5. **Experiência com Big Data** → `('P6_e ', 'Experiência com Big Data?')`
+6. **Utilização de técnicas avançadas de estatística e modelagem** → `('P6_f ', 'Utiliza técnicas avançadas de estatística?')`
+7. **Familiaridade com engenharia de dados e ETL** → `('P6_g ', 'Experiência com ETL e pipelines de dados')`
+
+----------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Indução de modelos
 

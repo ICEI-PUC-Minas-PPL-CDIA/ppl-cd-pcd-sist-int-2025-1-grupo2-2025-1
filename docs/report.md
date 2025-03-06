@@ -28,9 +28,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 # Resumo
 
-O agente em questão busca estabelecer quais são os fatores determinantes para a variação salarial entre profissionais de dados no Brasil.
-Constantemente, empresas brasileiras enfrentam dificuldades em determinar um salário justo ao profissional de dados por não considerararem os requisitos e as variáveis necessárias para isso.
-Nesse contexto, a análise busca entender a influência de fatores como experiência, nível educacional e habilidades técnicas nas diferenças salariais, visando fornecer um padrão para que o mercado profissional da área seja mais equilibrado no país. 
+
 
 ---
 
@@ -58,16 +56,9 @@ Nossa pesquisa busca, portanto, analisar os fatores que influenciam as variaçõ
 
 ###    Problema
 
-Nesse momento você deve apresentar o problema que seu agente pretende resolver. 
-No entanto, não é a hora de comentar sobre a aplicação.
-Descreva também o contexto em que essa aplicação será usada, se  houver: 
-empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, 
-pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
-
-O **problema** pode ser algo vivido em uma empresa específica. Neste caso, o aluno deve 
-sucintamente apresentar o cenário de problema da empresa. A empresa só deve ser citada 
-explicitamente se o aluno tiver autorização para tal.
-
+O agente em questão busca estabelecer quais são os fatores determinantes para a variação salarial entre profissionais de dados no Brasil.
+Constantemente, empresas brasileiras enfrentam dificuldades em determinar um salário justo ao profissional de dados por não considerararem os requisitos e as variáveis necessárias para isso.
+Nesse contexto, a análise busca entender a influência de fatores como experiência, nível educacional e habilidades técnicas nas diferenças salariais, visando fornecer um padrão para que o mercado profissional da área seja mais equilibrado no país.
 
 
 

@@ -89,13 +89,7 @@ Nesse contexto, a análise busca entender a influência de fatores como experiê
 
 ###    Justificativas
 
-Mostre também as **justificativas** para o  desenvolvimento do seu trabalho e, caso deseje, 
-destaque alguma contribuição do trabalho.
-
-A justific ativa deve descrever a importância ou a motivação para o desenvolvimento do 
-sistema inteligente escolhido. Indique as razões pelas quais você escolheu seus objetivos 
-específicos ou as razões para aprofundar em certos aspectos do software.
-
+A desigualdade salarial na área de dados é um tema relevante, impactando profissionais e empresas. Este estudo busca identificar os principais fatores que influenciam os salários, com foco na experiência, senioridade e setor de atuação. O estudo se destina a profissionais da área, que podem utilizar os resultados para planejar suas carreiras, e às empresas, que podem aprimorar suas políticas salariais com base em dados concretos. A pesquisa se apoia em bases de dados reconhecidas, como a State of Data Brazil 2023 da Data Hackers, garantindo a validade e confiabilidade das análises realizadas.
 
 
 

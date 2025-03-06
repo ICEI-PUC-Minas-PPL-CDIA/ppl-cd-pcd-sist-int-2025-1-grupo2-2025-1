@@ -7,7 +7,7 @@
 
 **Gabriel Barroso Goulart Parreiras, email do aluno 3**
 
-**Gabriel Chaves Nascimento, email do aluno 4**
+**Gabriel Chaves Nascimento, [gabrielchaves0308@gmail.com] / [gabriel.nascimento.1483087@sga.pucminas.br]**
 
 **Gian Henrique Ticon e Silva Carvalho , email do aluno 5**
 

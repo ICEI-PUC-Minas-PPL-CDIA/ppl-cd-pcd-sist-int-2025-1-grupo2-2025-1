@@ -245,7 +245,7 @@ H2R PESQUISAS; TOTVS. Estudo Panorama das Carreiras 2030: o que esperar das prof
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
-## Indução de modelos
+## 📊 Indução de modelos
 
 ### Modelo 1: Algoritmo
 
@@ -312,7 +312,7 @@ Uma conclusão deve ter 3 partes:
 	 * Limitações e possibilidades de melhoria
 
 
-# REFERÊNCIAS
+# ✒️ REFERÊNCIAS 
 
 DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/datasets/datahackers/state-of-data-brazil-2023. Acesso em: 5 mar. 2025.
 

@@ -34,13 +34,20 @@ mostrar algum resultado relevante do trabalho (até 10 linhas)._
 
 ## Introdução
 
-A introdução deve apresentar de dois a quatro parágrafos de contextualização do trabalho. 
+A disparidade salarial entre profissionais de dados no Brasil é influenciada por fatores como idade, gênero, escolaridade e experiência profissional, além de características do mercado, como setor de atuação e modelo de contratação. A crescente demanda por especialistas contrasta com desigualdades estruturais que afetam os rendimentos desses profissionais.
+
+Este estudo analisa os principais fatores que impactam a variação salarial na área de dados, utilizando a base State of Data Brazil 2023. A partir de técnicas de ciência de dados, busca-se identificar padrões salariais e oferecer insights relevantes para profissionais, empresas e formuladores de políticas públicas.
+
+Os resultados esperados incluem uma melhor compreensão das desigualdades salariais no setor, contribuindo para estratégias que promovam maior equidade no mercado de tecnologia e ciência de dados.
 
 ###    Contextualização
 
-Na **contextualização**, o aluno deve dizer do que se trata o trabalho, em que área ou contexto se insere. 
-A **contextualização** deve ser desenvolvida de algo mais genérico para algo mais específico. 
-A citação de pesquisas quantitativas é bem aceita aqui (corretamente referenciadas).
+A disparidade salarial é um tema recorrente no mercado de trabalho, afetando diferentes setores da economia. No Brasil, estudos do IBGE apontam que fatores como gênero, raça e escolaridade influenciam diretamente os rendimentos dos profissionais. No setor de tecnologia, essas desigualdades se manifestam de maneira particular, dado o crescimento acelerado da área e a necessidade de qualificação constante.
+
+No campo da ciência de dados, a remuneração pode variar significativamente conforme experiência, formação acadêmica, setor de atuação e habilidades técnicas. O relatório State of Data Brazil 2023 destaca que profissionais com certificações específicas e atuação em empresas de grande porte tendem a ter salários mais altos, enquanto mulheres e grupos sub-representados ainda enfrentam desafios na equiparação salarial.
+
+Diante desse cenário, este estudo busca analisar os fatores determinantes para a variação salarial dos profissionais de dados no Brasil, utilizando técnicas de ciência de dados para identificar padrões e oferecer insights para o mercado.
+
 
 ###    Problema
 

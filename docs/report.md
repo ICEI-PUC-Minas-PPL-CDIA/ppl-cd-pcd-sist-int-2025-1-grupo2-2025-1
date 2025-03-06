@@ -140,12 +140,6 @@ Como descrever dados qualitativos (categóricos): moda (valor mais frequente), q
 
 ## Preparação dos dados
 
-A preparação dos dados consiste dos seguintes passos:
-
-> - Seleção dos atributos
-> - Tratamentos dos valores faltantes ou omissos: remoção, substituição, indução, etc.
-> - Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
-> - Conversão de dados: p. ex. numérico para categórico, categórico para binário, etc.
 
 ### 1- Atributos do banco de dados principal State of Data Brazil 2023;
 DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/datasets/datahackers/state-of-data-brazil-2023. Acesso em: 5 mar. 2025.

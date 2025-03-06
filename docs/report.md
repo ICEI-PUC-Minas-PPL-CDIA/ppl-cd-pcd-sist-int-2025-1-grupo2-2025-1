@@ -5,9 +5,9 @@
 
 **Gabriel Bahia Leite, [bahiagabrie334@gmail.com] / [gabriel.bahia@sga.pucminas.br]**
 
-**Gabriel Barroso Goulart Parreiras, email do aluno 3**
-
 **Gabriel Chaves Nascimento, [gabrielchaves0308@gmail.com] / [gabriel.nascimento.1483087@sga.pucminas.br]**
+
+**Gabriel Barroso Goulart Parreiras, email do aluno 4**
 
 **Gian Henrique Ticon e Silva Carvalho , email do aluno 5**
 

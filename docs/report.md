@@ -3,7 +3,7 @@
 
 **Pedro Dias Soares, [pedro3soares@gmail.com] / [pdsoares@sga.pucminas.br]**
 
-**Gabriel Bahia Leite, email do aluno 2**
+**Gabriel Bahia Leite, [bahiagabrie334@gmail.com] / [gabriel.bahia@sga.pucminas.br]
 
 **Gabriel Barroso Goulart Parreiras, email do aluno 3**
 
@@ -90,14 +90,14 @@ específicos ou as razões para aprofundar em certos aspectos do software.
 
 ##    Público alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. 
-O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários 
-na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos 
-usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+Este estudo será de interesse para diversos grupos, incluindo:
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, 
-diagramas de personas e mapa de stakeholders.
+- **Profissionais de dados** (cientistas, engenheiros, analistas e gestores) que desejam entender como sua posição no mercado afeta seus rendimentos.
+- **Empresas de tecnologia e RH** interessadas em estruturar políticas salariais mais justas e competitivas.
+- **Pesquisadores e acadêmicos** que estudam desigualdade no mercado de trabalho e tendências salariais na tecnologia.
+- **Órgãos governamentais e associações da indústria** que buscam criar políticas de inclusão e equidade no setor de tecnologia e ciência de dados.
+
+
 
 > **Links Úteis**:
 > - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)

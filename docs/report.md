@@ -34,27 +34,27 @@ mostrar algum resultado relevante do trabalho (até 10 linhas)._
 
 ## Introdução
 
-	O Brasil experimentou um crescimento exponencial na indústria de dados devido à transformação digital do país e à crescente necessidade de trabalhadores qualificados. Embora as oportunidades sejam abundantes, os salários variam amplamente entre os trabalhadores, com fatores como falta de experiência, gênero, educação e tipo de empresa influenciando essa disparidade.
+O Brasil experimentou um crescimento exponencial na indústria de dados devido à transformação digital do país e à crescente necessidade de trabalhadores qualificados. Embora as oportunidades sejam abundantes, os salários variam amplamente entre os trabalhadores, com fatores como falta de experiência, gênero, educação e tipo de empresa influenciando essa disparidade.
 
-	O objetivo deste estudo é identificar os principais fatores que influenciam a disparidade na remuneração dos profissionais de dados no Brasil com base em dados utilizando informações coletadas de uma ampla pesquisa setorial.
+O objetivo deste estudo é identificar os principais fatores que influenciam a disparidade na remuneração dos profissionais de dados no Brasil com base em dados utilizando informações coletadas de uma ampla pesquisa setorial.
 
-	As disparidades salariais entre os profissionais de dados no Brasil são influenciadas por diversos fatores como idade, gênero dos profissionais de dados, do setor de emprego ou modelo de contratação e ainda o seu histórico educacional e experiência profissional. A necessidade aparentemente interminável de especialistas contrasta fortemente com as desigualdades estruturais que afetam a remuneração dos profissionais de dados.
+As disparidades salariais entre os profissionais de dados no Brasil são influenciadas por diversos fatores como idade, gênero dos profissionais de dados, do setor de emprego ou modelo de contratação e ainda o seu histórico educacional e experiência profissional. A necessidade aparentemente interminável de especialistas contrasta fortemente com as desigualdades estruturais que afetam a remuneração dos profissionais de dados.
 
-	Este estudo investiga os principais elementos que influenciam a variação de salários no campo de dados ao utilizar o conjunto de dados State of Data Brazil 2023 e outras bases para complementar a pesquisa. Empregando métodos da ciência de dados, busca-se identificar padrões salariais e oferecer insights relevantes para profissionais, empresas e formuladores de políticas públicas.
+Este estudo investiga os principais elementos que influenciam a variação de salários no campo de dados ao utilizar o conjunto de dados State of Data Brazil 2023 e outras bases para complementar a pesquisa. Empregando métodos da ciência de dados, busca-se identificar padrões salariais e oferecer insights relevantes para profissionais, empresas e formuladores de políticas públicas.
 
-	Espera-se que os resultados tragam um maior entendimento das disparidades salariais no campo, ajudando a desenvolver estratégias que incentivem a igualdade no mercado de tecnologia e ciência de dados.
+Espera-se que os resultados tragam um maior entendimento das disparidades salariais no campo, ajudando a desenvolver estratégias que incentivem a igualdade no mercado de tecnologia e ciência de dados.
 
 ###    Contextualização
 
-	A desigualdade salarial é desafio enfrentado no mercado de trabalho brasileiro, impactando diversos setores da economia.
+A desigualdade salarial é desafio enfrentado no mercado de trabalho brasileiro, impactando diversos setores da economia.
 
-	Estudos do IBGE apontam que gênero, etnia e escolaridade são fatores cruciais na determinação dos salários. 
+Estudos do IBGE apontam que gênero, etnia e escolaridade são fatores cruciais na determinação dos salários. 
 
-	No setor de tecnologia, essas disparidades têm características particulares, especialmente devido ao desenvolvimento acelerado da área e à necessidade contínua de atualização profissional. Na ciência de dados, as diferenças salariais são significativas e influenciadas por fatores como a experiência, formação acadêmica, setor de atuação e habilidades técnicas. 
+No setor de tecnologia, essas disparidades têm características particulares, especialmente devido ao desenvolvimento acelerado da área e à necessidade contínua de atualização profissional. Na ciência de dados, as diferenças salariais são significativas e influenciadas por fatores como a experiência, formação acadêmica, setor de atuação e habilidades técnicas. 
 
-	De acordo com o relatório State of Data Brazil 2023, profissionais que possuem certificações específicas em grandes empresas costumam receber remunerações mais altas, enquanto mulheres e grupos minoritários ainda encontram barreiras para alcançar igualdade salarial. 
+De acordo com o relatório State of Data Brazil 2023, profissionais que possuem certificações específicas em grandes empresas costumam receber remunerações mais altas, enquanto mulheres e grupos minoritários ainda encontram barreiras para alcançar igualdade salarial. 
 
-	Nossa pesquisa busca, portanto, analisar os fatores que influenciam as variações salariais dos profissionais de dados no Brasil, utilizando métodos de ciência de dados para identificar padrões e sugerir recomendações ao mercado.
+Nossa pesquisa busca, portanto, analisar os fatores que influenciam as variações salariais dos profissionais de dados no Brasil, utilizando métodos de ciência de dados para identificar padrões e sugerir recomendações ao mercado.
 
 ###    Problema
 

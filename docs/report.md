@@ -26,7 +26,9 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 ---
 
-_ O agente em questão busca estabelecer quais são os fatores determinantes para a variação salarial entre profissionais de dados no Brasil.
+# Resumo
+
+O agente em questão busca estabelecer quais são os fatores determinantes para a variação salarial entre profissionais de dados no Brasil.
 Constantemente, empresas brasileiras enfrentam dificuldades em determinar um salário justo ao profissional de dados por não considerararem os requisitos e as variáveis necessárias para isso.
 Nesse contexto, a análise busca entender a influência de fatores como experiência, nível educacional e habilidades técnicas nas diferenças salariais, visando fornecer um padrão para que o mercado profissional da área seja mais equilibrado no país.
 ---

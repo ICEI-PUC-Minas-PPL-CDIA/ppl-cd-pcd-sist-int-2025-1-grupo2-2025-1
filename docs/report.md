@@ -46,13 +46,16 @@ Este estudo investiga os principais elementos que influenciam a variação de sa
 
 A desigualdade salarial é desafio enfrentado no mercado de trabalho brasileiro, impactando diversos setores da economia.
 
-Estudos do IBGE apontam que gênero, etnia e escolaridade são fatores cruciais na determinação dos salários. 
+Estudos do IBGE apontam que gênero, etnia e escolaridade são fatores cruciais na determinação dos salários.
+De acordo com o pesquisas de 2022 do instituto, eo rendimento médio por hora dos trabalhadores brancos foi de R$ 20,00, enquanto para pretos ou pardos foi de R$ 12,40, representando uma diferença de 61,4%.
+Além disso, pesquisas do mesmo em 2021 indicam que as taxas de desocupação foram de 11,3% para brancos, 16,5% para pretos e 16,2% para pardos.
+Evidenciando a influência desses aspectos na disparidade salarial na atualidade.
 
 No setor de tecnologia, essas disparidades têm características particulares, especialmente devido ao desenvolvimento acelerado da área e à necessidade contínua de atualização profissional. Na ciência de dados, as diferenças salariais são significativas e influenciadas por fatores como a experiência, formação acadêmica, setor de atuação e habilidades técnicas. 
 
 De acordo com o relatório State of Data Brazil 2023, profissionais que possuem certificações específicas em grandes empresas costumam receber remunerações mais altas, enquanto mulheres e grupos minoritários ainda encontram barreiras para alcançar igualdade salarial. 
 
-Nossa pesquisa busca, portanto, analisar os fatores que influenciam as variações salariais dos profissionais de dados no Brasil, utilizando métodos de ciência de dados para identificar padrões e sugerir recomendações ao mercado.
+Diante do exposto, buscamos por meio do trabalgo, investigar os fatores determinantes para a variação salarial entre os profissionais de dados no Brasil, visando compreender melhor as desigualdades no setor e identificar caminhos para um mercado mais equitativo.
 
 ###    Problema
 

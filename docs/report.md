@@ -147,7 +147,7 @@ A preparação dos dados consiste dos seguintes passos:
 > - Tratamento dos valores inconsistentes: conversão, remoção de dados duplicados, remoção ou tratamento de ouliers.
 > - Conversão de dados: p. ex. numérico para categórico, categórico para binário, etc.
 
-### Atributos banco de dados principal State of Data Brazil 2023;
+### 1- Atributos do banco de dados principal State of Data Brazil 2023;
 DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/datasets/datahackers/state-of-data-brazil-2023. Acesso em: 5 mar. 2025.
 
 ### **Fatores Pessoais e Demográficos:**
@@ -199,6 +199,26 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 5. **Experiência com Big Data** → `('P6_e ', 'Experiência com Big Data?')`
 6. **Utilização de técnicas avançadas de estatística e modelagem** → `('P6_f ', 'Utiliza técnicas avançadas de estatística?')`
 7. **Familiaridade com engenharia de dados e ETL** → `('P6_g ', 'Experiência com ETL e pipelines de dados')`
+
+### **2- Atributos do banco de dados secundário "ESTUDO PANORAMA DAS CARREIRAS 2030;**
+H2R PESQUISAS; TOTVS. Estudo Panorama das Carreiras 2030: o que esperar das profissões até o fim da década. Setembro/2023. Acesso em: 6 mar. 2025
+
+**Cargos apresentados:** Há uma distribuição de cargos (estagiário, analista, especialista, coordenador, gerente, diretor, CEO/sócio), o que permite entender a hierarquia profissional.
+
+**Área de atuação:** Os profissionaissão classificados em Tech, Finance, RH e Marketing & Vendas, o que pode indicar diferenças salariais entre setores.
+
+**Gênero:** O estudo menciona a participação de homens e mulheres, permitindo análise de disparidades entre os sexos.
+
+**Escolaridade:** Dados sobre nível de formação (médio, superior, pós-graduação) podem ser correlacionados com salários.
+
+**Experiência profissional:** O documento destaca que muitos profissionaistêm indicam que a experiência no setor pode influenciar a remuneração.
+
+**Habilidades mais demandadas (Hard e Soft Skills):** Competências como análise de dados, inteligência artificial e gestão de projetos são mencionadas, o que pode justificar diferenças salariais.
+
+**Tendências para 2030:** O estudo prevê que analistas de dados e especialistas em IA serão profissões valorizadas, o que pode indicar mudanças futuras nos salários.
+
+
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 

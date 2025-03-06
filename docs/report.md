@@ -110,8 +110,6 @@ Pesquisadores e acadêmicos: Aqueles que têm conhecimento analítico e estatís
 
 A aplicação será útil para esses grupos ao oferecer maneiras de visualizar intuitivas, comparações salariais e insights baseados em machine learning.
 
-# Mapa de Stakeholders
-
 ## 🎯 Público-Alvo da Aplicação
 
 A aplicação tem como objetivo fornecer insights sobre disparidade salarial na área de dados no Brasil, ajudando diferentes perfis de usuários a tomar decisões estratégicas. 

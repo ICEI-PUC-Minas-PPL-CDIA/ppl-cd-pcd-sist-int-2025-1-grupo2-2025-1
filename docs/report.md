@@ -61,8 +61,7 @@ O **problema** pode ser algo vivido em uma empresa específica. Neste caso, o al
 sucintamente apresentar o cenário de problema da empresa. A empresa só deve ser citada 
 explicitamente se o aluno tiver autorização para tal.
 
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
+
 
 
 ###    Objetivo geral
@@ -88,8 +87,6 @@ explicitamente se o aluno tiver autorização para tal.
 
 
 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
 
 
 ###    Justificativas
@@ -101,8 +98,6 @@ A justific ativa deve descrever a importância ou a motivação para o desenvolv
 sistema inteligente escolhido. Indique as razões pelas quais você escolheu seus objetivos 
 específicos ou as razões para aprofundar em certos aspectos do software.
 
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
 
 
 
@@ -117,11 +112,6 @@ Este estudo será de interesse para diversos grupos, incluindo:
 
 
 
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
 
 
 ## Análise exploratórida dos dados
@@ -222,28 +212,11 @@ Uma conclusão deve ter 3 partes:
 
 # REFERÊNCIAS
 
-Como um projeto de sistema inteligente não requer revisão bibliográfica, 
-a inclusão das referências não é obrigatória. No entanto, caso você 
-tenha utilizado referências na introdução ou deseje 
-incluir referências relacionadas às tecnologias, padrões, ou metodologias 
-que serão usadas no seu trabalho, relacione-as de acordo com a ABNT.
+DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/datasets/datahackers/state-of-data-brazil-2023. Acesso em: 5 mar. 2025.
 
-Verifique no link abaixo como devem ser as referências no padrão ABNT:
+BAIN & COMPANY; DATA HACKERS. State of Data 2024. [S.l.]: Bain & Company, 2024. Disponível em: <https://www.stateofdata.com.br/>. Acesso em: 6 mar. 2025.
 
-http://www.pucminas.br/imagedb/documento/DOC\_DSC\_NOME\_ARQUI20160217102425.pdf
-
-Por exemplo:
-
-**[1]** - _ELMASRI, Ramez; NAVATHE, Sham. **Sistemas de banco de dados**. 7. ed. São Paulo: Pearson, c2019. E-book. ISBN 9788543025001._
-
-**[2]** - _COPPIN, Ben. **Inteligência artificial**. Rio de Janeiro, RJ: LTC, c2010. E-book. ISBN 978-85-216-2936-8._
-
-**[3]** - _CORMEN, Thomas H. et al. **Algoritmos: teoria e prática**. Rio de Janeiro, RJ: Elsevier, Campus, c2012. xvi, 926 p. ISBN 9788535236996._
-
-**[4]** - _SUTHERLAND, Jeffrey Victor. **Scrum: a arte de fazer o dobro do trabalho na metade do tempo**. 2. ed. rev. São Paulo, SP: Leya, 2016. 236, [4] p. ISBN 9788544104514._
-
-**[5]** - _RUSSELL, Stuart J.; NORVIG, Peter. **Inteligência artificial**. Rio de Janeiro: Elsevier, c2013. xxi, 988 p. ISBN 9788535237016._
-
+H2R PESQUISAS; TOTVS. Estudo Panorama das Carreiras 2030: o que esperar das profissões até o fim da década. Setembro/2023. Acesso em: 6 mar. 2025
 
 
 # APÊNDICES

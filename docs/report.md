@@ -152,13 +152,17 @@ A aplicação tem como objetivo fornecer insights sobre disparidade salarial na 
 
 ###    Dicionário de dados
 
-Apresente uma descrição das bases de dados a serem utilizadas. 
-Dicionários de dados devem conter as bases de dados, os nomes dos atributos 
-com seu significado, seu tipo (inteiro, real, textual, categórico, etc).
+O conjunto de dados "State of Data Brazil 2023" é o resultado de uma pesquisa conduzida pela comunidade Data Hackers em parceria com a Bain & Company, visando mapear o mercado brasileiro de dados. A pesquisa contou com a participação de mais de 5.200 profissionais da área, que responderam a perguntas sobre diversos temas, por exemplo:
 
-Este projeto deve utilizar pelo menos duas fontes de dados. Uma fonte principal e 
-uma fonte para enriquecimentos dos dados principais.
+**Fatores Pessoais e Demográficos:** Idade, gênero e localização dos profissionais; Perfil racial e diversidade dentro do setor de dados; Contexto social e fatores que podem influenciar a carreira na área de dados.
 
+**Educação e Qualificações:** Nível de escolaridade e cursos concluídos; Áreas de formação acadêmica mais comuns entre os profissionais; Certificações e especializações na área de dados.
+
+**Experiência e Carreira:** Tempo de atuação no mercado de dados; Cargos ocupados e progressão na carreira; Transições de carreira para a área de dados.
+
+**Empresa e Ambiente de Trabalho:**  Tipo e porte da empresa em que os profissionais trabalham; Modelo de trabalho (remoto, híbrido ou presencial); Cultura organizacional e satisfação no ambiente de trabalho.
+
+**Habilidades e Ferramentas:** Principais linguagens de programação utilizadas; Tecnologias e ferramentas mais populares no mercado; Nível de proficiência dos profissionais em diferentes ferramentas.
 
 ###    Descrição de dados
 

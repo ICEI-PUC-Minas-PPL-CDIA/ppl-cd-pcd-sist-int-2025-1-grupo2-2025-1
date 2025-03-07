@@ -154,7 +154,7 @@ A aplicação tem como objetivo fornecer insights sobre disparidade salarial na 
 
 O conjunto de dados "State of Data Brazil 2023" é o resultado de uma pesquisa conduzida pela comunidade Data Hackers em parceria com a Bain & Company, visando mapear o mercado brasileiro de dados. A pesquisa contou com a participação de mais de 5.200 profissionais da área, que responderam a perguntas sobre diversos temas, por exemplo:
 
-**Fatores Pessoais e Demográficos:** Idade, gênero e localização dos profissionais; Perfil racial e diversidade dentro do setor de dados; Contexto social e fatores que podem influenciar a carreira na área de dados.
+**Fatores Pessoais e Demográficos:** Idade, gênero; Perfil racial e diversidade dentro do setor de dados; Contexto social e fatores que podem influenciar a carreira na área de dados.
 
 **Educação e Qualificações:** Nível de escolaridade e cursos concluídos; Áreas de formação acadêmica mais comuns entre os profissionais; Certificações e especializações na área de dados.
 

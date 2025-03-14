@@ -9,7 +9,9 @@
 
 **Gian Henrique Ticon e Silva Carvalho , [gianhticon@gmail.com] / [ghtscarvalho@sga.pucminas.br]**
 
-**Gabriel Barroso Goulart Parreiras, email do aluno 5**
+**Rafel Barbosa, email do aluno 5**
+
+**Enzo, email do aluno 6**
 
 ---
 

@@ -3,8 +3,6 @@
 
 **Pedro Dias Soares, [pedro3soares@gmail.com] / [pdsoares@sga.pucminas.br]**
 
-**Gabriel Bahia Leite, [bahiagabrie334@gmail.com] / [gabriel.bahia@sga.pucminas.br]**
-
 **Gabriel Chaves Nascimento, [gabrielchaves0308@gmail.com] / [gabriel.nascimento.1483087@sga.pucminas.br]**
 
 **Gian Henrique Ticon e Silva Carvalho , [gianhticon@gmail.com] / [ghtscarvalho@sga.pucminas.br]**

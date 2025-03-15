@@ -11,7 +11,7 @@
 
 **Rafael Hashimoto Sanches Barbosa, [rafaelhsbarbosa@gmail.com] / [rafael.barbosa.1593862@sga.pucminas.br]**
 
-**Enzo, [mono30157@gmail.com] / [eabgripp@sga.pucminas.br]**
+**Enzo Alves Barcelos Gripp, [mono30157@gmail.com] / [eabgripp@sga.pucminas.br]**
 
 ---
 

@@ -69,16 +69,16 @@ O agente em questão busca estabelecer quais são os fatores determinantes para 
 ####    Objetivos específicos
 
 1. **Exploração e Análise dos Dados:**
-    - Extrair  da base de dados *State of Data Brazil 2023* e bases auxiliares, dados suficientes para identificar variáveis relevantes que impactam os salários.
+    - Extrair da base de dados State of Data Brazil 2023 e bases auxiliares, dados suficientes para identificar variáveis relevantes associadas aos salários.
       
 2. **Identificação de Fatores Relevantes:**
-    - Analisar variáveis e compreender a influência de cada uma na carreira profisional do cientista de dados brasileiro, como o nível de experiência, a localização geográfica, o setor de atuação, o nível educacional, as habilidades técnicas, o gênero e a etnia.
+    - Analisar variáveis e compreender o papel de cada uma na carreira profissional do cientista de dados brasileiro, como o nível de experiência, o setor de atuação, o nível educacional, as habilidades técnicas, o gênero e a etnia.
       
 3. **Aplicação de Modelos Preditivos:**
     - Aplicar por meio de algoritmos de aprendizado de máquina, a previsão da variação salarial com base nos fatores identificados.
       
 4. **Interpretação dos Resultados:**
-    - Avaliar, determinar e publicar quais são fatores apresentam maior impacto e como eles se relacionam com as diferenças salariais.
+    - Aplicar por meio de algoritmos de aprendizado de máquina, a previsão da variação salarial com base nos fatores identificados.
       
 5. **Geração de Insights para o Mercado:**
     - Fornecer recomendações baseadas nos achados, para auxiliar profissionais de dados e empresas na atribuição de salários aos profissionais da área.

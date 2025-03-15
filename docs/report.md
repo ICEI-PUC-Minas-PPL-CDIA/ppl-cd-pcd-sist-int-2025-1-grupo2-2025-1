@@ -9,9 +9,9 @@
 
 **Gian Henrique Ticon e Silva Carvalho , [gianhticon@gmail.com] / [ghtscarvalho@sga.pucminas.br]**
 
-**Rafel Barbosa, email do aluno 5**
+**Rafael Hashimoto Sanches Barbosa, [rafaelhsbarbosa@gmail.com] / [rafael.barbosa.1593862@sga.pucminas.br]**
 
-**Enzo, email do aluno 6**
+**Enzo, [mono30157@gmail.com] / [eabgripp@sga.pucminas.br]**
 
 ---
 

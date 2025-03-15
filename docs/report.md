@@ -115,10 +115,10 @@ A aplicação tem como objetivo fornecer insights sobre disparidade salarial na 
 
 | **Stakeholder**                 | **Nível de Interesse** | **Influência** | **Objetivos** |
 |---------------------------------|----------------------|--------------|--------------|
-| **Profissionais de Dados**          | Alto                 | Médio        | Avaliar sua posição no mercado e planejar crescimento. |
-| **Gestores e Recrutadores de RH**   | Alto                 | Alto         | Ajustar faixas salariais e estruturar políticas de retenção. |
-| **Pesquisadores e Acadêmicos**      | Médio                | Médio        | Explorar padrões e desigualdades no mercado. |
-| **Órgãos Governamentais**           | Médio                | Alto         | Criar regulamentações e políticas de inclusão. |
+| **Profissionais de Dados**          | Alto                 | Média        | Avaliar sua posição no mercado e planejar crescimento. |
+| **Gestores e Recrutadores de RH**   | Alto                 | Alta         | Ajustar faixas salariais e estruturar políticas de retenção. |
+| **Pesquisadores e Acadêmicos**      | Médio                | Média        | Explorar padrões e desigualdades no mercado. |
+| **Órgãos Governamentais**           | Médio                | Alta         | Criar regulamentações e políticas de inclusão. |
 
 ## 👥 Perfis de Usuários (Personas)
 

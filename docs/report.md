@@ -185,6 +185,7 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 
 1. **Certificações e cursos adicionais** → `('P2_d ', 'Possui certificações na área de dados?')`
 2. **Idiomas estrangeiros falados e usados no trabalho** → `('P2_f ', 'Idiomas utilizados no trabalho')`
+3. **Universidade frequentada (pública ou privada)** → ('P2_c ', 'Tipo de instituição de ensino superior')
 
 ### **Experiência e Carreira:**
 

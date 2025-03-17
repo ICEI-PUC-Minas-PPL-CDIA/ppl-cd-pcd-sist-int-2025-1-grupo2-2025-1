@@ -190,9 +190,8 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 ### **Experiência e Carreira:**
 
 1. **Tempo de experiência profissional geral** → `('P3_a ', 'Tempo de experiência profissional')`
-2. **Tempo de experiência na área de dados** → `('P3_b ', 'Tempo de experiência na área de dados')`
-3. **Cargo atual** → `('P4_a ', 'Cargo atual')`
-4. **Nível de senioridade** → `('P4_b ', 'Nível de senioridade')`
+2. **Cargo atual** → `('P4_a ', 'Cargo atual')`
+3. **Nível de senioridade** → `('P4_b ', 'Nível de senioridade')`
 
 
 ### **Empresa e Ambiente de Trabalho:**

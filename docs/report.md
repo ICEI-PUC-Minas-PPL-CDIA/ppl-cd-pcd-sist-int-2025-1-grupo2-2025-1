@@ -200,11 +200,6 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 2. **Localização da empresa (cidade/estado)** → `('P5_f ', 'Localização da empresa')`
 3. **Faixa salarial**→ `('P2_h ', 'Faixa salarial')`
 
-### **Habilidades e Ferramentas:**
-
-
-
-1. **Cloud Computing** → `('P6_c ', 'Experiência com Cloud Computing')`
 
 ### **2- Atributos do banco de dados secundário "ESTUDO PANORAMA DAS CARREIRAS 2030;**
 H2R PESQUISAS; TOTVS. Estudo Panorama das Carreiras 2030: o que esperar das profissões até o fim da década. Setembro/2023. Acesso em: 6 mar. 2025

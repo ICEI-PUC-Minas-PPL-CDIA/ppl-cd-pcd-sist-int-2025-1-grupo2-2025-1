@@ -211,6 +211,7 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 7. **Benefícios recebidos** → `('P5_g ', 'Benefícios recebidos')`
 8. **Plano de carreira estruturado** → `('P5_h ', 'Possui plano de carreira na empresa?')`
 9. **Número de promoções recebidas** → `('P5_i ', 'Já foi promovido na empresa atual?')`
+10. **Faixa salarial**→ `('P2_h ', 'Faixa salarial')`
 
 ### **Habilidades e Ferramentas:**
 

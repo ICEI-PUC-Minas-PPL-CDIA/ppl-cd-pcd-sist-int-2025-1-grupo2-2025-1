@@ -218,7 +218,6 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 1. **Linguagens de programação utilizadas** → `('P6_a ', 'Linguagens de programação utilizadas')`
 2. **Ferramentas de BI utilizadas** → `('P6_b ', 'Ferramentas de BI utilizadas')`
 3. **Cloud Computing** → `('P6_c ', 'Experiência com Cloud Computing')`
-5. **Experiência com Big Data** → `('P6_e ', 'Experiência com Big Data?')`
 6. **Utilização de técnicas avançadas de estatística e modelagem** → `('P6_f ', 'Utiliza técnicas avançadas de estatística?')`
 7. **Familiaridade com engenharia de dados e ETL** → `('P6_g ', 'Experiência com ETL e pipelines de dados')`
 

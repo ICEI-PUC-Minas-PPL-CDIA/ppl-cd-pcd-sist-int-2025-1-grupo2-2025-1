@@ -218,7 +218,6 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 1. **Linguagens de programação utilizadas** → `('P6_a ', 'Linguagens de programação utilizadas')`
 2. **Ferramentas de BI utilizadas** → `('P6_b ', 'Ferramentas de BI utilizadas')`
 3. **Cloud Computing** → `('P6_c ', 'Experiência com Cloud Computing')`
-7. **Familiaridade com engenharia de dados e ETL** → `('P6_g ', 'Experiência com ETL e pipelines de dados')`
 
 ### **2- Atributos do banco de dados secundário "ESTUDO PANORAMA DAS CARREIRAS 2030;**
 H2R PESQUISAS; TOTVS. Estudo Panorama das Carreiras 2030: o que esperar das profissões até o fim da década. Setembro/2023. Acesso em: 6 mar. 2025

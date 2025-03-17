@@ -202,8 +202,7 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 1. **Tamanho da empresa** → `('P5_b ', 'Tamanho da empresa')`
 2. **Horas semanais trabalhadas** → `('P5_d ', 'Carga horária semanal')`
 3. **Localização da empresa (cidade/estado)** → `('P5_f ', 'Localização da empresa')`
-4. **Número de promoções recebidas** → `('P5_i ', 'Já foi promovido na empresa atual?')`
-5. **Faixa salarial**→ `('P2_h ', 'Faixa salarial')`
+4. **Faixa salarial**→ `('P2_h ', 'Faixa salarial')`
 
 ### **Habilidades e Ferramentas:**
 

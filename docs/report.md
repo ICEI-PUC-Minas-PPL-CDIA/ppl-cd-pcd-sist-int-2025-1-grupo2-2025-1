@@ -202,16 +202,15 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 
 ### **Empresa e Ambiente de Trabalho:**
 
-1. **Setor da empresa** → `('P5_a ', 'Setor de atuação da empresa')`
-2. **Tamanho da empresa** → `('P5_b ', 'Tamanho da empresa')`
-3. **Tipo de contratação** → `('P5_c ', 'Tipo de contrato de trabalho')`
-4. **Horas semanais trabalhadas** → `('P5_d ', 'Carga horária semanal')`
-5. **Trabalho remoto, híbrido ou presencial** → `('P5_e ', 'Modelo de trabalho')`
-6. **Localização da empresa (cidade/estado)** → `('P5_f ', 'Localização da empresa')`
-7. **Benefícios recebidos** → `('P5_g ', 'Benefícios recebidos')`
-8. **Plano de carreira estruturado** → `('P5_h ', 'Possui plano de carreira na empresa?')`
-9. **Número de promoções recebidas** → `('P5_i ', 'Já foi promovido na empresa atual?')`
-10. **Faixa salarial**→ `('P2_h ', 'Faixa salarial')`
+1. **Tamanho da empresa** → `('P5_b ', 'Tamanho da empresa')`
+2. **Tipo de contratação** → `('P5_c ', 'Tipo de contrato de trabalho')`
+3. **Horas semanais trabalhadas** → `('P5_d ', 'Carga horária semanal')`
+4. **Trabalho remoto, híbrido ou presencial** → `('P5_e ', 'Modelo de trabalho')`
+5. **Localização da empresa (cidade/estado)** → `('P5_f ', 'Localização da empresa')`
+6. **Benefícios recebidos** → `('P5_g ', 'Benefícios recebidos')`
+7. **Plano de carreira estruturado** → `('P5_h ', 'Possui plano de carreira na empresa?')`
+8. **Número de promoções recebidas** → `('P5_i ', 'Já foi promovido na empresa atual?')`
+9. **Faixa salarial**→ `('P2_h ', 'Faixa salarial')`
 
 ### **Habilidades e Ferramentas:**
 

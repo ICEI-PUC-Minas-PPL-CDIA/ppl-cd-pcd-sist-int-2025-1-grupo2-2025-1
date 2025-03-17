@@ -204,12 +204,11 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 
 1. **Tamanho da empresa** → `('P5_b ', 'Tamanho da empresa')`
 2. **Horas semanais trabalhadas** → `('P5_d ', 'Carga horária semanal')`
-3. **Trabalho remoto, híbrido ou presencial** → `('P5_e ', 'Modelo de trabalho')`
-4. **Localização da empresa (cidade/estado)** → `('P5_f ', 'Localização da empresa')`
-5. **Benefícios recebidos** → `('P5_g ', 'Benefícios recebidos')`
-6. **Plano de carreira estruturado** → `('P5_h ', 'Possui plano de carreira na empresa?')`
-7. **Número de promoções recebidas** → `('P5_i ', 'Já foi promovido na empresa atual?')`
-8. **Faixa salarial**→ `('P2_h ', 'Faixa salarial')`
+3. **Localização da empresa (cidade/estado)** → `('P5_f ', 'Localização da empresa')`
+4. **Benefícios recebidos** → `('P5_g ', 'Benefícios recebidos')`
+5. **Plano de carreira estruturado** → `('P5_h ', 'Possui plano de carreira na empresa?')`
+6. **Número de promoções recebidas** → `('P5_i ', 'Já foi promovido na empresa atual?')`
+7. **Faixa salarial**→ `('P2_h ', 'Faixa salarial')`
 
 ### **Habilidades e Ferramentas:**
 

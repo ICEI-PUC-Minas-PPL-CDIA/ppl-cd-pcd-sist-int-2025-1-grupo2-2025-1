@@ -195,7 +195,6 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 2. **Tempo de experiência na área de dados** → `('P3_b ', 'Tempo de experiência na área de dados')`
 3. **Cargo atual** → `('P4_a ', 'Cargo atual')`
 4. **Nível de senioridade** → `('P4_b ', 'Nível de senioridade')`
-6. **Publicações acadêmicas ou técnicas** → `('P4_d ', 'Publica artigos técnicos ou científicos?')`
 7. **Contribuições em projetos open source** → `('P4_e ', 'Contribui para projetos open-source?')`
 8. **Mentoria ou orientação de outros profissionais** → `('P4_f ', 'Atua como mentor ou instrutor?')`
 

@@ -179,6 +179,7 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 3. **Gênero** → `('P1_b ', 'Genero')`
 4. **Cor/Raça/Etnia** → `('P1_c ', 'Cor/raca/etnia')`
 5. **PCD (Pessoa com Deficiência)** → `('P1_d ', 'PCD')`
+6. **Uf onde mora** →  `(‘P1_i_1 ')`
 
 ### **Educação e Qualificações:**
 

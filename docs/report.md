@@ -181,6 +181,7 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 5. **PCD (Pessoa com Deficiência)** → `('P1_d ', 'PCD')`
 6. **Uf onde mora** →  `(‘P1_i_1 ')`
 
+
 ### **Experiência profissional prejudicada (discriminação)**
 1. **‘Experiencia_profissional_prejudicada'** → `('P1_e)`
 2. **'Não acredito que minha experiência profissional seja afetada'** → `('P1_e_1)`
@@ -188,11 +189,6 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 4. **'Experiencia prejudicada devido a minha identidade de gênero'** → `('P1_e_3)`
 5. **'Experiencia prejudicada devido ao fato de ser PCD'** → `('P1_e_4)`
 
-### **Educação e Qualificações:**
-
-1. **Certificações e cursos adicionais** → `('P2_d ', 'Possui certificações na área de dados?')`
-2. **Idiomas estrangeiros falados e usados no trabalho** → `('P2_f ', 'Idiomas utilizados no trabalho')`
-3. **Universidade frequentada (pública ou privada)** → ('P2_c ', 'Tipo de instituição de ensino superior')
 
 ### **Experiência e Carreira:**
 

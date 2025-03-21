@@ -200,9 +200,7 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 
 ### **Empresa e Ambiente de Trabalho:**
 
-1. **Horas semanais trabalhadas** → `('P5_d ', 'Carga horária semanal')`
-2. **Localização da empresa (cidade/estado)** → `('P5_f ', 'Localização da empresa')`
-3. **Faixa salarial**→ `('P2_h ', 'Faixa salarial')`
+1. **Faixa salarial**→ `('P2_h ', 'Faixa salarial')`
 
 
 ### **2- Atributos do banco de dados secundário "ESTUDO PANORAMA DAS CARREIRAS 2030;**

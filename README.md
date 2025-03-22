@@ -4,12 +4,15 @@ Escreva um ou dois parágrafos resumindo o objetivo do seu projeto. Lembrando qu
 
 ## Integrantes
 
-* Gabriel Bahia Leite
-* Gabriel Chaves Nascimento
 * Pedro Dias Soares
-* Nome completo do aluno 4
-* Nome completo do aluno 5
-* Nome completo do aluno 6
+
+* Gabriel Chaves Nascimento
+
+* Gian Henrique Ticon e Silva Carvalho
+
+* Rafael Hashimoto Sanches Barbosa
+
+* Enzo Alves Barcelos Gripp
 
 ## Professor
 

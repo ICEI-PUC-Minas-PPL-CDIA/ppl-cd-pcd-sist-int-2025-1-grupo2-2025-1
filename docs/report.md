@@ -157,7 +157,6 @@ O banco de dados "State of Data Brazil 2023" é o resultado de uma pesquisa cond
 
 - **Empresa e Ambiente de Trabalho:**  Tipo e porte da empresa em que os profissionais trabalham; Modelo de trabalho (remoto, híbrido ou presencial); Cultura organizacional e satisfação no ambiente de trabalho.
 
-- **Habilidades e Ferramentas:** Principais linguagens de programação utilizadas; Tecnologias e ferramentas mais populares no mercado; Nível de proficiência dos profissionais em diferentes ferramentas.
 
 ###    Descrição de dados
 

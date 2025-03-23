@@ -173,33 +173,33 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 
 ### **Fatores Pessoais e Demográficos:**
 
-1. **Idade** → `('P1_a ', 'Idade')`
-2. **Faixa etária** → `('P1_a_1 ', 'Faixa idade')`
-3. **Gênero** → `('P1_b ', 'Genero')`
-4. **Cor/Raça/Etnia** → `('P1_c ', 'Cor/raca/etnia')`
-5. **PCD (Pessoa com Deficiência)** → `('P1_d ', 'PCD')`
-6. **Uf onde mora** →  `(‘P1_i_1 ')`
+1. **Idade** → `('P1_a, Idade)`
+2. **Faixa etária** → `('P1_a_1,nFaixa idade)`
+3. **Gênero** → `('P1_b , Genero)`
+4. **Cor/Raça/Etnia** → `('P1_c,Cor/raca/etnia)`
+5. **PCD (Pessoa com Deficiência)** → `('P1_d, PCD)`
+6. **Uf onde mora** →  `('P1_i_1)`
 
 
 ### **Experiência profissional prejudicada (discriminação)**
 1. **‘Experiencia_profissional_prejudicada'** → `('P1_e)`
 2. **'Não acredito que minha experiência profissional seja afetada'** → `('P1_e_1)`
 3. **'Experiencia prejudicada devido a minha Cor Raça Etnia'** → `('P1_e_2)`
-4. **'Experiencia prejudicada devido a minha identidade de gênero'** → `('P1_e_3)`
+4. **'Experiencia prejudicada devido a minha identidade de gênero'** → `('P1_e_31)`
 5. **'Experiencia prejudicada devido ao fato de ser PCD'** → `('P1_e_4)`
 
 
 ### **Experiência e Carreira:**
 
-1. **'Quanto tempo de experiência na área de dados você tem?'** → `('P2_i ')`, ('Tempo de experiência profissional')
-2. **Cargo atual** → `('P2_f')`, ('Cargo atual')
-3. **'Senioridade das vagas recebidas em relação à sua experiência'** → `('P1_f_2')`
-4. **‘Nível’** → `('P2_g ')`
+1. **'Quanto tempo de experiência na área de dados você tem?'** → `('P2_i)`, ('Tempo de experiência profissional')
+2. **Cargo atual** → `(P2_f)`, ('Cargo atual')
+3. **'Senioridade das vagas recebidas em relação à sua experiência'** → `('P1_f_2)`
+4. **‘Nível’** → `('P2_g)`
 
 
 ### **Empresa e Ambiente de Trabalho:**
 
-1. **Faixa salarial**→ `('P2_h ', 'Faixa salarial')`
+1. **Faixa salarial**→ `('P2_h, Faixa salarial)`
 
 
 ### **2- Atributos do banco de dados secundário "ESTUDO PANORAMA DAS CARREIRAS 2030;**

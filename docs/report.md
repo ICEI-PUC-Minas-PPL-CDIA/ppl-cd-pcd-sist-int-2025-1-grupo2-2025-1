@@ -201,7 +201,12 @@ DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/
 
 1. **Faixa salarial**→ `('P2_h, Faixa salarial)`
 
+---
 
+### Atualizar essa base de dados auxiliar
+-https://sidra.ibge.gov.br/tabela/7446
+-https://sidra.ibge.gov.br/tabela/7446
+-
 ### **2- Atributos do banco de dados secundário "ESTUDO PANORAMA DAS CARREIRAS 2030;**
 H2R PESQUISAS; TOTVS. Estudo Panorama das Carreiras 2030: o que esperar das profissões até o fim da década. Setembro/2023. Acesso em: 6 mar. 2025
 

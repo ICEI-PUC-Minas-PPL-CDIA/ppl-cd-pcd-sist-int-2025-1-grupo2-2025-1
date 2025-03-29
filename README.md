@@ -40,15 +40,15 @@ Assim que a primeira versão do sistema estiver disponível, deverá complementa
 ## Histórico de versões
 
 * 0.1.1
-    *Seleção de atributos(De acordo com os problemas dirigido por dados)❌
+    * Seleção de atributos(De acordo com os problemas dirigido por dados)❌
 * 0.1.0
-    *Definição de problemas dirigido por dados ❌
+    * Definição de problemas dirigido por dados ❌
 * 0.0.8
-    Relatório final ❌
+    * Relatório final ❌
 * 0.0.7
-    Modelo 2 ❌
+    * Modelo 2 ❌
 * 0.0.6
-    Modelo 1 ❌
+    * Modelo 1 ❌
 * 0.0.5
     * Tratamento dos dados ❌
 * 0.0.4

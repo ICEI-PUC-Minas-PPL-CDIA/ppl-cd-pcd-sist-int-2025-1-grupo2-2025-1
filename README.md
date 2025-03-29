@@ -54,7 +54,7 @@ Assim que a primeira versão do sistema estiver disponível, deverá complementa
 * 0.0.4
     * Analise exploratória dos dados ❌
 * 0.0.3
-    * Seleção de atributos sobre o tema(preliminar)
+    * Seleção de atributos sobre o tema(preliminar) ✅
 * 0.0.2
     * Introdução das bases de dados. ✅
 * 0.0.1

@@ -1,15 +1,15 @@
 # Disparidade Salarial dos Profissionais de Dados no Brasil
 
 
-**Pedro Dias Soares, [pedro3soares@gmail.com] / [pdsoares@sga.pucminas.br]**
+**Pedro Dias Soares, [pdsoares@sga.pucminas.br]**
 
-**Gabriel Chaves Nascimento, [gabrielchaves0308@gmail.com] / [gabriel.nascimento.1483087@sga.pucminas.br]**
+**Gabriel Chaves Nascimento, [gabriel.nascimento.1483087@sga.pucminas.br]**
 
-**Gian Henrique Ticon e Silva Carvalho , [gianhticon@gmail.com] / [ghtscarvalho@sga.pucminas.br]**
+**Gian Henrique Ticon e Silva Carvalho , [ghtscarvalho@sga.pucminas.br]**
 
-**Rafael Hashimoto Sanches Barbosa, [rafaelhsbarbosa@gmail.com] / [rafael.barbosa.1593862@sga.pucminas.br]**
+**Rafael Hashimoto Sanches Barbosa, [rafael.barbosa.1593862@sga.pucminas.br]**
 
-**Enzo Alves Barcelos Gripp, [mono30157@gmail.com] / [eabgripp@sga.pucminas.br]**
+**Enzo Alves Barcelos Gripp, [eabgripp@sga.pucminas.br]**
 
 ---
 

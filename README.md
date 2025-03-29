@@ -8,15 +8,16 @@ Para isso, são exploradas características como experiência, formação acadê
 
 ## Integrantes
 
-* Pedro Dias Soares
+**Pedro Dias Soares, [pdsoares@sga.pucminas.br]**
 
-* Gabriel Chaves Nascimento
+**Gabriel Chaves Nascimento, [gabriel.nascimento.1483087@sga.pucminas.br]**
 
-* Gian Henrique Ticon e Silva Carvalho
+**Gian Henrique Ticon e Silva Carvalho , [ghtscarvalho@sga.pucminas.br]**
 
-* Rafael Hashimoto Sanches Barbosa
+**Rafael Hashimoto Sanches Barbosa, [rafael.barbosa.1593862@sga.pucminas.br]**
 
-* Enzo Alves Barcelos Gripp
+**Enzo Alves Barcelos Gripp, [eabgripp@sga.pucminas.br]**
+
 
 ---
 

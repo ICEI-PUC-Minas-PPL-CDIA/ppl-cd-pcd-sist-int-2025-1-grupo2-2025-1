@@ -36,9 +36,9 @@ A disparidade salarial entre profissionais de dados no Brasil é influenciada po
 
 ## Introdução
 
-O Brasil experimentou um crescimento exponencial na indústria de dados devido à transformação digital do país e à crescente necessidade de trabalhadores qualificados. Embora as oportunidades sejam abundantes, os salários variam amplamente entre os trabalhadores, com fatores como experiência, gênero, educação, localização geografica e tipo de empresa influenciando essa disparidade.
+O Brasil experimentou um crescimento exponencial na indústria de dados devido à transformação digital do país e à crescente necessidade de trabalhadores qualificados. Embora as oportunidades sejam abundantes, os salários variam amplamente entre os trabalhadores, com fatores como experiência, gênero, educação, localização geográfica e tipo de empresa influenciando essa disparidade.
 
-O objetivo deste estudo é identificar os principais fatores associados à disparidade na remuneração dos profissionais de dados no Brasil com base em dados utilizando informações coletadas de uma ampla pesquisa setorial.
+O objetivo deste estudo é identificar os principais fatores associados à disparidade na remuneração dos profissionais de dados no Brasil, utilizando informações coletadas de uma ampla pesquisa setorial.
 
 As disparidades salariais entre os profissionais de dados no Brasil são influenciadas por diversos fatores como idade, gênero dos profissionais de dados, do setor de emprego ou modelo de contratação e ainda o seu histórico educacional e experiência profissional.
 
@@ -46,7 +46,7 @@ Este estudo investiga os principais elementos que estão associados à variaçã
 
 ###    Contextualização
 
-A desigualdade salarial é desafio enfrentado no mercado de trabalho brasileiro, impactando diversos setores da economia.
+A desigualdade salarial é um desafio enfrentado no mercado de trabalho brasileiro, impactando diversos setores da economia.
 
 Estudos do IBGE apontam que gênero, etnia e escolaridade são fatores cruciais na determinação dos salários. De acordo com as pesquisas de 2022 do instituto, o rendimento médio por hora dos trabalhadores brancos foi de R$ 20,00, enquanto para pretos ou pardos foi de R$ 12,40, representando uma diferença de 61,4%. Além disso, pesquisas do mesmo em 2021 indicam que as taxas de desocupação foram de 11,3% para brancos, 16,5% para pretos e 16,2% para pardos, evidenciando a influência desses aspectos na disparidade salarial na atualidade.
 
@@ -58,13 +58,13 @@ Diante do exposto, buscamos por meio desta análise de dados, investigar os fato
 
 ###    Problema
 
-O agente em questão busca estabelecer quais são os fatores determinantes para a variação salarial entre profissionais de dados no Brasil. Constantemente, empresas brasileiras enfrentam dificuldades em determinar um salário justo ao profissional de dados por não considerarem os requisitos e as variáveis necessárias para isso. Nesse contexto, a análise busca entender o papel de fatores como experiência, nível educacional nas diferenças salariais, visando fornecer um padrão para que o mercado profissional da área seja mais equilibrado no país.
+O agente em questão busca estabelecer quais são os fatores determinantes para a variação salarial entre profissionais de dados no Brasil. Constantemente, empresas brasileiras enfrentam dificuldades em determinar um salário justo ao profissional de dados por não considerarem os requisitos e as variáveis necessárias para isso. Nesse contexto, a análise busca entender o papel de fatores como experiência e nível educacional nas diferenças salariais, visando fornecer um padrão para que o mercado profissional da área seja mais equilibrado no país.
 
 
 
 ###    Objetivo geral
 
-**Desenvolver um sistema inteligente para compreender os fatores que influenciam a variação salarial dos profissionais de dados no Brasil, e para auxiliar na equiparação salarial doesses, utilizando técnicas de ciência de dados para identificar padrões e tendências.**
+**Desenvolver um sistema inteligente para compreender os fatores que influenciam a variação salarial dos profissionais de dados no Brasil, e para auxiliar na equiparação salarial desses, utilizando técnicas de ciência de dados para identificar padrões e tendências.**
 
 ####    Objetivos específicos
 
@@ -89,13 +89,13 @@ O agente em questão busca estabelecer quais são os fatores determinantes para 
 
 ###    Justificativas
 
-A desigualdade salarial na área de dados é um tema relevante, impactando profissionais e empresas. Este estudo busca identificar os principais fatores associados aos salários, com foco na experiência, senioridade e setor de atuação. O estudo se destina a profissionais da área, que podem utilizar os resultados para planejar suas carreiras, e às empresas, que podem aprimorar suas políticas salariais com base em dados concretos. A pesquisa se apoia em bases de dados reconhecidas, como a State of Data Brazil 2023 da Data Hackers, garantindo a validade e confiabilidade das análises realizadas.
+A desigualdade salarial na área de dados é um tema relevante, impactando profissionais e empresas. Este estudo busca identificar os principais fatores associados aos salários, com foco na experiência, senioridade e setor de atuação. O estudo se destina a profissionais da área que podem utilizar os resultados para planejar suas carreiras, e às empresas, que podem aprimorar suas políticas salariais com base em dados concretos. A pesquisa se apoia em bases de dados reconhecidas, como a State of Data Brazil 2023 da Data Hackers, garantindo a validade e confiabilidade das análises realizadas.
 
 
 
 ##    Público alvo
 
-Os principais perfis de usuários da aplicação podem ser divididos nos seguintes grupos:
+Os principais perfis de usuários da aplicação são:
 
 Profissionais de dados: Os quais possuem conhecimento técnico variado. Estão familiarizados com ferramentas de análise e visualização de dados, além de linguagens como Python e SQL. No ambiente corporativo, ocupam cargos que vão de analistas a cientistas de dados sêniores.
 
@@ -214,7 +214,7 @@ H2R PESQUISAS; TOTVS. Estudo Panorama das Carreiras 2030: o que esperar das prof
 
 **Cargos apresentados:** Há uma distribuição de cargos (estagiário, analista, especialista, coordenador, gerente, diretor, CEO/sócio), o que permite entender a hierarquia profissional.
 
-**Área de atuação:** Os profissionaissão classificados em Tech, Finance, RH e Marketing & Vendas, o que pode indicar diferenças salariais entre setores.
+**Área de atuação:** Os profissionais são classificados em Tech, Finance, RH e Marketing & Vendas, o que pode indicar diferenças salariais entre setores.
 
 **Gênero:** O estudo menciona a participação de homens e mulheres, permitindo análise de disparidades entre os sexos.
 

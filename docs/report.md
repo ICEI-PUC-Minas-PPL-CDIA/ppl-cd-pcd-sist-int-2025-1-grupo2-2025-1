@@ -161,6 +161,12 @@ O banco de dados "State of Data Brazil 2023" é o resultado de uma pesquisa cond
 
 
 ###    Descrição de dados
+1. State_of_Data_BR_2023
+A pesquisa State_of_Data_BR_2023 é realizada anualmente com o objetivo de mapear o perfil dos profissionais de dados no Brasil. Ela abrange informações como salários, ferramentas utilizadas, nível de experiência, formação acadêmica e outros aspectos relevantes.
+
+2. ----
+
+3. ---
 
 Utilize a análise descritiva baseada em estatística de primeira ordem para descrever os dados.
 Como descrever dados numéricos: média, desvio padrão, mínimo, máximo, quartis, histograma, etc.
@@ -169,41 +175,33 @@ Como descrever dados qualitativos (categóricos): moda (valor mais frequente), q
 
 ## Preparação dos dados
 
-
-### 1- Atributos do banco de dados principal State of Data Brazil 2023;
-DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/datasets/datahackers/state-of-data-brazil-2023. Acesso em: 5 mar. 2025.
-
-### **Fatores Pessoais e Demográficos:**
-
-1. **Idade** → `('P1_a, Idade)`
-2. **Faixa etária** → `('P1_a_1,nFaixa idade)`
-3. **Gênero** → `('P1_b , Genero)`
-4. **Cor/Raça/Etnia** → `('P1_c,Cor/raca/etnia)`
-5. **PCD (Pessoa com Deficiência)** → `('P1_d, PCD)`
-6. **Uf onde mora** →  `('P1_i_1)`
+### Atributos relevantes para temática da base de dados principal
+#### **State of Data Brazil** DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/datasets/datahackers/state-of-data-brazil-2023. Acesso em: 4 Abr. 2025.
 
 
-### **Experiência profissional prejudicada (discriminação)**
-1. **‘Experiencia_profissional_prejudicada'** → `('P1_e)`
-2. **'Não acredito que minha experiência profissional seja afetada'** → `('P1_e_1)`
-3. **'Experiencia prejudicada devido a minha Cor Raça Etnia'** → `('P1_e_2)`
-4. **'Experiencia prejudicada devido a minha identidade de gênero'** → `('P1_e_31)`
-5. **'Experiencia prejudicada devido ao fato de ser PCD'** → `('P1_e_4)`
-
-
-### **Experiência e Carreira:**
-
-1. **'Quanto tempo de experiência na área de dados você tem?'** → `('P2_i)`, ('Tempo de experiência profissional')
-2. **Cargo atual** → `(P2_f)`, ('Cargo atual')
-3. **'Senioridade das vagas recebidas em relação à sua experiência'** → `('P1_f_2)`
-4. **‘Nível’** → `('P2_g)`
-
-
-### **Empresa e Ambiente de Trabalho:**
-
-1. **Faixa salarial**→ `('P2_h, Faixa salarial)`
+| Atributo                                           | Código de Referência | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância |
+|----------------------------------------------------|-----------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------------------------|------------|
+| Idade                                              | P1a                   | Quantitativo | Discreto                            | Idade do respondente                                                                          | Alta       |
+| Faixa etária                                       | P1a1                  | Qualitativo  | Ordinal                             | Faixa etária do respondente                                                                   | Alta       |
+| Gênero                                             | P1b                   | Qualitativo  | Nominal (Multivalorado)             | Identidade de gênero do respondente                                                           | Alta       |
+| Cor/Raça/Etnia                                     | P1c                   | Qualitativo  | Nominal (Multivalorado)             | Cor, raça ou etnia do respondente                                                             | Alta       |
+| Pessoa com Deficiência (PCD)                       | P1d                   | Qualitativo  | Nominal (Binário)                   | Indicação se o respondente é uma pessoa com deficiência                                       | Alta       |
+| UF onde mora                                       | P1i1                  | Qualitativo  | Nominal (Multivalorado)             | Unidade Federativa onde o respondente reside                                                  | Média      |
+| Experiência profissional prejudicada              | P1e                   | Qualitativo  | Nominal (Binário)                   | Indicação geral se o respondente acredita que sua experiência foi prejudicada por discriminação | Alta       |
+| Não acredito que minha experiência profissional seja afetada     | P1e1                  | Qualitativo  | Nominal (Binário)                   | Resposta indicando que o respondente não acredita que sua experiência foi afetada             | Alta       |
+| Experiência prejudicada devido à minha Cor/Raça/Etnia            | P1e2                  | Qualitativo  | Nominal (Binário)                   | Indicação de prejuízo na experiência profissional devido à cor, raça ou etnia                 | Alta       |
+| Experiência prejudicada devido à minha identidade de gênero      | P1e3                  | Qualitativo  | Nominal (Binário)                   | Indicação de prejuízo na experiência profissional devido à identidade de gênero               | Alta       |
+| Experiência prejudicada devido ao fato de ser PCD                | P1e4                  | Qualitativo  | Nominal (Binário)                   | Indicação de prejuízo na experiência profissional devido ao fato de ser uma pessoa com deficiência (PCD)  | Alta       |
+| Quanto tempo de experiência na área de dados você tem?           | P2i                   | Quantitativo  | Discreto                            | Tempo de experiência do respondente na área de dados                                          | Alta       |
+| Cargo atual                                        | P2f                   | Qualitativo  | Nominal (Multivalorado)             | Cargo atual ocupado pelo respondente                                                          | Alta       |
+| Senioridade das vagas recebidas em relação à sua experiência     | P1f2                  | Qualitativo  | Ordinal                             | Nível de senioridade das vagas recebidas pelo respondente                                     | Média      |
+| Nível                                              | P2g                   | Qualitativo  | Ordinal                             | Nível profissional do respondente                                                             | Alta       |
+| Faixa salarial                                     | P2h                   | Qualitativo  | Ordinal                             | Faixa salarial do respondente                                                                 | Alta       |
 
 ---
+
+### Atributos relevantes da base de dados principal para 1ºpergunta orientada
+**Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profssional interagem para infuenciar a disparidade salarial entre profssionais de dados no Brasil?*
 
 ### Atualizar essa base de dados auxiliar
 -https://sidra.ibge.gov.br/tabela/7446

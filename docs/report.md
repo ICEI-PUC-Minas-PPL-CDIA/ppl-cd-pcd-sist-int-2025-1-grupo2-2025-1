@@ -203,8 +203,6 @@ Como descrever dados qualitativos (categóricos): moda (valor mais frequente), q
 ### Atributos relevantes da base de dados principal para 1ºpergunta orientada
 **Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profssional interagem para infuenciar a disparidade salarial entre profssionais de dados no Brasil?*
 
-### Atributos relevantes da base de dados principal para 2ª pergunta orientada
-**Pergunta Orientada a Dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
 
 | Atributo                                         | Nome                                      | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância |
 |--------------------------------------------------|-------------------------------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------------------------|------------|
@@ -245,6 +243,8 @@ Como descrever dados qualitativos (categóricos): moda (valor mais frequente), q
 | P2o9                                             | Qualidade dos gestores                    | Qualitativo  | Nominal (Multivalorado)             | Importância atribuída à qualidade dos gestores e líderes                                      | Média      |
 | P2o10                                            | Reputação da empresa                      |  Qualitativo | Nominal (Multivalorado)             | Valorização da reputação que a empresa tem no mercado                                         | Média      |
 
+### Atributos relevantes da base de dados principal para 2ª pergunta orientada
+**Pergunta Orientada a Dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
 
 ### Atualizar essa base de dados auxiliar
 -https://sidra.ibge.gov.br/tabela/7446

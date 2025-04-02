@@ -202,6 +202,10 @@ Como descrever dados qualitativos (categóricos): moda (valor mais frequente), q
 
 ### Atributos relevantes da base de dados principal para 1ºpergunta orientada
 **Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profssional interagem para infuenciar a disparidade salarial entre profssionais de dados no Brasil?*
+
+### Atributos relevantes da base de dados principal para 2ª pergunta orientada
+**Pergunta Orientada a Dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
+
 | Atributo                                         | Nome                                      | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância |
 |--------------------------------------------------|-------------------------------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------------------------|------------|
 | P1l                                              | Nível de ensino alcançado                 | Qualitativo  | Ordinal                             | Nível de ensino do respondente (graduação, mestrado, etc.)                                    | Alta       |

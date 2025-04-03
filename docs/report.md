@@ -164,14 +164,14 @@ O banco de dados "State of Data Brazil 2023" é o resultado de uma pesquisa cond
 1. State_of_Data_BR_2023
 A pesquisa State_of_Data_BR_2023 é realizada anualmente com o objetivo de mapear o perfil dos profissionais de dados no Brasil. Ela abrange informações como salários, ferramentas utilizadas, nível de experiência, formação acadêmica e outros aspectos relevantes.
 
-Salários Médio por Gênero:  
+**Salários Médio por Gênero:**  
 gênero  
 Feminino           R$ 7.000,00  
 Masculino         R$ 10.000,00  
 Não Informado      R$ 7.000,00  
 Nome: salary_midpoint, dtype: object  
 
-Salários Médio por Etnia:  
+**Salários Médio por Etnia:**  
 etnia  
 Asiático          R$ 10.000,00  
 Negro              R$ 7.000,00  
@@ -181,7 +181,7 @@ Não Informado      R$ 7.000,00
 Branco            R$ 10.000,00  
 Nome: salary_midpoint, dtype: object  
 
-Salários Médio por Nível de Educação:  
+**Salários Médio por Nível de Educação:**  
 nível_educacional  
 Graduação                  R$ 7.000,00  
 Mestrado                  R$ 10.000,00  
@@ -191,14 +191,14 @@ Pós-graduação             R$ 10.000,00
 Estudante de Graduação     R$ 3.500,00  
 Nome: salary_midpoint, dtype: object  
 
-Salários Médio por Senioridade:  
+**Salários Médio por Senioridade:**  
 senioridade  
 Júnior         R$ 3.500,00  
 Pleno          R$ 7.000,00  
 Sênior        R$ 10.000,00  
 Nome: salary_midpoint, dtype: object  
 
-Salários Médio por Função:  
+**Salários Médio por Função:**  
 função_atual  
 Engenheiro de Analytics       R$ 10.000,00  
 Engenheiro/Arquiteto de Dados R$ 10.000,00  
@@ -211,7 +211,7 @@ Desenvolvedor de Software      R$ 7.000,00
 Analista de BI                 R$ 5.000,00  
 Nome: salary_midpoint, dtype: object  
 
-Salários Médio por Indústria:  
+**Salários Médio por Indústria:**  
 indústria  
 Finanças/Bancos          R$ 10.000,00  
 Indústria                R$ 10.000,00  
@@ -223,7 +223,7 @@ Setor Público             R$ 7.000,00
 Marketing                 R$ 5.000,00  
 Nome: salary_midpoint, dtype: object  
 
-Salários Médio por Região:  
+**Salários Médio por Região:**  
 região  
 Centro-oeste    R$ 10.000,00  
 Sudeste         R$ 10.000,00  
@@ -232,13 +232,13 @@ Norte            R$ 7.000,00
 Sul              R$ 7.000,00  
 Nome: salary_midpoint, dtype: object  
 
-Diferença Salarial por Gênero: 42,86% (Mediana Masculino: R$ 10.000,00; Mediana Feminino: R$ 7.000,00)  
+**Diferença Salarial por Gênero:** 42,86% (Mediana Masculino: R$ 10.000,00; Mediana Feminino: R$ 7.000,00)  
 
-Diferença Salarial Branco-Negro: 42,86% (Mediana Branco: R$ 10.000,00; Mediana Negro: R$ 7.000,00)   
-Diferença Salarial Branco-Pardo: 42,86% (Mediana Branco: R$ 10.000,00; Mediana Pardo: R$ 7.000,00)  
+**Diferença Salarial Branco-Negro:** 42,86% (Mediana Branco: R$ 10.000,00; Mediana Negro: R$ 7.000,00)   
+**Diferença Salarial Branco-Pardo:** 42,86% (Mediana Branco: R$ 10.000,00; Mediana Pardo: R$ 7.000,00)  
 
-Correlação entre Experiência Total e Salário: 0,54   
-Correlação entre Nível Educacional e Salário: 0,32
+**Correlação entre Experiência Total e Salário:** 0,54   
+**Correlação entre Nível Educacional e Salário:** 0,32
 
 ---
 

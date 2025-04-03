@@ -243,11 +243,6 @@ Nome: salary_midpoint, dtype: object
 ---
 
 
-Utilize a análise descritiva baseada em estatística de primeira ordem para descrever os dados.
-Como descrever dados numéricos: média, desvio padrão, mínimo, máximo, quartis, histograma, etc.
-Como descrever dados qualitativos (categóricos): moda (valor mais frequente), quantidade de valores distintos (categorias), distribuição das categorias (histograma), etc.
-
-
 ## Preparação dos dados
 
 ### Atributos relevantes para temática da base de dados principal

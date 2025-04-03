@@ -51,9 +51,9 @@ Assim que a primeira versão do sistema estiver disponível, deverá complementa
 * 0.0.6
     * * Definição de problemas dirigido por dados (3/5)✅
 * 0.0.5
-    * Tratamento dos dados ❌
+    * Tratamento dos dados ✅
 * 0.0.4
-    * Analise exploratória dos dados ❌
+    * Analise exploratória dos dados ✅
 * 0.0.3
     * Seleção de atributos sobre o tema(preliminar) ✅
 * 0.0.2

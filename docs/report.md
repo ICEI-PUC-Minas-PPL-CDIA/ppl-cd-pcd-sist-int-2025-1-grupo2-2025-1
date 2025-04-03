@@ -350,6 +350,16 @@ Nome: salary_midpoint, dtype: object
 
 ![grafico_19](https://github.com/user-attachments/assets/aa5da302-2016-4c87-b30d-d8c7a61df5c5)
 
+![grafico_30](https://github.com/user-attachments/assets/c7594562-2e4d-466b-b166-c7a698a4ccfd)
+
+![grafico_28](https://github.com/user-attachments/assets/8e6609d8-de57-4b31-8419-227742953347)
+
+![grafico_27](https://github.com/user-attachments/assets/a8b55cbd-c6af-49c3-9c10-4d8c1ac07603)
+
+![grafico_22](https://github.com/user-attachments/assets/a2fe8ce1-c80a-4f64-b626-04f757474d3e)
+
+![grafico_21](https://github.com/user-attachments/assets/774f76bc-3988-4e3d-ad0c-d763c51b68f7)
+
 ---
 
 ### Atributos relevantes da base de dados principal para 2ª pergunta orientada
@@ -396,6 +406,9 @@ Nome: salary_midpoint, dtype: object
 
 ![grafico_2](https://github.com/user-attachments/assets/859f3b19-e032-48cf-b8a1-1b90ad7adaf1)
 
+![grafico_26](https://github.com/user-attachments/assets/b7221400-1f0f-452e-aa8f-c0fc6fb9fcaf)
+
+![grafico_25](https://github.com/user-attachments/assets/1190df7c-f1c4-430e-83e7-b08e6c269097)
 
 ### Atualizar essa base de dados auxiliar
 -https://sidra.ibge.gov.br/tabela/7446

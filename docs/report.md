@@ -289,6 +289,11 @@ H2R PESQUISAS; TOTVS. Estudo Panorama das Carreiras 2030: o que esperar das prof
 **Tendências para 2030:** O estudo prevê que analistas de dados e especialistas em IA serão profissões valorizadas, o que pode indicar mudanças futuras nos salários.
 
 
+---
+
+## Microdados
+### State of Data Brazil DATA HACKERS
+
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------

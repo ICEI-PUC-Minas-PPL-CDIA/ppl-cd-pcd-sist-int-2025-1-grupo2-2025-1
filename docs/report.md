@@ -164,9 +164,84 @@ O banco de dados "State of Data Brazil 2023" é o resultado de uma pesquisa cond
 1. State_of_Data_BR_2023
 A pesquisa State_of_Data_BR_2023 é realizada anualmente com o objetivo de mapear o perfil dos profissionais de dados no Brasil. Ela abrange informações como salários, ferramentas utilizadas, nível de experiência, formação acadêmica e outros aspectos relevantes.
 
-2. ----
+Salários Médio por Gênero:  
+gênero  
+Feminino           R$ 7.000,00  
+Masculino         R$ 10.000,00  
+Não Informado      R$ 7.000,00  
+Nome: salary_midpoint, dtype: object  
 
-3. ---
+Salários Médio por Etnia:  
+etnia  
+Asiático          R$ 10.000,00  
+Negro              R$ 7.000,00  
+Indígena           R$ 5.000,00  
+Pardo              R$ 7.000,00  
+Não Informado      R$ 7.000,00  
+Branco            R$ 10.000,00  
+Nome: salary_midpoint, dtype: object  
+
+Salários Médio por Nível de Educação:  
+nível_educacional  
+Graduação                  R$ 7.000,00  
+Mestrado                  R$ 10.000,00  
+Sem Educação Formal        R$ 5.000,00  
+Doutorado                 R$ 14.000,00  
+Pós-graduação             R$ 10.000,00  
+Estudante de Graduação     R$ 3.500,00  
+Nome: salary_midpoint, dtype: object  
+
+Salários Médio por Senioridade:  
+senioridade  
+Júnior         R$ 3.500,00  
+Pleno          R$ 7.000,00  
+Sênior        R$ 10.000,00  
+Nome: salary_midpoint, dtype: object  
+
+Salários Médio por Função:  
+função_atual  
+Engenheiro de Analytics       R$ 10.000,00  
+Engenheiro/Arquiteto de Dados R$ 10.000,00  
+Professor/Pesquisador         R$ 10.000,00  
+Economista                    R$ 10.000,00  
+Cientista de Dados            R$ 10.000,00  
+Analista de Negócios           R$ 7.000,00  
+Analista de Dados              R$ 7.000,00  
+Desenvolvedor de Software      R$ 7.000,00  
+Analista de BI                 R$ 5.000,00  
+Nome: salary_midpoint, dtype: object  
+
+Salários Médio por Indústria:  
+indústria  
+Finanças/Bancos          R$ 10.000,00  
+Indústria                R$ 10.000,00  
+Internet/E-commerce      R$ 10.000,00  
+Tecnologia/Software      R$ 10.000,00  
+Varejo                   R$ 10.000,00  
+Educação                  R$ 7.000,00  
+Setor Público             R$ 7.000,00  
+Marketing                 R$ 5.000,00  
+Nome: salary_midpoint, dtype: object  
+
+Salários Médio por Região:  
+região  
+Centro-oeste    R$ 10.000,00  
+Sudeste         R$ 10.000,00  
+Nordeste         R$ 7.000,00  
+Norte            R$ 7.000,00  
+Sul              R$ 7.000,00  
+Nome: salary_midpoint, dtype: object  
+
+Diferença Salarial por Gênero: 42,86% (Mediana Masculino: R$ 10.000,00; Mediana Feminino: R$ 7.000,00)  
+
+Diferença Salarial Branco-Negro: 42,86% (Mediana Branco: R$ 10.000,00; Mediana Negro: R$ 7.000,00)   
+Diferença Salarial Branco-Pardo: 42,86% (Mediana Branco: R$ 10.000,00; Mediana Pardo: R$ 7.000,00)  
+
+Correlação entre Experiência Total e Salário: 0,54   
+Correlação entre Nível Educacional e Salário: 0,32
+
+---
+
 
 Utilize a análise descritiva baseada em estatística de primeira ordem para descrever os dados.
 Como descrever dados numéricos: média, desvio padrão, mínimo, máximo, quartis, histograma, etc.
@@ -201,7 +276,7 @@ Como descrever dados qualitativos (categóricos): moda (valor mais frequente), q
 ---
 
 ### Atributos relevantes da base de dados principal para 1ºpergunta orientada
-**Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profssional interagem para infuenciar a disparidade salarial entre profssionais de dados no Brasil?*
+**Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
 
 
 | Atributo                                         | Nome                                      | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância |

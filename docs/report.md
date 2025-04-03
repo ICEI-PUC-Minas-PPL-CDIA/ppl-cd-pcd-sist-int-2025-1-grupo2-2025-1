@@ -313,6 +313,45 @@ Nome: salary_midpoint, dtype: object
 | P2o9                                             | Qualidade dos gestores                    | Qualitativo  | Nominal (Multivalorado)             | Importância atribuída à qualidade dos gestores e líderes                                      | Média      |
 | P2o10                                            | Reputação da empresa                      |  Qualitativo | Nominal (Multivalorado)             | Valorização da reputação que a empresa tem no mercado                                         | Média      |
 
+## Gráficos relacionados a 1º pergunta orientada a dados
+![grafico_1](https://github.com/user-attachments/assets/c5eb1bfb-6cd6-4147-a46f-3e33c6dd4141)
+
+![grafico_2](https://github.com/user-attachments/assets/b1547005-3ccd-48e6-8c9f-d8c9ea9cc026)
+
+![grafico_3](https://github.com/user-attachments/assets/cd8dd69f-72a1-4e53-935b-b3222e7de079)
+
+![grafico_4](https://github.com/user-attachments/assets/2289435b-c407-47fd-9523-9943dec46c38)
+
+![grafico_5](https://github.com/user-attachments/assets/61e9d463-96f7-48f0-b687-33e496f5b7de)
+
+![grafico_6](https://github.com/user-attachments/assets/fe4559ed-833d-4856-9de2-ff14bf5c3c07)
+
+![grafico_7](https://github.com/user-attachments/assets/16abed4c-eff1-4a79-9a11-b96d1aed5aca)
+
+![grafico_8](https://github.com/user-attachments/assets/ecbc2903-3782-41e4-a666-1cb029dc58d5)
+
+![grafico_9](https://github.com/user-attachments/assets/04d10ca3-c7eb-4fc8-bd06-2f2d81b98585)
+
+![grafico_10](https://github.com/user-attachments/assets/2ac5f30a-65f2-47f4-972d-0a8757932ebe)
+
+![grafico_11](https://github.com/user-attachments/assets/aa6a284f-9c3a-46c0-a180-c2f808b267a5)
+
+![grafico_12](https://github.com/user-attachments/assets/a1d64f41-feba-4589-87fd-934396a95199)
+
+![grafico_13](https://github.com/user-attachments/assets/50529659-0afa-45ec-ae72-f65fbcc83277)
+
+![grafico_14](https://github.com/user-attachments/assets/3b239d62-a82b-43d1-aa10-26b5e957bcce)
+
+![grafico_15](https://github.com/user-attachments/assets/3bf4cfdf-2032-4158-9012-7091f14121cb)
+
+![grafico_16](https://github.com/user-attachments/assets/71c55ed0-cc29-4cd9-961a-aa2de7039049)
+
+![grafico_17](https://github.com/user-attachments/assets/a1a4a041-92c9-4d03-bac8-0a711126095b)
+
+![grafico_19](https://github.com/user-attachments/assets/aa5da302-2016-4c87-b30d-d8c7a61df5c5)
+
+---
+
 ### Atributos relevantes da base de dados principal para 2ª pergunta orientada
 **Pergunta Orientada a Dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
 
@@ -321,6 +360,18 @@ Nome: salary_midpoint, dtype: object
 | P2i      | Tempo de Experiência | Quantitativo | Discreto | Anos de atuação na área de dados | Alta |
 | P2g      | Nível de Senioridade | Qualitativo | Ordinal | Nível profissional alcançado (Júnior, Pleno, Sênior, etc.) | Alta |
 | P2h      | Faixa Salarial | Qualitativo | Ordinal | Classificação salarial em faixas | Alta |
+
+## Gráficos relacionados a 2º pergunta orientada a dados
+![grafico_1](https://github.com/user-attachments/assets/19a0497e-a549-4bf4-8e24-042968b0f34b)
+
+![grafico_5](https://github.com/user-attachments/assets/f892c184-ffc9-4e2c-8597-11b1ca3e24b9)
+
+![grafico_10](https://github.com/user-attachments/assets/330b446a-b895-42e3-8409-3130f4486da3)
+
+![grafico_5](https://github.com/user-attachments/assets/70073af7-d341-46b3-a909-5a793cbd5bb4)
+
+
+---
 
 ### Atributos relevantes da base de dados principal para 3ª pergunta orientada
 **Pergunta Orientada a Dados:** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
@@ -335,6 +386,15 @@ Nome: salary_midpoint, dtype: object
 | P1l                                                | Nível de ensino alcançado            | Qualitativo | Ordinal               | Nível de ensino do respondente (graduação, mestrado, etc.)                                     | Alta       |
 | P2h                                              | Faixa salarial mensal                     | Qualitativo  | Ordinal                             | Faixa salarial mensal do respondente                                                          | Alta       |
 | P2i                                              | Tempo de experiência na área de dados     | Quantitativo | Discreto                            | Tempo de experiência do respondente na área de dados (em anos)                                | Alta       |
+
+## Gráficos relacionados a 3º pergunta orientada a dados
+![grafico_1](https://github.com/user-attachments/assets/3bc10b24-de9d-4206-99cb-953d42ad8ab8)
+
+![grafico_10](https://github.com/user-attachments/assets/db512fe3-f803-45e3-ae2a-659e5ad9deba)
+
+![grafico_4](https://github.com/user-attachments/assets/a6d02ecc-c6ae-47dc-91f4-d6140ae2bcf6)
+
+![grafico_2](https://github.com/user-attachments/assets/859f3b19-e032-48cf-b8a1-1b90ad7adaf1)
 
 
 ### Atualizar essa base de dados auxiliar

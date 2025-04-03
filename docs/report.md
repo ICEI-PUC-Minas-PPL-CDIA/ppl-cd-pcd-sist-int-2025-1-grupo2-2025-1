@@ -246,6 +246,12 @@ Como descrever dados qualitativos (categóricos): moda (valor mais frequente), q
 ### Atributos relevantes da base de dados principal para 2ª pergunta orientada
 **Pergunta Orientada a Dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
 
+| Atributo | Nome | Tipo | Subtipo | Descrição | Relevância |
+|----------|------|------|---------|-----------|------------|
+| P2i      | Tempo de Experiência | Quantitativo | Discreto | Anos de atuação na área de dados | Alta |
+| P2g      | Nível de Senioridade | Qualitativo | Ordinal | Nível profissional alcançado (Júnior, Pleno, Sênior, etc.) | Alta |
+| P2h      | Faixa Salarial | Qualitativo | Ordinal | Classificação salarial em faixas | Alta |
+
 ### Atributos relevantes da base de dados principal para 3ª pergunta orientada
 **Pergunta Orientada a Dados:** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
 

@@ -410,6 +410,10 @@ Nome: salary_midpoint, dtype: object
 
 ![grafico_25](https://github.com/user-attachments/assets/1190df7c-f1c4-430e-83e7-b08e6c269097)
 
+### Atributos relevantes da base de dados principal para 4ª pergunta orientada
+**Pergunta Orientada a Dados:** *Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os
+profissionais de tecnologia?*
+
 ### Atualizar essa base de dados auxiliar
 -https://sidra.ibge.gov.br/tabela/7446
 -https://sidra.ibge.gov.br/tabela/7446

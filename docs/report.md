@@ -436,6 +436,16 @@ profissionais de tecnologia?*
 | P4d13                                            | PHP                                       | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Baixa      |
 | P4d14                                            | JavaScript                                | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Alta       |
 | P4d15                                            | Não utilizo nenhuma linguagem             | Qualitativo  | Nominal (Binário)                   | Indicação se o respondente não utiliza nenhuma linguagem de programação                       | Média      |         
+### Atributos relevantes da base de dados principal para 5ª pergunta orientada
+**Pergunta Orientada a Dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área??*
+
+| Atributo | Nome                  | Tipo         | Subtipo                         | Descrição                                                             | Relevância |
+|----------|-----------------------|-------------|---------------------------------|------------------------------------------------------------------------|------------|
+| P1a      | Idade                 | Quantitativo | Contínuo                        | Idade dos respondentes em anos completos.                             | Alta       |
+| P2i      | Tempo de experiência  | Quantitativo | Contínuo                        | Tempo de atuação na área de dados, geralmente em anos.                | Alta       |
+| P1m      | Área de formação      | Qualitativo  | Nominal (Multivalorado)         | Curso ou campo de estudo principal (ex: Ciência da Computação, Estatística). | Alta       |
+| P2o1     | Salário               | Quantitativo | Contínuo                        | Renda mensal declarada, geralmente em reais.                          | Alta       |
+
 ### Atualizar essa base de dados auxiliar
 -https://sidra.ibge.gov.br/tabela/7446
 -https://sidra.ibge.gov.br/tabela/7446

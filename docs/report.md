@@ -435,9 +435,10 @@ profissionais de tecnologia?*
 | P4d12                                            | Rust                                      | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Baixa      |
 | P4d13                                            | PHP                                       | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Baixa      |
 | P4d14                                            | JavaScript                                | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Alta       |
-| P4d15                                            | Não utilizo nenhuma linguagem             | Qualitativo  | Nominal (Binário)                   | Indicação se o respondente não utiliza nenhuma linguagem de programação                       | Média      |         
+| P4d15                                            | Não utilizo nenhuma linguagem             | Qualitativo  | Nominal (Binário)                   | Indicação se o respondente não utiliza nenhuma linguagem de programação                       | Média      |  
+
 ### Atributos relevantes da base de dados principal para 5ª pergunta orientada
-**Pergunta Orientada a Dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área??*
+**Pergunta Orientada a Dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área?*
 
 | Atributo | Nome                  | Tipo         | Subtipo                         | Descrição                                                             | Relevância |
 |----------|-----------------------|-------------|---------------------------------|------------------------------------------------------------------------|------------|
@@ -446,26 +447,25 @@ profissionais de tecnologia?*
 | P1m      | Área de formação      | Qualitativo  | Nominal (Multivalorado)         | Curso ou campo de estudo principal (ex: Ciência da Computação, Estatística). | Alta       |
 | P2o1     | Salário               | Quantitativo | Contínuo                        | Renda mensal declarada, geralmente em reais.                          | Alta       |
 
-### Atualizar essa base de dados auxiliar
--https://sidra.ibge.gov.br/tabela/7446
--https://sidra.ibge.gov.br/tabela/7446
--
-### **2- Atributos do banco de dados secundário "ESTUDO PANORAMA DAS CARREIRAS 2030;**
-H2R PESQUISAS; TOTVS. Estudo Panorama das Carreiras 2030: o que esperar das profissões até o fim da década. Setembro/2023. Acesso em: 6 mar. 2025
+## Enrriquecimento de dados
 
-**Cargos apresentados:** Há uma distribuição de cargos (estagiário, analista, especialista, coordenador, gerente, diretor, CEO/sócio), o que permite entender a hierarquia profissional.
+### Base de dados auxiliar para 1º Pergunta Orientada a Dados
+**Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
 
-**Área de atuação:** Os profissionais são classificados em Tech, Finance, RH e Marketing & Vendas, o que pode indicar diferenças salariais entre setores.
+### Base de dados auxiliar para 2º Pergunta Orientada a Dados
+**Pergunta Orientada a Dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
 
-**Gênero:** O estudo menciona a participação de homens e mulheres, permitindo análise de disparidades entre os sexos.
+### Base de dados auxiliar para 3º Pergunta Orientada a Dados
+**Pergunta Orientada a Dados:** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
 
-**Escolaridade:** Dados sobre nível de formação (médio, superior, pós-graduação) podem ser correlacionados com salários.
+### Base de dados auxiliar para 4º Pergunta Orientada a Dados
+**Pergunta Orientada a Dados:** Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os
+profissionais de tecnologia?*
 
-**Experiência profissional:** O documento destaca que muitos profissionaistêm indicam que a experiência no setor pode influenciar a remuneração.
+### Base de dados auxiliar para 5º Pergunta Orientada a Dados
+**Pergunta Orientada a Dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área?*
 
-**Habilidades mais demandadas (Hard e Soft Skills):** Competências como análise de dados, inteligência artificial e gestão de projetos são mencionadas, o que pode justificar diferenças salariais.
 
-**Tendências para 2030:** O estudo prevê que analistas de dados e especialistas em IA serão profissões valorizadas, o que pode indicar mudanças futuras nos salários.
 
 
 ---

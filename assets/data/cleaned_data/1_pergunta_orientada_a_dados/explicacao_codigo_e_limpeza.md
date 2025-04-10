@@ -1,6 +1,6 @@
 # Processo de Limpeza de Dados
 
-[Códgio da limpeza em python](code_data_cleanest/1_pergunta_orientada_a_dados/limpezadedados_1perguntaorientadadados.ipynb)
+[Códgio da limpeza em python](/src/analise_exploratoria_state_of_data/Analise_Exploratoria.ipynb)
 
 ## 1. Mapeamento de Colunas Relevantes
 ```python

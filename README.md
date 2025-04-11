@@ -46,10 +46,12 @@ Assim que a primeira versão do sistema estiver disponível, deverá complementa
     * Modelo 2 ❌
 * 0.0.8
     * Modelo 1 ❌
+* 0.0.8
+     *Analises exploratorias das perguntas orientada a dados usando os bancos de dados (principal e auxiliar) (1/5)✅
 * 0.0.7
-    * Seleção de atributos(De acordo com os problemas dirigido por dados)(3/5)✅
+    * Seleção de atributos(De acordo com os problemas dirigido por dados)✅
 * 0.0.6
-    * Definição de problemas dirigido por dados (3/5)✅
+    * Definição de problemas dirigido por dados ✅
 * 0.0.5
     * Tratamento dos dados ✅
 * 0.0.4

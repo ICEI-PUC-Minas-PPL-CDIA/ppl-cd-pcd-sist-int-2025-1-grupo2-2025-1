@@ -1,98 +1,149 @@
 import pandas as pd
 import numpy as np
+import glob
+import os
 
-# Carregar o dataset da Revelo
-df_revelo = pd.read_csv('pesquisa_revelo.csv')
+DATA_PATH_PATTERN = './dados_mte/*.txt'
 
-# Filtrar apenas profissionais de dados
-termos_dados = ['dados', 'data', 'analytics', 'science', 'scientist', 'analista', 'cientista', 'engineer', 'engenheiro']
-df_aux = df_revelo[df_revelo['cargo'].str.lower().str.contains('|'.join(termos_dados), na=False)].copy()
+cbo_codes_dados = [
+    '212405',
+    '212410',
+    '212415',
+    '212420',
+    '212305',
+    '212315',
+    '212320',
+    '142515',
+    '142520',
+    '142525',
+    '142535',
+    '221105',
+    '221205',
+]
 
-# Renomear colunas para padronizar com a base principal
-df_aux.rename(columns={
-    'experiencia': 'tempo_experiencia',
-    'nivel': 'nivel_senioridade',
-    'salario': 'salario_medio',
-    'setor': 'setor_atuacao',
-    'estado': 'uf'
-}, inplace=True)
+colunas_para_ler = [
+    'CBO Ocupação 2002',
+    'Vl Remun Média Nom',
+    'Vl Remun Dezembro Nom',
+    'Sexo Trabalhador',
+    'Raça Cor',
+    'IBGE Subsetor',
+    'UF',
+    'Escolaridade após 2005',
+    'Idade',
+]
 
-# Padronizar níveis de senioridade
-df_aux['nivel_senioridade'] = df_aux['nivel_senioridade'].str.lower()
-df_aux['nivel_senioridade'] = df_aux['nivel_senioridade'].replace({
-    'júnior': 'junior',
-    'estagiário': 'junior',
-    'trainee': 'junior',
-    'jr': 'junior',
-    'intermediário': 'pleno',
-    'pl': 'pleno',
-    'sênior': 'senior',
-    'sr': 'senior',
-    'especialista': 'senior',
-    'coordenador': 'senior',
-    'gerente': 'senior',
-    'líder': 'senior'
-})
+novos_nomes_colunas = {
+    'CBO Ocupação 2002': 'cbo',
+    'Vl Remun Média Nom': 'salario_medio_nominal',
+    'Vl Remun Dezembro Nom': 'salario_dezembro_nominal',
+    'Sexo Trabalhador': 'genero_cod',
+    'Raça Cor': 'raca_cod',
+    'IBGE Subsetor': 'cnae_cod',
+    'UF': 'uf_cod',
+    'Escolaridade após 2005': 'escolaridade_cod',
+    'Idade': 'idade',
+}
 
-# Converter tempo de experiência para formato numérico em anos
-def padronizar_experiencia(exp):
-    if isinstance(exp, str):
-        if 'até 1 ano' in exp.lower():
-            return 0.5
-        elif 'até 2 anos' in exp.lower():
-            return 1.5
-        elif '1-3' in exp or '1 a 3' in exp:
-            return 2.0
-        elif '3-5' in exp or '3 a 5' in exp:
-            return 4.0
-        elif '5-7' in exp or '5 a 7' in exp:
-            return 6.0
-        elif '7-10' in exp or '7 a 10' in exp:
-            return 8.5
-        elif 'mais de 10' in exp.lower():
-            return 12.0
+map_genero = {1: 'Masculino', 2: 'Feminino', -1: 'Nao Identificado'}
+map_raca = {
+    1: 'Indigena', 2: 'Branca', 4: 'Preta', 8: 'Amarela', 9: 'Parda',
+    -1: 'Nao Identificado', 6: 'Nao Informado'
+}
+
+def limpar_dados_mte(file_path, cbo_list, cols_to_read, new_col_names, map_gen, map_rac):
+    try:
+        print(f"Processando arquivo: {os.path.basename(file_path)}...")
+
+        df = pd.read_csv(
+            file_path,
+            sep=';',
+            encoding='latin1',
+            usecols=cols_to_read,
+            decimal=',',
+            on_bad_lines='warn'
+        )
+
+        print(f"  Lidos {len(df)} registros.")
+
+        df.rename(columns=new_col_names, inplace=True)
+
+        if 'cbo' in df.columns:
+             df['cbo'] = df['cbo'].astype(str).str.strip()
+             df = df[df['cbo'].isin(cbo_list)]
+             print(f"  Registros após filtro CBO: {len(df)}")
+             if df.empty:
+                 print("  Nenhum registro encontrado para os CBOs especificados neste arquivo.")
+                 return None
         else:
-            try:
-                return float(exp)
-            except:
-                return np.nan
-    else:
-        return np.nan
+            print("  Aviso: Coluna 'cbo' não encontrada após renomear.")
+            return None
 
-df_aux['tempo_experiencia_anos'] = df_aux['tempo_experiencia'].apply(padronizar_experiencia)
+        coluna_salarial_escolhida = 'salario_medio_nominal'
+        if coluna_salarial_escolhida in df.columns:
+            df[coluna_salarial_escolhida] = pd.to_numeric(df[coluna_salarial_escolhida], errors='coerce')
+            df.dropna(subset=[coluna_salarial_escolhida], inplace=True)
+            df = df[df[coluna_salarial_escolhida] > 0]
+            print(f"  Registros após limpeza de salário: {len(df)}")
+        else:
+             print(f"  Aviso: Coluna salarial '{coluna_salarial_escolhida}' não encontrada.")
 
-# Padronizar valores salariais
-def padronizar_salario(sal):
-    if isinstance(sal, str):
-        sal = sal.replace('R$', '').replace('.', '').replace(',', '.').strip()
+
+        if 'genero_cod' in df.columns:
+             df['genero'] = df['genero_cod'].map(map_gen).fillna('Nao Mapeado')
+        if 'raca_cod' in df.columns:
+             df['raca'] = df['raca_cod'].map(map_rac).fillna('Nao Mapeado')
+
+        if 'uf_cod' in df.columns:
+             df['uf'] = df['uf_cod'].astype(str).str.strip()
+
+        cols_to_drop = ['genero_cod', 'raca_cod', 'uf_cod']
+        cols_presentes_para_drop = [col for col in cols_to_drop if col in df.columns]
+        df.drop(columns=cols_presentes_para_drop, inplace=True, errors='ignore')
+
+        print(f"  Limpeza concluída para este arquivo. Registros finais: {len(df)}")
+        return df
+
+    except FileNotFoundError:
+        print(f"Erro: Arquivo não encontrado em {file_path}")
+        return None
+    except KeyError as e:
+        print(f"Erro: Coluna não encontrada no arquivo {os.path.basename(file_path)}. Verifique o dicionário de dados. Detalhe: {e}")
+        return None
+    except Exception as e:
+        print(f"Erro inesperado ao processar {os.path.basename(file_path)}: {e}")
+        return None
+
+all_files = glob.glob(DATA_PATH_PATTERN)
+if not all_files:
+    print(f"Nenhum arquivo encontrado no padrão: {DATA_PATH_PATTERN}")
+else:
+    print(f"Arquivos encontrados: {len(all_files)}")
+
+    list_df_limpos = []
+
+    for file in all_files:
+        df_limpo = limpar_dados_mte(
+            file_path=file,
+            cbo_list=cbo_codes_dados,
+            cols_to_read=colunas_para_ler,
+            new_col_names=novos_nomes_colunas,
+            map_gen=map_genero,
+            map_rac=map_raca
+        )
+        if df_limpo is not None and not df_limpo.empty:
+            list_df_limpos.append(df_limpo)
+
+    if list_df_limpos:
+        df_auxiliar_final = pd.concat(list_df_limpos, ignore_index=True)
+        print(f"\nProcessamento concluído. Total de registros agregados: {len(df_auxiliar_final)}")
+
+        output_filename = 'dados_auxiliares_mte_limpos.csv'
         try:
-            return float(sal)
-        except:
-            return np.nan
+            df_auxiliar_final.to_csv(output_filename, index=False, encoding='utf-8')
+            print(f"Dados auxiliares limpos salvos em: {output_filename}")
+        except Exception as e:
+            print(f"Erro ao salvar o arquivo CSV final: {e}")
+
     else:
-        return np.nan
-
-df_aux['salario_medio'] = df_aux['salario_medio'].apply(padronizar_salario)
-
-# Remover outliers de salário (método IQR)
-Q1 = df_aux['salario_medio'].quantile(0.25)
-Q3 = df_aux['salario_medio'].quantile(0.75)
-IQR = Q3 - Q1
-limite_inferior = Q1 - 1.5 * IQR
-limite_superior = Q3 + 1.5 * IQR
-
-df_aux = df_aux[(df_aux['salario_medio'] >= limite_inferior) & 
-               (df_aux['salario_medio'] <= limite_superior)]
-
-# Adicionar coluna de fonte para identificar origem dos dados
-df_aux['fonte'] = 'Pesquisa Revelo'
-
-# Selecionar colunas relevantes para correspondência com a base principal
-colunas_final = ['cargo', 'nivel_senioridade', 'tempo_experiencia_anos', 
-                'salario_medio', 'setor_atuacao', 'uf', 'fonte']
-df_aux_final = df_aux[colunas_final].dropna()
-
-# Salvar o DataFrame limpo em um arquivo CSV
-df_aux_final.to_csv('dados_auxiliares_limpos_pergunta2.csv', index=False)
-
-print(f"Dados auxiliares limpos salvos. Total de registros: {len(df_aux_final)}")
+        print("\nNenhum dado relevante encontrado ou processado nos arquivos fornecidos.")

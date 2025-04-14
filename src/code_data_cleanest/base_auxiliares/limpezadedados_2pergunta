@@ -1,0 +1,98 @@
+import pandas as pd
+import numpy as np
+
+# Carregar o dataset da Revelo
+df_revelo = pd.read_csv('pesquisa_revelo.csv')
+
+# Filtrar apenas profissionais de dados
+termos_dados = ['dados', 'data', 'analytics', 'science', 'scientist', 'analista', 'cientista', 'engineer', 'engenheiro']
+df_aux = df_revelo[df_revelo['cargo'].str.lower().str.contains('|'.join(termos_dados), na=False)].copy()
+
+# Renomear colunas para padronizar com a base principal
+df_aux.rename(columns={
+    'experiencia': 'tempo_experiencia',
+    'nivel': 'nivel_senioridade',
+    'salario': 'salario_medio',
+    'setor': 'setor_atuacao',
+    'estado': 'uf'
+}, inplace=True)
+
+# Padronizar níveis de senioridade
+df_aux['nivel_senioridade'] = df_aux['nivel_senioridade'].str.lower()
+df_aux['nivel_senioridade'] = df_aux['nivel_senioridade'].replace({
+    'júnior': 'junior',
+    'estagiário': 'junior',
+    'trainee': 'junior',
+    'jr': 'junior',
+    'intermediário': 'pleno',
+    'pl': 'pleno',
+    'sênior': 'senior',
+    'sr': 'senior',
+    'especialista': 'senior',
+    'coordenador': 'senior',
+    'gerente': 'senior',
+    'líder': 'senior'
+})
+
+# Converter tempo de experiência para formato numérico em anos
+def padronizar_experiencia(exp):
+    if isinstance(exp, str):
+        if 'até 1 ano' in exp.lower():
+            return 0.5
+        elif 'até 2 anos' in exp.lower():
+            return 1.5
+        elif '1-3' in exp or '1 a 3' in exp:
+            return 2.0
+        elif '3-5' in exp or '3 a 5' in exp:
+            return 4.0
+        elif '5-7' in exp or '5 a 7' in exp:
+            return 6.0
+        elif '7-10' in exp or '7 a 10' in exp:
+            return 8.5
+        elif 'mais de 10' in exp.lower():
+            return 12.0
+        else:
+            try:
+                return float(exp)
+            except:
+                return np.nan
+    else:
+        return np.nan
+
+df_aux['tempo_experiencia_anos'] = df_aux['tempo_experiencia'].apply(padronizar_experiencia)
+
+# Padronizar valores salariais
+def padronizar_salario(sal):
+    if isinstance(sal, str):
+        sal = sal.replace('R$', '').replace('.', '').replace(',', '.').strip()
+        try:
+            return float(sal)
+        except:
+            return np.nan
+    else:
+        return np.nan
+
+df_aux['salario_medio'] = df_aux['salario_medio'].apply(padronizar_salario)
+
+# Remover outliers de salário (método IQR)
+Q1 = df_aux['salario_medio'].quantile(0.25)
+Q3 = df_aux['salario_medio'].quantile(0.75)
+IQR = Q3 - Q1
+limite_inferior = Q1 - 1.5 * IQR
+limite_superior = Q3 + 1.5 * IQR
+
+df_aux = df_aux[(df_aux['salario_medio'] >= limite_inferior) & 
+               (df_aux['salario_medio'] <= limite_superior)]
+
+# Adicionar coluna de fonte para identificar origem dos dados
+df_aux['fonte'] = 'Pesquisa Revelo'
+
+# Selecionar colunas relevantes para correspondência com a base principal
+colunas_final = ['cargo', 'nivel_senioridade', 'tempo_experiencia_anos', 
+                'salario_medio', 'setor_atuacao', 'uf', 'fonte']
+df_aux_final = df_aux[colunas_final].dropna()
+
+# Salvar o DataFrame limpo em um arquivo CSV
+df_aux_final.to_csv('dados_auxiliares_limpos_pergunta2.csv', index=False)
+
+print(f"Dados auxiliares limpos salvos. Total de registros: {len(df_aux_final)}")

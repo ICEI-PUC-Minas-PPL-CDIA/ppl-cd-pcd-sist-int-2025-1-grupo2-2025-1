@@ -447,7 +447,7 @@ profissionais de tecnologia?*
 | P1m      | Área de formação      | Qualitativo  | Nominal (Multivalorado)         | Curso ou campo de estudo principal (ex: Ciência da Computação, Estatística). | Alta       |
 | P2o1     | Salário               | Quantitativo | Contínuo                        | Renda mensal declarada, geralmente em reais.                          | Alta       |
 
-## Enrriquecimento de dados
+## Enriquecimento de dados
 
 ### Base de dados auxiliar para 1º Pergunta Orientada a Dados
 **Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
@@ -459,7 +459,10 @@ profissionais de tecnologia?*
 
 ### Base de dados auxiliar para 2º Pergunta Orientada a Dados
 **Pergunta Orientada a Dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
+- Relatórios de Transparência Salarial e Critérios Remuneratórios
+- Link: [https://relatoriodetransparenciasalarial.trabalho.gov.br/](https://relatoriodetransparenciasalarial.trabalho.gov.br/)
 
+  
 ### Base de dados auxiliar para 3º Pergunta Orientada a Dados
 **Pergunta Orientada a Dados:** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
 

@@ -151,11 +151,11 @@ Pesquisadores e acadêmicos: Aqueles que têm conhecimento analítico e estatís
 
 A aplicação será útil para esses grupos ao oferecer maneiras de visualizar intuitivas, comparações salariais e insights baseados em machine learning.
 
-## 🎯 Público-Alvo da Aplicação
+## 🎯 Público-alvo da aplicação
 
 A aplicação tem como objetivo fornecer insights sobre disparidade salarial na área de dados no Brasil, ajudando diferentes perfis de usuários a tomar decisões estratégicas. 
 
-## 🏢 Stakeholders e seus Papéis
+## 🏢 Stakeholders e seus papéis
 
 | **Stakeholder**                 | **Nível de Interesse** | **Influência** | **Objetivos** |
 |---------------------------------|----------------------|--------------|--------------|
@@ -164,7 +164,7 @@ A aplicação tem como objetivo fornecer insights sobre disparidade salarial na 
 | **Pesquisadores e Acadêmicos**      | Médio                | Média        | Explorar padrões e desigualdades no mercado. |
 | **Órgãos Governamentais**           | Médio                | Alta         | Criar regulamentações e políticas de inclusão. |
 
-## 👥 Perfis de Usuários (Personas)
+## 👥 Perfis de usuários (Personas)
 
 ### **1️⃣ Persona: Analista de Dados Júnior**
 - **Nome:** Lucas Mendes  
@@ -315,7 +315,7 @@ Nome: salary_midpoint, dtype: object
 ---
 
 ### Atributos relevantes da base de dados principal para 1ºpergunta orientada
-**Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
+**Pergunta orientada a dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
 
 
 | Atributo                                         | Nome                                      | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância |
@@ -407,7 +407,7 @@ Nome: salary_midpoint, dtype: object
 ---
 
 ### Atributos relevantes da base de dados principal para 2ª pergunta orientada
-**Pergunta Orientada a Dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
+**Pergunta orientada a dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
 
 | Atributo | Nome | Tipo | Subtipo | Descrição | Relevância |
 |----------|------|------|---------|-----------|------------|
@@ -428,7 +428,7 @@ Nome: salary_midpoint, dtype: object
 ---
 
 ### Atributos relevantes da base de dados principal para 3ª pergunta orientada
-**Pergunta Orientada a Dados:** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+**Pergunta orientada a dados::** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
 
 | Atributo                                           | Código de Referência | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância  |
 |----------------------------------------------------|-----------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------------------------|------------|
@@ -455,7 +455,7 @@ Nome: salary_midpoint, dtype: object
 ![grafico_25](https://github.com/user-attachments/assets/1190df7c-f1c4-430e-83e7-b08e6c269097)
 
 ### Atributos relevantes da base de dados principal para 4ª pergunta orientada
-**Pergunta Orientada a Dados:** *Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os
+**Pergunta orientada a dados:** *Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os
 profissionais de tecnologia?*
 
 | Atributo                                         | Nome                                      | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância |
@@ -483,7 +483,7 @@ profissionais de tecnologia?*
 | P4d15                                            | Não utilizo nenhuma linguagem             | Qualitativo  | Nominal (Binário)                   | Indicação se o respondente não utiliza nenhuma linguagem de programação                       | Média      |  
 
 ### Atributos relevantes da base de dados principal para 5ª pergunta orientada
-**Pergunta Orientada a Dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área?*
+**Pergunta orientada a dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área?*
 
 | Atributo | Nome                  | Tipo         | Subtipo                         | Descrição                                                             | Relevância |
 |----------|-----------------------|-------------|---------------------------------|------------------------------------------------------------------------|------------|
@@ -494,29 +494,29 @@ profissionais de tecnologia?*
 
 ## Enriquecimento de dados
 
-### Base de dados auxiliar para 1º Pergunta Orientada a Dados
-**Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
+### Base de dados auxiliar para 1º pergunta orientada a dados
+**Pergunta orientada a dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
 - Microdados do Censo da Educação Superior
 - Link: https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-da-educacao-superior
   
 - [Base de dados](assets/data/bases_principais/MICRODADOS_ED_SUP_IES_2023.CSV)
 
 
-### Base de dados auxiliar para 2º Pergunta Orientada a Dados
-**Pergunta Orientada a Dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
+### Base de dados auxiliar para 2º pergunta orientada a dados
+**Pergunta orientada a dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
 - Relatórios de Transparência Salarial e Critérios Remuneratórios
 - Link: [https://relatoriodetransparenciasalarial.trabalho.gov.br/](https://relatoriodetransparenciasalarial.trabalho.gov.br/)
 
   
-### Base de dados auxiliar para 3º Pergunta Orientada a Dados
-**Pergunta Orientada a Dados:** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+### Base de dados auxiliar para 3º pergunta orientada a dados
+**Pergunta orientada a dados:** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
 
-### Base de dados auxiliar para 4º Pergunta Orientada a Dados
-**Pergunta Orientada a Dados:** Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os
+### Base de dados auxiliar para 4º pergunta orientada a dados
+**Pergunta orientada a dados:** Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os
 profissionais de tecnologia?*
 
-### Base de dados auxiliar para 5º Pergunta Orientada a Dados
-**Pergunta Orientada a Dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área?*
+### Base de dados auxiliar para 5º pergunta orientada a dados
+**Pergunta orientada a dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área?*
 
 
 

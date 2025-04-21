@@ -39,7 +39,6 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 *   [Dicionário de dados](#dicionário-de-dados)
 *   [Descrição de dados](#descrição-de-dados)
 *   [Preparação dos dados](#preparação-dos-dados)
-*   [Gráficos relacionados a dados](#gráficos-relacionados-a-dados)
 *   [Enriquecimento de dados](#enriquecimento-de-dados)
 *   [Analises exploratorias de dados](#analises-exploratorias-de-dados) 
     *   [1º Pergunta Orientada a Dados](#1º-pergunta-orientada-a-dados)

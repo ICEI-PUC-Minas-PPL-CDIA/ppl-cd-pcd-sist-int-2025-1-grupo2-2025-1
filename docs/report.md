@@ -58,7 +58,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [Base de dados auxiliar para 4º Pergunta Orientada a Dados](#base-de-dados-auxiliar-para-4o-pergunta-orientada-a-dados)
     *   [Base de dados auxiliar para 5º Pergunta Orientada a Dados](#base-de-dados-auxiliar-para-5o-pergunta-orientada-a-dados)
 *   [Analises exploratorias de dados](#analises-exploratorias-de-dados) 
-    *   [1º Pergunta Orientada a Dados](#1°-pergunta-orientada-a-dados)
+    *   [1º Pergunta Orientada a Dados](#1º-pergunta-orientada-a-dados)
 *   [Indução de modelos](#inducao-de-modelos)
     *   [Modelo 1: Algoritmo](#modelo-1-algoritmo)
     *   [Modelo 2: Algoritmo](#modelo-2-algoritmo)
@@ -525,7 +525,7 @@ profissionais de tecnologia?*
 
 ## Analises exploratorias de dados 
 
-### 1º Pergunta Orientada a Dados 
+### 1º Pergunta orientada a dados 
 **Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
 
 ![image](https://github.com/user-attachments/assets/9037f75e-d52b-4163-9a8d-ac7d50f957ec)

@@ -36,7 +36,6 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [Objetivo geral](#objetivo-geral)
     *   [Justificativas](#justificativas)
 *   [Público alvo](#público-alvo)
-*   [Público-Alvo da Aplicação](#🎯-público-alvo-da-aplicação)
 *   [Stakeholders e seus papéis](#stakeholders-e-seus-papéis)
 *   [Dicionário de dados](#dicionário-de-dados)
 *   [Descrição de dados](#descrição-de-dados)

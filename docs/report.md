@@ -54,7 +54,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [Atributos relevantes da base de dados principal para 4ª pergunta orientada](#atributos-relevantes-da-base-de-dados-principal-para-4a-pergunta-orientada)
     *   [Atributos relevantes da base de dados principal para 5ª pergunta orientada](#atributos-relevantes-da-base-de-dados-principal-para-5a-pergunta-orientada)
 *   [Gráficos relacionados a dados](#graficos-relacionados-a-dados)
-    *   [Gráficos relacionados a 1º pergunta orientada a dados](#graficos-relacionados-a-1o-pergunta-orientada-a-dados) 
+    *   [Gráficos relacionados a 1º pergunta orientada a dados](#graficos-relacionados-a-1o-pergunta-orientada-a-dados)
     *   [Gráficos relacionados a 2º pergunta orientada a dados](#graficos-relacionados-a-2o-pergunta-orientada-a-dados)
     *   [Gráficos relacionados a 3º pergunta orientada a dados](#graficos-relacionados-a-3o-pergunta-orientada-a-dados)
 *   [Enriquecimento de dados](#enriquecimento-de-dados)
@@ -63,8 +63,8 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [Base de dados auxiliar para 3º Pergunta Orientada a Dados](#base-de-dados-auxiliar-para-3o-pergunta-orientada-a-dados)
     *   [Base de dados auxiliar para 4º Pergunta Orientada a Dados](#base-de-dados-auxiliar-para-4o-pergunta-orientada-a-dados)
     *   [Base de dados auxiliar para 5º Pergunta Orientada a Dados](#base-de-dados-auxiliar-para-5o-pergunta-orientada-a-dados)
-*   [Analises exploratorias de dados](#analises-exploratorias-de-dados)
-    *   [1º Pergunta Orientada a Dados](#1o-pergunta-orientada-a-dados)
+*   [Analises exploratorias de dados](#analises-exploratorias-de-dados) (*Verifique se este cabeçalho existe no seu arquivo*)
+    *   [1º Pergunta Orientada a Dados](#1o-pergunta-orientada-a-dados-1) (*Verifique se este cabeçalho existe e se o `-1` é necessário devido a duplicatas*)
 *   [Indução de modelos](#inducao-de-modelos)
     *   [Modelo 1: Algoritmo](#modelo-1-algoritmo)
     *   [Modelo 2: Algoritmo](#modelo-2-algoritmo)
@@ -78,7 +78,6 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 *   [8. Conclusão](#8-conclusao)
 *   [REFERÊNCIAS](#referencias)
 *   [APÊNDICES](#apendices)
-
 
 # Resumo
 

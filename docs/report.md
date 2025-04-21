@@ -661,7 +661,7 @@ Uma conclusão deve ter 3 partes:
 	 * Limitações e possibilidades de melhoria
 
 
-# ✒️ REFERÊNCIAS 
+# REFERÊNCIAS 
 
 DATA HACKERS. State of Data Brazil 2023. Disponível em: https://www.kaggle.com/datasets/datahackers/state-of-data-brazil-2023. Acesso em: 5 mar. 2025.
 

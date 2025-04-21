@@ -57,7 +57,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [Base de dados auxiliar para 5º Pergunta Orientada a Dados](#base-de-dados-auxiliar-para-5o-pergunta-orientada-a-dados)
 *   [Analises exploratorias de dados](#analises-exploratorias-de-dados) 
     *   [1º Pergunta Orientada a Dados](#1º-pergunta-orientada-a-dados)
-*   [Indução de modelos](#inducao-de-modelos)
+*   [Indução de modelos](#indução-de-modelos)
     *   [Modelo 1: Algoritmo](#modelo-1-algoritmo)
     *   [Modelo 2: Algoritmo](#modelo-2-algoritmo)
 *   [Resultados](#resultados)

@@ -62,13 +62,13 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [Modelo 2: Algoritmo](#modelo-2-algoritmo)
 *   [Resultados](#resultados)
     *   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1)
-    *   [Interpretação do modelo 1](#interpretacao-do-modelo-1)
+    *   [Interpretação do modelo 1](#interpretação-do-modelo-1)
     *   [Resultados obtidos com o modelo 2.](#resultados-obtidos-com-o-modelo-2)
-    *   [Interpretação do modelo 2](#interpretacao-do-modelo-2)
-*   [Análise comparativa dos modelos](#analise-comparativa-dos-modelos)
-*   [8. Conclusão](#8-conclusao)
-*   [REFERÊNCIAS](#referencias)
-*   [APÊNDICES](#apendices)
+    *   [Interpretação do modelo 2](#interpretação-do-modelo-2)
+*   [Análise comparativa dos modelos](#análise-comparativa-dos-modelos)
+*   [8. Conclusão](#8-conclusão)
+*   [REFERÊNCIAS](#referências)
+*   [APÊNDICES](#apêndices)
 
 # Resumo
 

@@ -425,17 +425,10 @@ Nome: salary_midpoint, dtype: object
 | Tempo de experiência na área de dados                                              | P2i     | Quantitativo | Discreto                            | Tempo de experiência do respondente na área de dados (em anos)                                | Alta       |
 
 ## Gráficos relacionados a 3º pergunta orientada a dados
-![grafico_1](https://github.com/user-attachments/assets/3bc10b24-de9d-4206-99cb-953d42ad8ab8)
-
-![grafico_10](https://github.com/user-attachments/assets/db512fe3-f803-45e3-ae2a-659e5ad9deba)
-
-![grafico_4](https://github.com/user-attachments/assets/a6d02ecc-c6ae-47dc-91f4-d6140ae2bcf6)
-
-![grafico_2](https://github.com/user-attachments/assets/859f3b19-e032-48cf-b8a1-1b90ad7adaf1)
-
-![grafico_26](https://github.com/user-attachments/assets/b7221400-1f0f-452e-aa8f-c0fc6fb9fcaf)
-
-![grafico_25](https://github.com/user-attachments/assets/1190df7c-f1c4-430e-83e7-b08e6c269097)
+![impacto_por_faixa_etaria.png](https://github.com/user-attachments/assets/daf04a61-42ea-439c-9bf0-4c0734b52fb8)
+![impacto_por_genero.png](https://github.com/user-attachments/assets/b8ee4349-d2ea-404c-b81e-d0cc07c93a1f)
+![matriz_correlacao.png](https://github.com/user-attachments/assets/a4fb5869-6203-466c-9726-2cee6463a916)
+![relacao_ensino_salario_heatmap.png](https://github.com/user-attachments/assets/9288fe43-6159-47a2-a930-231d60268fa5)
 
 ### Atributos relevantes da base de dados principal para 4ª pergunta orientada
 **Pergunta orientada a dados:** *Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os

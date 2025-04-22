@@ -483,9 +483,10 @@ profissionais de tecnologia?*
 - Relatórios de Transparência Salarial e Critérios Remuneratórios
 - Link: [https://relatoriodetransparenciasalarial.trabalho.gov.br/](https://relatoriodetransparenciasalarial.trabalho.gov.br/)
 
-  
-### Base de dados auxiliar para 3º pergunta orientada a dados
+### Base de dados auxiliar para a 3º pergunta orientada a dados
 **Pergunta orientada a dados:** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+- Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD-C)
+- Link: https://basedosdados.org/dataset/9fa532fb-5681-4903-b99d-01dc45fd527a?table=a04fc85d-908a-4393-b51d-1bd517a40210
 
 ### Base de dados auxiliar para 4º pergunta orientada a dados
 **Pergunta orientada a dados:** Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os

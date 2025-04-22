@@ -563,6 +563,28 @@ profissionais de tecnologia?*
 ![grafico_21](https://github.com/user-attachments/assets/774f76bc-3988-4e3d-ad0c-d763c51b68f7)
 
 
+### 3º Pergunta orientada a dados
+**Pergunta Orientada a Dados:**
+*Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+
+![cor_e_raça_ensino_heatmap](https://github.com/user-attachments/assets/f147fa83-1501-4669-b6ff-95165ed54894)
+
+![distribuição_regional_barras](https://github.com/user-attachments/assets/24542e74-b49f-4edc-8ffc-0d17085c1e8f)
+
+![genero_salario_heatmap](https://github.com/user-attachments/assets/1121692b-f59c-4a1e-b90f-00f3312f94e5)
+
+![impacto_por_faixa_etaria](https://github.com/user-attachments/assets/4a65cd12-718b-4200-bce4-52f300fe9f0d)
+
+![impacto_por_genero](https://github.com/user-attachments/assets/4bc43c53-b76d-4ce6-ba00-51797eb30d20)
+
+![indice_representividade_interseccional](https://github.com/user-attachments/assets/b7a0f780-f2ba-416f-8fde-1832282e05cc)
+
+![heatmap_calor_disparidae](https://github.com/user-attachments/assets/29521e78-6709-47a1-964e-fffb1d65ab09)
+
+![matriz_correlação](https://github.com/user-attachments/assets/aa66357b-c3cc-4507-a780-843303b7131f)
+
+![relação_salario_ensino_heatmap](https://github.com/user-attachments/assets/ad208ee3-80cc-43fc-bd74-541c1c9ff10d)
+
 ---
 
 ## Microdados

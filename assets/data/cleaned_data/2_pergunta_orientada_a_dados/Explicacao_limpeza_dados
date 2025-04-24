@@ -16,3 +16,12 @@ principal.
 7. Padronização estrutural: Reorganização das colunas para facilitar a comparação entre
 bases.
 
+Explicação da Limpeza da Base Auxiliar:
+
+1. Seleção específica de profissionais: Foram filtrados apenas os profissionais ligados à área
+de dados, utilizando palavras-chave nos títulos dos cargos.
+2. Harmonização de nomenclaturas: As categorias de senioridade foram padronizadas para
+corresponder exatamente às usadas na base principal (junior, pleno, senior).
+3. Normalização de experiência: Foi criada uma escala padronizada de experiência em anos,
+convertendo descrições textuais (como "1 a 3 anos") em valores numéricos (2.0 anos).
+

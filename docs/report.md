@@ -598,11 +598,153 @@ profissionais de tecnologia?*
 
 ## Indução de modelos
 
-### Modelo 1: Algoritmo
+### Modelo 1: GBM - Gradient Boosting Machines - Modelo Baseado em Árvore de Decisão
+### 1º Pergunta orientada a dados
+### *Justificativa*
+- GBMs constroem árvores de decisão sequencialmente, onde cada nova árvore corrige os erros da anterior. Essa estrutura permite capturar interações complexas e não lineares entre as variáveis preditoras de forma natural, o que é central para responder à pergunta do projeto. Por exemplo, o modelo pode aprender que o impacto de saber Python no salário é diferente para um profissional Júnior com Graduação versus um Sênior com Doutorado.
+- Algoritmos como LightGBM e CatBoost possuem mecanismos eficientes e nativos para lidar com variáveis categóricas (P1l, P1m, P2g, P4e, etc.) sem a necessidade de one-hot encoding extensivo, o que simplifica o pré-processamento e evita o problema da alta dimensionalidade, comum em datasets com muitas categorias.
+- Embora mais complexos que modelos lineares, GBMs oferecem ferramentas robustas para interpretação:
 
-Substitua o título pelo nome do algoritmo que será utilizado. P. ex. árvore de decisão, rede neural, SVM, etc.
-Justifique a escolha do modelo.
-Apresente o processo utilizado para amostragem de dados (particionamento, cross-validation).
+	Feature Importance: Indica quais fatores (formação, anos de experiência, habilidades específicas como SQL P4d1 ou Python P4d3) têm maior impacto geral nas previsões salariais.
+
+SHAP (SHapley Additive exPlanations): Permite entender a contribuição de cada fator para cada previsão individual e visualizar como as interações influenciam o resultado. Isso ajuda a detalhar como os fatores interagem.
+
+- GBMs podem ser configurados tanto para tarefas de regressão (prevendo o ponto médio do salário) quanto para classificação (prevendo a faixa salarial), adaptando-se à forma como a variável alvo for tratada.
+
+### *Processo de Amostragem de Dados (Particionamento e Cross-Validation)*
+
+- No desenvolvimento do modelo LightGBM para previsão salarial, o processo de amostragem de dados foi realizado em duas etapas principais: particionamento (train/test split) e, opcionalmente, validação cruzada (cross-validation).
+
+	- *Particionamento dos Dados (Train/Test Split)*
+		Objetivo: Garantir que o modelo seja treinado em uma parte dos dados e testado em outra, permitindo avaliar sua capacidade de generalização para dados nunca vistos.
+
+		Procedimento Utilizado:
+
+		O dataset completo foi dividido em duas partes:
+
+		Treinamento: 75% dos dados (3.559 registros).
+
+		Teste: 25% dos dados (1.187 registros).
+
+		O particionamento foi realizado com a função train_test_split do Scikit-Learn, utilizando um valor fixo de random_state para garantir reprodutibilidade.
+
+		Exemplo de código:
+
+			from sklearn.model_selection import train_test_split
+			X_train, X_test, y_train, y_test = train_test_split(
+			    X, y, test_size=0.25, random_state=42
+			)
+		Justificativa:
+
+		O particionamento 75/25 é padrão em problemas de regressão e garante que o modelo não seja avaliado nos mesmos dados em que foi treinado, prevenindo overfitting e permitindo uma estimativa realista de desempenho.
+
+	- *Validação Durante o Treinamento (Early Stopping)*
+		Objetivo: Evitar overfitting durante o treinamento do LightGBM, monitorando o desempenho em dados de validação.
+
+		Procedimento:
+
+		O conjunto de teste foi também utilizado como conjunto de validação durante o ajuste do modelo.
+
+		O parâmetro early_stopping_rounds=50 foi usado para interromper o treinamento caso o erro não melhorasse por 50 iterações consecutivas.
+
+		Exemplo de código:
+
+			lgbm.fit(
+			    X_train, y_train,
+			    eval_set=[(X_test, y_test)],
+			    eval_metric='mae',
+			    callbacks=[lgb.early_stopping(stopping_rounds=50, verbose=1)]
+			)
+Resultado:
+
+O modelo parou na iteração 291, quando atingiu o menor erro MAE no conjunto de validação.
+
+### *Parâmetros do Modelo e Processo de Raciocínio (Árvore Individual LightGBM)*
+- O modelo apresentado na imagem é um LightGBM Regressor treinado para prever o salário de profissionais de dados. Os principais parâmetros e configurações utilizados foram:
+
+  - **Objetivo:** Regressão (regression_l1), minimizando o erro absoluto médio (MAE)
+
+  - **Particionamento dos dados:** 75% treino, 25% teste (train_test_split)
+
+  - **Early Stopping:** Parada automática após 50 iterações sem melhora no MAE do conjunto de validação
+
+  - **Número de árvores (estimators):** O treinamento parou na árvore de índice 291 (early stopping)
+
+  - **Features categóricas:** Informadas explicitamente para o LightGBM (P1mreadeFormao, P4eEntreaslinguagenslistadasabaixoqualaquevocmaisutilizanotrabalho)
+
+  - **Features numéricas:** Incluem variáveis ordinais (nível de ensino, experiência, senioridade) e binárias (uso de linguagens)
+
+  - **Random State:** 42 (para reprodutibilidade)
+
+- **Processo de Raciocínio da Árvore (Regras de Decisão)**
+  - A árvore individual exibida representa uma das centenas que compõem o ensemble do LightGBM. Cada árvore é composta por nós de decisão (splits) e folhas (previsões). O processo de raciocínio segue o fluxo:
+
+  - **Exemplo de Caminho de Decisão**
+	  - Raiz:
+		P2iQuantotempodeexperincianareadedadosvoctem <= 1.5
+
+		Se o tempo de experiência na área de dados é até 1-2 anos (valor ordinal), segue à esquerda; caso contrário, à direita.
+
+	  - Segundo Split (esquerda):
+
+		P1lNiveldeEnsino <= 1.5
+
+		Se o nível de ensino é até graduação, segue à esquerda; senão, à direita.
+
+	  - Terceiro Split (direita da raiz):
+
+		P4eEntreaslinguagenslistadasabaixoqualaquevocmaisutilizanotrabalho == "Python"
+
+		Se a linguagem mais usada é Python, segue à esquerda; senão, à direita.
+
+	 - Splits subsequentes:
+
+		A árvore pode dividir ainda por senioridade (P2gNivel), uso de linguagens específicas (P4d3Python, P4d1SQL), área de formação, etc.
+
+	- Folhas:
+
+	 - Cada folha (elipse) mostra o valor previsto de salário para aquele grupo de profissionais, por exemplo:
+
+	 - leaf 0: 9350.500 (previsão: R$ 9.350,50)
+
+	 - leaf 13: 13500.000 (previsão: R$ 13.500,00)
+
+
+- **Exemplo de Regra Completa**
+		- Se o profissional tem experiência ≤ 1.5 e nível de ensino ≤ 1.5, então o salário previsto é R$ 9.350,50.
+		- Se experiência > 1.5 e linguagem mais usada é Python e senioridade ≤ 1.5, então o salário previsto é R$ 13.500,00.
+
+
+- **Feature Importances e Tomada de Decisão**
+		- O modelo LightGBM atribui maior importância às features que aparecem nos primeiros splits das árvores, pois elas segmentam grandes grupos de dados. No contexto deste projeto, as principais variáveis de decisão (segundo a feature importance e os splits das árvores) foram:
+
+	- Tempo de experiência na área de dados (P2iQuantotempodeexperincianareadedadosvoctem)
+		
+	- Nível de ensino (P1lNiveldeEnsino)
+		
+	- Senioridade (P2gNivel)
+		
+	- Linguagem mais usada no trabalho (P4eEntreaslinguagenslistadasabaixoqualaquevocmaisutilizanotrabalho)
+		
+	- Uso de Python (P4d3Python)
+		
+	- Área de formação acadêmica (P1mreadeFormao)
+		
+	- Estas variáveis são utilizadas repetidamente para dividir os dados em grupos mais homogêneos, refletindo o raciocínio do modelo para prever salários.
+
+- **Medidas de Importância das Features**
+		- Importância por ganho (gain): Mede o quanto cada feature contribuiu para a redução do erro em todas as árvores do modelo.
+
+- No modelo treinado, experiência, senioridade e uso de Python aparecem entre as mais importantes, alinhando-se com os splits iniciais das árvores individuais.
+
+- **Resumo Visual do Processo**
+	- Cada caminho da raiz até uma folha representa uma regra de decisão baseada em múltiplas variáveis.
+
+	- Os splits mais próximos da raiz indicam as variáveis mais relevantes para a previsão salarial.
+
+	- O modelo utiliza essas regras para segmentar os profissionais em grupos e prever o salário médio de cada grupo.
+ 
+ 
 Descreva os parâmetros utilizados. 
 Apresente trechos do código utilizado comentados. Se utilizou alguma ferramenta gráfica, apresente imagens
 com o fluxo de processamento.

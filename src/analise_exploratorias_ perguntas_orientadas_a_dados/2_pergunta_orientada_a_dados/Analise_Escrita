@@ -1,0 +1,22 @@
+**Análise Exploratória: Relação entre Experiência, Senioridade e Salário**
+1. Distribuição Salarial por Região
+A primeira visualização (scatter plot) mostra claramente uma disparidade regional nos salários médios de profissionais de dados:
+
+Sudeste apresenta o maior salário médio (aproximadamente R$ 9.000) com o maior número de profissionais (cerca de 1.150)
+
+Sul mostra o segundo maior salário médio (R$ 8.500) com cerca de 1.000 profissionais
+
+Centro-Oeste apresenta um salário médio intermediário (R$ 8.000) com cerca de 900 profissionais
+
+Norte e Nordeste registram os menores salários médios (R$ 7.500 e R$ 7.000 respectivamente)
+
+Esta distribuição regional é importante porque estabelece um contexto geográfico para as disparidades salariais que precisam ser consideradas ao analisar senioridade e experiência.
+
+2. Análise de Tempo de Experiência vs. Salário
+Os dados da pesquisa mostram uma clara progressão salarial conforme aumenta o tempo de experiência:
+
+Profissionais com menos de 1 ano de experiência tendem a receber salários entre R$ 4.000-6.000 (média estimada R$ 5.000,50 como visto no exemplo do DataFrame)
+
+Profissionais com 1 a 2 anos apresentam variação salarial entre R$ 6.000-8.000 para Júnior e R$ 8.000-12.000 para Pleno
+
+Profissionais com 3 a 4 anos mostram salários entre R$ 6.000-8.000 para Pleno e R$ 12.000-16.000 para Sênior

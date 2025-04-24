@@ -11,3 +11,8 @@ base principal.
 (valores numéricos).
 4. Normalização de variáveis de experiência: Criação de faixas comparáveis às da base
 principal.
+5. Remoção de inconsistências: Eliminação de registros incompletos ou com valores inválidos.
+6. Tratamento de outliers: Aplicação de método IQR similar ao da base principal.
+7. Padronização estrutural: Reorganização das colunas para facilitar a comparação entre
+bases.
+

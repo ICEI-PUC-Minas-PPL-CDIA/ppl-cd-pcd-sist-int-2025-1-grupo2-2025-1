@@ -476,7 +476,7 @@ profissionais de tecnologia?*
 - Microdados do Censo da Educação Superior
 - Link: https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-da-educacao-superior
   
-- [Base de dados](ppl-cd-pcd-sist-int-2025-1-grupo2-disparidade-salarial-2025-1/assets/data/bases_principais/MICRODADOS_ED_SUP_IES_2023.CSV)
+- [Base de dados](data/bases_principais/MICRODADOS_ED_SUP_IES_2023.CSV)
 
 
 ### Base de dados auxiliar para 2º pergunta orientada a dados

@@ -895,64 +895,7 @@ O gráfico classifica as features com base em quão úteis elas foram *durante o
 
 ![grafico_2](https://github.com/user-attachments/assets/7da5b306-03cf-4257-9e4b-4a1c96960c36)
 
-## O que o Gráfico Mostra?
 
-Este gráfico, conhecido como **SHAP Summary Plot** do tipo "dot" (pontos), é uma ferramenta poderosa para visualizar o impacto das diferentes **features** (variáveis de entrada, como experiência, nível de ensino, etc.) nas previsões individuais do modelo LightGBM para o ponto médio da faixa salarial. Ele resume duas informações cruciais para cada feature em relação a cada profissional no conjunto de teste:
-
-1.  **Magnitude do Impacto:** Quão fortemente aquela feature influenciou a previsão de salário.
-2.  **Direção do Impacto:** Se a feature aumentou ou diminuiu a previsão de salário.
-
-## Como Interpretar os Elementos do Gráfico?
-
--   **Eixo Y (Vertical): Features**
-    -   Lista as variáveis de entrada do modelo, **ordenadas pela sua importância média global** (calculada como a média do valor absoluto do SHAP para aquela feature). As features no topo são as que tiveram, em média, o maior impacto nas previsões.
-    -   Exemplo: `P2_i_Quanto_tempo_de_experiência...` está no topo, indicando ser a mais influente.
-
--   **Eixo X (Horizontal): Valor SHAP (Impacto no Resultado do Modelo)**
-    -   Mostra o valor SHAP calculado para uma feature específica em uma previsão específica.
-    -   **Valores Positivos (> 0):** Indicam que o valor daquela feature para aquele profissional *aumentou* a previsão de salário em relação à média base do modelo.
-    -   **Valores Negativos (< 0):** Indicam que o valor daquela feature *diminuiu* a previsão de salário.
-    -   **Valor Zero (0.0):** Indica que a feature não teve impacto naquela previsão específica.
-
--   **Pontos Coloridos:**
-    -   Cada ponto no gráfico representa **um profissional** no conjunto de teste.
-    -   A **posição horizontal** do ponto mostra o valor SHAP (impacto) da feature correspondente (no eixo Y) para *aquele* profissional.
-    *   A **cor** do ponto representa o **valor original da feature** para aquele profissional:
-        -   **Vermelho:** Geralmente indica um valor *alto* da feature (ex: muitos anos de experiência, nível de ensino alto como Doutorado, usa Python=1).
-        -   **Azul:** Geralmente indica um valor *baixo* da feature (ex: pouca experiência, nível de ensino baixo como Graduação, não usa Python=0).
-
-## Análise Detalhada dos Achados Visuais no Gráfico:
-
-1.  **`P2_i_Quanto_tempo_de_experiência...` (Experiência):**
-    -   **Padrão:** Claramente a feature mais importante. Há uma forte separação: pontos vermelhos (muita experiência) estão massivamente à direita, com altos valores SHAP positivos (indicando grande aumento na previsão salarial). Pontos azuis (pouca experiência) estão massivamente à esquerda, com altos valores SHAP negativos (indicando grande diminuição).
-    -   **Conclusão:** A experiência tem um impacto **forte e positivo** no salário previsto.
-
-2.  **`P2_g_Nivel` (Senioridade):**
-    -   **Padrão:** Segunda mais importante, com padrão similar à experiência. Pontos vermelhos (Sênior) estão à direita (aumentam o salário), azuis (Júnior) estão à esquerda (diminuem). As cores intermediárias (Pleno) ficam mais ao centro.
-    -   **Conclusão:** A senioridade tem um impacto **forte e positivo**.
-
-3.  **`P4_e_Entre_as_linguagens...` (Linguagem Principal):**
-    -   **Padrão:** Terceira mais importante. A distribuição é mais complexa, pois há várias categorias de linguagens. No entanto, a dispersão horizontal dos pontos (magnitude do impacto SHAP) é significativa, mostrando que a linguagem principal escolhida influencia consideravelmente o salário previsto, embora a direção (positiva/negativa) dependa da linguagem específica (cor).
-    -   **Conclusão:** A principal linguagem utilizada é um fator **importante**, mas seu impacto varia conforme a linguagem.
-
-4.  **`P1_l_Nivel_de_Ensino` (Educação):**
-    -   **Padrão:** Quarta mais importante. Há uma tendência visível: pontos vermelhos/roxos (níveis mais altos como Mestrado/Doutorado) tendem a ter valores SHAP mais altos (mais à direita) do que os pontos azuis (níveis mais baixos).
-    -   **Conclusão:** Níveis mais altos de educação formal têm um impacto **positivo** no salário previsto.
-
-5.  **`P4_d_3_Python` (Uso de Python):**
-    -   **Padrão:** Quinta mais importante. Apresenta duas faixas verticais distintas. Os pontos vermelhos (Usa Python = 1) estão claramente deslocados para a direita (valores SHAP mais altos) em comparação com os pontos azuis (Não usa Python = 0).
-    -   **Conclusão:** Saber/usar Python tem um impacto **consistentemente positivo** no salário previsto.
-
-6.  **`P1_m_Área_de_Formação`:**
-    -   **Padrão:** Impacto moderado. A dispersão horizontal existe, mas é menor que as features anteriores. A cor (representando diferentes áreas) mostra alguma variação no impacto.
-    -   **Conclusão:** A área de formação influencia o salário, mas com menor intensidade que experiência ou senioridade.
-
-7.  **`P4_d_1_SQL` (Uso de SQL):**
-    -   **Padrão:** Similar ao Python, mas com um deslocamento positivo talvez um pouco menor. Pontos vermelhos (Usa SQL = 1) geralmente têm SHAP mais alto que os azuis (Não usa = 0).
-    -   **Conclusão:** Saber/usar SQL tem um impacto **positivo** no salário previsto.
-
-8.  **Outras Features:**
-    -   Variáveis como `P4_d_9_Visual_BasicVBA`, `P4_d_10_Scala`, `P4_d_2_R`, etc., aparecem mais abaixo na lista, indicando menor importância média global. A separação por cor é menos evidente e a amplitude dos valores SHAP (impacto) é menor.
 
 ![grafico_3](https://github.com/user-attachments/assets/afa8c32a-4650-4e52-b9bc-d8805b2e2f44)
 

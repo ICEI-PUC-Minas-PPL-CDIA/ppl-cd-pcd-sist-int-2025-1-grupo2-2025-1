@@ -895,7 +895,78 @@ O gráfico classifica as features com base em quão úteis elas foram *durante o
 
 ![grafico_2](https://github.com/user-attachments/assets/7da5b306-03cf-4257-9e4b-4a1c96960c36)
 
+Este gráfico visualiza **uma única árvore de decisão** (especificamente, a de índice 0) que faz parte do *ensemble* (conjunto de árvores) do modelo LightGBM treinado. O LightGBM combina as previsões de muitas dessas árvores para chegar ao resultado final. Visualizar uma árvore individual nos ajuda a entender a **lógica de decisão hierárquica** que o modelo aprendeu a partir dos dados para prever o `salary_midpoint`.
 
+## Como Interpretar os Elementos do Gráfico?
+
+1.  **Nós Retangulares (Nós de Decisão ou Splits):**
+    *   Cada retângulo representa um ponto onde a árvore toma uma decisão baseada em uma **feature** (variável).
+    *   **Linha Superior:** Mostra a **feature** e a **condição de divisão**. Exemplo: `P2_i_Quanto_tempo_de_experiência... <= 1.500`. Isso significa "A feature 'Tempo de Experiência' (codificada numericamente) é menor ou igual a 1.5?".
+        *   _Nota:_ Valores como `1.500` referem-se aos valores numéricos *após* o `OrdinalEncoder`. É preciso consultar o mapeamento para saber qual categoria original corresponde (ex: 0='Menos de 1 ano', 1='de 1 a 2 anos', portanto 1.5 fica entre essas categorias).
+    *   **`gain`:** Indica o quanto essa divisão contribuiu para melhorar a métrica do modelo (neste caso, reduzir o erro MAE). Splits com maior `gain` são considerados mais importantes *por esta árvore*.
+    *   **`value`:** O valor de saída (previsão de salário) que seria dado *neste ponto* se a árvore parasse aqui. Em nós internos, representa a média dos valores dos dados que chegam até ele.
+    *   **`count`:** O número de amostras (profissionais) do conjunto de *treinamento* que chegaram a este nó.
+
+2.  **Setas/Ramos:**
+    *   Conectam os nós e indicam o caminho a seguir com base na condição do nó pai.
+    *   **Convenção Comum (LightGBM/Sklearn):**
+        *   O ramo da **esquerda** é geralmente seguido se a condição for **verdadeira** (`feature <= valor`). A seta pode ter um "yes" implícito ou uma condição repetida.
+        *   O ramo da **direita** é geralmente seguido se a condição for **falsa** (`feature > valor`). A seta pode ter um "no" implícito.
+
+3.  **Nós Ovais/Elípticos (Folhas ou Nós Terminais):**
+    *   Representam o **fim de um caminho** na árvore. Não há mais divisões a partir daqui.
+    *   **`leaf X`:** Identificador único da folha (ex: `leaf 0`, `leaf 13`).
+    *   **`value`:** O **valor final previsto** pela *esta árvore específica* para todas as amostras que chegam a esta folha. Ex: `leaf 0: 9350.500` significa que a previsão desta árvore para quem cai na folha 0 é de R$ 9.350,50.
+    *   **`count`:** O número de amostras do conjunto de *treinamento* que terminaram nesta folha.
+
+## Análise Detalhada dos Splits Visíveis na Imagem:
+
+*(Analisando a estrutura geral, focando nos nós superiores)*
+
+1.  **Split Raiz (Nó superior):**
+    *   **Feature:** `P2_i_Quanto_tempo_de_experiência...`
+    *   **Condição:** `<= 1.500`
+    *   **Gain:** `831.237` (alto, indicando grande importância inicial)
+    *   **Value:** `10000.500` (Salário médio de todos no treino)
+    *   **Count:** `3559` (Todas as amostras do treino começam aqui)
+    *   **Interpretação:** A primeira e mais importante decisão desta árvore é separar os profissionais com *pouca experiência* (<= 1.5, ex: até 1-2 anos) dos profissionais com *mais experiência* (> 1.5).
+
+2.  **Split (Ramo Esquerdo - Pouca Experiência):**
+    *   **Feature:** `P1_l_Nivel_de_Ensino`
+    *   **Condição:** `<= 1.500`
+    *   **Gain:** `12.964`
+    *   **Interpretação:** Para quem tem pouca experiência, a próxima decisão importante é separar por *nível de ensino* (baixo <= 1.5 vs. alto > 1.5).
+
+3.  **Split (Ramo Direito - Mais Experiência):**
+    *   **Feature:** `P4_e_Entre_as_linguagens...` (Linguagem Principal)
+    *   **Condição:** Provavelmente uma comparação com uma linguagem específica (ex: `== "Python"`, embora o valor exato esteja cortado na imagem).
+    *   **Gain:** `80.142`
+    *   **Interpretação:** Para quem tem mais experiência, a *linguagem principal utilizada* se torna um fator decisivo importante.
+
+4.  **Splits Subsequentes:** A árvore continua a dividir os dados usando outras features como `P2_g_Nivel` (Senioridade), `P4_d_3_Python`, `P4_d_1_SQL`, `P4_d_9_Visual_BasicVBA`, refinando os grupos com base em combinações dessas características até chegar às folhas com as previsões finais.
+
+## Exemplo de Caminho Completo (Visual):
+
+*Siga as setas a partir da raiz:*
+
+1.  **Experiência > 1.5?** Sim -> Seguir ramo **direito**.
+2.  **Linguagem Principal == "Python"?** (Suposição) Sim -> Seguir ramo **esquerdo** do nó `P4_e...`.
+3.  **`P2_g_Nivel <= 1.5?`** Sim (Ex: Pleno ou Júnior) -> Seguir ramo **esquerdo** do nó `P2_g_Nivel`.
+4.  ... continuar seguindo as condições até chegar a uma **folha** (ex: `leaf 13: 13500.000`).
+
+*Interpretação dessa regra:* "Um profissional com mais de 1-2 anos de experiência, cuja linguagem principal é Python e cujo nível é Pleno ou Júnior, tem um salário previsto por esta árvore de R$ 13.500,00."
+
+## O Que Esta Árvore Individual Revela?
+
+-   **Hierarquia de Decisão:** Mostra quais features são consideradas mais importantes nos estágios iniciais da segmentação (experiência, seguida por educação ou linguagem principal).
+-   **Regras Explícitas (Parciais):** Cada caminho da raiz a uma folha representa uma regra de decisão explícita baseada nas features.
+-   **Como o Modelo Combina Fatores:** Ilustra visualmente como o modelo usa condições sequenciais para chegar a uma previsão.
+
+## Limitações Importantes:
+
+-   **Representação Parcial:** Esta é **apenas 1 árvore** de um total de 291 árvores treinadas pelo LightGBM. A previsão final do modelo é uma **combinação (ensemble)** das previsões de todas as árvores, não apenas desta.
+-   **Complexidade do Ensemble:** O comportamento completo do modelo LightGBM é mais complexo e robusto do que o de uma única árvore.
+-   **Valores Codificados:** As condições usam valores numéricos que resultaram do encoding (especialmente para variáveis ordinais). É necessário referenciar o mapeamento do encoder para entender o significado exato de limiares como `1.500`.
 
 ![grafico_3](https://github.com/user-attachments/assets/afa8c32a-4650-4e52-b9bc-d8805b2e2f44)
 
@@ -996,13 +1067,229 @@ O gráfico confirma a ordem de importância observada no SHAP Summary Plot (dot)
 
 ![grafico_5](https://github.com/user-attachments/assets/9689533a-309c-4c23-a6e1-91a5b1c11f2f)
 
+## O que o Gráfico Mostra?
+
+Este gráfico é um **SHAP Dependence Plot** e é uma das visualizações mais importantes para entender as **interações** entre as features no modelo LightGBM. Especificamente, este gráfico mostra:
+
+1.  **O impacto da feature principal (`P2_i_Quanto_tempo_de_experiência...`) no salário previsto:** Como diferentes níveis de experiência influenciam o valor SHAP (a contribuição da experiência para a previsão final do salário).
+2.  **A interação com uma segunda feature (`P1_l_Nivel_de_Ensino`):** Como o nível de ensino do profissional modifica o impacto da experiência no salário.
+
+## Como Interpretar os Elementos do Gráfico?
+
+-   **Eixo X (Horizontal): `P2_i_Quanto_tempo_de_experiência...`**
+    -   Representa o valor da feature principal: **Tempo de Experiência na área de dados**.
+    -   **Importante:** Os valores no eixo (0, 1, 2, ..., 7) são os **valores numéricos resultantes do `OrdinalEncoder`**. Eles correspondem às categorias ordenadas de tempo de experiência. É necessário consultar o mapeamento do encoder para saber o significado exato:
+        -   `0`: Não tenho experiência na área de dados
+        -   `1`: Menos de 1 ano
+        -   `2`: de 1 a 2 anos
+        -   `3`: de 3 a 4 anos
+        -   `4`: de 4 a 6 anos
+        -   `5`: de 5 a 6 anos (ou a próxima categoria se '4 a 6' não estava nos dados)
+        -   `6`: de 7 a 10 anos
+        -   `7`: Mais de 10 anos
+    -   _O `UserWarning` no log confirma que os nomes das categorias não puderam ser exibidos diretamente no eixo._
+
+-   **Eixo Y (Vertical): `SHAP value for Quanto_tempo_de_experiência...`**
+    -   Mostra o **valor SHAP** associado à feature "Tempo de Experiência" para cada profissional.
+    -   Representa o **impacto (em Reais)** que o nível de experiência daquele profissional teve na previsão final do seu `salary_midpoint`.
+    -   **Valores Positivos (> 0):** A experiência daquele profissional *aumentou* a previsão salarial.
+    -   **Valores Negativos (< 0):** A experiência daquele profissional *diminuiu* a previsão salarial (comparado à média base).
+
+-   **Pontos Coloridos:**
+    -   Cada ponto representa **um profissional** no conjunto de teste.
+    -   Sua posição horizontal é seu nível de experiência (codificado).
+    -   Sua posição vertical é o impacto SHAP dessa experiência no seu salário previsto.
+    *   A **cor** do ponto representa o valor da **feature de interação**: `P1_l_Nivel_de_Ensino` (Nível de Ensino), também **codificado numericamente** conforme a escala da barra de cores à direita.
+        -   **Azul (Low ≈ 0.0):** Níveis de ensino mais baixos (ex: Não tenho graduação, Estudante).
+        -   **Roxo/Magenta (Mid ≈ 3.0 - 4.0):** Níveis intermediários (ex: Pós-graduação, Mestrado).
+        -   **Vermelho (High ≈ 6.0):** Níveis de ensino mais altos (ex: Doutorado, ou a categoria extra 'Prefiro não informar' que foi codificada por último).
+
+## Análise Detalhada dos Padrões e Interações Visíveis:
+
+1.  **Tendência Principal (Impacto da Experiência):**
+    -   Há uma **forte tendência positiva** clara: quanto maior o valor no eixo X (mais experiência), maior o valor SHAP no eixo Y (maior o impacto positivo no salário previsto).
+    -   Profissionais com baixa experiência (X=0, 1) têm valores SHAP fortemente negativos (entre -2000 e -4000), indicando que sua falta de experiência *reduz* significativamente a previsão salarial.
+    -   Profissionais com alta experiência (X=6, 7) têm valores SHAP fortemente positivos (entre +2000 e +6000), indicando que sua vasta experiência *aumenta* muito a previsão salarial.
+
+2.  **Dispersão Vertical (Variabilidade do Impacto):**
+    -   Para um mesmo nível de experiência (mesmo valor X), existe uma **dispersão vertical** nos valores SHAP. Isso significa que, mesmo entre pessoas com a mesma experiência, o *impacto* dessa experiência no salário previsto varia.
+    -   **Importante:** Essa dispersão vertical **aumenta** consideravelmente conforme a experiência (eixo X) aumenta. Para X=1, a dispersão é pequena; para X=7, a dispersão é muito grande (de +2000 a +6000).
+
+3.  **Interação com Nível de Ensino (Cor dos Pontos):**
+    -   A **cor** dos pontos explica grande parte da dispersão vertical, revelando a interação:
+    -   **Baixa Experiência (X=0, 1, 2):** Os pontos azuis, roxos e vermelhos estão relativamente misturados e com impacto negativo ou próximo de zero. O nível de ensino tem pouco efeito sobre o impacto (já negativo) da baixa experiência.
+    -   **Média Experiência (X=3, 4):** Começa a haver uma separação. Para um mesmo nível de experiência, os pontos mais roxos/vermelhos (ensino superior/pós) tendem a ficar *acima* dos pontos azuis (ensino inferior).
+    -   **Alta Experiência (X=6, 7):** A separação é **muito clara**. Dentro da faixa vertical de alto impacto positivo, os pontos **vermelhos** (nível de ensino mais alto, ex: Doutorado) estão consistentemente no **topo** (SHAP mais alto, ex: +5000 a +6000), enquanto os pontos **azuis** (nível de ensino mais baixo) estão na **base** da nuvem de pontos (SHAP positivo, mas menor, ex: +2000 a +3000).
+    -   **Conclusão da Interação:** O nível de ensino **potencializa** o retorno da experiência. Ter um alto nível de educação (Mestrado/Doutorado) tem um impacto positivo muito maior no salário previsto para aqueles que *já possuem alta experiência*, em comparação com aqueles com alta experiência mas menor nível educacional.
+
 
 ![grafico_6](https://github.com/user-attachments/assets/e8e63594-14d0-438a-b517-c24fea5ed25e)
 
+## O que o Gráfico Mostra?
+
+Este gráfico é um **SHAP Dependence Plot**, focado em visualizar:
+
+1.  **O impacto da feature principal (`P4_d_3_Python` - Uso de Python) no salário previsto:** Como saber/usar Python (valor 0 ou 1) influencia o valor SHAP (a contribuição dessa habilidade para a previsão final do salário).
+2.  **A interação com uma segunda feature (`P2_i_Quanto_tempo_de_experiência...`):** Como o tempo de experiência do profissional modifica o impacto do uso de Python no salário.
+
+## Como Interpretar os Elementos do Gráfico?
+
+-   **Eixo X (Horizontal): `P4_d_3_Python`**
+    -   Representa o valor da feature principal: **Uso de Python**.
+    -   Os pontos estão concentrados em dois valores:
+        -   **`0.0`:** O profissional *não* usa Python (conforme registrado nos dados).
+        -   **`1.0`:** O profissional *usa* Python.
+
+-   **Eixo Y (Vertical): `SHAP value for P4_d_3_Python`**
+    -   Mostra o **valor SHAP** associado à feature "Uso de Python" para cada profissional.
+    -   Representa o **impacto (em Reais)** que saber/usar Python teve na previsão final do `salary_midpoint` daquele profissional.
+    -   **Valores Positivos (> 0):** Usar Python *aumentou* a previsão salarial.
+    -   **Valores Negativos (< 0):** Usar Python *diminuiu* (ou não usar aumentou) a previsão salarial.
+    -   **Valor Zero (0.0):** A feature não teve impacto naquela previsão específica.
+
+-   **Pontos Coloridos:**
+    -   Cada ponto representa **um profissional** no conjunto de teste.
+    -   Sua posição horizontal indica se ele usa (1.0) ou não (0.0) Python.
+    -   Sua posição vertical é o impacto SHAP dessa informação no seu salário previsto.
+    *   A **cor** do ponto representa o valor da **feature de interação**: `P2_i_Quanto_tempo_de_experiência...` (Tempo de Experiência), **codificado numericamente** conforme a escala da barra de cores à direita.
+        -   **Azul (Low ≈ 0.0):** Pouca ou nenhuma experiência.
+        -   **Roxo/Magenta (Mid ≈ 3.0 - 5.0):** Experiência intermediária.
+        -   **Vermelho (High ≈ 7.0):** Muita experiência (10+ anos).
+        -   _Lembrete:_ Os valores são codificados ordinalmente.
+
+## Análise Detalhada dos Padrões e Interações Visíveis:
+
+1.  **Impacto Principal do Uso de Python (Comparação Horizontal):**
+    -   Observe a posição vertical média dos pontos em `X=0.0` vs `X=1.0`.
+    -   Os pontos em `X=1.0` (Usa Python) estão, em geral, **verticalmente mais altos** (valores SHAP mais positivos) do que os pontos em `X=0.0` (Não usa Python).
+    -   Em média, os pontos em X=0 se concentram em torno de SHAP = -200 a 0, enquanto os pontos em X=1 se concentram em torno de SHAP = 0 a +300 (ignorando alguns outliers).
+    -   **Conclusão Principal:** Saber/usar Python tem um **impacto positivo** geral na previsão salarial feita pelo modelo. A diferença média no impacto SHAP entre usar e não usar Python parece ser de algumas centenas de Reais.
+
+2.  **Interação com Tempo de Experiência (Análise Vertical e por Cor):**
+    -   **Dentro do grupo `X=0.0` (Não usa Python):** Os pontos azuis, roxos e vermelhos estão bastante misturados verticalmente, principalmente entre SHAP -400 e +200. Isso sugere que, para quem *não usa* Python, a experiência tem pouco efeito sobre o (já pequeno ou negativo) impacto SHAP desta feature.
+    -   **Dentro do grupo `X=1.0` (Usa Python):** Aqui a interação é mais clara:
+        -   Os pontos com **maior valor SHAP positivo** (topo da nuvem, entre +200 e +500) são predominantemente **vermelhos e roxos escuros**, indicando **alta experiência**.
+        -   Os pontos com **valor SHAP próximo de zero ou negativo** (parte inferior da nuvem, incluindo alguns outliers perto de -1500) tendem a ser mais **azuis e roxos claros**, indicando **baixa ou média experiência**.
+    -   **Conclusão da Interação:** O **benefício salarial previsto por saber/usar Python é significativamente maior para profissionais com mais experiência**. Embora Python traga algum benefício (ou menos penalidade) mesmo para iniciantes, seu impacto positivo é maximizado quando combinado com um histórico de carreira mais longo na área de dados.
+
+3.  **Outliers:**
+    -   Existem alguns pontos em `X=1.0` com valores SHAP muito negativos (~-1500). Estes podem representar casos específicos onde, apesar de usar Python, outras características (não visíveis neste gráfico) levaram a uma previsão salarial muito baixa, ou podem ser artefatos do modelo. No entanto, a tendência geral é clara.
+
 ![grafico_7](https://github.com/user-attachments/assets/4b159a22-98c1-4cda-aaad-2e19e12ad876)
+
+## O que o Gráfico Mostra?
+
+Este gráfico é um **SHAP Dependence Plot**, projetado para visualizar duas coisas principais sobre o modelo LightGBM:
+
+1.  **O impacto da feature principal (`P1_l_Nivel_de_Ensino`) no salário previsto:** Como diferentes níveis de educação formal influenciam o valor SHAP (a contribuição da educação para a previsão final do salário).
+2.  **A interação com uma segunda feature (`P2_i_Quanto_tempo_de_experiência...`):** Como o tempo de experiência do profissional modifica o impacto do nível de ensino no salário.
+
+## Como Interpretar os Elementos do Gráfico?
+
+-   **Eixo X (Horizontal): `P1_l_Nivel_de_Ensino`**
+    -   Representa o valor da feature principal: **Nível de Ensino**.
+    -   **Importante:** Os valores no eixo (0, 1, 2, ..., 6) são os **valores numéricos resultantes do `OrdinalEncoder`**. Eles correspondem às categorias ordenadas de nível de ensino. É necessário consultar o mapeamento do encoder para saber o significado exato:
+        -   `0`: 'Não tenho graduação formal'
+        -   `1`: 'Estudante de Graduação'
+        -   `2`: 'Graduação/Bacharelado'
+        -   `3`: 'Pós-graduação'
+        -   `4`: 'Mestrado'
+        -   `5`: 'Doutorado ou Phd'
+        -   `6`: Provavelmente a categoria extra 'Prefiro não informar' (adicionada durante o encoding).
+    -   _O `UserWarning` nos logs anteriores confirma que os nomes das categorias não puderam ser exibidos diretamente no eixo._
+
+-   **Eixo Y (Vertical): `SHAP value for P1_l_Nivel_de_Ensino`**
+    -   Mostra o **valor SHAP** associado à feature "Nível de Ensino" para cada profissional.
+    -   Representa o **impacto (em Reais)** que o nível de ensino daquele profissional teve na previsão final do seu `salary_midpoint`.
+    -   **Valores Positivos (> 0):** O nível de ensino daquele profissional *aumentou* a previsão salarial.
+    -   **Valores Negativos (< 0):** O nível de ensino daquele profissional *diminuiu* a previsão salarial (comparado à média base).
+
+-   **Pontos Coloridos:**
+    -   Cada ponto representa **um profissional** no conjunto de teste.
+    -   Sua posição horizontal é seu nível de ensino (codificado).
+    -   Sua posição vertical é o impacto SHAP desse nível de ensino no seu salário previsto.
+    *   A **cor** do ponto representa o valor da **feature de interação**: `P2_i_Quanto_tempo_de_experiência...` (Tempo de Experiência), também **codificado numericamente** conforme a escala da barra de cores à direita.
+        -   **Azul (Low ≈ 0.0):** Pouca ou nenhuma experiência.
+        -   **Roxo/Magenta (Mid ≈ 3.0 - 5.0):** Experiência intermediária.
+        -   **Vermelho (High ≈ 7.0):** Muita experiência (10+ anos).
+
+## Análise Detalhada dos Padrões e Interações Visíveis:
+
+1.  **Tendência Principal (Impacto do Nível de Ensino):**
+    -   Há uma **clara tendência positiva** geral: quanto maior o valor no eixo X (maior o nível de ensino, até Doutorado em X=5), maior o valor SHAP médio no eixo Y (maior o impacto positivo no salário previsto).
+    -   **Níveis Baixos (X=0, 1):** O impacto SHAP é consistentemente negativo (~ -1000), indicando que não ter graduação ou ser estudante *diminui* a previsão salarial.
+    -   **Graduação (X=2):** O impacto SHAP médio está próximo de zero, mas com alguma dispersão.
+    -   **Pós-graduação (X=3):** O impacto médio torna-se positivo (~ +500).
+    -   **Mestrado (X=4):** O impacto médio aumenta significativamente (~ +1500).
+    -   **Doutorado (X=5):** O impacto médio é o mais alto (~ +2200).
+    -   **X=6 ('Prefiro não informar'?):** O impacto médio parece ser positivo (~ +1000), mas menor que Mestrado/Doutorado, e com menos pontos.
+
+2.  **Dispersão Vertical (Variabilidade do Impacto):**
+    -   Para cada nível de ensino (valor X), existe uma **dispersão vertical** nos valores SHAP. Isso significa que o impacto do *mesmo* nível de ensino varia entre diferentes profissionais.
+    -   Essa dispersão vertical **aumenta notavelmente** para níveis de ensino mais altos (Mestrado X=4 e Doutorado X=5).
+
+3.  **Interação com Tempo de Experiência (Cor dos Pontos):**
+    -   A **cor** dos pontos explica grande parte da dispersão vertical, especialmente nos níveis de ensino mais altos:
+    -   **Níveis Baixos/Médios (X=0 a 3):** Os pontos azuis, roxos e vermelhos estão relativamente misturados verticalmente. A experiência parece ter pouco efeito sobre o impacto (já definido) do nível de ensino nessas faixas.
+    -   **Mestrado (X=4):** A separação por cor começa a ficar evidente. Dentro do cluster vertical (SHAP ~ +500 a +2200), os pontos **vermelhos** (alta experiência) estão predominantemente na **parte superior** do cluster (maior impacto positivo), enquanto os pontos **azuis** (baixa experiência) estão na **parte inferior**.
+    -   **Doutorado (X=5):** A interação é **muito clara**. A dispersão vertical é grande (SHAP ~ +1500 a +2800). Os pontos **vermelhos** (alta experiência) estão quase exclusivamente no **topo absoluto** do cluster, indicando o máximo impacto positivo do Doutorado. Os pontos **azuis** (baixa experiência), embora ainda tenham SHAP positivo por terem Doutorado, estão na **base** desse cluster.
+    -   **Conclusão da Interação:** O **tempo de experiência amplifica significativamente o benefício salarial de ter um nível de ensino mais alto (Mestrado e Doutorado)**. Um Doutorado tem um impacto muito maior na previsão salarial de alguém com 10+ anos de experiência do que na de alguém com pouca experiência. Para níveis de ensino inferiores (até Pós-graduação), a experiência parece ter menos influência sobre o impacto *do próprio nível de ensino*.
 
 ![grafico_8](https://github.com/user-attachments/assets/707722ce-d185-40c2-a08a-e42ab320daf1)
 
+## O que o Gráfico Mostra?
+
+Este gráfico é um **SHAP Dependence Plot**, focado em visualizar como a **senioridade** influencia a previsão salarial e como essa influência é modificada pelo **tempo de experiência** do profissional. Especificamente, ele mostra:
+
+1.  **O impacto da feature principal (`P2_g_Nivel` - Senioridade) no salário previsto:** Como ser Júnior, Pleno ou Sênior influencia o valor SHAP (a contribuição da senioridade para a previsão final do salário).
+2.  **A interação com uma segunda feature (`P2_i_Quanto_tempo_de_experiência...`):** Como o tempo de experiência do profissional modifica o impacto da senioridade no salário.
+
+## Como Interpretar os Elementos do Gráfico?
+
+-   **Eixo X (Horizontal): `P2_g_Nivel`**
+    -   Representa o valor da feature principal: **Nível de Senioridade**.
+    -   **Importante:** Os valores no eixo (0.0, 1.0, 2.0) são os **valores numéricos resultantes do `OrdinalEncoder`**. Eles correspondem às categorias ordenadas de senioridade. É necessário consultar o mapeamento do encoder:
+        -   `0.0`: 'Júnior'
+        -   `1.0`: 'Pleno'
+        -   `2.0`: 'Sênior'
+        -   *(Valores > 2.0, se existissem, poderiam representar 'Gestor' ou outras categorias adicionadas)*.
+    -   _O `UserWarning` nos logs anteriores confirma que os nomes das categorias ('Júnior', 'Pleno', 'Sênior') não puderam ser exibidos diretamente no eixo._
+
+-   **Eixo Y (Vertical): `SHAP value for P2_g_Nivel`**
+    -   Mostra o **valor SHAP** associado à feature "Nível de Senioridade" para cada profissional.
+    -   Representa o **impacto (em Reais)** que o nível de senioridade daquele profissional teve na previsão final do seu `salary_midpoint`.
+    -   **Valores Positivos (> 0):** A senioridade daquele profissional *aumentou* a previsão salarial.
+    -   **Valores Negativos (< 0):** A senioridade daquele profissional *diminuiu* a previsão salarial (comparado à média base).
+
+-   **Pontos Coloridos:**
+    -   Cada ponto representa **um profissional** no conjunto de teste.
+    -   Sua posição horizontal é seu nível de senioridade (codificado).
+    -   Sua posição vertical é o impacto SHAP dessa senioridade no seu salário previsto.
+    *   A **cor** do ponto representa o valor da **feature de interação**: `P2_i_Quanto_tempo_de_experiência...` (Tempo de Experiência), também **codificado numericamente** conforme a escala da barra de cores à direita.
+        -   **Azul (Low ≈ 0.0):** Pouca ou nenhuma experiência.
+        -   **Roxo/Magenta (Mid ≈ 3.0 - 5.0):** Experiência intermediária.
+        -   **Vermelho (High ≈ 7.0):** Muita experiência (10+ anos).
+
+## Análise Detalhada dos Padrões e Interações Visíveis:
+
+1.  **Tendência Principal (Impacto da Senioridade):**
+    -   Há um **claro "salto" positivo** no valor SHAP médio ao passar de um nível de senioridade para o próximo.
+    -   **Júnior (X=0.0):** O impacto SHAP é fortemente negativo (concentrado entre -2000 e -4000), indicando que ser Júnior *reduz* substancialmente a previsão salarial.
+    -   **Pleno (X=1.0):** O impacto SHAP médio fica próximo de zero (ligeiramente negativo, entre -1000 e +1000), sugerindo que o nível Pleno serve como uma base intermediária.
+    -   **Sênior (X=2.0):** O impacto SHAP médio torna-se fortemente positivo (entre +1000 e +3500), indicando que ser Sênior *aumenta* significativamente a previsão salarial.
+
+2.  **Dispersão Vertical (Variabilidade do Impacto):**
+    -   Dentro de cada nível de senioridade (valor X), existe uma **dispersão vertical** notável nos valores SHAP. O impacto de ser Júnior, Pleno ou Sênior não é o mesmo para todos.
+    -   A dispersão parece **maior** para os níveis **Júnior (X=0.0)** e **Sênior (X=2.0)** do que para o nível Pleno (X=1.0).
+
+3.  **Interação com Tempo de Experiência (Cor dos Pontos):**
+    -   A **cor** dos pontos ajuda a explicar a dispersão vertical, revelando uma interação interessante:
+    -   **Júnior (X=0.0):** Os pontos com **SHAP menos negativo** (mais próximos de -2000) tendem a ser mais **roxos/vermelhos**, indicando que Júniores com *alguma* experiência (1-4 anos talvez) são menos "penalizados" do que aqueles com baixíssima experiência (azuis, com SHAP até -4000).
+    -   **Pleno (X=1.0):** A mistura de cores é grande, mas parece haver uma leve tendência de pontos vermelhos (mais experientes) ficarem um pouco acima dos azuis (menos experientes) dentro desta faixa de senioridade. A interação é menos pronunciada aqui.
+    -   **Sênior (X=2.0):** A interação é **muito clara**. A dispersão vertical é grande (SHAP de +1000 a +3500).
+        -   Os pontos **vermelhos** (alta experiência) estão consistentemente no **topo** da nuvem, recebendo o maior impulso positivo (SHAP > +2500) por serem Sêniores.
+        -   Os pontos **azuis e roxos claros** (menor experiência, talvez recém-promovidos a Sênior ou com menos tempo total de carreira) estão na **base** da nuvem, ainda com SHAP positivo, mas significativamente menor (SHAP ≈ +1000 a +2000).
+    -   **Conclusão da Interação:** O **tempo de experiência modula o impacto da senioridade**. Embora ser Sênior sempre aumente a previsão salarial em relação a ser Pleno ou Júnior, o *tamanho* desse aumento é muito maior para profissionais que já possuem uma bagagem considerável de experiência. Ser Sênior com pouca experiência total de carreira tem um impacto positivo menor. Da mesma forma, ser Júnior com alguma experiência é menos desvantajoso do que ser Júnior sem nenhuma experiência.
 
 # Medidas de Performance do Modelo LightGBM
 

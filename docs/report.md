@@ -475,45 +475,239 @@ Este gráfico de barras horizontais ilustra a **distribuição dos profissionais
 
 ### O que o Gráfico Mostra?
 
-Este gráfico de barras horizontais compara a **distribuição dos níveis de ensino** dos profissionais de dados dentro de cada **faixa salarial mensal** declarada na pesquisa "State of Data Brazil 2023"[1][2]. Ele permite visualizar como a formação acadêmica se distribui entre os diferentes níveis de remuneração[1].
+Este gráfico de barras horizontais compara a **distribuição dos níveis de ensino** dos profissionais de dados dentro de cada **faixa salarial mensal** declarada na pesquisa "State of Data Brazil 2023". Ele permite visualizar como a formação acadêmica se distribui entre os diferentes níveis de remuneração.
 
 ### Como Interpretar?
 
-*   **Eixo Y (Vertical - Faixa Salarial):** Apresenta as categorias de faixas salariais mensais, da menor à maior[1].
-*   **Eixo X (Horizontal - Contagem):** Indica o número de profissionais em cada combinação de faixa salarial e nível de ensino[1].
-*   **Barras:** Cada barra representa uma faixa salarial. O comprimento total da barra indica o número total de respondentes naquela faixa[1].
-*   **Segmentos Coloridos (Legenda - Nível Ensino):** Cada segmento dentro de uma barra representa um nível de ensino diferente (Estudante de Graduação, Graduação/Bacharelado, Pós-graduação, Mestrado, Doutorado, etc.). A legenda à direita especifica a cor correspondente a cada nível[1]. A largura de cada segmento colorido mostra quantos profissionais com aquele nível de ensino estão naquela faixa salarial específica[1].
+*   **Eixo Y (Vertical - Faixa Salarial):** Apresenta as categorias de faixas salariais mensais, da menor à maior.
+*   **Eixo X (Horizontal - Contagem):** Indica o número de profissionais em cada combinação de faixa salarial e nível de ensino.
+*   **Barras:** Cada barra representa uma faixa salarial. O comprimento total da barra indica o número total de respondentes naquela faixa.
+*   **Segmentos Coloridos (Legenda - Nível Ensino):** Cada segmento dentro de uma barra representa um nível de ensino diferente (Estudante de Graduação, Graduação/Bacharelado, Pós-graduação, Mestrado, Doutorado, etc.). A legenda à direita especifica a cor correspondente a cada nível. A largura de cada segmento colorido mostra quantos profissionais com aquele nível de ensino estão naquela faixa salarial específica.
 
 
 ![image](https://github.com/user-attachments/assets/f281fe5e-39a0-4533-9be9-47891b818b45)
 
+### O que o Gráfico Mostra?
+
+Este gráfico de barras horizontais empilhadas compara a **distribuição do tempo de experiência** dos profissionais de dados dentro de cada **faixa salarial mensal** declarada na pesquisa "State of Data Brazil 2023". Ele permite visualizar como a experiência profissional (medida em anos ou falta dela) se distribui entre os diferentes níveis de remuneração.
+
+### Como Interpretar?
+
+*   **Eixo Y (Vertical - Faixa Salarial):** Apresenta as categorias de faixas salariais mensais, ordenadas da menor ("Menos de R$ 1.000/mês") para a maior ("Acima de R$ 40.001/mês").
+*   **Eixo X (Horizontal - Contagem):** Indica o número absoluto de profissionais em cada combinação de faixa salarial e tempo de experiência.
+*   **Barras:** Cada barra representa uma faixa salarial. O comprimento total da barra indica o número total de respondentes naquela faixa.
+*   **Segmentos Coloridos (Legenda - Tempo Experiencia):** Cada segmento dentro de uma barra representa um nível de experiência diferente (desde "Não tenho experiência" até "Mais de 10 anos"). A legenda à direita especifica a cor correspondente a cada nível de experiência. A largura de cada segmento colorido mostra quantos profissionais com aquele tempo de experiência estão naquela faixa salarial específica.
+
 ![image](https://github.com/user-attachments/assets/79a3d5cf-0589-4693-9439-f392cddf386f)
+
+### O que o Gráfico Mostra?
+
+Este gráfico de barras horizontais empilhadas visualiza a relação entre as **faixas salariais mensais** e um **score de habilidades técnicas** baseado no uso combinado de **SQL e Python** pelos profissionais de dados na pesquisa "State of Data Brazil 2023".
+
+### Como Interpretar?
+
+*   **Eixo Y (Vertical - Faixa Salarial):** Lista as categorias de faixas salariais mensais, da menor à maior.
+*   **Eixo X (Horizontal - Contagem):** Indica o número de profissionais em cada combinação de faixa salarial e score de habilidade técnica.
+*   **Barras:** Cada barra representa uma faixa salarial. O comprimento total da barra indica o número total de respondentes naquela faixa.
+*   **Segmentos Coloridos (Legenda - Technical Skills):** Cada segmento dentro de uma barra representa um score baseado no uso de SQL e Python:
+    *   **Score 0 (Roxo Escuro):** O profissional **não utiliza** nem SQL nem Python.
+    *   **Score 1 (Verde-Azulado):** O profissional utiliza **apenas uma** das duas linguagens (SQL *ou* Python).
+    *   **Score 2 (Amarelo):** O profissional utiliza **ambas** as linguagens (SQL *e* Python).
+    A largura de cada segmento colorido mostra quantos profissionais com aquele score estão naquela faixa salarial específica.
 
 ![image](https://github.com/user-attachments/assets/d22bddda-7971-47d6-b8ad-3ac3d0982534)
 
+### O que o Gráfico Mostra?
+
+Este gráfico de dispersão (scatter plot) explora a relação entre duas variáveis em nível estadual (por Unidade da Federação - UF) no Brasil:
+
+1.  **Salário Médio Estimado (R$)** dos profissionais de dados que responderam à pesquisa "State of Data Brazil 2023" naquela UF.
+2.  **Número de Docentes com Doutorado** atuando naquela UF, com base nos microdados do Censo da Educação Superior.
+
+Além disso, o gráfico utiliza o tamanho e a cor dos pontos para representar uma terceira variável: o **número de profissionais de dados da amostra** naquela UF específica.
+
+### Como Interpretar?
+
+*   **Eixo Y (Vertical):** Representa o **Salário Médio Estimado (em R$)** para os profissionais de dados da amostra naquela UF. Valores mais altos no eixo Y indicam maior salário médio estimado para os profissionais daquela UF.
+*   **Eixo X (Horizontal):** Representa o **número total de docentes com doutorado** naquela UF, independentemente da área de atuação. Valores mais altos no eixo X indicam uma maior concentração de professores com doutorado naquela UF.
+*   **Pontos:** Cada ponto no gráfico representa uma **Unidade da Federação (UF)** do Brasil.
+*   **Tamanho e Cor dos Pontos (Legenda - Nº Profissionais):** O tamanho e a cor de cada ponto indicam o **número de respondentes da pesquisa** naquela UF. Pontos maiores e mais claros (tendendo ao amarelo) representam UFs com maior número de profissionais na amostra (ex: São Paulo, com mais de 1600 profissionais, é o ponto amarelo grande), enquanto pontos menores e mais escuros (tendendo ao azul/roxo) representam UFs com menos respondentes.
+
+### Principais Observações e Tendências:
+
+1.  **Ausência de Correlação Forte e Linear:** Não há uma relação linear clara e forte entre o número de docentes com doutorado e o salário médio estimado dos profissionais de dados em uma UF. Ou seja, UFs com muitos docentes doutores não necessariamente apresentam os maiores salários médios para profissionais de dados, e vice-versa.
+2.  **UF com Mais Doutores e Maior Amostra:** O ponto amarelo grande, representando a UF com o maior número de doutores (provavelmente São Paulo, com cerca de 37.000) e o maior número de respondentes (>1600), apresenta um salário médio estimado em torno de R$ 11.800, que está entre os mais altos, mas não é o mais alto do gráfico.
+3.  **Salários Mais Altos:** Os salários médios estimados mais altos (próximos a R$ 12.000) ocorrem em UFs com um número relativamente baixo de docentes doutores (cerca de 4.000-5.000), mas também com poucos respondentes na amostra (pontos pequenos e escuros). Isso pode indicar a presença de profissionais de alto nível nessas UFs ou ser um artefato de amostras pequenas.
+4.  **Dispersão Geral:** Os pontos estão bastante dispersos, indicando que outros fatores, além da concentração de doutores na UF, influenciam significativamente o salário médio dos profissionais de dados. Fatores como custo de vida local, tipo de indústria predominante, e a própria composição da amostra de respondentes em cada UF podem explicar essa dispersão.
+5.  **Concentração de UFs:** Muitas UFs (pontos menores) se concentram na faixa de 5.000 a 15.000 docentes doutores e salários médios estimados entre R$ 7.000 e R$ 10.000.
+
 ![image](https://github.com/user-attachments/assets/869942a1-5cf5-4865-8ed8-597724f8dd8b)
+
+### O que o Gráfico Mostra?
+
+Este gráfico de boxplots agrupados compara a **distribuição do salário médio estimado (R$)** para cada **nível de ensino** dos profissionais de dados, separando-os de acordo com o **nível relativo de concentração de docentes com doutorado** na Unidade da Federação (UF) onde residem[2]. Ele investiga se o "ambiente acadêmico" da UF (representado pela quantidade de doutores) influencia o retorno salarial da educação formal[2].
+
+### Como Interpretar?
+
+*   **Eixo Y (Vertical - Nível de Ensino):** Lista as categorias de formação acadêmica dos respondentes[2].
+*   **Eixo X (Horizontal - Salário Médio Estimado (R$)):** Mostra a escala de salários estimados[2].
+*   **Boxplots:** Cada caixa representa a distribuição dos salários para um grupo específico:
+    *   A **caixa** contém os 50% centrais dos dados (do 1º ao 3º quartil - IQR).
+    *   A **linha vertical dentro da caixa** é a **mediana** salarial (o valor central).
+    *   As **linhas (bigodes)** que se estendem da caixa geralmente cobrem a maior parte dos dados restantes (excluindo outliers).
+*   **Grupos por Cor (Legenda - Docentes Doutorado na UF (Rel. Mediana)):** Dentro de cada nível de ensino, os boxplots são agrupados por cor, indicando se a UF do respondente tem[2]:
+    *   **Abaixo/Igual Mediana (Laranja):** Número de docentes com doutorado abaixo ou igual à mediana nacional.
+    *   **Acima da Mediana (Cinza):** Número de docentes com doutorado acima da mediana nacional.
+    *   **Desconhecido (Azul):** UFs para as quais a informação sobre docentes não estava disponível ou não foi possível calcular a relação com a mediana.
 
 ![grafico_1](https://github.com/user-attachments/assets/c5eb1bfb-6cd6-4147-a46f-3e33c6dd4141)
 
+### O que o Gráfico Mostra?
+
+Este gráfico é um **histograma** que representa a **distribuição da frequência dos salários mensais (em R$)** entre os profissionais de dados que participaram da pesquisa "State of Data Brazil 2023"[1][2][3]. Ele mostra como os salários estão distribuídos, indicando quais faixas salariais são mais comuns e quais são mais raras na amostra[1]. Uma curva de densidade (KDE) está sobreposta para dar uma ideia da forma geral da distribuição[1].
+
+### Como Interpretar?
+
+*   **Eixo Y (Vertical - Number of Professionals):** Indica a **contagem (frequência)** de profissionais cujos salários se enquadram em cada intervalo (bin) do histograma[1].
+*   **Eixo X (Horizontal - Monthly Salary (R$)):** Representa os **valores dos salários mensais** em Reais (R$). O eixo está dividido em intervalos (bins)[1].
+*   **Barras (Rosa):** A altura de cada barra mostra **quantos profissionais** têm salários dentro do intervalo específico representado por essa barra no eixo X[1]. Barras mais altas indicam faixas salariais mais frequentes.
+*   **Curva (Linha):** A linha suavizada (Kernel Density Estimate - KDE) ajuda a visualizar a **forma geral da distribuição** dos salários, mostrando os picos e a dispersão[1].
+
 ![grafico_2](https://github.com/user-attachments/assets/b1547005-3ccd-48e6-8c9f-d8c9ea9cc026)
+
+### O que o Gráfico Mostra?
+
+Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** entre os diferentes grupos de **gênero** (Masculino, Feminino e Não Informado) dos profissionais de dados que responderam à pesquisa "State of Data Brazil 2023"[1]. Ele permite visualizar não apenas a média ou mediana, mas também a dispersão e a presença de valores atípicos (outliers) em cada grupo[1].
+
+### Como Interpretar um Boxplot?
+
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais[1].
+*   **Eixo X (Horizontal - Gender):** Categoriza os dados pelos grupos de gênero informados: "Male" (Masculino), "Female" (Feminino) e "Not Informed" (Não Informado)[1].
+*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos dados de cada grupo. A parte inferior da caixa é o 1º quartil (Q1 - 25º percentil) e a parte superior é o 3º quartil (Q3 - 75º percentil)[1].
+*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para aquele grupo. É o valor que divide os dados em duas metades iguais[1].
+*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos". Geralmente vão até 1.5 vezes o IQR a partir da caixa, ou até o valor máximo/mínimo se estiver dentro desse limite[1].
+*   **Pontos Individuais (Fora dos Bigodes):** Representam **outliers**, ou seja, valores atípicos que estão muito distantes da maioria dos dados daquele grupo[1].
 
 ![grafico_3](https://github.com/user-attachments/assets/cd8dd69f-72a1-4e53-935b-b3222e7de079)
 
+### O que o Gráfico Mostra?
+
+Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** entre os diferentes grupos de **etnia/raça** (Branco, Negro, Pardo, Asiático, Indígena e Não Informado) declarados pelos profissionais de dados na pesquisa "State of Data Brazil 2023"[1]. Ele permite visualizar as diferenças nas medianas salariais, na dispersão dos salários e na presença de outliers em cada grupo étnico/racial[1].
+
+### Como Interpretar um Boxplot?
+
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais[1].
+*   **Eixo X (Horizontal - Ethnicity):** Categoriza os dados pelos grupos étnico/raciais informados[1].
+*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos dados de cada grupo. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3)[1].
+*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para aquele grupo[1].
+*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos"[1].
+*   **Pontos Individuais (Fora dos Bigodes):** Representam **outliers**, valores atípicos[1].
+
 ![grafico_4](https://github.com/user-attachments/assets/2289435b-c407-47fd-9523-9943dec46c38)
+
+### O que o Gráfico Mostra?
+
+Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** entre os diferentes **níveis de educação formal** (desde "Sem Educação Formal" até "PhD") dos profissionais de dados que participaram da pesquisa "State of Data Brazil 2023"[1]. Ele ilustra como a remuneração varia de acordo com o grau de escolaridade alcançado[1].
+
+### Como Interpretar um Boxplot?
+
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais[1].
+*   **Eixo X (Horizontal - Education Level):** Categoriza os dados pelos diferentes níveis de educação formal, ordenados logicamente do menor para o maior[1].
+*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos salários de cada grupo educacional. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3)[1].
+*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para aquele nível de ensino[1].
+*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele grupo[1].
+*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes (geralmente acima) da distribuição principal do grupo[1].
 
 ![grafico_5](https://github.com/user-attachments/assets/61e9d463-96f7-48f0-b687-33e496f5b7de)
 
+### O que o Gráfico Mostra?
+
+Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** entre os diferentes **níveis de senioridade** (Júnior, Pleno/Mid-Level, Sênior) dos profissionais de dados que responderam à pesquisa "State of Data Brazil 2023"[1][3]. A categoria "Specialist" (Especialista) não possui dados suficientes para gerar um boxplot nesta visualização[1]. O gráfico ilustra como a remuneração varia de acordo com o nível hierárquico/experiência prática na carreira[1].
+
+### Como Interpretar um Boxplot?
+
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais[1].
+*   **Eixo X (Horizontal - Seniority Level):** Categoriza os dados pelos diferentes níveis de senioridade[1].
+*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos salários de cada grupo. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3)[1].
+*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para aquele nível de senioridade[1].
+*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele grupo[1].
+*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes (geralmente acima) da distribuição principal do grupo[1].
+
 ![grafico_6](https://github.com/user-attachments/assets/fe4559ed-833d-4856-9de2-ff14bf5c3c07)
+
+### O que o Gráfico Mostra?
+
+Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** entre diferentes **cargos (Job Role)** ocupados pelos profissionais de dados que responderam à pesquisa "State of Data Brazil 2023"[1]. Ele permite visualizar as diferenças nas medianas salariais, na dispersão dos salários e na presença de outliers para cada cargo específico[1].
+
+### Como Interpretar um Boxplot?
+
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais[1].
+*   **Eixo X (Horizontal - Job Role):** Categoriza os dados pelos diferentes cargos informados pelos profissionais (ex: Analytics Engineer, Data Scientist, BI Analyst, etc.)[1].
+*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos salários de cada cargo. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3)[1].
+*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para aquele cargo[1].
+*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele grupo[1].
+*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes da distribuição principal do cargo[1].
 
 ![grafico_7](https://github.com/user-attachments/assets/16abed4c-eff1-4a79-9a11-b96d1aed5aca)
 
+### O que o Gráfico Mostra?
+
+Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** dos profissionais de dados que responderam à pesquisa "State of Data Brazil 2023", agrupados pelo **setor (indústria)** em que trabalham[1]. Ele permite visualizar as diferenças nas medianas salariais, na dispersão e na presença de outliers em diferentes setores da economia[1].
+
+### Como Interpretar um Boxplot?
+
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais[1].
+*   **Eixo X (Horizontal - Industry):** Categoriza os dados pelos diferentes setores de atuação (Finanças/Bancário, Indústria, Internet/E-commerce, Tecnologia/Software, Varejo, Educação, Setor Público, Marketing)[1].
+*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos salários de cada setor. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3)[1].
+*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para aquele setor[1].
+*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele setor[1].
+*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes (geralmente acima) da distribuição principal do setor[1].
+
 ![grafico_8](https://github.com/user-attachments/assets/ecbc2903-3782-41e4-a666-1cb029dc58d5)
+
+### O que o Gráfico Mostra?
+
+Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** entre os diferentes **modelos de trabalho** (100% Presencial, Híbrido com Dias Fixos, Híbrido Flexível, 100% Remoto) adotados pelos profissionais de dados que responderam à pesquisa "State of Data Brazil 2023"[1]. Ele ilustra como a remuneração varia de acordo com a modalidade de trabalho[1].
+
+### Como Interpretar um Boxplot?
+
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais[1].
+*   **Eixo X (Horizontal - Work Model):** Categoriza os dados pelos diferentes modelos de trabalho[1].
+*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos salários de cada grupo. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3)[1].
+*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para aquele modelo de trabalho[1].
+*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele grupo[1].
+*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes (geralmente acima) da distribuição principal do grupo[1].
 
 ![grafico_9](https://github.com/user-attachments/assets/04d10ca3-c7eb-4fc8-bd06-2f2d81b98585)
 
+### O que o Gráfico Mostra?
+
+Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** dos profissionais de dados que responderam à pesquisa "State of Data Brazil 2023", agrupados pelo **porte da empresa** onde trabalham, medido pelo número de funcionários[1]. Ele permite visualizar como a remuneração varia de acordo com o tamanho da organização[1].
+
+### Como Interpretar um Boxplot?
+
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais[1].
+*   **Eixo X (Horizontal - Company Size):** Categoriza os dados pelas diferentes faixas de tamanho da empresa (número de funcionários), desde "1-5" até "3000+"[1].
+*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos salários de cada grupo. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3)[1].
+*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para empresas daquele porte[1].
+*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele grupo[1].
+*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes (geralmente acima) da distribuição principal do grupo[1].
+
 ![grafico_10](https://github.com/user-attachments/assets/2ac5f30a-65f2-47f4-972d-0a8757932ebe)
 
+### O que o Gráfico Mostra?
+
+Este gráfico é um **diagrama de dispersão (scatter plot)** que visualiza a relação entre o **Salário Mensal (em R$)** e os **Anos Totais de Experiência Profissional** (combinando experiência em Dados e Tecnologia) dos respondentes da pesquisa "State of Data Brazil 2023"[1]. Cada ponto representa um profissional[1].
+
+### Como Interpretar?
+
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra o valor do salário mensal em Reais[1].
+*   **Eixo X (Horizontal - Total Years of Experience (Data + Tech)):** Indica o número total de anos de experiência profissional do indivíduo, somando experiência específica em dados e em tecnologia em geral[1].
+*   **Pontos (Rosa):** Cada ponto representa um único profissional, posicionado de acordo com seu salário e tempo total de experiência[1]. A leve transparência (alpha) ajuda a visualizar áreas com maior concentração de pontos.
+
 ![grafico_11](https://github.com/user-attachments/assets/aa6a284f-9c3a-46c0-a180-c2f808b267a5)
+
+
 
 ![grafico_12](https://github.com/user-attachments/assets/a1d64f41-feba-4589-87fd-934396a95199)
 

@@ -56,3 +56,35 @@ def extrair_ponto_medio_salarial(faixa):
 
 # Aplicar a função para criar a coluna de salário médio
 df_clean['salario_medio'] = df_clean['faixa_salarial'].apply(extrair_ponto_medio_salarial)
+# Converter tempo de experiência para numérico (anos)
+def converter_tempo_experiencia(tempo):
+    try:
+        if isinstance(tempo, str) and 'menos de 1' in tempo.lower():
+            return 0.5
+        elif isinstance(tempo, str) and 'anos' in tempo.lower():
+            return float(tempo.lower().replace('anos', '').strip())
+        else:
+            return float(tempo)
+    except:
+        return np.nan
+
+df_clean['tempo_experiencia_anos'] = df_clean['tempo_experiencia'].apply(converter_tempo_experiencia)
+
+# Remover outliers de salário (método IQR)
+Q1 = df_clean['salario_medio'].quantile(0.25)
+Q3 = df_clean['salario_medio'].quantile(0.75)
+IQR = Q3 - Q1
+limite_inferior = Q1 - 1.5 * IQR
+limite_superior = Q3 + 1.5 * IQR
+
+df_clean = df_clean[(df_clean['salario_medio'] >= limite_inferior) & 
+                   (df_clean['salario_medio'] <= limite_superior)]
+
+# Adicionar variáveis dummy para a análise (One-Hot Encoding)
+df_clean_encoded = pd.get_dummies(df_clean, columns=['nivel_senioridade', 'setor_atuacao', 'uf'])
+
+# Salvar o DataFrame limpo em um arquivo CSV
+df_clean.to_csv('dados_limpos_pergunta2.csv', index=False)
+df_clean_encoded.to_csv('dados_limpos_pergunta2_encoded.csv', index=False)
+
+print(f"Dados limpos salvos. Total de registros: {len(df_clean)}")

@@ -1325,6 +1325,277 @@ A performance do modelo LightGBM Regressor, treinado para prever o ponto médio 
 
 O modelo LightGBM demonstrou uma capacidade moderada de prever o ponto médio da faixa salarial dos profissionais de dados. Ele explica cerca de metade da variabilidade salarial com um erro médio de previsão na casa dos R$ 3.500. A presença de erros maiores (indicada pelo RMSE) sugere que a precisão pode variar para diferentes subgrupos de profissionais. As métricas, em conjunto com a análise SHAP, indicam que o modelo aprendeu padrões relevantes, mas ainda há espaço para melhorias, possivelmente explorando mais features, técnicas de engenharia de features, ou modelos alternativos.
 
+---
+
+## Explicação Detalhada do Modelo GBM para Previsão de Faixa Salarial para a 3º pergunta orientada a dados
+
+### Modelo: GBM (Gradient Boosting Machines) - Modelo Baseado em Árvore de Decisão
+
+### Justificativa da Escolha do Modelo
+
+Os modelos GBM (Gradient Boosting Machines) foram escolhidos para este projeto de previsão de faixa salarial devido às seguintes características:
+
+1. **Capacidade de capturar interações complexas**: GBMs constroem árvores de decisão sequencialmente, onde cada nova árvore corrige os erros da anterior. Esta estrutura permite capturar interações não lineares entre variáveis demográficas (gênero, raça/cor, região) e educacionais (escolaridade), essenciais para prever faixas salariais com precisão.
+
+2. **Tratamento eficiente de variáveis categóricas**: Algoritmos como XGBoost possuem mecanismos eficientes para lidar com variáveis categóricas sem necessidade de one-hot encoding extensivo, o que é ideal para nosso conjunto de dados com múltiplas categorias demográficas.
+
+3. **Ferramentas robustas para interpretação**:
+   - **Feature Importance**: Permite identificar quais fatores demográficos e educacionais têm maior impacto nas faixas salariais.
+   - **SHAP (SHapley Additive exPlanations)**: Possibilita entender a contribuição de cada fator para previsões individuais e visualizar como as interações entre características demográficas influenciam o resultado.
+
+4. **Flexibilidade de aplicação**: O modelo foi configurado para classificação multiclasse, prevendo a faixa salarial categorizada em cinco níveis (Muito Baixa, Baixa, Média, Alta, Muito Alta).
+
+### Processo de Amostragem de Dados (Particionamento e Cross-Validation)
+
+O processo de amostragem de dados foi realizado em duas etapas principais:
+
+#### Particionamento dos Dados (Train/Test Split)
+**Objetivo**: Garantir que o modelo seja avaliado em dados nunca vistos durante o treinamento.
+
+**Procedimento Utilizado**:
+- O dataset foi dividido em duas partes:
+  - **Treinamento**: 80% dos dados
+  - **Teste**: 20% dos dados
+- O particionamento foi realizado com a função `train_test_split` do Scikit-Learn, utilizando `random_state=42` para garantir reprodutibilidade.
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y_encoded, test_size=0.2, random_state=42, stratify=y_encoded
+)
+```
+
+**Justificativa**:
+- A estratificação (`stratify=y_encoded`) garante que a distribuição das faixas salariais seja mantida nos conjuntos de treino e teste.
+- A proporção 80/20 é um equilíbrio entre ter dados suficientes para treinar o modelo e uma amostra representativa para testá-lo.
+
+#### Validação Cruzada (Cross-Validation)
+**Objetivo**: Otimizar hiperparâmetros e evitar overfitting.
+
+**Procedimento**:
+- Utilizamos `StratifiedKFold` com 5 divisões para manter a distribuição das classes em cada fold.
+- O `GridSearchCV` foi configurado para buscar a melhor combinação de hiperparâmetros.
+
+```python
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+grid_search = GridSearchCV(
+    pipeline,
+    param_grid,
+    cv=cv,
+    scoring='accuracy',
+    n_jobs=-1,
+    verbose=1
+)
+```
+
+**Resultado**:
+- O modelo foi otimizado para maximizar a acurácia na classificação das faixas salariais.
+- A validação cruzada estratificada garantiu que o modelo fosse avaliado em diferentes subconjuntos dos dados, aumentando a robustez da avaliação.
+
+### Parâmetros do Modelo e Processo de Raciocínio
+
+O modelo XGBoost foi configurado com os seguintes parâmetros principais:
+
+- **objective**: 'multi:softprob' (classificação multiclasse com probabilidades)
+- **num_class**: número de faixas salariais (5 categorias)
+- **n_estimators**: número de árvores no ensemble (otimizado via GridSearch)
+- **max_depth**: profundidade máxima das árvores (otimizado via GridSearch)
+- **learning_rate**: taxa de aprendizado (otimizado via GridSearch)
+- **subsample**: fração de amostras usadas para treinar cada árvore
+- **colsample_bytree**: fração de features usadas para treinar cada árvore
+
+#### Processo de Raciocínio da Árvore (Regras de Decisão)
+
+Cada árvore no ensemble segue um processo de decisão hierárquico:
+
+1. **Nó Raiz**: A primeira divisão geralmente ocorre na variável mais discriminativa, como nível de ensino ou região.
+   
+2. **Nós Intermediários**: Divisões subsequentes refinam a previsão com base em outras variáveis, como gênero e raça/cor.
+
+3. **Nós Folha**: Cada caminho da raiz até uma folha representa uma regra de decisão que leva a uma probabilidade específica para cada faixa salarial.
+
+**Exemplo de Caminho de Decisão**:
+- Se nível de ensino = "Mestrado" E região = "Sudeste", segue para o nó à direita.
+- Se gênero = "Masculino", segue para o nó à direita.
+- Folha: Probabilidade alta para faixa salarial "Alta (R$ 8.001 a R$ 16.000)".
+
+### Feature Importances e Tomada de Decisão
+
+As variáveis mais importantes para a previsão de faixa salarial, conforme identificado pelo modelo, foram:
+
+1. **Nível de Ensino**: Variável com maior impacto, demonstrando a forte correlação entre educação formal e faixa salarial.
+
+2. **Região**: A segunda variável mais importante, refletindo as disparidades regionais significativas no Brasil.
+
+3. **Gênero**: Contribui para a previsão, capturando possíveis disparidades salariais relacionadas ao gênero.
+
+4. **Raça/Cor**: Também influencia a previsão, indicando potenciais disparidades raciais no mercado de trabalho.
+
+#### Medidas de Importância das Features
+
+- **Importância por Ganho (Gain)**: Mede o quanto cada feature contribuiu para a redução do erro em todas as árvores do modelo.
+  
+- **Importância por Cobertura (Cover)**: Mede o número relativo de observações relacionadas a esta feature.
+
+- **Importância por Frequência (Frequency)**: Mede o número de vezes que a feature é usada em todas as árvores.
+
+No modelo treinado, nível de ensino e região aparecem consistentemente entre as mais importantes, alinhando-se com os splits iniciais das árvores individuais.
+
+### Explicação do Código: Notebook de Modelo GBM
+
+O notebook implementa um pipeline completo para análise de disparidade salarial, organizado nas seguintes seções:
+
+#### 1. Configuração do Ambiente
+
+```python
+# Instalação de bibliotecas
+!pip install pandas numpy matplotlib seaborn scikit-learn xgboost shap
+
+# Importação das bibliotecas
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+import xgboost as xgb
+import shap
+import warnings
+warnings.filterwarnings('ignore')
+```
+
+#### 2. Carregamento e Preparação dos Dados
+
+```python
+# Carregar os dados
+from google.colab import files
+uploaded = files.upload()  # Upload do arquivo Main_database.xlsx
+
+# Ler o arquivo Excel
+df = pd.read_excel('Main_database.xlsx')
+
+# Identificar colunas relevantes
+genero_col = [col for col in df.columns if 'Genero' in col][0]
+cor_raca_col = [col for col in df.columns if 'Cor/raca/etnia' in col][0]
+uf_col = [col for col in df.columns if 'uf onde mora' in col][0]
+nivel_ensino_col = [col for col in df.columns if 'Nivel de Ensino' in col][0]
+faixa_salarial_col = [col for col in df.columns if 'Faixa salarial' in col][0]
+```
+
+#### 3. Pré-processamento dos Dados
+
+```python
+# Mapear UFs para regiões
+regiao_mapping = {
+    'AC': 'Norte', 'AM': 'Norte', 'AP': 'Norte', 'PA': 'Norte', 'RO': 'Norte', 'RR': 'Norte', 'TO': 'Norte',
+    'AL': 'Nordeste', 'BA': 'Nordeste', 'CE': 'Nordeste', 'MA': 'Nordeste', 'PB': 'Nordeste', 
+    'PE': 'Nordeste', 'PI': 'Nordeste', 'RN': 'Nordeste', 'SE': 'Nordeste',
+    'DF': 'Centro-Oeste', 'GO': 'Centro-Oeste', 'MS': 'Centro-Oeste', 'MT': 'Centro-Oeste',
+    'ES': 'Sudeste', 'MG': 'Sudeste', 'RJ': 'Sudeste', 'SP': 'Sudeste',
+    'PR': 'Sul', 'RS': 'Sul', 'SC': 'Sul'
+}
+
+# Adicionar coluna de região
+data['Regiao'] = data[uf_col].map(regiao_mapping)
+
+# Categorizar faixa salarial
+def categorizar_salario(faixa):
+    if 'Até' in faixa or '1.000' in faixa or '2.000' in faixa:
+        return 'Muito Baixa (Até R$ 2.000)'
+    elif '3.000' in faixa or '4.000' in faixa:
+        return 'Baixa (R$ 2.001 a R$ 4.000)'
+    elif '6.000' in faixa or '8.000' in faixa:
+        return 'Média (R$ 4.001 a R$ 8.000)'
+    elif '12.000' in faixa or '16.000' in faixa:
+        return 'Alta (R$ 8.001 a R$ 16.000)'
+    else:
+        return 'Muito Alta (Acima de R$ 16.000)'
+
+data['Faixa_Salarial_Categorizada'] = data[faixa_salarial_col].apply(categorizar_salario)
+```
+
+#### 4. Treinamento do Modelo XGBoost
+
+```python
+# Criar o pipeline com o preprocessador e o modelo XGBoost
+pipeline = Pipeline([
+    ('preprocessor', preprocessor),
+    ('classifier', xgb.XGBClassifier(objective='multi:softprob', num_class=len(le_target.classes_), 
+                                     random_state=42, use_label_encoder=False, eval_metric='mlogloss'))
+])
+
+# Definir os parâmetros para otimização
+param_grid = {
+    'classifier__n_estimators': [100, 200],
+    'classifier__max_depth': [3, 5, 7],
+    'classifier__learning_rate': [0.01, 0.1],
+    'classifier__subsample': [0.8, 1.0],
+    'classifier__colsample_bytree': [0.8, 1.0]
+}
+
+# Treinar o modelo com GridSearchCV
+grid_search.fit(X_train, y_train)
+```
+
+#### 5. Avaliação do Modelo
+
+```python
+# Fazer previsões no conjunto de teste
+y_pred = best_model.predict(X_test)
+
+# Avaliar o desempenho do modelo
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Acurácia do modelo: {accuracy:.4f}")
+
+# Exibir o relatório de classificação
+print(classification_report(y_test, y_pred, target_names=le_target.classes_))
+
+# Criar a matriz de confusão
+conf_matrix = confusion_matrix(y_test, y_pred)
+```
+
+#### 6. Interpretação do Modelo
+
+```python
+# Obter a importância das features
+importances = xgb_model.feature_importances_
+
+# Criar um DataFrame com as importâncias
+importance_df = pd.DataFrame({
+    'Feature': feature_names,
+    'Importance': importances
+})
+
+# Ordenar por importância
+importance_df = importance_df.sort_values('Importance', ascending=False)
+
+# Análise SHAP para interpretabilidade do modelo
+explainer = shap.Explainer(xgb_model)
+shap_values = explainer(X_test_transformed)
+```
+
+### Resultados e Insights
+
+O modelo GBM para previsão de faixa salarial revelou importantes insights sobre os fatores que influenciam os salários dos profissionais de dados no Brasil:
+
+1. **Nível de Ensino**: Forte correlação positiva com faixa salarial, com profissionais com mestrado e doutorado tendo maior probabilidade de estar nas faixas salariais mais altas.
+
+2. **Disparidades Regionais**: Profissionais no Sudeste, especialmente em São Paulo, tendem a estar em faixas salariais mais altas comparados a outras regiões.
+
+3. **Disparidades de Gênero**: O modelo identificou diferenças nas distribuições salariais entre homens e mulheres, com homens tendo maior representação nas faixas salariais mais altas.
+
+4. **Disparidades Raciais**: Pessoas brancas têm maior probabilidade de estar em faixas salariais mais altas comparadas a pessoas pardas e pretas.
+
+5. **Interações Complexas**: O modelo capturou interações importantes, como o fato de que o impacto do nível de ensino na faixa salarial varia dependendo da região.
+
+### Conclusão
+
+O modelo GBM demonstrou ser uma escolha eficaz para prever faixas salariais com base em características demográficas e educacionais. Sua capacidade de capturar interações complexas entre variáveis e fornecer interpretações detalhadas através de feature importance e análise SHAP permite não apenas fazer previsões precisas, mas também entender os fatores que contribuem para as disparidades salariais no setor de dados no Brasil.
+
+As descobertas do modelo podem informar políticas e iniciativas para reduzir disparidades salariais relacionadas a gênero, raça e região, além de destacar a importância da educação formal para progressão salarial na área de dados.
  
 
 ### Interpretação do modelo 1

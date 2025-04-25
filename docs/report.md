@@ -460,7 +460,30 @@ profissionais de tecnologia?*
 
 ![image](https://github.com/user-attachments/assets/9037f75e-d52b-4163-9a8d-ac7d50f957ec)
 
+### O que o Gráfico Mostra?
+
+Este gráfico de barras horizontais ilustra a **distribuição dos profissionais de dados** que responderam à pesquisa "State of Data Brazil 2023" pelas **diferentes faixas salariais mensais** declaradas. Ele mostra quantas pessoas se enquadram em cada categoria de remuneração.
+
+### Como Interpretar?
+
+*   **Eixo Y (Vertical - Faixa Salarial):** Apresenta as **categorias de faixas salariais mensais** utilizadas na pesquisa, ordenadas da menor ("Menos de R$ 1.000/mês") para a maior ("Acima de R$ 40.001/mês").
+*   **Eixo X (Horizontal - Contagem):** Indica o **número absoluto de profissionais** (respondentes da pesquisa) que declararam pertencer a cada faixa salarial.
+*   **Barras:** O comprimento de cada barra é proporcional à quantidade de profissionais naquela faixa salarial específica. Barras mais longas representam faixas salariais mais comuns entre os respondentes.
+*   **Cores:** As cores seguem um gradiente (geralmente para melhor visualização), mas não representam uma variável adicional neste gráfico específico.
+
 ![image](https://github.com/user-attachments/assets/65d01e5d-5973-4409-9be8-16b2bd66a0b7)
+
+### O que o Gráfico Mostra?
+
+Este gráfico de barras horizontais compara a **distribuição dos níveis de ensino** dos profissionais de dados dentro de cada **faixa salarial mensal** declarada na pesquisa "State of Data Brazil 2023"[1][2]. Ele permite visualizar como a formação acadêmica se distribui entre os diferentes níveis de remuneração[1].
+
+### Como Interpretar?
+
+*   **Eixo Y (Vertical - Faixa Salarial):** Apresenta as categorias de faixas salariais mensais, da menor à maior[1].
+*   **Eixo X (Horizontal - Contagem):** Indica o número de profissionais em cada combinação de faixa salarial e nível de ensino[1].
+*   **Barras:** Cada barra representa uma faixa salarial. O comprimento total da barra indica o número total de respondentes naquela faixa[1].
+*   **Segmentos Coloridos (Legenda - Nível Ensino):** Cada segmento dentro de uma barra representa um nível de ensino diferente (Estudante de Graduação, Graduação/Bacharelado, Pós-graduação, Mestrado, Doutorado, etc.). A legenda à direita especifica a cor correspondente a cada nível[1]. A largura de cada segmento colorido mostra quantos profissionais com aquele nível de ensino estão naquela faixa salarial específica[1].
+
 
 ![image](https://github.com/user-attachments/assets/f281fe5e-39a0-4533-9be9-47891b818b45)
 

@@ -44,7 +44,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [1º Pergunta Orientada a Dados](#1º-pergunta-orientada-a-dados)
 	*   [3º Pergunta Orientada a Dados](#3º-pergunta-orientada-a-dados)
 *   [Indução de modelos](#indução-de-modelos)
-    *   [Modelo 1: Algoritmo](#modelo-1-algoritmo)
+    *   [Modelo 1: GBM - Gradient Boosting Machines - Modelo Baseado em Árvore de Decisão](#Modelo-1:-gbm-(gradient-boosting-machines)-modelo-baseado-em-árvore-de-decisão)
     *   [Modelo 2: Algoritmo](#modelo-2-algoritmo)
 *   [Resultados](#resultados)
     *   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1)
@@ -598,7 +598,7 @@ profissionais de tecnologia?*
 
 ## Indução de modelos
 
-### Modelo 1: GBM - Gradient Boosting Machines - Modelo Baseado em Árvore de Decisão
+### #Modelo 1: gbm (gradient boosting machines) modelo baseado em árvore de decisão
 ### 1º Pergunta orientada a dados
 ### *Justificativa*
 - GBMs constroem árvores de decisão sequencialmente, onde cada nova árvore corrige os erros da anterior. Essa estrutura permite capturar interações complexas e não lineares entre as variáveis preditoras de forma natural, o que é central para responder à pergunta do projeto. Por exemplo, o modelo pode aprender que o impacto de saber Python no salário é diferente para um profissional Júnior com Graduação versus um Sênior com Doutorado.

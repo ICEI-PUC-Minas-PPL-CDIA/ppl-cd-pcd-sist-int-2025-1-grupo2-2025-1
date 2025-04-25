@@ -44,8 +44,8 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [1º Pergunta Orientada a Dados](#1º-pergunta-orientada-a-dados)
 	*   [3º Pergunta Orientada a Dados](#3º-pergunta-orientada-a-dados)
 *   [Indução de modelos](#indução-de-modelos)
-    *   [Modelo 1 gbm (gradient boosting machines) modelo baseado em árvore de decisão](#modelo-1-gbm-(gradient-boosting-machines)-modelo-baseado-em-árvore-de-decisão)
-    *   [Modelo 2: Algoritmo](#modelo-2-algoritmo)
+    *   [Modelo 1 gbm (gradient boosting machines) modelo baseado em árvore de decisão](#modelo-1-gbm-gradient-boosting-machines-modelo-baseado-em-árvore-de-decisão)
+    *   [Modelo 2: modelo-baseado-em-árvore-de-decisão](#modelo-gbm-gradient-boosting-machines---modelo-baseado-em-árvore-de-decisão)
 *   [Resultados](#resultados)
     *   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1)
     *   [Interpretação do modelo 1](#interpretação-do-modelo-1)
@@ -540,10 +540,6 @@ profissionais de tecnologia?*
 ![relação_salario_ensino_heatmap](https://github.com/user-attachments/assets/ad208ee3-80cc-43fc-bd74-541c1c9ff10d)
 
 ---
-
-## Microdados
- State of Data Brazil DATA HACKERS
-
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------

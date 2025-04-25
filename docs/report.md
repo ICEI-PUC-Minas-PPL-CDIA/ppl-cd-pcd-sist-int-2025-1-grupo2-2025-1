@@ -422,7 +422,7 @@ profissionais de tecnologia?*
 - Microdados do Censo da Educação Superior
 - Link: https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-da-educacao-superior
   
-- [Base de dados](/assets/data/bases_principais/bases_auxiliar/1_pergunta_orientada_a_dados/MICRODADOS_ED_SUP_IES_2023.CSVassets/data/bases_principais/MICRODADOS_ED_SUP_IES_2023.CSV)
+- [Base de dados](/assets/data/bases_principais/bases_auxiliar/1_pergunta_orientada_a_dados/MICRODADOS_ED_SUP_IES_2023.CSVassets)
 
 
 ### Base de dados auxiliar para 2º pergunta orientada a dados

@@ -341,53 +341,6 @@ Nome: salary_midpoint, dtype: object
 | P2o9                                             | Qualidade dos gestores                    | Qualitativo  | Nominal (Multivalorado)             | Importância atribuída à qualidade dos gestores e líderes                                      | Média      |
 | P2o10                                            | Reputação da empresa                      |  Qualitativo | Nominal (Multivalorado)             | Valorização da reputação que a empresa tem no mercado                                         | Média      |
 
-## Gráficos relacionados a 1º pergunta orientada a dados
-![grafico_1](https://github.com/user-attachments/assets/c5eb1bfb-6cd6-4147-a46f-3e33c6dd4141)
-
-![grafico_2](https://github.com/user-attachments/assets/b1547005-3ccd-48e6-8c9f-d8c9ea9cc026)
-
-![grafico_3](https://github.com/user-attachments/assets/cd8dd69f-72a1-4e53-935b-b3222e7de079)
-
-![grafico_4](https://github.com/user-attachments/assets/2289435b-c407-47fd-9523-9943dec46c38)
-
-![grafico_5](https://github.com/user-attachments/assets/61e9d463-96f7-48f0-b687-33e496f5b7de)
-
-![grafico_6](https://github.com/user-attachments/assets/fe4559ed-833d-4856-9de2-ff14bf5c3c07)
-
-![grafico_7](https://github.com/user-attachments/assets/16abed4c-eff1-4a79-9a11-b96d1aed5aca)
-
-![grafico_8](https://github.com/user-attachments/assets/ecbc2903-3782-41e4-a666-1cb029dc58d5)
-
-![grafico_9](https://github.com/user-attachments/assets/04d10ca3-c7eb-4fc8-bd06-2f2d81b98585)
-
-![grafico_10](https://github.com/user-attachments/assets/2ac5f30a-65f2-47f4-972d-0a8757932ebe)
-
-![grafico_11](https://github.com/user-attachments/assets/aa6a284f-9c3a-46c0-a180-c2f808b267a5)
-
-![grafico_12](https://github.com/user-attachments/assets/a1d64f41-feba-4589-87fd-934396a95199)
-
-![grafico_13](https://github.com/user-attachments/assets/50529659-0afa-45ec-ae72-f65fbcc83277)
-
-![grafico_14](https://github.com/user-attachments/assets/3b239d62-a82b-43d1-aa10-26b5e957bcce)
-
-![grafico_15](https://github.com/user-attachments/assets/3bf4cfdf-2032-4158-9012-7091f14121cb)
-
-![grafico_16](https://github.com/user-attachments/assets/71c55ed0-cc29-4cd9-961a-aa2de7039049)
-
-![grafico_17](https://github.com/user-attachments/assets/a1a4a041-92c9-4d03-bac8-0a711126095b)
-
-![grafico_19](https://github.com/user-attachments/assets/aa5da302-2016-4c87-b30d-d8c7a61df5c5)
-
-![grafico_30](https://github.com/user-attachments/assets/c7594562-2e4d-466b-b166-c7a698a4ccfd)
-
-![grafico_28](https://github.com/user-attachments/assets/8e6609d8-de57-4b31-8419-227742953347)
-
-![grafico_27](https://github.com/user-attachments/assets/a8b55cbd-c6af-49c3-9c10-4d8c1ac07603)
-
-![grafico_22](https://github.com/user-attachments/assets/a2fe8ce1-c80a-4f64-b626-04f757474d3e)
-
-![grafico_21](https://github.com/user-attachments/assets/774f76bc-3988-4e3d-ad0c-d763c51b68f7)
-
 ---
 
 ### Atributos relevantes da base de dados principal para 2ª pergunta orientada
@@ -398,15 +351,6 @@ Nome: salary_midpoint, dtype: object
 | P2i      | Tempo de Experiência | Quantitativo | Discreto | Anos de atuação na área de dados | Alta |
 | P2g      | Nível de Senioridade | Qualitativo | Ordinal | Nível profissional alcançado (Júnior, Pleno, Sênior, etc.) | Alta |
 | P2h      | Faixa Salarial | Qualitativo | Ordinal | Classificação salarial em faixas | Alta |
-
-## Gráficos relacionados a 2º pergunta orientada a dados
-![grafico_1](https://github.com/user-attachments/assets/19a0497e-a549-4bf4-8e24-042968b0f34b)
-
-![grafico_5](https://github.com/user-attachments/assets/f892c184-ffc9-4e2c-8597-11b1ca3e24b9)
-
-![grafico_10](https://github.com/user-attachments/assets/330b446a-b895-42e3-8409-3130f4486da3)
-
-![grafico_5](https://github.com/user-attachments/assets/70073af7-d341-46b3-a909-5a793cbd5bb4)
 
 
 ---
@@ -425,11 +369,7 @@ Nome: salary_midpoint, dtype: object
 | Faixa salarial mensal                                              | P2h                     | Qualitativo  | Ordinal                             | Faixa salarial mensal do respondente                                                          | Alta       |
 | Tempo de experiência na área de dados                                              | P2i     | Quantitativo | Discreto                            | Tempo de experiência do respondente na área de dados (em anos)                                | Alta       |
 
-## Gráficos relacionados a 3º pergunta orientada a dados
-![impacto_por_faixa_etaria.png](https://github.com/user-attachments/assets/daf04a61-42ea-439c-9bf0-4c0734b52fb8)
-![impacto_por_genero.png](https://github.com/user-attachments/assets/b8ee4349-d2ea-404c-b81e-d0cc07c93a1f)
-![matriz_correlacao.png](https://github.com/user-attachments/assets/a4fb5869-6203-466c-9726-2cee6463a916)
-![relacao_ensino_salario_heatmap.png](https://github.com/user-attachments/assets/9288fe43-6159-47a2-a930-231d60268fa5)
+---
 
 ### Atributos relevantes da base de dados principal para 4ª pergunta orientada
 **Pergunta orientada a dados:** *Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os
@@ -459,6 +399,8 @@ profissionais de tecnologia?*
 | P4d14                                            | JavaScript                                | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Alta       |
 | P4d15                                            | Não utilizo nenhuma linguagem             | Qualitativo  | Nominal (Binário)                   | Indicação se o respondente não utiliza nenhuma linguagem de programação                       | Média      |  
 
+---
+
 ### Atributos relevantes da base de dados principal para 5ª pergunta orientada
 **Pergunta orientada a dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área?*
 
@@ -468,6 +410,10 @@ profissionais de tecnologia?*
 | P2i      | Tempo de experiência  | Quantitativo | Contínuo                        | Tempo de atuação na área de dados, geralmente em anos.                | Alta       |
 | P1m      | Área de formação      | Qualitativo  | Nominal (Multivalorado)         | Curso ou campo de estudo principal (ex: Ciência da Computação, Estatística). | Alta       |
 | P2o1     | Salário               | Quantitativo | Contínuo                        | Renda mensal declarada, geralmente em reais.                          | Alta       |
+
+
+---
+
 
 ## Enriquecimento de dados
 

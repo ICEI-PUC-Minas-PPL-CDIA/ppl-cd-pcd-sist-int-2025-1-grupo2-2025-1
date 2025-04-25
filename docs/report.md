@@ -429,18 +429,27 @@ profissionais de tecnologia?*
 **Pergunta orientada a dados:** *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
 - Relatórios de Transparência Salarial e Critérios Remuneratórios
 - Link: [https://relatoriodetransparenciasalarial.trabalho.gov.br/](https://relatoriodetransparenciasalarial.trabalho.gov.br/)
+  
+- [Base de dados](/assets/data/bases_principais/bases_auxiliar/2_pergunta_orientada_a_dados/)
 
 ### Base de dados auxiliar para a 3º pergunta orientada a dados
 **Pergunta orientada a dados:** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
 - Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD-C)
 - Link: https://basedosdados.org/dataset/9fa532fb-5681-4903-b99d-01dc45fd527a?table=a04fc85d-908a-4393-b51d-1bd517a40210
+  
+- [Base de dados](/assets/data/bases_principais/bases_auxiliar/3_pergunta_orientada_a_dados/bq-results-20250422-030542-1745291209599.zip)
 
 ### Base de dados auxiliar para 4º pergunta orientada a dados
 **Pergunta orientada a dados:** Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os
 profissionais de tecnologia?*
+  
+- [Base de dados](/assets/data/bases_principais/bases_auxiliar/)
 
 ### Base de dados auxiliar para 5º pergunta orientada a dados
 **Pergunta orientada a dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área?*
+  
+- [Base de dados](/assets/data/bases_principais/bases_auxiliar/)
+
 
 ---
 

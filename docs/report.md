@@ -733,6 +733,7 @@ Este gráfico é um **diagrama de dispersão (scatter plot)** que visualiza a re
 
 ![grafico_21](https://github.com/user-attachments/assets/774f76bc-3988-4e3d-ad0c-d763c51b68f7)
 
+---
 
 ### 3º Pergunta orientada a dados
 **Pergunta Orientada a Dados:**

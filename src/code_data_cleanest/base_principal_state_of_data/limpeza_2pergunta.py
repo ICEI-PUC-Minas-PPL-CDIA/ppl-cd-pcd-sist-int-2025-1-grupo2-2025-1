@@ -21,3 +21,38 @@ df_clean.rename(columns={
 
 # Remover registros com valores ausentes nas colunas principais
 df_clean = df_clean.dropna(subset=['tempo_experiencia', 'nivel_senioridade', 'faixa_salarial'])
+# Padronizar os níveis de senioridade
+df_clean['nivel_senioridade'] = df_clean['nivel_senioridade'].str.lower()
+df_clean['nivel_senioridade'] = df_clean['nivel_senioridade'].replace({
+    'júnior': 'junior',
+    'jr': 'junior',
+    'jr.': 'junior',
+    'pleno': 'pleno',
+    'pl': 'pleno',
+    'pl.': 'pleno',
+    'sênior': 'senior',
+    'sr': 'senior',
+    'sr.': 'senior'
+})
+
+# Função para converter a faixa salarial em ponto médio numérico
+def extrair_ponto_medio_salarial(faixa):
+    try:
+        # Remover "R$" e substituir vírgulas por pontos
+        faixa = faixa.replace('R$', '').replace('.', '').replace(',', '.')
+        
+        # Extrair os valores numéricos
+        valores = [float(val.strip()) for val in faixa.split('a') if val.strip()]
+        
+        # Calcular o ponto médio
+        if len(valores) == 2:
+            return (valores[0] + valores[1]) / 2
+        elif len(valores) == 1:
+            return valores[0]
+        else:
+            return np.nan
+    except:
+        return np.nan
+
+# Aplicar a função para criar a coluna de salário médio
+df_clean['salario_medio'] = df_clean['faixa_salarial'].apply(extrair_ponto_medio_salarial)

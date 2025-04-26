@@ -717,21 +717,143 @@ Este gráfico é um **diagrama de dispersão (scatter plot)** que visualiza a re
 
 ![grafico_15](https://github.com/user-attachments/assets/3bf4cfdf-2032-4158-9012-7091f14121cb)
 
+**O que o Gráfico Mostra?**
+
+Este gráfico de barras horizontais demonstra a popularidade de diferentes ferramentas de Business Intelligence (BI) entre os profissionais de dados que participaram da pesquisa (contextualizada como a "State of Data Brazil 2023")[1]. Ele quantifica a proporção (percentual) de respondentes que utilizam cada uma das ferramentas listadas ou que dependem exclusivamente do Excel[1].
+
+**Como Interpretar?**
+
+*   **Eixo Y (Vertical - Ferramenta de BI):** Lista as categorias analisadas, representando o uso de ferramentas específicas como Power BI (`uses_powerbi`), Tableau (`uses_tableau`), Qlik (`uses_qlik`), ou o uso exclusivo do Excel (`uses_excel_only`)[1].
+*   **Eixo X (Horizontal - Percentual):** Indica a proporção (de 0.0 a 0.5+, ou 0% a 50%+) de profissionais que utilizam a ferramenta ou se encaixam na categoria correspondente no eixo Y[1].
+*   **Barras:** O comprimento de cada barra é diretamente proporcional ao percentual de profissionais que utilizam a respectiva ferramenta. Barras mais longas indicam maior adoção[1].
+*   **Cores:** A cor rosa utilizada nas barras é um elemento visual para diferenciar as categorias, não representando uma variável adicional neste gráfico[1].
+
 ![grafico_16](https://github.com/user-attachments/assets/71c55ed0-cc29-4cd9-961a-aa2de7039049)
+
+**O que o Gráfico Mostra?**
+
+Este gráfico utiliza múltiplos box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) dos profissionais de dados entre as cinco grandes regiões do Brasil: Centro-oeste, Sudeste, Nordeste, Norte e Sul[1]. Ele permite visualizar e comparar a tendência central (mediana), a dispersão (intervalo interquartil, amplitude) e a presença de valores atípicos (outliers) em cada região[1].
+
+**Como Interpretar?**
+
+*   **Eixo X (Horizontal - Região):** Apresenta as cinco regiões geográficas do Brasil onde os respondentes da pesquisa (contextualizada como a "State of Data Brazil 2023"[2][3]) residem[1].
+*   **Eixo Y (Vertical - Salário Mensal R$):** Indica a escala de salários mensais em Reais (R$), variando de R$ 0 a mais de R$ 40.000[1].
+*   **Caixas (Boxes):** Cada caixa rosa representa o intervalo interquartil (IQR) para uma região, contendo os 50% centrais dos dados salariais.
+    *   A **borda inferior da caixa** marca o primeiro quartil (Q1), ou seja, 25% dos profissionais daquela região ganham abaixo deste valor[1].
+    *   A **borda superior da caixa** marca o terceiro quartil (Q3), ou seja, 75% dos profissionais daquela região ganham abaixo deste valor (e 25% ganham acima)[1].
+    *   A **linha dentro da caixa** representa a mediana (Q2), o valor salarial que divide os dados ao meio (50% ganham abaixo, 50% ganham acima)[1].
+*   **"Bigodes" (Whiskers - Linhas que se estendem da caixa):** Mostram a amplitude dos dados fora do IQR, geralmente estendendo-se até 1.5 vezes o tamanho do IQR a partir das bordas da caixa, ou até o valor mínimo/máximo se estiver dentro desse limite. Indicam a variação salarial esperada para a maioria dos profissionais[1].
+*   **Pontos Individuais (Outliers):** Círculos fora dos "bigodes" representam salários atípicos, valores consideravelmente mais altos (neste caso) do que a maioria dos salários naquela região específica[1].
 
 ![grafico_17](https://github.com/user-attachments/assets/a1a4a041-92c9-4d03-bac8-0a711126095b)
 
+**O que o Gráfico Mostra?**
+
+Este gráfico é um heatmap que representa a matriz de correlação de Pearson entre as variáveis numéricas selecionadas do conjunto de dados (contextualizado como sendo da pesquisa "State of Data Brazil 2023"[2][3])[1]. As variáveis incluídas são: `salary_midpoint` (ponto médio da faixa salarial), `age` (idade), `data_experience_years` (anos de experiência na área de dados), `tech_experience_years` (anos de experiência na área de TI/Engenharia de Software antes de dados) e `total_experience` (anos totais de experiência profissional)[1]. O gráfico visualiza a força e a direção da relação linear entre cada par dessas variáveis.
+
+**Como Interpretar?**
+
+*   **Eixos X e Y:** Ambos os eixos listam as mesmas variáveis numéricas (`salary_midpoint`, `age`, `data_experience_years`, `tech_experience_years`, `total_experience`)[1].
+*   **Células/Quadrados:** Cada quadrado na interseção de uma linha e uma coluna mostra o coeficiente de correlação entre as duas variáveis correspondentes[1].
+*   **Valores Numéricos:** Os números dentro dos quadrados são os coeficientes de correlação de Pearson, variando de -1 a +1.
+    *   Valores próximos a +1 indicam uma forte correlação linear positiva (quando uma variável aumenta, a outra tende a aumentar).
+    *   Valores próximos a -1 indicam uma forte correlação linear negativa (quando uma variável aumenta, a outra tende a diminuir).
+    *   Valores próximos a 0 indicam uma correlação linear fraca ou inexistente[1].
+*   **Escala de Cores:** A intensidade da cor (variando de um laranja claro/pêssego a um vermelho escuro) representa a magnitude da correlação. Cores mais escuras (vermelho intenso) indicam correlações positivas mais fortes (próximas de 1), conforme a barra de cores à direita[1].
+*   **Diagonal Principal:** A diagonal que vai do canto superior esquerdo ao inferior direito sempre mostra uma correlação de 1 (vermelho mais escuro), pois cada variável é perfeitamente correlacionada consigo mesma[1].
+
 ![grafico_19](https://github.com/user-attachments/assets/aa5da302-2016-4c87-b30d-d8c7a61df5c5)
+
+**O que o Gráfico Mostra?**
+
+Este gráfico utiliza box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) entre dois grupos de profissionais de dados, categorizados por seu nível de satisfação no trabalho[1]. Os níveis são representados como `0.0` e `1.0` no eixo horizontal, provavelmente indicando categorias como "insatisfeito" e "satisfeito", ou representando pontuações específicas em uma escala de satisfação (que originalmente pode ter sido de 1 a 10, como sugerido pelo rótulo do eixo)[1].
+
+**Como Interpretar?**
+
+*   **Eixo Y (Vertical - Salário Mensal R$):** Mostra a escala de salários mensais em Reais, variando de R$ 0 a mais de R$ 40.000[1].
+*   **Eixo X (Horizontal - Satisfação no Trabalho):** Apresenta as duas categorias de nível de satisfação (`0.0` e `1.0`) sendo comparadas[1].
+*   **Caixas (Boxes):** Cada caixa rosa representa o intervalo interquartil (IQR) para um nível de satisfação, contendo os 50% centrais dos dados salariais daquele grupo.
+    *   A **borda inferior da caixa** é o primeiro quartil (Q1).
+    *   A **borda superior da caixa** é o terceiro quartil (Q3)[1].
+    *   A **linha dentro da caixa** é a mediana (Q2), o valor salarial que divide os dados do grupo ao meio[1].
+*   **"Bigodes" (Whiskers):** Linhas que se estendem das caixas, mostrando a amplitude dos dados fora do IQR e indicando a variação salarial esperada para a maioria dos profissionais naquele grupo[1].
+*   **Pontos Individuais (Outliers):** Círculos fora dos "bigodes" representam salários atípicos, valores consideravelmente diferentes (geralmente mais altos, neste caso) da maioria dos salários naquele grupo específico[1].
 
 ![grafico_30](https://github.com/user-attachments/assets/c7594562-2e4d-466b-b166-c7a698a4ccfd)
 
+**O que o Gráfico Mostra?**
+
+Este gráfico de dispersão (scatter plot) 3D visualiza a relação entre quatro variáveis importantes para os profissionais de dados no Brasil, extraídas da pesquisa (contextualizada como a "State of Data Brazil 2023"[2][3]):
+
+1.  **Proficiência Técnica (Anos de Experiência):** Representada no eixo X.
+2.  **Região/Localização:** Representada no eixo Y (mostrando categorias como Sul, Centro-Oeste, Nordeste, São Paulo, Rio de Janeiro)[1].
+3.  **Salário Mensal (R$):** Representado no eixo Z (vertical)[1].
+4.  **Gênero:** Representado pela cor dos pontos (Azul: Masculino, Vermelho: Feminino, Verde: Outros)[1].
+
+Cada ponto no gráfico representa um profissional individual da pesquisa, posicionado de acordo com seus anos de experiência, região e salário, e colorido conforme seu gênero[1].
+
+**Como Interpretar?**
+
+*   **Eixo X (Proficiência Técnica - Anos de Experiência):** Quanto mais à direita um ponto está, maior o número de anos de experiência do profissional na área de dados[1].
+*   **Eixo Y (Região):** A posição ao longo deste eixo indica a região de residência do profissional. As categorias (Sul, Centro-Oeste, Nordeste, São Paulo, Rio de Janeiro) permitem comparar diferentes localizações[1]. *Nota: São Paulo e Rio de Janeiro, embora estados, provavelmente representam áreas de alta densidade ou a região Sudeste*.
+*   **Eixo Z (Salário Mensal R$):** Quanto mais alto um ponto está, maior o salário mensal declarado pelo profissional[1].
+*   **Cor dos Pontos (Gênero):** Permite visualizar a distribuição de homens (azul), mulheres (vermelho) e outros gêneros (verde) no espaço definido pelas outras três variáveis[1].
+
 ![grafico_28](https://github.com/user-attachments/assets/8e6609d8-de57-4b31-8419-227742953347)
+
+**O que o Gráfico Mostra?**
+
+Este gráfico de barras horizontais ilustra a preferência dos profissionais de dados (respondentes da pesquisa, contextualizada como "State of Data Brazil 2023") por diferentes modelos de trabalho considerados ideais[1]. Ele apresenta a contagem absoluta do número de profissionais que preferem cada um dos modelos listados[1].
+
+**Como Interpretar?**
+
+*   **Eixo Y (Vertical - Modelo de Trabalho Ideal):** Lista as diferentes opções de modelos de trabalho sobre as quais os profissionais expressaram preferência: "100% Remote" (Totalmente Remoto), "Hybrid (Flexible)" (Híbrido Flexível), "Hybrid (Fixed Days)" (Híbrido com Dias Fixos) e "100% On-site" (Totalmente Presencial)[1].
+*   **Eixo X (Horizontal - Número de Profissionais):** Indica a contagem absoluta (número) de profissionais que escolheram cada modelo como seu ideal[1].
+*   **Barras:** O comprimento de cada barra rosa é proporcional ao número de profissionais que preferem aquele modelo específico. Barras mais longas indicam maior preferência[1].
+*   **Cores:** A cor rosa utilizada nas barras serve para visualização e diferenciação, não representando uma variável adicional neste gráfico[1].
 
 ![grafico_27](https://github.com/user-attachments/assets/a8b55cbd-c6af-49c3-9c10-4d8c1ac07603)
 
+**O que o Gráfico Mostra?**
+
+Este gráfico é um heatmap (mapa de calor) que detalha a distribuição percentual do uso de diferentes ferramentas de Business Intelligence (BI) – incluindo o uso exclusivo do Excel – entre vários cargos específicos dentro da área de dados (conforme a pesquisa "State of Data Brazil 2023")[1]. Ele cruza o cargo do profissional com a ferramenta de BI utilizada, mostrando a popularidade de cada ferramenta dentro de cada função[1].
+
+**Como Interpretar?**
+
+*   **Eixo Y (Vertical - Cargo):** Lista os diferentes cargos ocupados pelos profissionais de dados que responderam à pesquisa, como "Analytics Engineer", "BI Analyst", "Data Scientist", "Economist", etc[1].
+*   **Eixo X (Horizontal - Ferramenta de BI):** Apresenta as ferramentas de BI analisadas: `excel_only` (uso exclusivo do Excel), `powerbi` (Power BI), `qlik` (Qlik) e `tableau` (Tableau)[1].
+*   **Células/Quadrados e Valores:** Cada célula na interseção de um cargo (linha) e uma ferramenta (coluna) contém a porcentagem de profissionais naquele cargo que utilizam a respectiva ferramenta[1].
+*   **Escala de Cores:** A cor de cada célula varia de amarelo claro (baixa porcentagem de uso) a vermelho escuro (alta porcentagem de uso), conforme indicado pela barra de cores à direita. Cores mais intensas (vermelho escuro) indicam que uma alta proporção dos profissionais naquele cargo utiliza aquela ferramenta específica[1].
+
 ![grafico_22](https://github.com/user-attachments/assets/a2fe8ce1-c80a-4f64-b626-04f757474d3e)
 
+**O que o Gráfico Mostra?**
+
+Este gráfico utiliza múltiplos box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) dos profissionais de dados entre as 10 principais áreas de formação acadêmica identificadas na pesquisa (contextualizada como a "State of Data Brazil 2023"[2][3])[1]. Ele permite visualizar e comparar a tendência central (mediana), a dispersão (intervalo interquartil, amplitude) e a presença de valores atípicos (outliers) para cada área de formação[1].
+
+**Como Interpretar?**
+
+*   **Eixo Y (Vertical - Área de Formação):** Lista as 10 áreas de formação mais comuns entre os respondentes, como "Computação / Engenharia de Software / Sistemas de Informação/ TI", "Outras Engenharias", "Economia/ Administração / Contabilidade / Finanças/ Negócios", etc[1].
+*   **Eixo X (Horizontal - Salário Mensal R$):** Indica a escala de salários mensais em Reais (R$), variando de R$ 0 a mais de R$ 40.000[1].
+*   **Caixas (Boxes):** Cada caixa rosa representa o intervalo interquartil (IQR) para uma área de formação, contendo os 50% centrais dos dados salariais daquele grupo[1].
+    *   A **borda inferior da caixa** marca o primeiro quartil (Q1).
+    *   A **borda superior da caixa** marca o terceiro quartil (Q3)[1].
+    *   A **linha dentro da caixa** representa a mediana (Q2), o valor salarial que divide os dados do grupo ao meio[1].
+*   **"Bigodes" (Whiskers):** Linhas que se estendem das caixas, mostrando a amplitude dos dados fora do IQR, geralmente até 1.5 vezes o IQR ou o mínimo/máximo dentro desse limite[1]. Indicam a variação salarial esperada para a maioria dos profissionais daquela área.
+*   **Pontos Individuais (Outliers):** Círculos fora dos "bigodes" representam salários atípicos, valores consideravelmente mais altos (neste caso) do que a maioria dos salários naquela área de formação específica[1].
+
 ![grafico_21](https://github.com/user-attachments/assets/774f76bc-3988-4e3d-ad0c-d763c51b68f7)
+
+**O que o Gráfico Mostra?**
+
+Este gráfico de barras horizontais apresenta a distribuição dos profissionais de dados que participaram da pesquisa (contextualizada como "State of Data Brazil 2023"[2][3]) de acordo com suas áreas de formação acadêmica[1]. Ele mostra a contagem absoluta (número) de profissionais para cada uma das principais áreas de formação listadas[1].
+
+**Como Interpretar?**
+
+*   **Eixo Y (Vertical - Área de Formação):** Lista as diferentes áreas acadêmicas de formação dos respondentes, como "Computação / Engenharia de Software / Sistemas de Informação/ TI", "Outras Engenharias", "Economia/ Administração / Contabilidade / Finanças/ Negócios", entre outras[1]. As áreas estão ordenadas da mais frequente (topo) para a menos frequente (base) na amostra.
+*   **Eixo X (Horizontal - Número de Profissionais):** Indica a quantidade absoluta de profissionais que declararam ter formação em cada área listada no eixo Y[1].
+*   **Barras:** O comprimento de cada barra rosa é proporcional ao número de profissionais formados naquela área específica. Barras mais longas representam as áreas de formação mais comuns entre os respondentes[1].
+*   **Cores:** A cor rosa é utilizada para visualização das barras e não representa uma variável adicional neste gráfico[1].
 
 ---
 

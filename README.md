@@ -43,9 +43,9 @@ Assim que a primeira versão do sistema estiver disponível, deverá complementa
 * 0.1.0
     * Relatório final ❌
 * 0.0.10
-    * Modelo 2 ❌
+    * Modelo 2 (forma preliminar)✅
 * 0.0.9
-    * Modelo 1 (2/5)✅
+    * Modelo 1 (forma preliminar)✅
 * 0.0.8
     * Analises exploratorias das perguntas orientada a dados usando os bancos de dados (principal e auxiliar) (2/5)✅
 * 0.0.7

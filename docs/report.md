@@ -657,253 +657,253 @@ Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos 
 ### Como Interpretar um Boxplot?
 
 *   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais.
-*   **Eixo X (Horizontal - Industry):** Categoriza os dados pelos diferentes setores de atuação (Finanças/Bancário, Indústria, Internet/E-commerce, Tecnologia/Software, Varejo, Educação, Setor Público, Marketing)[1].
-*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos salários de cada setor. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3)[1].
-*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para aquele setor[1].
-*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele setor[1].
-*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes (geralmente acima) da distribuição principal do setor[1].
+*   **Eixo X (Horizontal - Industry):** Categoriza os dados pelos diferentes setores de atuação (Finanças/Bancário, Indústria, Internet/E-commerce, Tecnologia/Software, Varejo, Educação, Setor Público, Marketing).
+*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos salários de cada setor. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3).
+*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para aquele setor.
+*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele setor.
+*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes (geralmente acima) da distribuição principal do setor.
 
 ![grafico_8](https://github.com/user-attachments/assets/ecbc2903-3782-41e4-a666-1cb029dc58d5)
 
 ### O que o Gráfico Mostra?
 
-Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** entre os diferentes **modelos de trabalho** (100% Presencial, Híbrido com Dias Fixos, Híbrido Flexível, 100% Remoto) adotados pelos profissionais de dados que responderam à pesquisa "State of Data Brazil 2023"[1]. Ele ilustra como a remuneração varia de acordo com a modalidade de trabalho[1].
+Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** entre os diferentes **modelos de trabalho** (100% Presencial, Híbrido com Dias Fixos, Híbrido Flexível, 100% Remoto) adotados pelos profissionais de dados que responderam à pesquisa "State of Data Brazil 2023". Ele ilustra como a remuneração varia de acordo com a modalidade de trabalho.
 
 ### Como Interpretar um Boxplot?
 
-*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais[1].
-*   **Eixo X (Horizontal - Work Model):** Categoriza os dados pelos diferentes modelos de trabalho[1].
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais.
+*   **Eixo X (Horizontal - Work Model):** Categoriza os dados pelos diferentes modelos de trabalho.
 *   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos salários de cada grupo. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3)[1].
-*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para aquele modelo de trabalho[1].
-*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele grupo[1].
-*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes (geralmente acima) da distribuição principal do grupo[1].
+*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para aquele modelo de trabalho.
+*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele grupo.
+*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes (geralmente acima) da distribuição principal do grupo.
 
 ![grafico_9](https://github.com/user-attachments/assets/04d10ca3-c7eb-4fc8-bd06-2f2d81b98585)
 
 ### O que o Gráfico Mostra?
 
-Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** dos profissionais de dados que responderam à pesquisa "State of Data Brazil 2023", agrupados pelo **porte da empresa** onde trabalham, medido pelo número de funcionários[1]. Ele permite visualizar como a remuneração varia de acordo com o tamanho da organização[1].
+Este gráfico de **boxplot** (diagrama de caixa) compara a **distribuição dos salários mensais (em R$)** dos profissionais de dados que responderam à pesquisa "State of Data Brazil 2023", agrupados pelo **porte da empresa** onde trabalham, medido pelo número de funcionários. Ele permite visualizar como a remuneração varia de acordo com o tamanho da organização.
 
 ### Como Interpretar um Boxplot?
 
-*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais[1].
-*   **Eixo X (Horizontal - Company Size):** Categoriza os dados pelas diferentes faixas de tamanho da empresa (número de funcionários), desde "1-5" até "3000+"[1].
-*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos salários de cada grupo. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3)[1].
-*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para empresas daquele porte[1].
-*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele grupo[1].
-*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes (geralmente acima) da distribuição principal do grupo[1].
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra a escala dos salários mensais em Reais.
+*   **Eixo X (Horizontal - Company Size):** Categoriza os dados pelas diferentes faixas de tamanho da empresa (número de funcionários), desde "1-5" até "3000+".
+*   **Caixa (Rosa):** Representa o intervalo interquartil (IQR), contendo os 50% centrais dos salários de cada grupo. A parte inferior é o 1º quartil (Q1) e a superior é o 3º quartil (Q3).
+*   **Linha Dentro da Caixa:** Indica a **mediana** (Q2 - 50º percentil) do salário para empresas daquele porte.
+*   **"Bigodes" (Linhas que saem da caixa):** Mostram a extensão dos dados considerados "típicos" dentro daquele grupo.
+*   **Pontos Individuais (Círculos):** Representam **outliers**, salários que estão significativamente distantes (geralmente acima) da distribuição principal do grupo.
 
 ![grafico_10](https://github.com/user-attachments/assets/2ac5f30a-65f2-47f4-972d-0a8757932ebe)
 
 ### O que o Gráfico Mostra?
 
-Este gráfico é um **diagrama de dispersão (scatter plot)** que visualiza a relação entre o **Salário Mensal (em R$)** e os **Anos Totais de Experiência Profissional** (combinando experiência em Dados e Tecnologia) dos respondentes da pesquisa "State of Data Brazil 2023"[1]. Cada ponto representa um profissional[1].
+Este gráfico é um **diagrama de dispersão (scatter plot)** que visualiza a relação entre o **Salário Mensal (em R$)** e os **Anos Totais de Experiência Profissional** (combinando experiência em Dados e Tecnologia) dos respondentes da pesquisa "State of Data Brazil 2023". Cada ponto representa um profissional.
 
 ### Como Interpretar?
 
-*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra o valor do salário mensal em Reais[1].
-*   **Eixo X (Horizontal - Total Years of Experience (Data + Tech)):** Indica o número total de anos de experiência profissional do indivíduo, somando experiência específica em dados e em tecnologia em geral[1].
-*   **Pontos (Rosa):** Cada ponto representa um único profissional, posicionado de acordo com seu salário e tempo total de experiência[1]. A leve transparência (alpha) ajuda a visualizar áreas com maior concentração de pontos.
+*   **Eixo Y (Vertical - Monthly Salary (R$)):** Mostra o valor do salário mensal em Reais.
+*   **Eixo X (Horizontal - Total Years of Experience (Data + Tech)):** Indica o número total de anos de experiência profissional do indivíduo, somando experiência específica em dados e em tecnologia em geral.
+*   **Pontos (Rosa):** Cada ponto representa um único profissional, posicionado de acordo com seu salário e tempo total de experiência. A leve transparência (alpha) ajuda a visualizar áreas com maior concentração de pontos.
 
 ![grafico_11](https://github.com/user-attachments/assets/aa6a284f-9c3a-46c0-a180-c2f808b267a5)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico de barras horizontais exibe a popularidade de três linguagens de programação chave – SQL, Python e R – entre os profissionais de dados que participaram da pesquisa (contextualizada como "State of Data Brazil 2023"[2][3])[1]. Ele mostra a proporção (percentual) de respondentes que relataram usar cada uma dessas linguagens em seu trabalho[1].
+Este gráfico de barras horizontais exibe a popularidade de três linguagens de programação chave – SQL, Python e R – entre os profissionais de dados que participaram da pesquisa (contextualizada como "State of Data Brazil 2023"). Ele mostra a proporção (percentual) de respondentes que relataram usar cada uma dessas linguagens em seu trabalho.
 
 **Como Interpretar?**
 
-*   **Eixo Y (Vertical - Linguagem de Programação):** Lista as três linguagens de programação analisadas: `uses_sql` (uso de SQL), `uses_python` (uso de Python) e `uses_r` (uso de R)[1].
-*   **Eixo X (Horizontal - Percentual de Profissionais):** Indica a proporção, em formato decimal (de 0.0 a 0.8+, ou seja, 0% a 80%+), de profissionais que utilizam a linguagem correspondente no eixo Y[1].
-*   **Barras:** O comprimento de cada barra rosa é diretamente proporcional ao percentual de profissionais que utilizam a respectiva linguagem. Barras mais longas indicam maior adoção[1].
-*   **Cores:** A cor rosa utilizada nas barras é um elemento visual para diferenciar as linguagens, não representando uma variável adicional neste gráfico[1].
+*   **Eixo Y (Vertical - Linguagem de Programação):** Lista as três linguagens de programação analisadas: `uses_sql` (uso de SQL), `uses_python` (uso de Python) e `uses_r` (uso de R).
+*   **Eixo X (Horizontal - Percentual de Profissionais):** Indica a proporção, em formato decimal (de 0.0 a 0.8+, ou seja, 0% a 80%+), de profissionais que utilizam a linguagem correspondente no eixo Y.
+*   **Barras:** O comprimento de cada barra rosa é diretamente proporcional ao percentual de profissionais que utilizam a respectiva linguagem. Barras mais longas indicam maior adoção.
+*   **Cores:** A cor rosa utilizada nas barras é um elemento visual para diferenciar as linguagens, não representando uma variável adicional neste gráfico.
 
 ![grafico_12](https://github.com/user-attachments/assets/a1d64f41-feba-4589-87fd-934396a95199)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico utiliza box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) entre profissionais de dados, agrupados pela linguagem de programação que eles identificaram como principal em seu trabalho: SQL, Python ou R[1]. A análise é baseada nos dados da pesquisa (contextualizada como "State of Data Brazil 2023"[2][3]). Ele permite visualizar e comparar a tendência central (mediana), a dispersão (intervalo interquartil, amplitude) e a presença de valores atípicos (outliers) de salário para cada linguagem[1].
+Este gráfico utiliza box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) entre profissionais de dados, agrupados pela linguagem de programação que eles identificaram como principal em seu trabalho: SQL, Python ou R. A análise é baseada nos dados da pesquisa (contextualizada como "State of Data Brazil 2023"). Ele permite visualizar e comparar a tendência central (mediana), a dispersão (intervalo interquartil, amplitude) e a presença de valores atípicos (outliers) de salário para cada linguagem.
 
 **Como Interpretar?**
 
-*   **Eixo Y (Vertical - Salário Mensal R$):** Mostra a escala de salários mensais em Reais, variando de R$ 0 a mais de R$ 40.000[1].
-*   **Eixo X (Horizontal - Linguagem de Programação):** Apresenta as três linguagens de programação primárias sendo comparadas: SQL, Python e R[1].
-*   **Caixas (Boxes):** Cada caixa rosa representa o intervalo interquartil (IQR) para os usuários de uma linguagem, contendo os 50% centrais dos dados salariais desse grupo[1].
+*   **Eixo Y (Vertical - Salário Mensal R$):** Mostra a escala de salários mensais em Reais, variando de R$ 0 a mais de R$ 40.000.
+*   **Eixo X (Horizontal - Linguagem de Programação):** Apresenta as três linguagens de programação primárias sendo comparadas: SQL, Python e R.
+*   **Caixas (Boxes):** Cada caixa rosa representa o intervalo interquartil (IQR) para os usuários de uma linguagem, contendo os 50% centrais dos dados salariais desse grupo.
     *   A **borda inferior da caixa** é o primeiro quartil (Q1) - 25% dos profissionais daquele grupo ganham abaixo deste valor.
-    *   A **borda superior da caixa** é o terceiro quartil (Q3) - 75% ganham abaixo (e 25% acima)[1].
-    *   A **linha dentro da caixa** é a mediana (Q2), o valor salarial que divide os dados do grupo ao meio (50% ganham abaixo, 50% ganham acima)[1].
-*   **"Bigodes" (Whiskers):** Linhas que se estendem das caixas, mostrando a amplitude dos dados fora do IQR e indicando a variação salarial esperada para a maioria dos profissionais naquele grupo[1].
-*   **Pontos Individuais (Outliers):** Círculos (cinza) fora dos "bigodes" representam salários atípicos, valores consideravelmente mais altos, neste caso, do que a maioria dos salários naquele grupo específico[1].
+    *   A **borda superior da caixa** é o terceiro quartil (Q3) - 75% ganham abaixo (e 25% acima).
+    *   A **linha dentro da caixa** é a mediana (Q2), o valor salarial que divide os dados do grupo ao meio (50% ganham abaixo, 50% ganham acima).
+*   **"Bigodes" (Whiskers):** Linhas que se estendem das caixas, mostrando a amplitude dos dados fora do IQR e indicando a variação salarial esperada para a maioria dos profissionais naquele grupo.
+*   **Pontos Individuais (Outliers):** Círculos (cinza) fora dos "bigodes" representam salários atípicos, valores consideravelmente mais altos, neste caso, do que a maioria dos salários naquele grupo específico.
 
 ![grafico_13](https://github.com/user-attachments/assets/50529659-0afa-45ec-ae72-f65fbcc83277)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico de barras horizontais ilustra a adoção das três principais plataformas de computação em nuvem – Microsoft Azure, Google Cloud Platform (GCP) e Amazon Web Services (AWS) – entre os profissionais de dados que responderam à pesquisa (contextualizada como "State of Data Brazil 2023"[2][3])[1]. Ele apresenta a proporção (percentual) de respondentes que utilizam cada uma dessas plataformas[1].
+Este gráfico de barras horizontais ilustra a adoção das três principais plataformas de computação em nuvem – Microsoft Azure, Google Cloud Platform (GCP) e Amazon Web Services (AWS) – entre os profissionais de dados que responderam à pesquisa (contextualizada como "State of Data Brazil 2023"). Ele apresenta a proporção (percentual) de respondentes que utilizam cada uma dessas plataformas.
 
 **Como Interpretar?**
 
-*   **Eixo Y (Vertical - Plataforma Cloud):** Lista as três plataformas de nuvem analisadas: `uses_azure` (uso de Azure), `uses_gcp` (uso de GCP) e `uses_aws` (uso de AWS)[1].
-*   **Eixo X (Horizontal - Percentual de Profissionais):** Indica a proporção, em formato decimal (de 0.00 a 0.40+, ou seja, 0% a 40%+), de profissionais que utilizam a plataforma correspondente no eixo Y[1].
-*   **Barras:** O comprimento de cada barra rosa é diretamente proporcional ao percentual de profissionais que utilizam a respectiva plataforma. Barras mais longas indicam maior adoção[1].
-*   **Cores:** A cor rosa utilizada nas barras é um elemento visual para diferenciar as plataformas, não representando uma variável adicional neste gráfico[1].
+*   **Eixo Y (Vertical - Plataforma Cloud):** Lista as três plataformas de nuvem analisadas: `uses_azure` (uso de Azure), `uses_gcp` (uso de GCP) e `uses_aws` (uso de AWS).
+*   **Eixo X (Horizontal - Percentual de Profissionais):** Indica a proporção, em formato decimal (de 0.00 a 0.40+, ou seja, 0% a 40%+), de profissionais que utilizam a plataforma correspondente no eixo Y.
+*   **Barras:** O comprimento de cada barra rosa é diretamente proporcional ao percentual de profissionais que utilizam a respectiva plataforma. Barras mais longas indicam maior adoção.
+*   **Cores:** A cor rosa utilizada nas barras é um elemento visual para diferenciar as plataformas, não representando uma variável adicional neste gráfico.
 
 ![grafico_14](https://github.com/user-attachments/assets/3b239d62-a82b-43d1-aa10-26b5e957bcce)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico utiliza box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) entre profissionais de dados, agrupados pela plataforma de nuvem principal que utilizam: Amazon Web Services (AWS), Microsoft Azure (Azure) ou Google Cloud Platform (GCP)[1]. A análise é baseada nos dados da pesquisa (contextualizada como "State of Data Brazil 2023"). Ele permite visualizar e comparar a tendência central (mediana), a dispersão (intervalo interquartil, amplitude) e a presença de valores atípicos (outliers) de salário para os usuários de cada plataforma[1].
+Este gráfico utiliza box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) entre profissionais de dados, agrupados pela plataforma de nuvem principal que utilizam: Amazon Web Services (AWS), Microsoft Azure (Azure) ou Google Cloud Platform (GCP). A análise é baseada nos dados da pesquisa (contextualizada como "State of Data Brazil 2023"). Ele permite visualizar e comparar a tendência central (mediana), a dispersão (intervalo interquartil, amplitude) e a presença de valores atípicos (outliers) de salário para os usuários de cada plataforma.
 
 **Como Interpretar?**
 
-*   **Eixo Y (Vertical - Salário Mensal R$):** Mostra a escala de salários mensais em Reais, variando de R$ 0 a mais de R$ 40.000[1].
-*   **Eixo X (Horizontal - Plataforma Cloud):** Apresenta as três principais plataformas de nuvem sendo comparadas: AWS, Azure e GCP[1].
-*   **Caixas (Boxes):** Cada caixa rosa representa o intervalo interquartil (IQR) para os usuários de uma plataforma, contendo os 50% centrais dos dados salariais desse grupo[1].
-    *   A **borda inferior da caixa** é o primeiro quartil (Q1) - 25% dos profissionais daquele grupo ganham abaixo deste valor[1].
-    *   A **borda superior da caixa** é o terceiro quartil (Q3) - 75% ganham abaixo (e 25% acima)[1].
-    *   A **linha dentro da caixa** é a mediana (Q2), o valor salarial que divide os dados do grupo ao meio (50% ganham abaixo, 50% ganham acima)[1].
-*   **"Bigodes" (Whiskers):** Linhas que se estendem das caixas, mostrando a amplitude dos dados fora do IQR e indicando a variação salarial esperada para a maioria dos profissionais naquele grupo[1].
-*   **Pontos Individuais (Outliers):** Círculos (cinza) fora dos "bigodes" representam salários atípicos, valores consideravelmente mais altos, neste caso, do que a maioria dos salários naquele grupo específico[1].
+*   **Eixo Y (Vertical - Salário Mensal R$):** Mostra a escala de salários mensais em Reais, variando de R$ 0 a mais de R$ 40.000.
+*   **Eixo X (Horizontal - Plataforma Cloud):** Apresenta as três principais plataformas de nuvem sendo comparadas: AWS, Azure e GCP.
+*   **Caixas (Boxes):** Cada caixa rosa representa o intervalo interquartil (IQR) para os usuários de uma plataforma, contendo os 50% centrais dos dados salariais desse grupo.
+    *   A **borda inferior da caixa** é o primeiro quartil (Q1) - 25% dos profissionais daquele grupo ganham abaixo deste valor.
+    *   A **borda superior da caixa** é o terceiro quartil (Q3) - 75% ganham abaixo (e 25% acima).
+    *   A **linha dentro da caixa** é a mediana (Q2), o valor salarial que divide os dados do grupo ao meio (50% ganham abaixo, 50% ganham acima).
+*   **"Bigodes" (Whiskers):** Linhas que se estendem das caixas, mostrando a amplitude dos dados fora do IQR e indicando a variação salarial esperada para a maioria dos profissionais naquele grupo.
+*   **Pontos Individuais (Outliers):** Círculos (cinza) fora dos "bigodes" representam salários atípicos, valores consideravelmente mais altos, neste caso, do que a maioria dos salários naquele grupo específico.
 
 ![grafico_15](https://github.com/user-attachments/assets/3bf4cfdf-2032-4158-9012-7091f14121cb)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico de barras horizontais demonstra a popularidade de diferentes ferramentas de Business Intelligence (BI) entre os profissionais de dados que participaram da pesquisa (contextualizada como a "State of Data Brazil 2023")[1]. Ele quantifica a proporção (percentual) de respondentes que utilizam cada uma das ferramentas listadas ou que dependem exclusivamente do Excel[1].
+Este gráfico de barras horizontais demonstra a popularidade de diferentes ferramentas de Business Intelligence (BI) entre os profissionais de dados que participaram da pesquisa (contextualizada como a "State of Data Brazil 2023"). Ele quantifica a proporção (percentual) de respondentes que utilizam cada uma das ferramentas listadas ou que dependem exclusivamente do Excel.
 
 **Como Interpretar?**
 
-*   **Eixo Y (Vertical - Ferramenta de BI):** Lista as categorias analisadas, representando o uso de ferramentas específicas como Power BI (`uses_powerbi`), Tableau (`uses_tableau`), Qlik (`uses_qlik`), ou o uso exclusivo do Excel (`uses_excel_only`)[1].
-*   **Eixo X (Horizontal - Percentual):** Indica a proporção (de 0.0 a 0.5+, ou 0% a 50%+) de profissionais que utilizam a ferramenta ou se encaixam na categoria correspondente no eixo Y[1].
-*   **Barras:** O comprimento de cada barra é diretamente proporcional ao percentual de profissionais que utilizam a respectiva ferramenta. Barras mais longas indicam maior adoção[1].
-*   **Cores:** A cor rosa utilizada nas barras é um elemento visual para diferenciar as categorias, não representando uma variável adicional neste gráfico[1].
+*   **Eixo Y (Vertical - Ferramenta de BI):** Lista as categorias analisadas, representando o uso de ferramentas específicas como Power BI (`uses_powerbi`), Tableau (`uses_tableau`), Qlik (`uses_qlik`), ou o uso exclusivo do Excel (`uses_excel_only`).
+*   **Eixo X (Horizontal - Percentual):** Indica a proporção (de 0.0 a 0.5+, ou 0% a 50%+) de profissionais que utilizam a ferramenta ou se encaixam na categoria correspondente no eixo Y.
+*   **Barras:** O comprimento de cada barra é diretamente proporcional ao percentual de profissionais que utilizam a respectiva ferramenta. Barras mais longas indicam maior adoção.
+*   **Cores:** A cor rosa utilizada nas barras é um elemento visual para diferenciar as categorias, não representando uma variável adicional neste gráfico.
 
 ![grafico_16](https://github.com/user-attachments/assets/71c55ed0-cc29-4cd9-961a-aa2de7039049)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico utiliza múltiplos box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) dos profissionais de dados entre as cinco grandes regiões do Brasil: Centro-oeste, Sudeste, Nordeste, Norte e Sul[1]. Ele permite visualizar e comparar a tendência central (mediana), a dispersão (intervalo interquartil, amplitude) e a presença de valores atípicos (outliers) em cada região[1].
+Este gráfico utiliza múltiplos box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) dos profissionais de dados entre as cinco grandes regiões do Brasil: Centro-oeste, Sudeste, Nordeste, Norte e Sul[1]. Ele permite visualizar e comparar a tendência central (mediana), a dispersão (intervalo interquartil, amplitude) e a presença de valores atípicos (outliers) em cada região.
 
 **Como Interpretar?**
 
-*   **Eixo X (Horizontal - Região):** Apresenta as cinco regiões geográficas do Brasil onde os respondentes da pesquisa (contextualizada como a "State of Data Brazil 2023"[2][3]) residem[1].
-*   **Eixo Y (Vertical - Salário Mensal R$):** Indica a escala de salários mensais em Reais (R$), variando de R$ 0 a mais de R$ 40.000[1].
+*   **Eixo X (Horizontal - Região):** Apresenta as cinco regiões geográficas do Brasil onde os respondentes da pesquisa (contextualizada como a "State of Data Brazil 2023") residem.
+*   **Eixo Y (Vertical - Salário Mensal R$):** Indica a escala de salários mensais em Reais (R$), variando de R$ 0 a mais de R$ 40.000.
 *   **Caixas (Boxes):** Cada caixa rosa representa o intervalo interquartil (IQR) para uma região, contendo os 50% centrais dos dados salariais.
-    *   A **borda inferior da caixa** marca o primeiro quartil (Q1), ou seja, 25% dos profissionais daquela região ganham abaixo deste valor[1].
-    *   A **borda superior da caixa** marca o terceiro quartil (Q3), ou seja, 75% dos profissionais daquela região ganham abaixo deste valor (e 25% ganham acima)[1].
-    *   A **linha dentro da caixa** representa a mediana (Q2), o valor salarial que divide os dados ao meio (50% ganham abaixo, 50% ganham acima)[1].
-*   **"Bigodes" (Whiskers - Linhas que se estendem da caixa):** Mostram a amplitude dos dados fora do IQR, geralmente estendendo-se até 1.5 vezes o tamanho do IQR a partir das bordas da caixa, ou até o valor mínimo/máximo se estiver dentro desse limite. Indicam a variação salarial esperada para a maioria dos profissionais[1].
-*   **Pontos Individuais (Outliers):** Círculos fora dos "bigodes" representam salários atípicos, valores consideravelmente mais altos (neste caso) do que a maioria dos salários naquela região específica[1].
+    *   A **borda inferior da caixa** marca o primeiro quartil (Q1), ou seja, 25% dos profissionais daquela região ganham abaixo deste valor.
+    *   A **borda superior da caixa** marca o terceiro quartil (Q3), ou seja, 75% dos profissionais daquela região ganham abaixo deste valor (e 25% ganham acima).
+    *   A **linha dentro da caixa** representa a mediana (Q2), o valor salarial que divide os dados ao meio (50% ganham abaixo, 50% ganham acima).
+*   **"Bigodes" (Whiskers - Linhas que se estendem da caixa):** Mostram a amplitude dos dados fora do IQR, geralmente estendendo-se até 1.5 vezes o tamanho do IQR a partir das bordas da caixa, ou até o valor mínimo/máximo se estiver dentro desse limite. Indicam a variação salarial esperada para a maioria dos profissionais.
+*   **Pontos Individuais (Outliers):** Círculos fora dos "bigodes" representam salários atípicos, valores consideravelmente mais altos (neste caso) do que a maioria dos salários naquela região específica.
 
 ![grafico_17](https://github.com/user-attachments/assets/a1a4a041-92c9-4d03-bac8-0a711126095b)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico é um heatmap que representa a matriz de correlação de Pearson entre as variáveis numéricas selecionadas do conjunto de dados (contextualizado como sendo da pesquisa "State of Data Brazil 2023"[2][3])[1]. As variáveis incluídas são: `salary_midpoint` (ponto médio da faixa salarial), `age` (idade), `data_experience_years` (anos de experiência na área de dados), `tech_experience_years` (anos de experiência na área de TI/Engenharia de Software antes de dados) e `total_experience` (anos totais de experiência profissional)[1]. O gráfico visualiza a força e a direção da relação linear entre cada par dessas variáveis.
+Este gráfico é um heatmap que representa a matriz de correlação de Pearson entre as variáveis numéricas selecionadas do conjunto de dados (contextualizado como sendo da pesquisa "State of Data Brazil 2023"). As variáveis incluídas são: `salary_midpoint` (ponto médio da faixa salarial), `age` (idade), `data_experience_years` (anos de experiência na área de dados), `tech_experience_years` (anos de experiência na área de TI/Engenharia de Software antes de dados) e `total_experience` (anos totais de experiência profissional). O gráfico visualiza a força e a direção da relação linear entre cada par dessas variáveis.
 
 **Como Interpretar?**
 
-*   **Eixos X e Y:** Ambos os eixos listam as mesmas variáveis numéricas (`salary_midpoint`, `age`, `data_experience_years`, `tech_experience_years`, `total_experience`)[1].
-*   **Células/Quadrados:** Cada quadrado na interseção de uma linha e uma coluna mostra o coeficiente de correlação entre as duas variáveis correspondentes[1].
+*   **Eixos X e Y:** Ambos os eixos listam as mesmas variáveis numéricas (`salary_midpoint`, `age`, `data_experience_years`, `tech_experience_years`, `total_experience`).
+*   **Células/Quadrados:** Cada quadrado na interseção de uma linha e uma coluna mostra o coeficiente de correlação entre as duas variáveis correspondentes.
 *   **Valores Numéricos:** Os números dentro dos quadrados são os coeficientes de correlação de Pearson, variando de -1 a +1.
     *   Valores próximos a +1 indicam uma forte correlação linear positiva (quando uma variável aumenta, a outra tende a aumentar).
     *   Valores próximos a -1 indicam uma forte correlação linear negativa (quando uma variável aumenta, a outra tende a diminuir).
-    *   Valores próximos a 0 indicam uma correlação linear fraca ou inexistente[1].
-*   **Escala de Cores:** A intensidade da cor (variando de um laranja claro/pêssego a um vermelho escuro) representa a magnitude da correlação. Cores mais escuras (vermelho intenso) indicam correlações positivas mais fortes (próximas de 1), conforme a barra de cores à direita[1].
-*   **Diagonal Principal:** A diagonal que vai do canto superior esquerdo ao inferior direito sempre mostra uma correlação de 1 (vermelho mais escuro), pois cada variável é perfeitamente correlacionada consigo mesma[1].
+    *   Valores próximos a 0 indicam uma correlação linear fraca ou inexistente.
+*   **Escala de Cores:** A intensidade da cor (variando de um laranja claro/pêssego a um vermelho escuro) representa a magnitude da correlação. Cores mais escuras (vermelho intenso) indicam correlações positivas mais fortes (próximas de 1), conforme a barra de cores à direita.
+*   **Diagonal Principal:** A diagonal que vai do canto superior esquerdo ao inferior direito sempre mostra uma correlação de 1 (vermelho mais escuro), pois cada variável é perfeitamente correlacionada consigo mesma.
 
 ![grafico_19](https://github.com/user-attachments/assets/aa5da302-2016-4c87-b30d-d8c7a61df5c5)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico utiliza box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) entre dois grupos de profissionais de dados, categorizados por seu nível de satisfação no trabalho[1]. Os níveis são representados como `0.0` e `1.0` no eixo horizontal, provavelmente indicando categorias como "insatisfeito" e "satisfeito", ou representando pontuações específicas em uma escala de satisfação (que originalmente pode ter sido de 1 a 10, como sugerido pelo rótulo do eixo)[1].
+Este gráfico utiliza box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) entre dois grupos de profissionais de dados, categorizados por seu nível de satisfação no trabalho. Os níveis são representados como `0.0` e `1.0` no eixo horizontal, provavelmente indicando categorias como "insatisfeito" e "satisfeito", ou representando pontuações específicas em uma escala de satisfação (que originalmente pode ter sido de 1 a 10, como sugerido pelo rótulo do eixo).
 
 **Como Interpretar?**
 
-*   **Eixo Y (Vertical - Salário Mensal R$):** Mostra a escala de salários mensais em Reais, variando de R$ 0 a mais de R$ 40.000[1].
-*   **Eixo X (Horizontal - Satisfação no Trabalho):** Apresenta as duas categorias de nível de satisfação (`0.0` e `1.0`) sendo comparadas[1].
+*   **Eixo Y (Vertical - Salário Mensal R$):** Mostra a escala de salários mensais em Reais, variando de R$ 0 a mais de R$ 40.000.
+*   **Eixo X (Horizontal - Satisfação no Trabalho):** Apresenta as duas categorias de nível de satisfação (`0.0` e `1.0`) sendo comparadas.
 *   **Caixas (Boxes):** Cada caixa rosa representa o intervalo interquartil (IQR) para um nível de satisfação, contendo os 50% centrais dos dados salariais daquele grupo.
     *   A **borda inferior da caixa** é o primeiro quartil (Q1).
-    *   A **borda superior da caixa** é o terceiro quartil (Q3)[1].
-    *   A **linha dentro da caixa** é a mediana (Q2), o valor salarial que divide os dados do grupo ao meio[1].
-*   **"Bigodes" (Whiskers):** Linhas que se estendem das caixas, mostrando a amplitude dos dados fora do IQR e indicando a variação salarial esperada para a maioria dos profissionais naquele grupo[1].
-*   **Pontos Individuais (Outliers):** Círculos fora dos "bigodes" representam salários atípicos, valores consideravelmente diferentes (geralmente mais altos, neste caso) da maioria dos salários naquele grupo específico[1].
+    *   A **borda superior da caixa** é o terceiro quartil (Q3).
+    *   A **linha dentro da caixa** é a mediana (Q2), o valor salarial que divide os dados do grupo ao meio.
+*   **"Bigodes" (Whiskers):** Linhas que se estendem das caixas, mostrando a amplitude dos dados fora do IQR e indicando a variação salarial esperada para a maioria dos profissionais naquele grupo.
+*   **Pontos Individuais (Outliers):** Círculos fora dos "bigodes" representam salários atípicos, valores consideravelmente diferentes (geralmente mais altos, neste caso) da maioria dos salários naquele grupo específico.
 
 ![grafico_30](https://github.com/user-attachments/assets/c7594562-2e4d-466b-b166-c7a698a4ccfd)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico de dispersão (scatter plot) 3D visualiza a relação entre quatro variáveis importantes para os profissionais de dados no Brasil, extraídas da pesquisa (contextualizada como a "State of Data Brazil 2023"[2][3]):
+Este gráfico de dispersão (scatter plot) 3D visualiza a relação entre quatro variáveis importantes para os profissionais de dados no Brasil, extraídas da pesquisa (contextualizada como a "State of Data Brazil 2023"):
 
 1.  **Proficiência Técnica (Anos de Experiência):** Representada no eixo X.
-2.  **Região/Localização:** Representada no eixo Y (mostrando categorias como Sul, Centro-Oeste, Nordeste, São Paulo, Rio de Janeiro)[1].
-3.  **Salário Mensal (R$):** Representado no eixo Z (vertical)[1].
-4.  **Gênero:** Representado pela cor dos pontos (Azul: Masculino, Vermelho: Feminino, Verde: Outros)[1].
+2.  **Região/Localização:** Representada no eixo Y (mostrando categorias como Sul, Centro-Oeste, Nordeste, São Paulo, Rio de Janeiro).
+3.  **Salário Mensal (R$):** Representado no eixo Z (vertical).
+4.  **Gênero:** Representado pela cor dos pontos (Azul: Masculino, Vermelho: Feminino, Verde: Outros).
 
-Cada ponto no gráfico representa um profissional individual da pesquisa, posicionado de acordo com seus anos de experiência, região e salário, e colorido conforme seu gênero[1].
+Cada ponto no gráfico representa um profissional individual da pesquisa, posicionado de acordo com seus anos de experiência, região e salário, e colorido conforme seu gênero.
 
 **Como Interpretar?**
 
-*   **Eixo X (Proficiência Técnica - Anos de Experiência):** Quanto mais à direita um ponto está, maior o número de anos de experiência do profissional na área de dados[1].
-*   **Eixo Y (Região):** A posição ao longo deste eixo indica a região de residência do profissional. As categorias (Sul, Centro-Oeste, Nordeste, São Paulo, Rio de Janeiro) permitem comparar diferentes localizações[1]. *Nota: São Paulo e Rio de Janeiro, embora estados, provavelmente representam áreas de alta densidade ou a região Sudeste*.
-*   **Eixo Z (Salário Mensal R$):** Quanto mais alto um ponto está, maior o salário mensal declarado pelo profissional[1].
-*   **Cor dos Pontos (Gênero):** Permite visualizar a distribuição de homens (azul), mulheres (vermelho) e outros gêneros (verde) no espaço definido pelas outras três variáveis[1].
+*   **Eixo X (Proficiência Técnica - Anos de Experiência):** Quanto mais à direita um ponto está, maior o número de anos de experiência do profissional na área de dados.
+*   **Eixo Y (Região):** A posição ao longo deste eixo indica a região de residência do profissional. As categorias (Sul, Centro-Oeste, Nordeste, São Paulo, Rio de Janeiro) permitem comparar diferentes localizações. *Nota: São Paulo e Rio de Janeiro, embora estados, provavelmente representam áreas de alta densidade ou a região Sudeste*.
+*   **Eixo Z (Salário Mensal R$):** Quanto mais alto um ponto está, maior o salário mensal declarado pelo profissional.
+*   **Cor dos Pontos (Gênero):** Permite visualizar a distribuição de homens (azul), mulheres (vermelho) e outros gêneros (verde) no espaço definido pelas outras três variáveis.
 
 ![grafico_28](https://github.com/user-attachments/assets/8e6609d8-de57-4b31-8419-227742953347)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico de barras horizontais ilustra a preferência dos profissionais de dados (respondentes da pesquisa, contextualizada como "State of Data Brazil 2023") por diferentes modelos de trabalho considerados ideais[1]. Ele apresenta a contagem absoluta do número de profissionais que preferem cada um dos modelos listados[1].
+Este gráfico de barras horizontais ilustra a preferência dos profissionais de dados (respondentes da pesquisa, contextualizada como "State of Data Brazil 2023") por diferentes modelos de trabalho considerados ideais. Ele apresenta a contagem absoluta do número de profissionais que preferem cada um dos modelos listados.
 
 **Como Interpretar?**
 
-*   **Eixo Y (Vertical - Modelo de Trabalho Ideal):** Lista as diferentes opções de modelos de trabalho sobre as quais os profissionais expressaram preferência: "100% Remote" (Totalmente Remoto), "Hybrid (Flexible)" (Híbrido Flexível), "Hybrid (Fixed Days)" (Híbrido com Dias Fixos) e "100% On-site" (Totalmente Presencial)[1].
-*   **Eixo X (Horizontal - Número de Profissionais):** Indica a contagem absoluta (número) de profissionais que escolheram cada modelo como seu ideal[1].
-*   **Barras:** O comprimento de cada barra rosa é proporcional ao número de profissionais que preferem aquele modelo específico. Barras mais longas indicam maior preferência[1].
-*   **Cores:** A cor rosa utilizada nas barras serve para visualização e diferenciação, não representando uma variável adicional neste gráfico[1].
+*   **Eixo Y (Vertical - Modelo de Trabalho Ideal):** Lista as diferentes opções de modelos de trabalho sobre as quais os profissionais expressaram preferência: "100% Remote" (Totalmente Remoto), "Hybrid (Flexible)" (Híbrido Flexível), "Hybrid (Fixed Days)" (Híbrido com Dias Fixos) e "100% On-site" (Totalmente Presencial).
+*   **Eixo X (Horizontal - Número de Profissionais):** Indica a contagem absoluta (número) de profissionais que escolheram cada modelo como seu ideal.
+*   **Barras:** O comprimento de cada barra rosa é proporcional ao número de profissionais que preferem aquele modelo específico. Barras mais longas indicam maior preferência.
+*   **Cores:** A cor rosa utilizada nas barras serve para visualização e diferenciação, não representando uma variável adicional neste gráfico.
 
 ![grafico_27](https://github.com/user-attachments/assets/a8b55cbd-c6af-49c3-9c10-4d8c1ac07603)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico é um heatmap (mapa de calor) que detalha a distribuição percentual do uso de diferentes ferramentas de Business Intelligence (BI) – incluindo o uso exclusivo do Excel – entre vários cargos específicos dentro da área de dados (conforme a pesquisa "State of Data Brazil 2023")[1]. Ele cruza o cargo do profissional com a ferramenta de BI utilizada, mostrando a popularidade de cada ferramenta dentro de cada função[1].
+Este gráfico é um heatmap (mapa de calor) que detalha a distribuição percentual do uso de diferentes ferramentas de Business Intelligence (BI) – incluindo o uso exclusivo do Excel – entre vários cargos específicos dentro da área de dados (conforme a pesquisa "State of Data Brazil 2023"). Ele cruza o cargo do profissional com a ferramenta de BI utilizada, mostrando a popularidade de cada ferramenta dentro de cada função.
 
 **Como Interpretar?**
 
-*   **Eixo Y (Vertical - Cargo):** Lista os diferentes cargos ocupados pelos profissionais de dados que responderam à pesquisa, como "Analytics Engineer", "BI Analyst", "Data Scientist", "Economist", etc[1].
-*   **Eixo X (Horizontal - Ferramenta de BI):** Apresenta as ferramentas de BI analisadas: `excel_only` (uso exclusivo do Excel), `powerbi` (Power BI), `qlik` (Qlik) e `tableau` (Tableau)[1].
-*   **Células/Quadrados e Valores:** Cada célula na interseção de um cargo (linha) e uma ferramenta (coluna) contém a porcentagem de profissionais naquele cargo que utilizam a respectiva ferramenta[1].
-*   **Escala de Cores:** A cor de cada célula varia de amarelo claro (baixa porcentagem de uso) a vermelho escuro (alta porcentagem de uso), conforme indicado pela barra de cores à direita. Cores mais intensas (vermelho escuro) indicam que uma alta proporção dos profissionais naquele cargo utiliza aquela ferramenta específica[1].
+*   **Eixo Y (Vertical - Cargo):** Lista os diferentes cargos ocupados pelos profissionais de dados que responderam à pesquisa, como "Analytics Engineer", "BI Analyst", "Data Scientist", "Economist", etc.
+*   **Eixo X (Horizontal - Ferramenta de BI):** Apresenta as ferramentas de BI analisadas: `excel_only` (uso exclusivo do Excel), `powerbi` (Power BI), `qlik` (Qlik) e `tableau` (Tableau).
+*   **Células/Quadrados e Valores:** Cada célula na interseção de um cargo (linha) e uma ferramenta (coluna) contém a porcentagem de profissionais naquele cargo que utilizam a respectiva ferramenta.
+*   **Escala de Cores:** A cor de cada célula varia de amarelo claro (baixa porcentagem de uso) a vermelho escuro (alta porcentagem de uso), conforme indicado pela barra de cores à direita. Cores mais intensas (vermelho escuro) indicam que uma alta proporção dos profissionais naquele cargo utiliza aquela ferramenta específica.
 
 ![grafico_22](https://github.com/user-attachments/assets/a2fe8ce1-c80a-4f64-b626-04f757474d3e)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico utiliza múltiplos box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) dos profissionais de dados entre as 10 principais áreas de formação acadêmica identificadas na pesquisa (contextualizada como a "State of Data Brazil 2023"[2][3])[1]. Ele permite visualizar e comparar a tendência central (mediana), a dispersão (intervalo interquartil, amplitude) e a presença de valores atípicos (outliers) para cada área de formação[1].
+Este gráfico utiliza múltiplos box plots (diagramas de caixa) para comparar a distribuição dos salários mensais (em R$) dos profissionais de dados entre as 10 principais áreas de formação acadêmica identificadas na pesquisa (contextualizada como a "State of Data Brazil 2023"). Ele permite visualizar e comparar a tendência central (mediana), a dispersão (intervalo interquartil, amplitude) e a presença de valores atípicos (outliers) para cada área de formação.
 
 **Como Interpretar?**
 
-*   **Eixo Y (Vertical - Área de Formação):** Lista as 10 áreas de formação mais comuns entre os respondentes, como "Computação / Engenharia de Software / Sistemas de Informação/ TI", "Outras Engenharias", "Economia/ Administração / Contabilidade / Finanças/ Negócios", etc[1].
-*   **Eixo X (Horizontal - Salário Mensal R$):** Indica a escala de salários mensais em Reais (R$), variando de R$ 0 a mais de R$ 40.000[1].
-*   **Caixas (Boxes):** Cada caixa rosa representa o intervalo interquartil (IQR) para uma área de formação, contendo os 50% centrais dos dados salariais daquele grupo[1].
+*   **Eixo Y (Vertical - Área de Formação):** Lista as 10 áreas de formação mais comuns entre os respondentes, como "Computação / Engenharia de Software / Sistemas de Informação/ TI", "Outras Engenharias", "Economia/ Administração / Contabilidade / Finanças/ Negócios", etc.
+*   **Eixo X (Horizontal - Salário Mensal R$):** Indica a escala de salários mensais em Reais (R$), variando de R$ 0 a mais de R$ 40.000.
+*   **Caixas (Boxes):** Cada caixa rosa representa o intervalo interquartil (IQR) para uma área de formação, contendo os 50% centrais dos dados salariais daquele grupo.
     *   A **borda inferior da caixa** marca o primeiro quartil (Q1).
-    *   A **borda superior da caixa** marca o terceiro quartil (Q3)[1].
-    *   A **linha dentro da caixa** representa a mediana (Q2), o valor salarial que divide os dados do grupo ao meio[1].
-*   **"Bigodes" (Whiskers):** Linhas que se estendem das caixas, mostrando a amplitude dos dados fora do IQR, geralmente até 1.5 vezes o IQR ou o mínimo/máximo dentro desse limite[1]. Indicam a variação salarial esperada para a maioria dos profissionais daquela área.
-*   **Pontos Individuais (Outliers):** Círculos fora dos "bigodes" representam salários atípicos, valores consideravelmente mais altos (neste caso) do que a maioria dos salários naquela área de formação específica[1].
+    *   A **borda superior da caixa** marca o terceiro quartil (Q3).
+    *   A **linha dentro da caixa** representa a mediana (Q2), o valor salarial que divide os dados do grupo ao meio.
+*   **"Bigodes" (Whiskers):** Linhas que se estendem das caixas, mostrando a amplitude dos dados fora do IQR, geralmente até 1.5 vezes o IQR ou o mínimo/máximo dentro desse limite. Indicam a variação salarial esperada para a maioria dos profissionais daquela área.
+*   **Pontos Individuais (Outliers):** Círculos fora dos "bigodes" representam salários atípicos, valores consideravelmente mais altos (neste caso) do que a maioria dos salários naquela área de formação específica.
 
 ![grafico_21](https://github.com/user-attachments/assets/774f76bc-3988-4e3d-ad0c-d763c51b68f7)
 
 **O que o Gráfico Mostra?**
 
-Este gráfico de barras horizontais apresenta a distribuição dos profissionais de dados que participaram da pesquisa (contextualizada como "State of Data Brazil 2023"[2][3]) de acordo com suas áreas de formação acadêmica[1]. Ele mostra a contagem absoluta (número) de profissionais para cada uma das principais áreas de formação listadas[1].
+Este gráfico de barras horizontais apresenta a distribuição dos profissionais de dados que participaram da pesquisa (contextualizada como "State of Data Brazil 2023") de acordo com suas áreas de formação acadêmica. Ele mostra a contagem absoluta (número) de profissionais para cada uma das principais áreas de formação listadas.
 
 **Como Interpretar?**
 
-*   **Eixo Y (Vertical - Área de Formação):** Lista as diferentes áreas acadêmicas de formação dos respondentes, como "Computação / Engenharia de Software / Sistemas de Informação/ TI", "Outras Engenharias", "Economia/ Administração / Contabilidade / Finanças/ Negócios", entre outras[1]. As áreas estão ordenadas da mais frequente (topo) para a menos frequente (base) na amostra.
-*   **Eixo X (Horizontal - Número de Profissionais):** Indica a quantidade absoluta de profissionais que declararam ter formação em cada área listada no eixo Y[1].
-*   **Barras:** O comprimento de cada barra rosa é proporcional ao número de profissionais formados naquela área específica. Barras mais longas representam as áreas de formação mais comuns entre os respondentes[1].
-*   **Cores:** A cor rosa é utilizada para visualização das barras e não representa uma variável adicional neste gráfico[1].
+*   **Eixo Y (Vertical - Área de Formação):** Lista as diferentes áreas acadêmicas de formação dos respondentes, como "Computação / Engenharia de Software / Sistemas de Informação/ TI", "Outras Engenharias", "Economia/ Administração / Contabilidade / Finanças/ Negócios", entre outras. As áreas estão ordenadas da mais frequente (topo) para a menos frequente (base) na amostra.
+*   **Eixo X (Horizontal - Número de Profissionais):** Indica a quantidade absoluta de profissionais que declararam ter formação em cada área listada no eixo Y.
+*   **Barras:** O comprimento de cada barra rosa é proporcional ao número de profissionais formados naquela área específica. Barras mais longas representam as áreas de formação mais comuns entre os respondentes.
+*   **Cores:** A cor rosa é utilizada para visualização das barras e não representa uma variável adicional neste gráfico.
 
 ---
 

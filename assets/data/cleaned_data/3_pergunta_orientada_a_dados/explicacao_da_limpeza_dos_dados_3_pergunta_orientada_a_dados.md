@@ -286,8 +286,10 @@ df_analise.to_csv('visualizacoes/dados_processados.csv', index=False)
 >Explicação:
 Salva os dados, principalmente para checagem posterior.
 
+# 📊 Resumo Final
 
-Arquivo | O que faz | Exemplo chave | Quando usar
-process_data.py | Primeira limpeza | Preencher NaN com "Não informado" | Rascunho rápido
-process_data_corrected.py | Limpeza + padronização completa | Mapear faixas etárias, escolaridade, salários | ✅ Análise final
-process_data_debug.py | Diagnóstico | Conferir tipo e nomes de colunas | Debug de problemas
+| Arquivo                   | O que faz                        | Exemplo chave                                     | Quando usar        |
+|:---------------------------|:----------------------------------|:--------------------------------------------------|:-------------------|
+| `process_data.py`           | Primeira limpeza                  | Preencher NaN com "Não informado"                 | Rascunho rápido     |
+| `process_data_corrected.py` | Limpeza + padronização completa   | Mapear faixas etárias, escolaridade, salários     | ✅ Análise final    |
+| `process_data_debug.py`     | Diagnóstico                       | Conferir tipo e nomes de colunas                  | Debug de problemas |

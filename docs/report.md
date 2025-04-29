@@ -45,7 +45,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 	*   [3º Pergunta Orientada a Dados](#3º-pergunta-orientada-a-dados)
 *   [Indução de modelos](#indução-de-modelos)
     *   [Modelo 1 gbm (gradient boosting machines) modelo baseado em árvore de decisão](#modelo-1-gbm-gradient-boosting-machines-modelo-baseado-em-árvore-de-decisão)
-    *   [Modelo 2: modelo-baseado-em-árvore-de-decisão](#modelo-gbm-gradient-boosting-machines---modelo-baseado-em-árvore-de-decisão)
+    *   [Modelo 2: modelo-baseado-em-árvore-de-decisão](#modelo-2-algoritmo)
 *   [Resultados](#resultados)
     *   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1)
     *   [Interpretação do modelo 1](#interpretação-do-modelo-1)

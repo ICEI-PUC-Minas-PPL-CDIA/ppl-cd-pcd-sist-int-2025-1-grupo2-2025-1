@@ -1870,275 +1870,134 @@ O modelo LightGBM demonstrou uma capacidade moderada de prever o ponto médio da
 
 ---
 
-## Explicação Detalhada do Modelo GBM para Previsão de Faixa Salarial para a 3º pergunta orientada a dados
+## Explicação Detalhada do Modelo LightGBM para Previsão de Faixa Salarial para a 3º pergunta orientada a dados
 
-### Modelo: GBM (Gradient Boosting Machines) - Modelo Baseado em Árvore de Decisão
+# Relatório do Modelo LightGBM para Previsão de Experiência Profissional Prejudicada por Cor/Raça/Etnia
 
-### Justificativa da Escolha do Modelo
+## Resumo do Modelo
 
-Os modelos GBM (Gradient Boosting Machines) foram escolhidos para este projeto de previsão de faixa salarial devido às seguintes características:
+Este relatório detalha os resultados de um modelo preditivo desenvolvido para identificar fatores associados à percepção de ter a experiência profissional prejudicada devido à cor/raça/etnia entre profissionais de dados no Brasil. Utilizamos um modelo de classificação **LightGBM (Light Gradient Boosting Machine)**, um algoritmo eficiente e robusto baseado em árvores de decisão.
 
-1. **Capacidade de capturar interações complexas**: GBMs constroem árvores de decisão sequencialmente, onde cada nova árvore corrige os erros da anterior. Esta estrutura permite capturar interações não lineares entre variáveis demográficas (gênero, raça/cor, região) e educacionais (escolaridade), essenciais para prever faixas salariais com precisão.
+O modelo foi treinado utilizando um conjunto específico de atributos, conforme solicitado:
 
-2. **Tratamento eficiente de variáveis categóricas**: Algoritmos como XGBoost possuem mecanismos eficientes para lidar com variáveis categóricas sem necessidade de one-hot encoding extensivo, o que é ideal para nosso conjunto de dados com múltiplas categorias demográficas.
+*   Faixa etária (`P1_a_1_Faixa_idade`)
+*   Gênero (`P1_b_Genero`)
+*   Não acredita que a experiência profissional seja afetada (`P1_e_1_Não_acredito_que_minha_experiência_profissional_seja_afetada`)
+*   Experiência prejudicada devido à identidade de gênero (`P1_e_3_Experiencia_prejudicada_devido_a_minha_identidade_de_gênero`)
+*   Nível de Ensino (`P1_l_Nivel_de_Ensino`)
+*   Faixa Salarial (`P2_h_Faixa_salarial`)
+*   Tempo de experiência prévia em TI/Engenharia (`P2_j_Quanto_tempo_de_experiência_na_área_de_TI_Engenharia_de_Software_você_teve_antes_de_começar_a_trabalhar_na_área_de_dados`)
 
-3. **Ferramentas robustas para interpretação**:
-   - **Feature Importance**: Permite identificar quais fatores demográficos e educacionais têm maior impacto nas faixas salariais.
-   - **SHAP (SHapley Additive exPlanations)**: Possibilita entender a contribuição de cada fator para previsões individuais e visualizar como as interações entre características demográficas influenciam o resultado.
+A variável alvo foi `P1_e_2_Experiencia_prejudicada_devido_a_minha_Cor_Raça_Etnia`, indicando se o respondente sentiu sua experiência prejudicada por este motivo (1 = Sim, 0 = Não).
 
-4. **Flexibilidade de aplicação**: O modelo foi configurado para classificação multiclasse, prevendo a faixa salarial categorizada em cinco níveis (Muito Baixa, Baixa, Média, Alta, Muito Alta).
+O pré-processamento incluiu a limpeza dos nomes das colunas, tratamento de valores ausentes (imputação pela mediana para numéricos e criação da categoria "Missing" para categóricos) e a conversão de variáveis categóricas para um formato adequado ao LightGBM. Os dados foram divididos em conjuntos de treino (80%) e teste (20%) de forma estratificada para manter a proporção da variável alvo.
 
-### Processo de Amostragem de Dados (Particionamento e Cross-Validation)
+## Métricas de Desempenho
 
-O processo de amostragem de dados foi realizado em duas etapas principais:
+### Acurácia Global
 
-#### Particionamento dos Dados (Train/Test Split)
-**Objetivo**: Garantir que o modelo seja avaliado em dados nunca vistos durante o treinamento.
+O modelo alcançou uma **acurácia de 92.65%** no conjunto de teste. Este valor indica a proporção geral de previsões corretas realizadas pelo modelo.
 
-**Procedimento Utilizado**:
-- O dataset foi dividido em duas partes:
-  - **Treinamento**: 80% dos dados
-  - **Teste**: 20% dos dados
-- O particionamento foi realizado com a função `train_test_split` do Scikit-Learn, utilizando `random_state=42` para garantir reprodutibilidade.
+### Desempenho por Classe
 
-```python
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y_encoded, test_size=0.2, random_state=42, stratify=y_encoded
-)
-```
+A tabela abaixo detalha o desempenho do modelo para cada classe da variável alvo (0: Não Prejudicada, 1: Prejudicada):
 
-**Justificativa**:
-- A estratificação (`stratify=y_encoded`) garante que a distribuição das faixas salariais seja mantida nos conjuntos de treino e teste.
-- A proporção 80/20 é um equilíbrio entre ter dados suficientes para treinar o modelo e uma amostra representativa para testá-lo.
+| Classe          | Precisão | Recall | F1-Score | Suporte |
+|-----------------|----------|--------|----------|---------|
+| 0 (Não Prej.)   | 0.94     | 0.97   | 0.95     | 434     |
+| 1 (Prejudicada) | 0.85     | 0.77   | 0.81     | 110     |
+| **Média Macro** | **0.90** | **0.87** | **0.88** | **544** |
+| **Média Pond.** | **0.92** | **0.93** | **0.93** | **544** |
 
-#### Validação Cruzada (Cross-Validation)
-**Objetivo**: Otimizar hiperparâmetros e evitar overfitting.
+*   **Precisão (Precision):** Das vezes que o modelo previu uma classe, quantas ele acertou. O modelo acerta 94% das vezes que prevê "Não Prejudicada" e 85% das vezes que prevê "Prejudicada".
+*   **Recall (Sensibilidade):** Das vezes que uma classe realmente ocorreu, quantas o modelo previu corretamente. O modelo identifica corretamente 97% dos casos "Não Prejudicada" e 77% dos casos "Prejudicada".
+*   **F1-Score:** Média harmônica entre Precisão e Recall, fornecendo uma métrica balanceada.
+*   **Suporte:** Número de ocorrências reais de cada classe no conjunto de teste.
 
-**Procedimento**:
-- Utilizamos `StratifiedKFold` com 5 divisões para manter a distribuição das classes em cada fold.
-- O `GridSearchCV` foi configurado para buscar a melhor combinação de hiperparâmetros.
+Observa-se que o modelo tem um desempenho ligeiramente melhor na identificação da classe majoritária (Não Prejudicada), mas ainda apresenta boa capacidade de identificar a classe minoritária (Prejudicada), com um F1-Score de 0.81.
 
-```python
-cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+## Matriz de Confusão
 
-grid_search = GridSearchCV(
-    pipeline,
-    param_grid,
-    cv=cv,
-    scoring='accuracy',
-    n_jobs=-1,
-    verbose=1
-)
-```
+A matriz de confusão visualiza o desempenho do modelo comparando os valores reais com as previsões:
 
-**Resultado**:
-- O modelo foi otimizado para maximizar a acurácia na classificação das faixas salariais.
-- A validação cruzada estratificada garantiu que o modelo fosse avaliado em diferentes subconjuntos dos dados, aumentando a robustez da avaliação.
+![Matriz de Confusão](https://private-us-east-1.manuscdn.com/sessionFile/0pIzjTfZ2ej8QNlhhGhgHn/sandbox/Qs9U2cO6659vLaU15vGdbW-images_1745892577133_na1fn_L2hvbWUvdWJ1bnR1L3Byb2pldG8vdmlzdWFsaXphY29lcy9tYXRyaXpfY29uZnVzYW8.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMHBJempUZloyZWo4UU5saGhHaGdIbi9zYW5kYm94L1FzOVUyY082NjU5dkxhVTE1dkdkYlctaW1hZ2VzXzE3NDU4OTI1NzcxMzNfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzQnliMnBsZEc4dmRtbHpkV0ZzYVhwaFkyOWxjeTl0WVhSeWFYcGZZMjl1Wm5WellXOC5wbmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NjcyMjU2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=I~ErDuqKarJ93koAilIwcZQnRclfsC9ATcZOIMIxFQg8GVq2-zH7AadizYJlX~4f2j17vszgaesAz4x6UgipjRiwUfAfe9-vklfdqO1iKdtdAz7FE1m8aCWK4357XzJH371QRxzoEVL0fjKETT1KhZm7STHgSCZuQrZoAhCS8rCTI~V7FTOIsJbEZtr2nzqQ~R6f0PNMYy1K~Rz3n72yx4xwm986WGjQlt5j8z9EoqzXzCa3oUyChXVeKapbA5u5YO4K9CI081EzaYnFeoLJL9qqWSa3Awq9Vzpuwkf56PkA6mjbWgzPODDk6K9XNRPwy2t1qrmNWw0dgD0SCZdRNQ__)
 
-### Parâmetros do Modelo e Processo de Raciocínio
+*   **Verdadeiros Negativos (VN):** 419 casos onde a experiência não foi prejudicada e o modelo previu corretamente.
+*   **Falsos Positivos (FP):** 15 casos onde a experiência não foi prejudicada, mas o modelo previu que foi.
+*   **Falsos Negativos (FN):** 25 casos onde a experiência foi prejudicada, mas o modelo previu que não foi.
+*   **Verdadeiros Positivos (VP):** 85 casos onde a experiência foi prejudicada e o modelo previu corretamente.
 
-O modelo XGBoost foi configurado com os seguintes parâmetros principais:
+A matriz confirma o bom desempenho geral, com a maioria das previsões caindo na diagonal principal (previsões corretas). Os erros (FP e FN) são relativamente baixos.
 
-- **objective**: 'multi:softprob' (classificação multiclasse com probabilidades)
-- **num_class**: número de faixas salariais (5 categorias)
-- **n_estimators**: número de árvores no ensemble (otimizado via GridSearch)
-- **max_depth**: profundidade máxima das árvores (otimizado via GridSearch)
-- **learning_rate**: taxa de aprendizado (otimizado via GridSearch)
-- **subsample**: fração de amostras usadas para treinar cada árvore
-- **colsample_bytree**: fração de features usadas para treinar cada árvore
+## Curva ROC
 
-#### Processo de Raciocínio da Árvore (Regras de Decisão)
+A curva ROC (Receiver Operating Characteristic) ilustra o desempenho do classificador em diferentes limiares de decisão:
 
-Cada árvore no ensemble segue um processo de decisão hierárquico:
+![Curva ROC](https://private-us-east-1.manuscdn.com/sessionFile/0pIzjTfZ2ej8QNlhhGhgHn/sandbox/Qs9U2cO6659vLaU15vGdbW-images_1745892577133_na1fn_L2hvbWUvdWJ1bnR1L3Byb2pldG8vdmlzdWFsaXphY29lcy9jdXJ2YV9yb2M.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMHBJempUZloyZWo4UU5saGhHaGdIbi9zYW5kYm94L1FzOVUyY082NjU5dkxhVTE1dkdkYlctaW1hZ2VzXzE3NDU4OTI1NzcxMzNfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzQnliMnBsZEc4dmRtbHpkV0ZzYVhwaFkyOWxjeTlqZFhKMllWOXliMk0ucG5nIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzY3MjI1NjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=IJTENKNHtuK3cvIAmhWzzFsh4Q9hQGMG8xCLfkqyATYstcJ1h8jdKLg2hQitoiRD1CXB-NwrftT19~VhGvhYMV0ZLq7E-CUYgJpV50-bxeHFFxGYiH33qIrHCj-Vl5x5V4mrOOFYYyl8fHsU0APnXn0sgN9JGUcqKny40ALMgdgmoRWtElLcbUnyWRoQjPA7ZaciBIexhLtwzJx2ThF22SgwgfINZpympAmy7aD2dj7gA51VgJpt2Ppe4v34dRCTZ9o6I-yCw2LoP~YKBeRewao5ohO7WwL4tblLdwUB~OKd5~zjpDSihClUnZEyS87-IYuoyyky0mzR98vSmRpN1g__)
 
-1. **Nó Raiz**: A primeira divisão geralmente ocorre na variável mais discriminativa, como nível de ensino ou região.
-   
-2. **Nós Intermediários**: Divisões subsequentes refinam a previsão com base em outras variáveis, como gênero e raça/cor.
+A área sob a curva ROC (AUC) é uma medida da capacidade do modelo de distinguir entre as classes. Quanto mais próximo de 1, melhor o desempenho do modelo. Nosso modelo apresenta uma AUC elevada, indicando excelente capacidade de discriminação entre experiências prejudicadas e não prejudicadas.
 
-3. **Nós Folha**: Cada caminho da raiz até uma folha representa uma regra de decisão que leva a uma probabilidade específica para cada faixa salarial.
+## Importância das Variáveis
 
-**Exemplo de Caminho de Decisão**:
-- Se nível de ensino = "Mestrado" E região = "Sudeste", segue para o nó à direita.
-- Se gênero = "Masculino", segue para o nó à direita.
-- Folha: Probabilidade alta para faixa salarial "Alta (R$ 8.001 a R$ 16.000)".
+O gráfico abaixo mostra quais atributos mais contribuíram para as previsões do modelo LightGBM:
 
-### Feature Importances e Tomada de Decisão
+![Importância das Features](https://private-us-east-1.manuscdn.com/sessionFile/0pIzjTfZ2ej8QNlhhGhgHn/sandbox/Qs9U2cO6659vLaU15vGdbW-images_1745892577133_na1fn_L2hvbWUvdWJ1bnR1L3Byb2pldG8vdmlzdWFsaXphY29lc19jb3JyaWdpZGFzL2ltcG9ydGFuY2lhX2ZlYXR1cmVzX2NvcnJpZ2lkbw.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMHBJempUZloyZWo4UU5saGhHaGdIbi9zYW5kYm94L1FzOVUyY082NjU5dkxhVTE1dkdkYlctaW1hZ2VzXzE3NDU4OTI1NzcxMzNfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzQnliMnBsZEc4dmRtbHpkV0ZzYVhwaFkyOWxjMTlqYjNKeWFXZHBaR0Z6TDJsdGNHOXlkR0Z1WTJsaFgyWmxZWFIxY21WelgyTnZjbkpwWjJsa2J3LnBuZyIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc2NzIyNTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=dsKlwKXrkVdxcm7~7n0UxuvbKgGhL3jk3~UyX6QeIJn~r2LZZFlgfmmA5a35dKorm9IbudXJFZjIfV9G89TvSXEIY0tmGsLgBaR1dF5GbNVdze5YrTuH9lm0Xb8LTKN6hMwfR5BnnbTH32eeN8iLVPwFlIhhb~8G3kvQuZzJsH6SR4GIGNGsWrFfPr8ySybByg4OC1koW~3VpO3KCcDeJ-Dv-yaXX~hXbS~Nq5ny7MRzn4sOObsix2Mqc9n5FjEPXjTuQIsgBPv3O5OrG~ueQPKcvTz0WTdg7tOSJgCW8kayyxbLQaky-puBcAlwwfoFP9nJZpUZFsbhvDb0FO1fJw__)
 
-As variáveis mais importantes para a previsão de faixa salarial, conforme identificado pelo modelo, foram:
+As variáveis mais importantes identificadas pelo modelo foram:
 
-1. **Nível de Ensino**: Variável com maior impacto, demonstrando a forte correlação entre educação formal e faixa salarial.
+1.  **Gênero (`P1_b_Genero`)**: O gênero do profissional foi o fator mais influente.
+2.  **Experiência prejudicada devido à identidade de gênero (`P1_e_3_...`)**: Se o profissional sentiu impacto devido à identidade de gênero.
+3.  **Não acredita que a experiência profissional seja afetada (`P1_e_1_...`)**: Se o profissional acredita que sua experiência não é afetada por fatores externos.
+4.  **Tempo de Experiência Prévia em TI/Engenharia (`P2_j_...`)**: O tempo de experiência em áreas correlatas antes de migrar para dados.
+5.  **Faixa Salarial (`P2_h_Faixa_salarial`)**: A faixa salarial do profissional.
+6.  **Nível de Ensino (`P1_l_Nivel_de_Ensino`)**: O nível educacional formal do profissional.
+7.  **Faixa Etária (`P1_a_1_Faixa_idade`)**: A idade do profissional.
 
-2. **Região**: A segunda variável mais importante, refletindo as disparidades regionais significativas no Brasil.
+## Distribuição das Previsões por Gênero
 
-3. **Gênero**: Contribui para a previsão, capturando possíveis disparidades salariais relacionadas ao gênero.
-
-4. **Raça/Cor**: Também influencia a previsão, indicando potenciais disparidades raciais no mercado de trabalho.
-
-#### Medidas de Importância das Features
-
-- **Importância por Ganho (Gain)**: Mede o quanto cada feature contribuiu para a redução do erro em todas as árvores do modelo.
-  
-- **Importância por Cobertura (Cover)**: Mede o número relativo de observações relacionadas a esta feature.
-
-- **Importância por Frequência (Frequency)**: Mede o número de vezes que a feature é usada em todas as árvores.
-
-No modelo treinado, nível de ensino e região aparecem consistentemente entre as mais importantes, alinhando-se com os splits iniciais das árvores individuais.
-
-### Explicação do Código: Notebook de Modelo GBM
-
-O notebook implementa um pipeline completo para análise de disparidade salarial, organizado nas seguintes seções:
-
-#### 1. Configuração do Ambiente
-
-```python
-# Instalação de bibliotecas
-!pip install pandas numpy matplotlib seaborn scikit-learn xgboost shap
-
-# Importação das bibliotecas
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-import xgboost as xgb
-import shap
-import warnings
-warnings.filterwarnings('ignore')
-```
-
-#### 2. Carregamento e Preparação dos Dados
-
-```python
-# Carregar os dados
-from google.colab import files
-uploaded = files.upload()  # Upload do arquivo Main_database.xlsx
-
-# Ler o arquivo Excel
-df = pd.read_excel('Main_database.xlsx')
-
-# Identificar colunas relevantes
-genero_col = [col for col in df.columns if 'Genero' in col][0]
-cor_raca_col = [col for col in df.columns if 'Cor/raca/etnia' in col][0]
-uf_col = [col for col in df.columns if 'uf onde mora' in col][0]
-nivel_ensino_col = [col for col in df.columns if 'Nivel de Ensino' in col][0]
-faixa_salarial_col = [col for col in df.columns if 'Faixa salarial' in col][0]
-```
-
-#### 3. Pré-processamento dos Dados
-
-```python
-# Mapear UFs para regiões
-regiao_mapping = {
-    'AC': 'Norte', 'AM': 'Norte', 'AP': 'Norte', 'PA': 'Norte', 'RO': 'Norte', 'RR': 'Norte', 'TO': 'Norte',
-    'AL': 'Nordeste', 'BA': 'Nordeste', 'CE': 'Nordeste', 'MA': 'Nordeste', 'PB': 'Nordeste', 
-    'PE': 'Nordeste', 'PI': 'Nordeste', 'RN': 'Nordeste', 'SE': 'Nordeste',
-    'DF': 'Centro-Oeste', 'GO': 'Centro-Oeste', 'MS': 'Centro-Oeste', 'MT': 'Centro-Oeste',
-    'ES': 'Sudeste', 'MG': 'Sudeste', 'RJ': 'Sudeste', 'SP': 'Sudeste',
-    'PR': 'Sul', 'RS': 'Sul', 'SC': 'Sul'
-}
+O gráfico abaixo mostra como as previsões do modelo se distribuem entre os diferentes gêneros:
 
-# Adicionar coluna de região
-data['Regiao'] = data[uf_col].map(regiao_mapping)
+![Previsões por Gênero](https://private-us-east-1.manuscdn.com/sessionFile/0pIzjTfZ2ej8QNlhhGhgHn/sandbox/Qs9U2cO6659vLaU15vGdbW-images_1745892577133_na1fn_L2hvbWUvdWJ1bnR1L3Byb2pldG8vdmlzdWFsaXphY29lcy9wcmV2aXNvZXNfcG9yX2dlbmVybw.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMHBJempUZloyZWo4UU5saGhHaGdIbi9zYW5kYm94L1FzOVUyY082NjU5dkxhVTE1dkdkYlctaW1hZ2VzXzE3NDU4OTI1NzcxMzNfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzQnliMnBsZEc4dmRtbHpkV0ZzYVhwaFkyOWxjeTl3Y21WMmFYTnZaWE5mY0c5eVgyZGxibVZ5YncucG5nIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzY3MjI1NjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=W5Yj2rDsX3rYW31neYD91-i0xBPUV3T3viHN1LntSxW0n9SnbSaGV9to3zTdBYVoaOwQhYJW5uR2cA0TBKamNWV2By32avb0NfKriiHi8TcO6FgN6SdyX1rz2STn~kzCFR64TUBmuinqG8gYKtMQt0aspOxF6Uzf-tVrB7gUW13YoCwc9uD3kYuFo7QbuHEAVQHt-Xs109W~PU23pweQp06ZfxCfYTx-rj-vRcKSNrXWPntzuF4LFtH1Dm2DSNtNden0GfWVRlXmTHWw6jdxG4U04jWIK4zp~bjpYjNg5drAkGjZwrSiSGihmvpid~wKbl357nesqzUy~gU5XOR1gQ__)
 
-# Categorizar faixa salarial
-def categorizar_salario(faixa):
-    if 'Até' in faixa or '1.000' in faixa or '2.000' in faixa:
-        return 'Muito Baixa (Até R$ 2.000)'
-    elif '3.000' in faixa or '4.000' in faixa:
-        return 'Baixa (R$ 2.001 a R$ 4.000)'
-    elif '6.000' in faixa or '8.000' in faixa:
-        return 'Média (R$ 4.001 a R$ 8.000)'
-    elif '12.000' in faixa or '16.000' in faixa:
-        return 'Alta (R$ 8.001 a R$ 16.000)'
-    else:
-        return 'Muito Alta (Acima de R$ 16.000)'
+Esta visualização permite identificar se há diferenças significativas na proporção de experiências prejudicadas previstas pelo modelo entre os diferentes gêneros.
 
-data['Faixa_Salarial_Categorizada'] = data[faixa_salarial_col].apply(categorizar_salario)
-```
+## Distribuição das Previsões por Nível de Ensino
 
-#### 4. Treinamento do Modelo XGBoost
+O gráfico a seguir mostra a distribuição das previsões do modelo por nível de ensino:
 
-```python
-# Criar o pipeline com o preprocessador e o modelo XGBoost
-pipeline = Pipeline([
-    ('preprocessor', preprocessor),
-    ('classifier', xgb.XGBClassifier(objective='multi:softprob', num_class=len(le_target.classes_), 
-                                     random_state=42, use_label_encoder=False, eval_metric='mlogloss'))
-])
+![Previsões por Nível de Ensino](https://private-us-east-1.manuscdn.com/sessionFile/0pIzjTfZ2ej8QNlhhGhgHn/sandbox/Qs9U2cO6659vLaU15vGdbW-images_1745892577133_na1fn_L2hvbWUvdWJ1bnR1L3Byb2pldG8vdmlzdWFsaXphY29lcy9wcmV2aXNvZXNfcG9yX25pdmVsX2Vuc2lubw.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMHBJempUZloyZWo4UU5saGhHaGdIbi9zYW5kYm94L1FzOVUyY082NjU5dkxhVTE1dkdkYlctaW1hZ2VzXzE3NDU4OTI1NzcxMzNfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzQnliMnBsZEc4dmRtbHpkV0ZzYVhwaFkyOWxjeTl3Y21WMmFYTnZaWE5mY0c5eVgyNXBkbVZzWDJWdWMybHVidy5wbmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NjcyMjU2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=qh-XD-jQOAGl4XHLnNgL0ttCN6AtYZSfsTt-AsJsU8KxZ0Me3mm184qR-K0K9TMGWhIm19xoE4PMCQFX3FmICXY78yQqM3wjMDq5DMaktPj0fvO4HGY3U2CH4YTMH504sVRgV5vzB6VauVFtLaKSWwi0hbXviy~BEpkzdE667x8k3ZIgVdACo8y4PY4HP2rf-KQAMO3FVM1jBD20h8FYQLaDu2cq9iyfygt~yrdnlqgMR-2WIF4UQ1F7~5XtH8lP8LnFwyOM2u0enZAoUGdmKAstQH952IHWDJxB1qZUxJOkTBkpKxeOT1NIj-bk5ulSRYAtdwVCOacl-1WhHDdW8Q__)
 
-# Definir os parâmetros para otimização
-param_grid = {
-    'classifier__n_estimators': [100, 200],
-    'classifier__max_depth': [3, 5, 7],
-    'classifier__learning_rate': [0.01, 0.1],
-    'classifier__subsample': [0.8, 1.0],
-    'classifier__colsample_bytree': [0.8, 1.0]
-}
+Esta visualização permite analisar se o nível de ensino está relacionado com a probabilidade de ter a experiência profissional prejudicada por cor/raça/etnia, segundo as previsões do modelo.
 
-# Treinar o modelo com GridSearchCV
-grid_search.fit(X_train, y_train)
-```
+## Principais Insights
 
-#### 5. Avaliação do Modelo
+Com base na importância das variáveis e nas análises de distribuição, podemos extrair os seguintes insights:
 
-```python
-# Fazer previsões no conjunto de teste
-y_pred = best_model.predict(X_test)
+1.  **Impacto de Gênero e Identidade:**
+    *   **Gênero:** O gênero do profissional foi o fator mais influente nas previsões do modelo, sugerindo uma forte relação entre gênero e a percepção de discriminação racial.
+    *   **Percepção de Impacto por Identidade de Gênero:** A variável que mede se o profissional sentiu impacto devido à *identidade de gênero* também foi muito importante para prever o impacto devido à *cor/raça/etnia*, sugerindo uma possível interseccionalidade nas experiências de discriminação.
 
-# Avaliar o desempenho do modelo
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Acurácia do modelo: {accuracy:.4f}")
+2.  **Crença na Neutralidade da Experiência:**
+    *   A variável `P1_e_1_Não_acredito_que_minha_experiência_profissional_seja_afetada` teve uma importância significativa, indicando que a crença geral sobre a neutralidade da experiência profissional está relacionada com a percepção específica de discriminação racial.
 
-# Exibir o relatório de classificação
-print(classification_report(y_test, y_pred, target_names=le_target.classes_))
+3.  **Impacto Socioeconômico e de Carreira:**
+    *   **Tempo de Experiência e Faixa Salarial:** Estas variáveis foram relevantes, sugerindo que fatores relacionados à progressão na carreira e status socioeconômico estão ligados à percepção de discriminação racial no ambiente de trabalho de dados.
 
-# Criar a matriz de confusão
-conf_matrix = confusion_matrix(y_test, y_pred)
-```
+4.  **Educação e Idade:**
+    *   **Nível de Ensino:** O nível educacional teve um impacto moderado nas previsões do modelo.
+    *   **Faixa Etária:** A idade também figura entre os fatores relevantes, indicando possíveis diferenças geracionais na percepção ou ocorrência de discriminação.
 
-#### 6. Interpretação do Modelo
+## Conclusões
 
-```python
-# Obter a importância das features
-importances = xgb_model.feature_importances_
+O modelo LightGBM demonstrou alta capacidade (92.65% de acurácia) em prever a percepção de experiência profissional prejudicada por cor/raça/etnia, utilizando um conjunto limitado de 7 atributos.
 
-# Criar um DataFrame com as importâncias
-importance_df = pd.DataFrame({
-    'Feature': feature_names,
-    'Importance': importances
-})
+Os fatores mais importantes estão ligados ao **gênero e à percepção de discriminação por identidade de gênero**, seguidos pela **crença na neutralidade da experiência profissional**, **posição na carreira (tempo de experiência prévia, faixa salarial)**, **educação e idade**.
 
-# Ordenar por importância
-importance_df = importance_df.sort_values('Importance', ascending=False)
+A forte influência do gênero e da percepção de discriminação por identidade de gênero sugere uma importante interseccionalidade nas experiências de discriminação. Profissionais que já percebem impacto devido à sua identidade de gênero parecem ter maior probabilidade de também perceber impacto devido à sua cor/raça/etnia.
 
-# Análise SHAP para interpretabilidade do modelo
-explainer = shap.Explainer(xgb_model)
-shap_values = explainer(X_test_transformed)
-```
+As análises de distribuição por gênero e nível de ensino fornecem insights adicionais sobre como diferentes características demográficas podem estar relacionadas à percepção de discriminação racial no campo de dados no Brasil.
 
-### Resultados e Insights
-
-O modelo GBM para previsão de faixa salarial revelou importantes insights sobre os fatores que influenciam os salários dos profissionais de dados no Brasil:
-
-1. **Nível de Ensino**: Forte correlação positiva com faixa salarial, com profissionais com mestrado e doutorado tendo maior probabilidade de estar nas faixas salariais mais altas.
-
-2. **Disparidades Regionais**: Profissionais no Sudeste, especialmente em São Paulo, tendem a estar em faixas salariais mais altas comparados a outras regiões.
-
-3. **Disparidades de Gênero**: O modelo identificou diferenças nas distribuições salariais entre homens e mulheres, com homens tendo maior representação nas faixas salariais mais altas.
-
-4. **Disparidades Raciais**: Pessoas brancas têm maior probabilidade de estar em faixas salariais mais altas comparadas a pessoas pardas e pretas.
-
-5. **Interações Complexas**: O modelo capturou interações importantes, como o fato de que o impacto do nível de ensino na faixa salarial varia dependendo da região.
-
-### Conclusão
-
-O modelo GBM demonstrou ser uma escolha eficaz para prever faixas salariais com base em características demográficas e educacionais. Sua capacidade de capturar interações complexas entre variáveis e fornecer interpretações detalhadas através de feature importance e análise SHAP permite não apenas fazer previsões precisas, mas também entender os fatores que contribuem para as disparidades salariais no setor de dados no Brasil.
-
-As descobertas do modelo podem informar políticas e iniciativas para reduzir disparidades salariais relacionadas a gênero, raça e região, além de destacar a importância da educação formal para progressão salarial na área de dados.
+Este modelo e suas análises fornecem um ponto de partida valioso para entender os complexos fatores associados à discriminação racial no campo de dados no Brasil, destacando a importância de abordagens interseccionais para compreender e combater diferentes formas de discriminação no ambiente profissional.
  
 
 ### Interpretação do modelo 1

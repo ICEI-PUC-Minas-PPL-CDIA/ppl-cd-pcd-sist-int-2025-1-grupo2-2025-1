@@ -356,7 +356,7 @@ Nome: salary_midpoint, dtype: object
 ---
 
 ### Atributos relevantes da base de dados principal para 3ª pergunta orientada
-**Pergunta orientada a dados::** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+**Pergunta orientada a dados::** *Quais características sociodemográficas e profissionais estão associadas à percepção de que a cor, raça ou etnia impacta negativamente a experiência profissional entre profissionais de dados no Brasil??*
 
 | Atributo                                           | Código de Referência | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância  |
 |----------------------------------------------------|-----------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------------------------|------------|
@@ -433,7 +433,7 @@ profissionais de tecnologia?*
 - [Base de dados](/assets/data/bases_principais/bases_auxiliar/2_pergunta_orientada_a_dados/)
 
 ### Base de dados auxiliar para a 3º pergunta orientada a dados
-**Pergunta orientada a dados:** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+**Pergunta orientada a dados:** *Quais características sociodemográficas e profissionais estão associadas à percepção de que a cor, raça ou etnia impacta negativamente a experiência profissional entre profissionais de dados no Brasil?*
 - Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD-C)
 - Link: https://basedosdados.org/dataset/9fa532fb-5681-4903-b99d-01dc45fd527a?table=a04fc85d-908a-4393-b51d-1bd517a40210
   
@@ -909,7 +909,7 @@ Este gráfico de barras horizontais apresenta a distribuição dos profissionais
 
 ### 3º Pergunta orientada a dados
 **Pergunta Orientada a Dados:**
-*Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+*Quais características sociodemográficas e profissionais estão associadas à percepção de que a cor, raça ou etnia impacta negativamente a experiência profissional entre profissionais de dados no Brasil?*
 
 ![cor_e_raça_ensino_heatmap](https://github.com/user-attachments/assets/f147fa83-1501-4669-b6ff-95165ed54894)
 
@@ -938,43 +938,6 @@ Para interpretar:
 
 > Em resumo: embora a maioria tenha atingido a graduação ou pós-graduação, as pessoas pretas e pardas ainda enfrentam barreiras para atingir níveis mais altos de escolaridade como mestrado e doutorado.
 
-![distribuição_regional_barras](https://github.com/user-attachments/assets/24542e74-b49f-4edc-8ffc-0d17085c1e8f)
-
-### O que o Gráfico Mostra?
-
-O gráfico revela **desigualdades regionais** na distribuição dos profissionais de dados em comparação com a distribuição geral da população:
-
-- **Sudeste**:
-  - Concentra **61,4% dos profissionais de dados**, muito acima dos **26% da população geral**.
-  - É a região com maior desequilíbrio positivo para profissionais de dados.
-
-- **Nordeste**:
-  - Representa **33,2% da população**, mas apenas **11,8% dos profissionais de dados**.
-  - Forte sub-representação no mercado de dados.
-
-- **Norte**:
-  - Apesar de abrigar **14% da população**, apenas **1,6% dos profissionais de dados** atuam na região.
-  - Grande disparidade.
-
-- **Centro-Oeste**:
-  - Tem **9,9% da população** e **6,7% dos profissionais de dados**.
-  - Menor diferença relativa entre população e profissionais, mas ainda assim com sub-representação.
-
-- **Sul**:
-  - Apresenta **equilíbrio**: **16,9% da população** e **18,6% dos profissionais de dados**.
-  - Região mais proporcional em termos de profissionais de dados versus população.
- 
-### Como Interpretar?
-
-Este gráfico de barras compara a distribuição percentual da **população geral** e dos **profissionais de dados** nas cinco grandes regiões do Brasil (Norte, Nordeste, Centro-Oeste, Sudeste e Sul).
-
-Para interpretar:
-- Observe a altura das barras para cada região.
-- As barras **azuis** representam a distribuição da **população geral**.
-- As barras **vermelhas** representam a distribuição dos **profissionais de dados**.
-- Compare o tamanho das barras para ver onde há **maior ou menor concentração de profissionais de dados** em relação à população.
-
-> Em resumo: o mercado de dados no Brasil é altamente concentrado no Sudeste, especialmente em comparação com a distribuição populacional, enquanto regiões como Norte e Nordeste são significativamente sub-representadas.
 
 ![genero_salario_heatmap](https://github.com/user-attachments/assets/1121692b-f59c-4a1e-b90f-00f3312f94e5)
 
@@ -1073,27 +1036,6 @@ Este gráfico de barras horizontais apresenta o **índice de representatividade*
 
 > Em resumo: o gráfico evidencia um cenário de desigualdade na área de dados, onde o recorte de **raça** e **gênero** é fundamental para entender os desafios de diversidade e inclusão.
 
-![heatmap_calor_disparidae](https://github.com/user-attachments/assets/29521e78-6709-47a1-964e-fffb1d65ab09)
-
-### O que o Gráfico Mostra?
-
-Principais observações:
-
-- **Mulheres** têm disparidades significativas em todas as regiões, com as maiores diferenças no Centro-Oeste (**29,5 pontos percentuais**) e Norte (**28,6**).
-- **Pessoas Pardas** apresentam sub-representação em todas as regiões, especialmente no Norte (**23,3**) e Nordeste (**22,2**).
-- **Pessoas Pretas** estão próximas da representatividade ideal em quase todas as regiões, com variações mínimas (por exemplo, **-0,8** no Nordeste e Centro-Oeste).
-- O **Sul** apresenta uma situação atípica: baixa disparidade para Pessoas Pardas (**6,2**) e Pessoas Pretas (**1,3**), mas ainda alta para Mulheres (**28,0**).
-
-### Como Interpretar?
-
-Este é um **mapa de calor** que mostra a **diferença em pontos percentuais** entre a representatividade observada e a representatividade ideal de alguns grupos (Mulheres, Pessoas Pardas e Pessoas Pretas) nas diferentes **regiões do Brasil**.
-
-- As células mostram a magnitude da diferença para cada grupo e região.
-- Cores mais escuras indicam **maior disparidade** (diferença mais acentuada).
-- Diferenças positivas indicam **sub-representação** (grupo menos presente que deveria).
-- Diferenças negativas ou próximas de zero indicam **representatividade adequada**.
-
-> Em resumo: o mapa de calor revela que questões de gênero e raça impactam de maneira diferente nas regiões brasileiras, com desafios mais agudos para mulheres e pessoas pardas na área de dados.
 
 ![matriz_correlação](https://github.com/user-attachments/assets/aa66357b-c3cc-4507-a780-843303b7131f)
 

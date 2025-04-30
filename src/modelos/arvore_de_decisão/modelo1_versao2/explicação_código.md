@@ -228,3 +228,102 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
 
 ### Remoção de NaN: 
 - Linhas onde não foi possível calcular o salarymidpoint são removidas (.dropna()) pois não podem ser usadas para treinar/avaliar o modelo.
+
+---
+
+    # 3.2 Tratamento de Valores Nulos (ANTES DA CODIFICAÇÃO)
+    print("\nTratando valores nulos...")
+    numeric_cols_pre_encoding = []
+    categorical_cols_pre_encoding = []
+    
+    for col in valid_feature_columns_final:
+        # ... (lógica para detectar flags binárias vs outras colunas) ...
+        numeric_col = pd.to_numeric(df_model[col], errors='coerce')
+        if not numeric_col.isnull().all(): # Se conseguiu converter para número
+            if is_binary_flag:
+                df_model[col] = numeric_col.fillna(0).astype(int) # Flags NaN -> 0
+            else:
+                # df_model[col] = numeric_col.fillna(numeric_col.median()) # Outras numéricas NaN -> Mediana (se houvesse)
+            numeric_cols_pre_encoding.append(col)
+        else: # Se era string ou falhou conversão numérica
+            df_model[col] = df_model[col].astype(str).fillna('Desconhecido') # Categóricas NaN -> 'Desconhecido'
+            categorical_cols_pre_encoding.append(col)
+## Explicação (Preprocess - Nulls):
+
+### Objetivo: Lidar com valores ausentes (NaN) nas colunas de features, pois a maioria dos modelos não os aceita.
+
+### Estratégia: Itera sobre as features válidas:
+- Flags Binárias (P4d..., P2o...): Tenta converter para número. Se for flag binária e tiver NaN, preenche com 0 (assumindo que NaN significa "não usa" ou "não considera").
+- Outras Numéricas (se existissem): Preencheria NaN com a mediana da coluna (medida robusta a outliers).
+- Categóricas (Strings): Preenche NaN com a string literal 'Desconhecido', criando uma nova categoria explícita para valores ausentes. Converte toda a coluna para string (.astype(str)) para garantir consistência antes da codificação.
+
+### Listas de Rastreio: 
+- Mantém listas separadas (numeric_cols_pre_encoding, categorical_cols_pre_encoding) para saber quais colunas tratar como numéricas ou categóricas na próxima etapa.
+
+---
+
+    # 3.3 Codificação de Variáveis Categóricas (Ordinal e Nominal - CORRIGIDA)
+    # ... (definição dos nomes limpos das colunas ordinais: edu_col_clean, exp_col_clean, nivel_col_clean) ...
+    
+    # Definir colunas ordinais e suas ordens EXATAS (valores limpos)
+    ordinal_cols_mapping = {
+        edu_col_clean: ['nao_tenho_graduacao_formal', 'estudante_de_graduacao', ...],
+        exp_col_clean: ['nao_tenho_experiencia_na_area_de_dados', 'menos_de_1_ano', ...],
+        nivel_col_clean: ['junior', 'pleno', 'senior']
+    }
+    
+    # --- Verificação Dinâmica e Aplicação do OrdinalEncoder ---
+    # ... (código que limpa valores nas colunas, compara com a ordem predefinida,
+    #      cria 'final_order' com categorias válidas, e popula 'ordinal_cols_to_encode',
+    #      'ordinal_categories_final', 'processed_categoricals') ...
+    
+    # Aplicar OrdinalEncoder
+    if ordinal_cols_to_encode:
+        encoder_ordinal = OrdinalEncoder(
+            categories=ordinal_categories_final,
+            handle_unknown='use_encoded_value',
+            unknown_value=-1 # Atribui -1 a valores desconhecidos/extras
+        )
+        df_model[ordinal_cols_to_encode] = encoder_ordinal.fit_transform(df_model[ordinal_cols_to_encode])
+        # ... (atualiza lista de colunas numéricas) ...
+    
+    # Identificar colunas nominais (categóricas não ordinais)
+    nominal_cols_to_encode = [ ... ]
+    
+    # Aplicar One-Hot Encoding (get_dummies) APENAS nas nominais
+    if nominal_cols_to_encode:
+        df_model = pd.get_dummies(df_model, columns=nominal_cols_to_encode, dummy_na=False, drop_first=False)
+        # ... (prints informativos) ...
+    
+    # Atualizar lista de features finais
+    features_final = [ ... ]
+    print(f"Número final de features: {len(features_final)}")
+
+## Explicação (Preprocess - Encoding - Correção Principal):
+
+### Objetivo: 
+- Converter as colunas categóricas (texto) em números para que o LightGBM possa processá-las, respeitando a natureza de cada variável (ordinal vs. nominal).
+
+### Variáveis Ordinais:
+- Mapeamento: 
+    - Define um dicionário (ordinal_cols_mapping) que especifica quais colunas são ordinais (nivel_de_ensino, quanto_tempo_de_experiencia..., nivel) e a ordem correta das suas categorias (ex: 'junior' < 'pleno' < 'senior'). Usa os nomes limpos das colunas e os valores esperados após a limpeza (lowercase, sem acento, com underscore).
+    Verificação Dinâmica: 
+    - O código crucial aqui verifica, para cada coluna ordinal definida:
+    - Limpa os valores reais da coluna no DataFrame.
+        - Compara com a ordem predefinida (também limpa).
+        - Cria uma lista (final_order) contendo apenas as categorias predefinidas que realmente existem nos dados, mantendo a ordem. Avisa sobre categorias extras ou faltantes.
+
+- OrdinalEncoder:
+    - Instancia OrdinalEncoder passando a lista de categorias válidas e ordenadas (ordinal_categories_final). Isso garante que a codificação numérica (0, 1, 2, ...) respeite a ordem correta.
+        - handle_unknown='use_encoded_value', unknown_value=-1: Garante que valores não previstos na ordem (incluindo 'Desconhecido' ou extras) recebam um valor numérico específico (-1), em vez de causar erro.
+        - Aplica (.fit_transform()) o encoder às colunas ordinais identificadas.
+
+### Variáveis Nominais:
+- Identificação: 
+- Seleciona as colunas que foram inicialmente marcadas como categóricas mas não foram processadas pelo OrdinalEncoder.
+    - pd.get_dummies: Aplica o One-Hot Encoding apenas a essas colunas nominais. Isso cria novas colunas binárias (0/1) para cada categoria única (ex: area_de_formacao_computacao, genero_feminino, setor_financas_ou_bancos).
+        - dummy_na=False: Não cria coluna extra para NaNs (já tratados como 'Desconhecido').
+        - drop_first=False: Mantém todas as categorias dummy, o que geralmente é seguro para modelos de árvore.
+
+### Resultado: 
+- Todas as features agora são numéricas (originais numéricas, ordinais codificadas, dummies binárias). A lista features_final é atualizada com os nomes de todas essas colunas. O número final de features (106 neste caso) reflete essa transformação.

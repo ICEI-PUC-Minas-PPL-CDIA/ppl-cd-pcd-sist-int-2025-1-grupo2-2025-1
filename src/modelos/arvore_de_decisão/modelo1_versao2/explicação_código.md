@@ -63,7 +63,7 @@
 - Se falhar (não instalada), imprime uma mensagem, usa !pip install para instalá-la no ambiente Colab e depois importa. Essencial para remover acentos na limpeza de nomes/valores.
 
 ### Fazer o mesmo para shap (interpretação do modelo) e graphviz (visualização de árvore). 
-- A instalação do graphviz no Colab requer também um comando de sistema (!apt-get).
+- A instalação do graphviz no Colab requer também um comando de sistema (pip install graphviz).
 
 ### Ignorar Warnings: 
 Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWarning) que podem ser informativos mas poluem a saída principal.

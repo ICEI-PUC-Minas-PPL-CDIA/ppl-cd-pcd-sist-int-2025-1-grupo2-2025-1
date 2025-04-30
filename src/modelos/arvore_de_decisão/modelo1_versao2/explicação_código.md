@@ -59,9 +59,6 @@
 ### Warnings: 
 - Para suprimir mensagens de aviso não críticas.
 
-### Instalação/Importação Opcional: 
-- Usa blocos try-except para:
-
 ### Importar unidecode. 
 - Se falhar (não instalada), imprime uma mensagem, usa !pip install para instalá-la no ambiente Colab e depois importa. Essencial para remover acentos na limpeza de nomes/valores.
 
@@ -70,3 +67,24 @@
 
 ### Ignorar Warnings: 
 Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWarning) que podem ser informativos mas poluem a saída principal.
+
+---
+
+    # --- Upload dos Arquivos ---
+    print("Por favor, faça o upload do arquivo survey limpo (ex: 'survey_cleaned-1.csv'):")
+    uploaded_survey = files.upload()
+    # ... (código de verificação e nome do arquivo) ...
+    print(f"\nArquivo '{survey_filename}' carregado.")
+    
+    print("\n(Opcional) Por favor, faça o upload do arquivo de microdados...")
+    uploaded_microdados = files.upload()
+    # ... (código de verificação e nome do arquivo) ...
+
+## Explicação (Upload):
+
+### Solicitação de Upload: 
+- Usa files.upload() do google.colab para criar um widget interativo que permite ao usuário carregar os arquivos CSV necessários diretamente no ambiente Colab.
+
+### Verificação: 
+- O código verifica se um arquivo foi realmente carregado antes de prosseguir.
+

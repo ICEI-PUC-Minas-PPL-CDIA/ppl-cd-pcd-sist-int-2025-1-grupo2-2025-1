@@ -416,3 +416,42 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
 
 ### Executar a Busca (grid_search.fit): 
 - Treina o LightGBM com cada combinação de parâmetros do grid, usando validação cruzada (CV) no conjunto de treinamento escalado (X_train_scaled_df, y_train). Esta etapa pode ser demorada.
+
+---
+
+    # --- Etapa 6: Avaliação do Modelo Otimizado ---
+    print("\n--- Avaliação do Modelo Otimizado ---")
+    
+    print("Melhores parâmetros:", grid_search.best_params_)
+    best_lgbm = grid_search.best_estimator_ # Pega o modelo treinado com os melhores params
+    y_pred = best_lgbm.predict(X_test_scaled_df) # Prediz no teste escalado
+    
+    # Calcular Métricas
+    mae = mean_absolute_error(y_test, y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    r2 = r2_score(y_test, y_pred)
+    
+    # Imprimir Métricas
+    print(f"\nDesempenho no Teste:")
+    print(f"MAE: R$ {mae:,.2f}")
+    print(f"RMSE: R$ {rmse:,.2f}")
+    print(f"R²: {r2:.4f} ({r2*100:.2f}%)")
+## Explicação (Evaluate):
+
+### Melhor Modelo:
+- grid_search.best_params_: Acessa e imprime o dicionário com a combinação de hiperparâmetros que resultou no melhor score R² durante a validação cruzada.
+- grid_search.best_estimator_: Acessa o modelo LightGBM que já foi re-treinado automaticamente pelo GridSearchCV usando os melhores parâmetros encontrados e todo o conjunto de treino.
+
+### Predição no Teste: 
+- Usa o melhor modelo (best_lgbm) para fazer previsões (.predict()) no conjunto de teste escalado (X_test_scaled_df), que o modelo nunca viu antes.
+
+### Cálculo das Métricas: 
+- Compara as previsões (y_pred) com os valores reais do conjunto de teste (y_test) usando as funções de métrica do sklearn.metrics:
+- mean_absolute_error: Calcula o MAE.
+- mean_squared_error: Calcula o MSE.
+- np.sqrt(mse): Calcula o RMSE a partir do MSE.
+- r2_score: Calcula o R².
+
+### Apresentação: 
+- Imprime as métricas calculadas de forma formatada, permitindo avaliar o desempenho final do modelo otimizado em dados não vistos.

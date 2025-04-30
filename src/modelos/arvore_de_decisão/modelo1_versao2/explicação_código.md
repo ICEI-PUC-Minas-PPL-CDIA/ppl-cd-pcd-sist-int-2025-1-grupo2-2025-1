@@ -45,7 +45,7 @@
     # Ignorar warnings específicos que podem poluir a saída
     warnings.filterwarnings("ignore", category=UserWarning, module='shap')
     warnings.filterwarnings("ignore", category=FutureWarning)
-## Explicação (Etapa 1 - Setup):
+## 🖥️ Explicação (Etapa 1 - Setup):
 ### Importações Principais: **Importa as bibliotecas essenciais:**
   - pandas e numpy: **Para manipulação de dados (DataFrames, arrays).**
   - re: **Para expressões regulares (usadas na limpeza).**
@@ -80,7 +80,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
     uploaded_microdados = files.upload()
     # ... (código de verificação e nome do arquivo) ...
 
-## Explicação (Upload):
+## 📤 Explicação (Upload):
 
 ### Solicitação de Upload: 
 - Usa files.upload() do google.colab para criar um widget interativo que permite ao usuário carregar os arquivos CSV necessários diretamente no ambiente Colab.
@@ -101,7 +101,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
     
     # ... (código similar para df_microdados, se carregado) ...
 
-## Explicação (Load):
+## ↻ Explicação (Load):
 
 ### Leitura do CSV: 
 - Utiliza pd.read_csv() para carregar o arquivo CSV (uploaded_survey) em um DataFrame do pandas chamado df.
@@ -139,7 +139,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
     print("\nNomes das colunas do Survey (APÓS LIMPEZA REFINADA):")
     # print(df.columns.tolist())
 
-## Explicação (Clean - Nomes de Colunas):
+## 🧹 Explicação (Clean - Nomes de Colunas):
 
 ### Objetivo: 
 - Padronizar os nomes das colunas para facilitar o acesso e evitar erros.
@@ -187,7 +187,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
     df_model = df[valid_feature_columns_final + [target_column_clean_final]].copy()
     print(f"Shape inicial df_model: {df_model.shape}")
 
-## Explicação (Select):
+## 🔎 Explicação (Select):
 
 ### Definição: 
 - Define explicitamente o nome esperado da coluna alvo (target_column_clean_final) e uma lista com os nomes limpos esperados das colunas que serão usadas como features (feature_columns_expected_clean).
@@ -211,7 +211,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
     df_model.dropna(subset=['salarymidpoint'], inplace=True)
     # ... (prints informativos) ...
 
-## Explicação (Preprocess - Target):
+## ⏳ Explicação (Preprocess - Target):
 
 ### Objetivo: Converter a coluna alvo (faixa salarial, que é texto) em um valor numérico para que o modelo de regressão possa prevê-la.
 
@@ -248,7 +248,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
         else: # Se era string ou falhou conversão numérica
             df_model[col] = df_model[col].astype(str).fillna('Desconhecido') # Categóricas NaN -> 'Desconhecido'
             categorical_cols_pre_encoding.append(col)
-## Explicação (Preprocess - Nulls):
+## 🛠️ Explicação (Preprocess - Nulls):
 
 ### Objetivo: Lidar com valores ausentes (NaN) nas colunas de features, pois a maioria dos modelos não os aceita.
 
@@ -299,7 +299,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
     features_final = [ ... ]
     print(f"Número final de features: {len(features_final)}")
 
-## Explicação (Preprocess - Encoding - Correção Principal):
+## 🔄 Explicação (Preprocess - Encoding - Correção Principal):
 
 ### Objetivo: 
 - Converter as colunas categóricas (texto) em números para que o LightGBM possa processá-las, respeitando a natureza de cada variável (ordinal vs. nominal).
@@ -348,7 +348,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
     # Converter de volta para DataFrame para manter nomes das colunas
     X_train_scaled_df = pd.DataFrame(X_train_scaled, columns=X_train.columns, index=X_train.index)
     X_test_scaled_df = pd.DataFrame(X_test_scaled, columns=X_test.columns, index=X_test.index)
-## Explicação (Split & Scale):
+## 📈 Explicação (Split & Scale):
 
 ### Definir X e y: Separa o DataFrame df_model em:
 - X: DataFrame contendo apenas as colunas de features (preditoras).
@@ -390,7 +390,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
     print("Iniciando GridSearchCV...")
     grid_search.fit(X_train_scaled_df, y_train) # Treinar com dados escalados
     print("GridSearchCV concluído.")
-## Explicação (Train - Otimização):
+## 🚀 Explicação (Train - Otimização):
 
 ### Instanciar Modelo Base: 
 - Cria uma instância do lgb.LGBMRegressor com configurações iniciais:
@@ -437,7 +437,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
     print(f"MAE: R$ {mae:,.2f}")
     print(f"RMSE: R$ {rmse:,.2f}")
     print(f"R²: {r2:.4f} ({r2*100:.2f}%)")
-## Explicação (Evaluate):
+## 🎯 Explicação (Evaluate):
 
 ### Melhor Modelo:
 - grid_search.best_params_: Acessa e imprime o dicionário com a combinação de hiperparâmetros que resultou no melhor score R² durante a validação cruzada.
@@ -471,7 +471,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
     except Exception as e:
         print(f"Erro plot feature importance: {e}")
 
-## Explicação (Interpret - Feature Importance):
+## 📌 Explicação (Interpret - Feature Importance):
 
 ### Objetivo: 
 - Identificar quais features tiveram maior impacto geral nas previsões do modelo LightGBM treinado.
@@ -494,7 +494,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
         # ... (código para exibir imagem no Colab) ...
     except Exception as e:
         print(f"Erro visualização árvore: {e}.")
-## Explicação (Interpret - Tree Visualization):
+## 🌳 Explicação (Interpret - Tree Visualization):
 
 ### Objetivo: 
 - Entender a lógica de decisão de uma das árvores individuais que compõem o modelo LightGBM (que é um ensemble).
@@ -545,7 +545,7 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
         # ... (traceback para debug) ...
     
     print("\n--- Fim da Análise ---")
-## Explicação (Interpret - SHAP):
+## 📊 Explicação (Interpret - SHAP):
 
 ### Objetivo: 
 - Entender o impacto de cada feature nas previsões do modelo de forma mais detalhada e individualizada, incluindo interações. SHAP (SHapley Additive exPlanations) é uma técnica baseada em teoria dos jogos para explicar saídas de modelos complexos.

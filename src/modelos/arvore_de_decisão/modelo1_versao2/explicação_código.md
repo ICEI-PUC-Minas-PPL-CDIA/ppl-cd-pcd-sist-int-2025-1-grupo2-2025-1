@@ -368,3 +368,51 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
 
 ### Reconversão para DataFrame: 
 - Os dados escalados são convertidos de volta para DataFrames (X_train_scaled_df, X_test_scaled_df) para preservar os nomes das colunas, que são importantes para a interpretação posterior com SHAP.
+
+---
+
+    # --- Etapa 5: Treinamento e Otimização do Modelo LightGBM ---
+    print("\n--- Treinamento e Otimização com GridSearchCV ---")
+    
+    lgbm = lgb.LGBMRegressor(objective='regression_l1', metric='mae', random_state=42, n_jobs=-1)
+    
+    param_grid = { # Define combinações de hiperparâmetros a testar
+        'n_estimators': [200, 400],
+        'learning_rate': [0.05, 0.1],
+        'num_leaves': [31, 50],
+        'max_depth': [-1, 10],
+        'min_child_samples': [20, 30],
+    }
+    
+    grid_search = GridSearchCV(estimator=lgbm, param_grid=param_grid,
+                               cv=3, scoring='r2', verbose=2, n_jobs=-1)
+    
+    print("Iniciando GridSearchCV...")
+    grid_search.fit(X_train_scaled_df, y_train) # Treinar com dados escalados
+    print("GridSearchCV concluído.")
+## Explicação (Train - Otimização):
+
+### Instanciar Modelo Base: 
+- Cria uma instância do lgb.LGBMRegressor com configurações iniciais:
+- objective='regression_l1': Define o objetivo como regressão, usando o Erro Absoluto Médio (L1 loss) como função de perda a ser minimizada durante o treino.
+- metric='mae': Usa MAE também como métrica de avaliação interna durante o treino (embora o GridSearchCV use R²).
+- random_state=42: Para reprodutibilidade interna do algoritmo.
+- n_jobs=-1: Usa todos os processadores disponíveis para acelerar.
+
+### Definir Grid de Parâmetros (param_grid): 
+- Cria um dicionário onde as chaves são nomes de hiperparâmetros do LightGBM e os valores são listas de opções a serem testadas. Isso define o espaço de busca para a otimização.
+- n_estimators: Número de árvores no ensemble.
+- learning_rate: Taxa de aprendizado (quão rápido o modelo aprende/corrige erros).
+- num_leaves, max_depth, min_child_samples: Parâmetros que controlam a complexidade de cada árvore individual para evitar overfitting.
+
+### Configurar GridSearchCV:
+
+- estimator=lgbm: O modelo base a ser otimizado.
+- param_grid=param_grid: O grid de parâmetros a testar.
+- cv=3: Usa validação cruzada de 3 folds (divide o treino em 3 partes, treina em 2 e valida em 1, rotacionando). Isso dá uma estimativa mais robusta do desempenho de cada combinação de parâmetros.
+- scoring='r2': Usa o R² como métrica para decidir qual combinação de parâmetros é a "melhor".
+- verbose=2: Mostra logs detalhados durante a execução.
+- n_jobs=-1: Paraleliza a busca nos folds/combinações.
+
+### Executar a Busca (grid_search.fit): 
+- Treina o LightGBM com cada combinação de parâmetros do grid, usando validação cruzada (CV) no conjunto de treinamento escalado (X_train_scaled_df, y_train). Esta etapa pode ser demorada.

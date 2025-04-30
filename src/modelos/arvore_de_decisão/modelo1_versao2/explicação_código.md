@@ -327,3 +327,44 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
 
 ### Resultado: 
 - Todas as features agora são numéricas (originais numéricas, ordinais codificadas, dummies binárias). A lista features_final é atualizada com os nomes de todas essas colunas. O número final de features (106 neste caso) reflete essa transformação.
+
+---
+
+    # --- Etapa 4: Preparação para o Modelo ---
+    
+    # 4.1 Definir X e y
+    X = df_model[features_final]
+    y = df_model['salarymidpoint']
+    
+    # 4.2 Dividir em treino e teste
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+    
+    # 4.3 Escalonamento das Features
+    print("\nEscalonando features...")
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+    
+    # Converter de volta para DataFrame para manter nomes das colunas
+    X_train_scaled_df = pd.DataFrame(X_train_scaled, columns=X_train.columns, index=X_train.index)
+    X_test_scaled_df = pd.DataFrame(X_test_scaled, columns=X_test.columns, index=X_test.index)
+## Explicação (Split & Scale):
+
+### Definir X e y: Separa o DataFrame df_model em:
+- X: DataFrame contendo apenas as colunas de features (preditoras).
+- y: Series contendo apenas a variável alvo numérica (salarymidpoint).
+
+### Divisão Treino/Teste (train_test_split):
+- Divide X e y em conjuntos de treinamento (X_train, y_train) e teste (X_test, y_test).
+- test_size=0.25: Define que 25% dos dados serão usados para teste, e 75% para treino.
+- random_state=42: Garante que a divisão seja sempre a mesma se o código for executado novamente (reprodutibilidade). Fundamental para comparar modelos.
+
+### Escalonamento (StandardScaler):
+- Objetivo: Transforma os dados para terem média 0 e desvio padrão 1. Embora modelos de árvore como LightGBM não exijam escalonamento, ele geralmente não prejudica e pode às vezes ajudar na convergência ou interpretação (especialmente com SHAP).
+- Aplicação:
+    - Cria uma instância do StandardScaler.
+    - scaler.fit_transform(X_train): Aprende a média e o desvio padrão apenas do conjunto de treino e aplica a transformação a ele.
+    - scaler.transform(X_test): Aplica a mesma transformação (aprendida no treino) ao conjunto de teste. É crucial não usar fit no teste para evitar data leakage.
+
+### Reconversão para DataFrame: 
+- Os dados escalados são convertidos de volta para DataFrames (X_train_scaled_df, X_test_scaled_df) para preservar os nomes das colunas, que são importantes para a interpretação posterior com SHAP.

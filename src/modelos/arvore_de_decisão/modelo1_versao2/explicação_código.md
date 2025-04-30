@@ -197,3 +197,34 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
 
 ### Criação do df_model: 
 - Cria um novo DataFrame (df_model) contendo apenas a coluna alvo e as features válidas encontradas. Isso foca a análise subsequente apenas nos dados relevantes. .copy() evita warnings sobre modificar o DataFrame original.
+
+---
+
+    # --- Etapa 3: Pré-processamento e Engenharia de Variáveis (CORRIGIDA) ---
+    
+    # 3.1 Tratar Salário (Variável Alvo)
+    def get_salary_midpoint(salary_range):
+        # ... (lógica para converter faixa ex: 'de R$ 4.001 a R$ 6.000' para 5000.5) ...
+        return midpoint_value # ou np.nan se não conseguir converter
+    
+    df_model['salarymidpoint'] = df_model[target_column_clean_final].apply(get_salary_midpoint)
+    df_model.dropna(subset=['salarymidpoint'], inplace=True)
+    # ... (prints informativos) ...
+
+## Explicação (Preprocess - Target):
+
+### Objetivo: Converter a coluna alvo (faixa salarial, que é texto) em um valor numérico para que o modelo de regressão possa prevê-la.
+
+### Função get_salary_midpoint:
+- Recebe uma string de faixa salarial.
+- Limpa a string (remove 'R$', '.', ajusta separadores).
+- Trata casos especiais ('menos de 1.000', 'mais de 40.001').
+- Usa expressões regulares (re.findall) para extrair os números limites da faixa.
+- Calcula o ponto médio entre os limites. Considera a indicação 'ms' (mil) se presente.
+- Retorna o valor numérico do ponto médio ou np.nan se a conversão falhar.
+
+### Aplicação: 
+- A função é aplicada (.apply()) à coluna alvo original (target_column_clean_final) para criar a nova coluna numérica salarymidpoint.
+
+### Remoção de NaN: 
+- Linhas onde não foi possível calcular o salarymidpoint são removidas (.dropna()) pois não podem ser usadas para treinar/avaliar o modelo.

@@ -57,3 +57,31 @@ Este foi um processo multi-etapas, pois a coluna de salário continha texto (fai
 ### Conclusão
 
 O arquivo `State_of_data_BR_2023_cleaned_v2.csv` representa uma versão mais focada e robusta do dataset original, pronta para análises mais consistentes. Ele contém um subconjunto específico de colunas, garante a completude dos dados nessas colunas para todas as linhas restantes e removeu respondentes com faixas salariais consideradas estatisticamente extremas.
+
+## 4. Tratando Outliers na Faixa Salarial
+Coluna alvo: '('P2_h ', 'Faixa salarial')'
+Convertendo faixas salariais para valores numéricos (ponto médio)...
+
+### Boxplot do Salário Numérico (Ponto Médio) ANTES da remoção de outliers:
+
+![image](https://github.com/user-attachments/assets/33ae092d-03a4-4e85-89a5-e0d72eb3c7fd)
+
+Detalhes do cálculo do IQR para Salário Numérico:
+  Q1: 5000.50
+  Q3: 10000.50
+  IQR: 5000.00
+  Limite Inferior (Q1 - 1.5*IQR): -2499.50
+  Limite Superior (Q3 + 1.5*IQR): 17500.50
+
+Foram removidas 308 linhas identificadas como outliers salariais.
+Shape após tratamento de outliers salariais: (3323, 40)
+Coluna 'salario_numerico' temporária removida.
+
+### Boxplot do Salário Numérico (Ponto Médio) APÓS a remoção de outliers:
+![image](https://github.com/user-attachments/assets/8925d992-2579-4987-b9bd-827b2cbe873a)
+
+
+## 5. Limpeza de Dados Concluída
+Shape inicial original: (5293, 399)
+Shape final do dataset limpo: (3323, 39)
+Total de linhas removidas: 1970

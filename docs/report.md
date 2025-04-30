@@ -340,7 +340,7 @@ Nome: salary_midpoint, dtype: object
 | P2o8                                             | Maturidade tecnológica                    | Qualitativo  | Nominal (Multivalorado)             | Consideração sobre a maturidade da empresa em termos de tecnologia e dados                    | Média      |
 | P2o9                                             | Qualidade dos gestores                    | Qualitativo  | Nominal (Multivalorado)             | Importância atribuída à qualidade dos gestores e líderes                                      | Média      |
 | P2o10                                            | Reputação da empresa                      |  Qualitativo | Nominal (Multivalorado)             | Valorização da reputação que a empresa tem no mercado                                         | Média      |
-
+| P0                                              | id                 | Qualitativo  | Nominal                             | Para identificação da resposta                                    | Alta       |
 ---
 
 ### Atributos relevantes da base de dados principal para 2ª pergunta orientada

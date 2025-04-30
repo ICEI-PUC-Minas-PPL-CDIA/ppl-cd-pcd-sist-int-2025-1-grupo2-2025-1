@@ -455,3 +455,119 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
 
 ### Apresentação: 
 - Imprime as métricas calculadas de forma formatada, permitindo avaliar o desempenho final do modelo otimizado em dados não vistos.
+
+---
+
+    # --- Etapa 7: Interpretação e Visualização (COM PLOTS SHAP CORRIGIDOS) ---
+    
+    # 7.1 Importância Geral das Features (Gain)
+    try:
+        # ... (código para obter feature_importances_ do best_lgbm) ...
+        importance_df = pd.DataFrame(...)
+        importance_df = importance_df[importance_df['importance'] > 0] # Filtra
+        importance_df = importance_df.sort_values(...).head(30) # Pega Top 30
+        # ... (código seaborn.barplot para plotar) ...
+        plt.show()
+    except Exception as e:
+        print(f"Erro plot feature importance: {e}")
+
+## Explicação (Interpret - Feature Importance):
+
+### Objetivo: 
+- Identificar quais features tiveram maior impacto geral nas previsões do modelo LightGBM treinado.
+
+### Acesso à Importância: 
+- best_lgbm.feature_importances_ retorna um array com a importância de cada feature, geralmente calculada por "gain" (redução total de erro que a feature proporcionou nos splits) ou "split" (número de vezes que a feature foi usada para dividir).
+
+### Processamento: 
+- O código cria um DataFrame para associar os nomes das features às suas importâncias, filtra aquelas com importância zero, ordena da mais para a menos importante e seleciona as Top 30.
+
+### Visualização: 
+- Usa seaborn.barplot para criar um gráfico de barras horizontais mostrando as features mais importantes e seu respectivo valor de "Gain".
+
+---
+
+    # 7.2 Visualização de Árvore Individual
+    try:
+        graph = lgb.create_tree_digraph(best_lgbm, tree_index=0, ...) # Cria objeto graphviz
+        graph.render(filename='...', format='png', view=False) # Salva imagem
+        # ... (código para exibir imagem no Colab) ...
+    except Exception as e:
+        print(f"Erro visualização árvore: {e}.")
+## Explicação (Interpret - Tree Visualization):
+
+### Objetivo: 
+- Entender a lógica de decisão de uma das árvores individuais que compõem o modelo LightGBM (que é um ensemble).
+
+- lgb.create_tree_digraph: Função do LightGBM que usa a biblioteca graphviz para gerar uma representação visual da estrutura de uma árvore específica (aqui, tree_index=0, a primeira árvore). Mostra os nós de decisão (condições), os ramos (verdadeiro/falso) e as folhas (previsões).
+
+### Renderização:
+- .render() salva a visualização como um arquivo de imagem (PNG).
+
+### Exibição: 
+- IPython.display.Image é usado para tentar mostrar a imagem diretamente na saída do notebook Colab.
+
+---
+
+    # --- 7.3 Interpretação SHAP (COM CORREÇÃO NOS NOMES) ---
+    try:
+        explainer = shap.TreeExplainer(best_lgbm) # Cria explicador para modelos de árvore
+        shap_values = explainer.shap_values(X_test) # Calcula SHAP values no teste NÃO escalado
+    
+        # Plotar Resumo SHAP (dot)
+        shap.summary_plot(shap_values, X_test, plot_type="dot", ...)
+        plt.show()
+    
+        # Plotar Resumo SHAP (bar)
+        shap.summary_plot(shap_values, X_test, plot_type="bar", ...)
+        plt.show()
+    
+        # Plotar SHAP Dependence Plots (Usando nomes limpos CORRETOS)
+        # ... (função auxiliar get_ordinal_ticks_and_labels) ...
+    
+        # Exemplo 1: Experiência vs Salário (colorido por Nível de Ensino)
+        shap.dependence_plot(exp_col_clean, shap_values, X_test, interaction_index=edu_col_clean, ...)
+        # ... (código para adicionar ticks legíveis) ...
+        plt.show()
+    
+        # Exemplo 2: Nível (Senioridade) vs Salário (colorido por Experiência)
+        shap.dependence_plot(nivel_col_clean, shap_values, X_test, interaction_index=exp_col_clean, ...)
+        # ... (código para adicionar ticks legíveis) ...
+        plt.show()
+    
+        # Exemplo 3: Uso de Python vs Salário (colorido por Experiência)
+        shap.dependence_plot(python_col_clean, shap_values, X_test, interaction_index=exp_col_clean, ...)
+        # ... (código para adicionar ticks legíveis) ...
+        plt.show()
+    
+    except Exception as e:
+        print(f"\nErro inesperado SHAP: {e}")
+        # ... (traceback para debug) ...
+    
+    print("\n--- Fim da Análise ---")
+## Explicação (Interpret - SHAP):
+
+### Objetivo: 
+- Entender o impacto de cada feature nas previsões do modelo de forma mais detalhada e individualizada, incluindo interações. SHAP (SHapley Additive exPlanations) é uma técnica baseada em teoria dos jogos para explicar saídas de modelos complexos.
+- shap.TreeExplainer: Cria um objeto "explicador" otimizado para modelos baseados em árvore como o LightGBM.
+- explainer.shap_values(X_test): Calcula os valores SHAP para cada feature e cada instância no conjunto de teste (X_test - importante usar os dados NÃO escalados aqui para que os plots mostrem os valores originais das features). O resultado é geralmente um array onde cada linha corresponde a uma instância e cada coluna a uma feature.
+- shap.summary_plot (dot): Cria o "beeswarm plot". Cada ponto é uma instância/feature.
+    - Eixo X: Valor SHAP (impacto na previsão).
+    - Posição Vertical: Separa as features.
+    - Cor: Valor original da feature (alto/baixo). Mostra se valores altos da feature aumentam (pontos vermelhos à direita) ou diminuem (pontos azuis à direita) a previsão.
+    
+- shap.summary_plot (bar): Mostra a importância média absoluta de cada feature (média dos valores SHAP absolutos), fornecendo uma visão geral similar ao Feature Importance do LightGBM, mas considerada mais robusta.
+- shap.dependence_plot: Gráfico crucial para interações.
+    - Eixo X: Valor de uma feature principal.
+    - Eixo Y: Valor SHAP dessa feature principal (seu impacto na previsão).
+    - Cor dos Pontos: Valor de uma segunda feature (de interação).
+    ### Interpretação:
+    - Mostra como o impacto da feature principal (Y) muda com seu próprio valor (X) e como essa relação é influenciada pela feature de interação (cor).
+    ###    Correção Aplicada:
+    - O código usa os nomes limpos e corretos das colunas (exp_col_clean, edu_col_clean, etc.) que existem em X_test. Inclui uma função auxiliar (get_ordinal_ticks_and_labels) para tentar colocar os nomes originais das categorias (ex: 'Júnior', 'Pleno') nos eixos dos plots ordinais, tornando-os mais legíveis.
+
+### Tratamento de Erros: 
+- O bloco try-except captura possíveis erros durante o cálculo ou plotagem SHAP.
+
+### print("\n--- Fim da Análise ---"): 
+- Simplesmente indica que o script chegou ao final.

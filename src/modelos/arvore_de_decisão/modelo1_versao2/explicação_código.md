@@ -166,3 +166,34 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
 
 ### Aplicação: 
 - A função é chamada para limpar os nomes das colunas do DataFrame df.
+
+---
+
+    # --- Etapa 2: Definição da Variável Alvo e Seleção de Features ---
+    
+    target_column_clean_final = 'faixa_salarial' # Nome esperado após limpeza
+    
+    feature_columns_expected_clean = [ # Lista de nomes limpos esperados
+        'nivel_de_ensino', 'area_de_formacao',
+        'quanto_tempo_de_experiencia_na_area_de_dados_voce_tem', 'nivel',
+        'sql', 'r', 'python', # ... etc ...
+    ]
+    
+    # Verificação e Seleção
+    # ... (código para verificar se target e features existem em df.columns) ...
+    valid_feature_columns_final = [col for col in feature_columns_expected_clean if col in df.columns]
+    # ... (Aviso se features esperadas não foram encontradas) ...
+    
+    df_model = df[valid_feature_columns_final + [target_column_clean_final]].copy()
+    print(f"Shape inicial df_model: {df_model.shape}")
+
+## Explicação (Select):
+
+### Definição: 
+- Define explicitamente o nome esperado da coluna alvo (target_column_clean_final) e uma lista com os nomes limpos esperados das colunas que serão usadas como features (feature_columns_expected_clean).
+
+### Validação: 
+- O código verifica se a coluna alvo e as features listadas realmente existem no DataFrame df (após a limpeza). Isso é importante para capturar erros de digitação ou problemas na etapa de limpeza. Avisa se alguma feature esperada não foi encontrada.
+
+### Criação do df_model: 
+- Cria um novo DataFrame (df_model) contendo apenas a coluna alvo e as features válidas encontradas. Isso foca a análise subsequente apenas nos dados relevantes. .copy() evita warnings sobre modificar o DataFrame original.

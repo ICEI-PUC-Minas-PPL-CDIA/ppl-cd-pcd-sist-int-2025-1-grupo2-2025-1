@@ -88,3 +88,81 @@ Configura para não exibir certos tipos de avisos (UserWarning do shap, FutureWa
 ### Verificação: 
 - O código verifica se um arquivo foi realmente carregado antes de prosseguir.
 
+---
+
+    # --- Carregamento dos Dados ---
+    try:
+        # ... (lógica complexa para tentar ler CSV com diferentes separadores e formatos de cabeçalho) ...
+        df = pd.read_csv(...) # ou df = pd.read_csv(..., sep=';', ...)
+        print(f"\nDataset Survey carregado. Shape: {df.shape}")
+    except Exception as e:
+        print(f"Erro CRÍTICO ao carregar Survey: {e}")
+        raise
+    
+    # ... (código similar para df_microdados, se carregado) ...
+
+## Explicação (Load):
+
+### Leitura do CSV: 
+- Utiliza pd.read_csv() para carregar o arquivo CSV (uploaded_survey) em um DataFrame do pandas chamado df.
+
+### Tratamento Flexível: 
+- O bloco try-except tenta lidar com diferentes cenários:
+
+- Verifica se o cabeçalho parece uma "tupla" (como ('P1_l ', 'Nivel de Ensino')) ou uma string normal.
+
+- Tenta usar , como separador e, se falhar ou resultar em poucas colunas, tenta usar ;.
+
+- Usa encoding='utf-8' para compatibilidade com caracteres diversos.
+
+### Informação: 
+- Imprime o formato (shape) do DataFrame carregado.
+
+---
+
+    # --- Função de Limpeza REFINADA ---
+    def clean_col_names_refined(df_to_clean):
+        # ... (lógica para extrair nome de tupla-like ou string) ...
+        # Limpeza Refinada:
+        clean_name = col_str.lower() # Lowercase primeiro
+        clean_name = unidecode(clean_name) # Remove acentos
+        clean_name = re.sub(r'[?()/,.:#\-\[\]\'"]+', '', clean_name) # Remove pontuação
+        clean_name = clean_name.replace(' ', '_') # Espaços -> underscore
+        clean_name = re.sub(r'[^a-z0-9_]+', '_', clean_name) # Remove outros caracteres especiais
+        clean_name = re.sub(r'_+', '_', clean_name) # Consolida underscores
+        clean_name = clean_name.strip('_') # Remove do início/fim
+        # ... (lógica para garantir nome único e renomear colunas) ...
+        return df_cleaned
+    
+    # Aplicar limpeza
+    df = clean_col_names_refined(df)
+    print("\nNomes das colunas do Survey (APÓS LIMPEZA REFINADA):")
+    # print(df.columns.tolist())
+
+## Explicação (Clean - Nomes de Colunas):
+
+### Objetivo: 
+- Padronizar os nomes das colunas para facilitar o acesso e evitar erros.
+
+###  Função clean_col_names_refined:
+
+- Itera sobre cada nome de coluna original.
+
+- Tenta extrair um nome significativo caso o original seja uma string representando uma tupla (ex: ('P1_l ', 'Nivel de Ensino') -> nivel_de_ensino).
+
+- Aplica uma série de transformações:
+
+    - lower(): **Converte para minúsculas.**
+
+    - unidecode(): **Remove acentos (ex: experiência -> experiencia).**
+
+    - re.sub(): **Usa expressões regulares para remover pontuações e caracteres especiais, substituindo-os por _ ou removendo-os.**
+
+    - replace(' ', '_'): **Substitui espaços por underscores.**
+
+    - **strip('_'): Remove underscores no início ou fim.**
+
+    - **Garante que nomes não fiquem vazios e adiciona sufixos numéricos (_1, _2) se a limpeza gerar nomes duplicados.**
+
+### Aplicação: 
+- A função é chamada para limpar os nomes das colunas do DataFrame df.

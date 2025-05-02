@@ -1,19 +1,17 @@
-Limpeza de Dados da Base Auxiliar
 
-Para a base auxiliar (Pesquisa Salarial da Revelo), os seguintes passos de limpeza foram
-necessários:
+🧹 Limpeza de Dados - Profissionais de Dados e Tecnologia (2023)
+Código da Análise
 
-1. Filtragem de registros: Seleção apenas de profissionais do setor de dados (cientistas,
-analistas e engenheiros).
-2. Padronização terminológica: Alinhamento das nomenclaturas de cargos e níveis com a
-base principal.
-3. Tratamento de valores salariais: Conversão para o mesmo formato da base principal
-(valores numéricos).
-4. Normalização de variáveis de experiência: Criação de faixas comparáveis às da base
-principal.
-5. Remoção de inconsistências: Eliminação de registros incompletos ou com valores inválidos.
-6. Tratamento de outliers: Aplicação de método IQR similar ao da base principal.
-7. Padronização estrutural: Reorganização das colunas para facilitar a comparação entre
-bases.
+📄 Objetivo
+Preparar os dados da pesquisa "State of Data BR 2023" para analisar:
 
+Relação entre formação acadêmica, senioridade e faixas salariais
 
+Distribuição geográfica (UF) dos salários
+
+Impacto de habilidades técnicas (SQL/Python) na remuneração
+
+🔍 Etapas da Limpeza de Dados
+1. Importação e Leitura do Arquivo
+python
+df = pd.read_csv('dados_limpos.csv', encoding='utf-8')

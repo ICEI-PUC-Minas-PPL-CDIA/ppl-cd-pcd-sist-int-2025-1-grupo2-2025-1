@@ -20,7 +20,10 @@ O arquivo foi lido utilizando `pandas.read_csv` com os parâmetros adequados:
 
 - `encoding='utf-8'` para interpretar corretamente os caracteres especiais.
 
+```python
 df = pd.read_csv('dados_limpos.csv', encoding='utf-8')
+```
+
 
 
 ---
@@ -62,7 +65,7 @@ mapeamento_senioridade = {
 'Pleno': 'Pleno',
 'Sênior': 'Senior'
 }
-df['Senioridade'] = df['Senioridade'].map(mapeamento_senioridade)
+```df['Senioridade'] = df['Senioridade'].map(mapeamento_senioridade)```
 
 
 #### b) Faixa Salarial para Valor Numérico
@@ -73,7 +76,7 @@ def extrair_media_salarial(faixa):
 # Implementação personalizada para converter texto em número
 # Exemplo: 'de R$ 8.001/mês a R$ 12.000/mês' -> (8001 + 12000)/2
 ...
-df['Salario_Medio'] = df['Faixa_Salarial'].apply(extrair_media_salarial)
+```df['Salario_Medio'] = df['Faixa_Salarial'].apply(extrair_media_salarial)```
 
 
 ---
@@ -88,7 +91,7 @@ df['Salario_Medio'] = df['Faixa_Salarial'].apply(extrair_media_salarial)
 ### 6. Criação de Variáveis Derivadas
 
 #### a) Habilidades Técnicas Combinadas
-df['Habilidades_Tecnicas'] = df['SQL'] + df['Python']
+```df['Habilidades_Tecnicas'] = df['SQL'] + df['Python']```
 
 0 (Nenhuma), 1 (SQL ou Python), 2 (Ambas)
 
@@ -96,16 +99,16 @@ df['Habilidades_Tecnicas'] = df['SQL'] + df['Python']
 #### b) Agrupamento de Áreas de Formação
 
 Agrupamento de áreas similares:
-df['Area_Agrupada'] = df['Area_Formacao'].replace({
+```df['Area_Agrupada'] = df['Area_Formacao'].replace({
 'Computação / Engenharia de Software / Sistemas de Informação/ TI': 'TI/Computação',
 'Estatística/ Matemática / Matemática Computacional/ Ciências Atuariais': 'Matemática/Estatística'
 })
-
+```
 
 ---
 
 ### 7. Exportação dos Dados Limpos
-df.to_csv('dados_profissionais_limpos.csv', index=False, encoding='utf-8')
+```df.to_csv('dados_profissionais_limpos.csv', index=False, encoding='utf-8')```
 
 
 ---

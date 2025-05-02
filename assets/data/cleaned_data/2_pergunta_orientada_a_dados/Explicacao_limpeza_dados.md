@@ -93,4 +93,37 @@ df['Habilidades_Tecnicas'] = df['SQL'] + df['Python']
 0 (Nenhuma), 1 (SQL ou Python), 2 (Ambas)
 
 
+#### b) Agrupamento de Áreas de Formação
+
+Agrupamento de áreas similares:
+df['Area_Agrupada'] = df['Area_Formacao'].replace({
+'Computação / Engenharia de Software / Sistemas de Informação/ TI': 'TI/Computação',
+'Estatística/ Matemática / Matemática Computacional/ Ciências Atuariais': 'Matemática/Estatística'
+})
+
+
+---
+
+### 7. Exportação dos Dados Limpos
+df.to_csv('dados_profissionais_limpos.csv', index=False, encoding='utf-8')
+
+
+---
+
+## ✅ Resultado Final
+
+Um dataset pronto para análises variadas, como:
+
+- Salário médio por UF e formação
+- Correlação entre habilidades técnicas (SQL/Python) e salário
+- Progressão salarial por tempo de experiência e senioridade
+- Comparativo de áreas de formação com maior remuneração
+
+> *Exemplo de análise respondível:*  
+> "Profissionais de TI com doutorado no estado de SP que usam Python e SQL têm salários acima da média da categoria?"
+
+---
+
+
+
 

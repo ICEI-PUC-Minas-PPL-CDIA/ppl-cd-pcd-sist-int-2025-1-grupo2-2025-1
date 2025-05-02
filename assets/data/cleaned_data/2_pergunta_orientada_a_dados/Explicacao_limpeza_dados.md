@@ -65,3 +65,32 @@ mapeamento_senioridade = {
 df['Senioridade'] = df['Senioridade'].map(mapeamento_senioridade)
 
 
+#### b) Faixa Salarial para Valor Numérico
+
+Conversão das faixas salariais para um valor médio representativo:
+
+def extrair_media_salarial(faixa):
+# Implementação personalizada para converter texto em número
+# Exemplo: 'de R$ 8.001/mês a R$ 12.000/mês' -> (8001 + 12000)/2
+...
+df['Salario_Medio'] = df['Faixa_Salarial'].apply(extrair_media_salarial)
+
+
+---
+
+### 5. Filtragem de Dados Irrelevantes
+
+- Registros com `Formacao = 'Prefiro não informar'` ou `Senioridade = 'Não se aplica'` foram removidos.
+- Apenas profissionais com `Salario_Medio > 0` foram mantidos.
+
+---
+
+### 6. Criação de Variáveis Derivadas
+
+#### a) Habilidades Técnicas Combinadas
+df['Habilidades_Tecnicas'] = df['SQL'] + df['Python']
+
+0 (Nenhuma), 1 (SQL ou Python), 2 (Ambas)
+
+
+

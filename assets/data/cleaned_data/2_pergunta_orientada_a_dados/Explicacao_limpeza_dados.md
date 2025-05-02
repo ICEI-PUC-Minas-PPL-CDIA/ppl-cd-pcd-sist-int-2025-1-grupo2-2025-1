@@ -1,4 +1,4 @@
-🧹 **Limpeza de Dados - Profissionais de Dados e Tecnologia (2023)**
+## 🧹 **Limpeza de Dados - Profissionais de Dados e Tecnologia (2023)**
 
 ---
 
@@ -19,4 +19,32 @@ Preparar os dados da pesquisa **State of Data BR 2023** para analisar:
 O arquivo foi lido utilizando `pandas.read_csv` com os parâmetros adequados:
 
 - `encoding='utf-8'` para interpretar corretamente os caracteres especiais.
+
+df = pd.read_csv('dados_limpos.csv', encoding='utf-8')
+
+
+---
+
+### 2. Seleção e Renomeação de Colunas
+
+Foram selecionadas apenas as colunas relevantes para a análise salarial e de perfil profissional.  
+Além disso, as colunas foram renomeadas para facilitar o entendimento:
+
+| Coluna Original      | Novo Nome               | Descrição                                      |
+|----------------------|-------------------------|------------------------------------------------|
+| Nivel_Ensino         | Formacao                | Grau de escolaridade                           |
+| Area_Formacao        | Area_Formacao           | Área de formação acadêmica                     |
+| Tempo_Experiencia    | Experiencia             | Tempo de experiência no mercado                |
+| Nivel_Senioridade    | Senioridade             | Nível hierárquico (Júnior, Pleno, Sênior)      |
+| Faixa_Salarial       | Faixa_Salarial          | Intervalo salarial em R$                       |
+| UF                   | UF                      | Estado de atuação                              |
+| SQL                  | SQL                     | Uso de SQL (0=Não, 1=Sim)                      |
+| Python               | Python                  | Uso de Python (0=Não, 1=Sim)                   |
+| Salario_Medio        | Salario_Medio           | Média salarial numérica                        |
+
+---
+
+### 3. Tratamento de Valores Ausentes
+
+- Remoção de linhas com UF ausente:
 

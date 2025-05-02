@@ -114,5 +114,50 @@ profissionais relevantes
         """Mapeia códigos para valores legíveis em campos categóricos."""
         if df is None or df.empty:
             return df
+
+  # Mapear gênero
+        if 'genero_cod' in df.columns:
+            df['genero'] = df['genero_cod'].map(self.gender_mapping).fillna('Nao Mapeado')
+            
+        # Mapear raça/cor
+        if 'raca_cod' in df.columns:
+            df['raca'] = df['raca_cod'].map(self.race_mapping).fillna('Nao Mapeado')
+            
+        # Ajustar UF
+        if 'uf_cod' in df.columns:
+            df['uf'] = df['uf_cod'].astype(str).str.strip()
+            
+        return df
+        
+    def drop_redundant_columns(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Remove colunas redundantes após o mapeamento."""
+        if df is None or df.empty:
+            return df
+            
+        cols_to_drop = ['genero_cod', 'raca_cod', 'uf_cod']
+        present_cols = [col for col in cols_to_drop if col in df.columns]
+        
+        if present_cols:
+            df.drop(columns=present_cols, inplace=True, errors='ignore')
+            
+        return df
+    
+    def process_file(self, file_path: str) -> Optional[pd.DataFrame]:
+        """Processa um arquivo completo aplicando todas as transformações."""
+        try:
+            # Etapa 1: Leitura do arquivo
+            df = self.read_file(file_path)
+            
+            # Etapa 2: Filtrar por CBO
+            df = self.filter_by_cbo(df)
+            
+            # Etapa 3: Limpar dados de salário
+            df = self.clean_salary_data(df)
+            
+            # Etapa 4: Mapear campos categóricos
+            df = self.map_categorical_fields(df)
+            
+            # Etapa 5: Remover colunas redundantes
+            df = self.drop_redundant_columns(df)
         
        

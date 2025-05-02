@@ -47,4 +47,21 @@ Além disso, as colunas foram renomeadas para facilitar o entendimento:
 ### 3. Tratamento de Valores Ausentes
 
 - Remoção de linhas com UF ausente:
+- Preenchimento da coluna `Salario_Medio` usando a média dos valores da faixa salarial textual (exemplo: 'R$ 8.001-12.000' → 10000.5).
+
+---
+
+### 4. Normalização de Categorias
+
+#### a) Senioridade
+
+Padronização dos níveis de senioridade:
+
+mapeamento_senioridade = {
+'Júnior': 'Junior',
+'Pleno': 'Pleno',
+'Sênior': 'Senior'
+}
+df['Senioridade'] = df['Senioridade'].map(mapeamento_senioridade)
+
 

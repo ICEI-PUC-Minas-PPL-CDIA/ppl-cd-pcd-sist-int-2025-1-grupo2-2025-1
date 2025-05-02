@@ -447,6 +447,8 @@ profissionais de tecnologia?*
 
 ### Base de dados auxiliar para 5º pergunta orientada a dados
 **Pergunta orientada a dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área?*
+- Escolaridade, Especialização e Remuneração de Profissionais da Área de Dados no Brasil
+- Link: https://www.salario.com.br/
   
 - [Base de dados](/assets/data/bases_principais/bases_auxiliar/)
 

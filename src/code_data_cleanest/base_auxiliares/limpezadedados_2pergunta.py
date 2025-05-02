@@ -159,5 +159,59 @@ profissionais relevantes
             
             # Etapa 5: Remover colunas redundantes
             df = self.drop_redundant_columns(df)
+
+  if df is not None and not df.empty:
+                print(f"  Limpeza concluída para este arquivo. Registros finais: {len(df)}")
+                
+            return df
+            
+        except Exception as e:
+            print(f"Erro ao processar o arquivo {file_path}: {e}")
+            return None
+
+    def process_all_files(self, file_pattern: str, output_file: str) -> None:
+        """Processa todos os arquivos correspondentes ao padrão e salva o resultado."""
+        all_files = glob.glob(file_pattern)
+        
+        if not all_files:
+            print(f"Nenhum arquivo encontrado no padrão: {file_pattern}")
+            return
+            
+        print(f"Arquivos encontrados: {len(all_files)}")
+        
+        processed_dataframes = []
+        
+        for file_path in all_files:
+            df_processed = self.process_file(file_path)
+            if df_processed is not None and not df_processed.empty:
+                processed_dataframes.append(df_processed)
+        
+        if not processed_dataframes:
+            print("\nNenhum dado relevante encontrado ou processado nos arquivos fornecidos.")
+            return
+            
+        # Concatenar todos os DataFrames processados
+        final_df = pd.concat(processed_dataframes, ignore_index=True)
+        print(f"\nProcessamento concluído. Total de registros agregados: {len(final_df)}")
+        
+        # Salvar o resultado final
+        try:
+            final_df.to_csv(output_file, index=False, encoding='utf-8')
+            print(f"Dados auxiliares limpos salvos em: {output_file}")
+        except Exception as e:
+            print(f"Erro ao salvar o arquivo CSV final: {e}")
+
+
+# Ponto de entrada principal
+if __name__ == "__main__":
+    # Instantiate the processor
+    processor = MTEDataProcessor()
+    
+    # Define file pattern and output file
+    DATA_PATH_PATTERN = './dados_mte/*.txt'
+    OUTPUT_FILE = 'dados_auxiliares_mte_limpos.csv'
+    
+    # Process all files
+    processor.process_all_files(DATA_PATH_PATTERN, OUTPUT_FILE)
         
        

@@ -356,7 +356,7 @@ Nome: salary_midpoint, dtype: object
 ---
 
 ### Atributos relevantes da base de dados principal para 3ª pergunta orientada
-**Pergunta orientada a dados::** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+**Pergunta orientada a dados::** *Como fatores como  formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
 
 | Atributo                                           | Código de Referência | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância  |
 |----------------------------------------------------|-----------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------------------------|------------|
@@ -433,7 +433,7 @@ profissionais de tecnologia?*
 - [Base de dados](/assets/data/bases_principais/bases_auxiliar/2_pergunta_orientada_a_dados/)
 
 ### Base de dados auxiliar para a 3º pergunta orientada a dados
-**Pergunta orientada a dados::** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+**Pergunta orientada a dados:** *Como fatores como formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
 - Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD-C)
 - Link: https://basedosdados.org/dataset/9fa532fb-5681-4903-b99d-01dc45fd527a?table=a04fc85d-908a-4393-b51d-1bd517a40210
   
@@ -911,7 +911,7 @@ Este gráfico de barras horizontais apresenta a distribuição dos profissionais
 
 ### 3º Pergunta orientada a dados
 **Pergunta Orientada a Dados:**
-*Pergunta orientada a dados::** *Como fatores como localização geográfica, formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+*Como fatores como  formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
 
 ![cor_e_raça_ensino_heatmap](https://github.com/user-attachments/assets/f147fa83-1501-4669-b6ff-95165ed54894)
 

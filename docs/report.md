@@ -415,6 +415,7 @@ profissionais de tecnologia?*
 ### 1º Pergunta orientada a dados 
 **Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
 
+{% include_relative graficos/grafico_3d_interativo(1).html %}
 
 ---
 

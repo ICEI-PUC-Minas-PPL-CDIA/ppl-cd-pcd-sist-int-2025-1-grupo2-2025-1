@@ -373,7 +373,7 @@ profissionais de tecnologia?*
 ## Enriquecimento de dados
 
 ### Base de dados auxiliar para 1º pergunta orientada a dados
-**Pergunta orientada a dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
+**Pergunta orientada a dados:** *Como fatores como formação acadêmica e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
 - Microdados do Censo da Educação Superior
 - Link: https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-da-educacao-superior
   

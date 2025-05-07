@@ -413,7 +413,7 @@ profissionais de tecnologia?*
 # Analises exploratorias de dados 
 
 # 1º Pergunta orientada a dados 
-**Pergunta Orientada a Dados:** *Como fatores como formação acadêmica, habilidades técnicas e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
+**Pergunta Orientada a Dados:** *Como fatores como formação acadêmica e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*
 
 ## Analise exploratoria de dados base de dados State of Data 2023
 

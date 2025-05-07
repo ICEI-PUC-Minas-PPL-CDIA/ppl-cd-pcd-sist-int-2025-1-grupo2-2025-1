@@ -43,7 +43,7 @@ O script tenta carregar os dados de um arquivo CSV.
 
 ## 3. Pré-processamento dos Salários
 
-    Uma função é definida para converter faixas salariais textuais em valores numéricos, e então aplicada ao DataFrame.
+Uma função é definida para converter faixas salariais textuais em valores numéricos, e então aplicada ao DataFrame.
     
     ### Pré-processamento dos salários
     def convert_salary(salary_range):

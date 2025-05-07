@@ -472,6 +472,42 @@ profissionais de tecnologia?*
 
 ---
 
+## Analise exploratoria de dados bases integradas
+
+---
+
+## Grafico 1
+
+## Grafico 2
+
+## Grafico 3
+
+## Grafico 4
+
+## Grafico 5
+
+## Grafico 6
+
+## Grafico 7
+
+## Grafico 8
+
+## Grafico 9
+
+## Grafico 10
+
+## Grafico 11
+
+## Grafico 12
+
+## Grafico 13
+
+## Grafico 14
+
+## Grafico 15
+
+## Grafico 16
+
 # 3º Pergunta orientada a dados
 **Pergunta Orientada a Dados:**
 *Como fatores como  formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*

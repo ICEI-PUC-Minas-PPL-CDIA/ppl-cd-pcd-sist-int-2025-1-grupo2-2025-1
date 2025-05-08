@@ -1007,59 +1007,957 @@ Contudo, assim como os gráficos anteriores, este não inclui dados salariais. P
 
 ---
 
-## Grafico 1
+## Grafico Salário Médio Estimado e Total de Docentes por UF
 ![bar_line_salario_medio_total_docentes_uf](https://github.com/user-attachments/assets/6060f457-2f9f-4c68-9839-82f9f4ac9312)
+## Análise do Gráfico: Salário Médio Estimado e Total de Docentes por UF
 
-## Grafico 2
+O gráfico apresentado é uma visualização combinada que utiliza barras para representar o "Salário Médio Estimado (R$)" dos profissionais de dados e uma linha para mostrar o "Total de Docentes na UF" (Unidade Federativa) onde esses profissionais residem.
+
+**Elementos do Gráfico:**
+
+*   **Eixo X (Horizontal):** Apresenta as Unidades Federativas (UF onde mora), ordenadas da esquerda para a direita, aparentemente pela ordem decrescente do salário médio estimado.
+*   **Eixo Y Esquerdo (Vertical):** Indica o "Salário Médio Estimado (R$)" e corresponde às barras vermelhas. A escala varia de R$0 a R$14.000.
+*   **Eixo Y Direito (Vertical):** Representa o "Total de Docentes na UF" e corresponde à linha azul tracejada com marcadores. A escala vai de 0 a aproximadamente 70.000.
+*   **Barras Vermelhas (Salário Médio):** Cada barra mostra o salário médio estimado dos profissionais de dados para uma UF específica.
+*   **Linha Azul Tracejada (Total Docentes):** A linha indica o número total de docentes em cada UF.
+
+**Observações e Interpretações:**
+
+*   **Salário Médio Estimado:**
+    *   Tocantins (TO) exibe o maior salário médio estimado, superando os R$14.000.
+    *   O Distrito Federal (DF) e São Paulo (SP) aparecem em seguida, com salários médios entre R$9.000 e R$10.000 para o DF e um pouco acima de R$9.000 para SP.
+    *   Observa-se uma tendência de diminuição do salário médio ao se mover da esquerda para a direita do gráfico. UFs como Piauí (PI) e Rondônia (RO) apresentam os menores salários médios, em torno de R$4.000.
+
+*   **Total de Docentes:**
+    *   São Paulo (SP) possui, de longe, o maior número de docentes, ultrapassando 70.000.
+    *   Minas Gerais (MG) e Rio de Janeiro (RJ) também têm um volume expressivo de docentes (MG entre 30.000 e 40.000, RJ acima de 30.000).
+    *   Muitas outras UFs, incluindo aquelas com salários médios mais baixos e algumas com salários mais altos como TO e DF, têm um número consideravelmente menor de docentes (frequentemente abaixo de 10.000 ou 20.000).
+
+*   **Relação entre Salário Médio e Total de Docentes:**
+    *   **Não se observa uma correlação direta e simples** entre o salário médio dos profissionais de dados e o número total de docentes na UF.
+        *   Por exemplo, TO tem o salário médio mais alto, mas um número relativamente baixo de docentes.
+        *   SP combina um salário médio alto (terceiro maior) com o maior número de docentes.
+        *   DF possui o segundo maior salário médio, mas um número de docentes bem inferior ao de SP, MG ou RJ.
+    *   Isso sugere que o salário médio dos profissionais de dados em cada estado é influenciado por um conjunto de fatores que vai além da quantidade de docentes (que poderia ser um indicador da oferta de formação ou do tamanho do sistema educacional). Fatores como a demanda do mercado de trabalho local, o custo de vida, a concentração de empresas de tecnologia e o nível de desenvolvimento econômico da UF provavelmente desempenham papéis cruciais.
+
+**Conclusão do Gráfico:**
+
+O gráfico demonstra que não há uma relação causal direta entre o número de docentes em uma UF e o salário médio dos profissionais de dados nessa mesma UF. Enquanto São Paulo apresenta um alto volume de docentes e um alto salário médio, o caso de Tocantins (alto salário médio, poucos docentes) exemplifica que outros fatores são determinantes para a remuneração na área de dados. A dinâmica salarial é complexa e moldada por múltiplas variáveis, não sendo explicada isoladamente pela infraestrutura educacional em termos de quantidade de docentes.
+
+## Grafico Salário Estimado por Área de Formação (Top 5)
 ![boxplot_salario_por_area_formacao_top5](https://github.com/user-attachments/assets/521f1e12-e4bb-445e-982d-733d52142401)
+## Análise do Gráfico: Salário Estimado por Área de Formação (Top 5)
 
-## Grafico 3
+O gráfico apresentado é um boxplot que ilustra a distribuição do "Salário Estimado (R$)" para as cinco principais áreas de formação dos profissionais de dados. Cada boxplot resume a distribuição salarial para uma área específica, permitindo comparações entre elas.
+
+**Elementos do Gráfico:**
+
+*   **Eixo Y (Vertical):** "Área de Formação", listando as cinco categorias de formação mais comuns ou relevantes.
+    *   Computação / Engenharia de Software / Sistemas de Informação/ TI
+    *   Outras Engenharias
+    *   Economia/ Administração / Contabilidade / Finanças/ Negócios
+    *   Estatística/ Matemática / Matemática Computacional/ Ciências Atuariais
+    *   Outra opção
+*   **Eixo X (Horizontal):** "Salário Estimado (R$)", variando de R$0 até mais de R$40.000.
+*   **Boxplot (Caixa e Bigodes):** Para cada área de formação:
+    *   A **linha central** dentro da caixa representa a **mediana** salarial (o valor que divide os salários em 50% abaixo e 50% acima).
+    *   A **caixa** em si abrange o **intervalo interquartil (IQR)**, ou seja, os 50% centrais dos salários (do primeiro quartil - Q1 - ao terceiro quartil - Q3). A largura da caixa indica a dispersão desses salários centrais.
+    *   Os **"bigodes"** (linhas que se estendem a partir da caixa) mostram o alcance dos salários, geralmente até 1.5 vezes o IQR a partir da caixa.
+    *   Os **pontos individuais** (losangos) fora dos bigodes são considerados **outliers**, indicando salários atipicamente altos ou baixos em relação ao restante do grupo.
+
+**Observações e Interpretações por Área de Formação:**
+
+1.  **Computação / Engenharia de Software / Sistemas de Informação/ TI:**
+    *   **Mediana Salarial:** Parece ser a mais alta entre as áreas, situada próxima a R$10.000.
+    *   **Dispersão (IQR):** A caixa é relativamente compacta, sugerindo que a maioria dos profissionais dessa área tem salários concentrados em torno da mediana.
+    *   **Alcance e Outliers:** Apresenta um alcance considerável nos bigodes e múltiplos outliers indicando salários bem elevados, alguns ultrapassando R$40.000.
+
+2.  **Outras Engenharias:**
+    *   **Mediana Salarial:** Ligeiramente inferior à de Computação/TI, talvez em torno de R$8.000 - R$9.000.
+    *   **Dispersão (IQR):** Similar ou um pouco maior que Computação/TI.
+    *   **Alcance e Outliers:** Também possui um bom alcance e múltiplos outliers com salários altos.
+
+3.  **Economia/ Administração / Contabilidade / Finanças/ Negócios:**
+    *   **Mediana Salarial:** Parece estar na faixa de R$7.000 - R$8.000.
+    *   **Dispersão (IQR):** A caixa aparenta ser um pouco mais larga, indicando uma maior variabilidade nos salários do grupo central em comparação com Computação/TI.
+    *   **Alcance e Outliers:** Presença de outliers com salários elevados.
+
+4.  **Estatística/ Matemática / Matemática Computacional/ Ciências Atuariais:**
+    *   **Mediana Salarial:** Próxima à área de Economia/Negócios, possivelmente entre R$7.000 e R$8.000.
+    *   **Dispersão (IQR):** A caixa parece ter uma dispersão considerável.
+    *   **Alcance e Outliers:** Também exibe outliers significativos.
+
+5.  **Outra opção:**
+    *   **Mediana Salarial:** Aparenta ter a menor mediana entre as cinco categorias, talvez em torno de R$6.000 - R$7.000.
+    *   **Dispersão (IQR):** A caixa parece ser relativamente larga, sugerindo uma variabilidade salarial significativa dentro deste grupo.
+    *   **Alcance e Outliers:** Possui outliers, incluindo um que se destaca próximo a R$40.000.
+
+**Comparações e Conclusões Gerais:**
+
+*   Profissionais com formação na área de **Computação / Engenharia de Software / Sistemas de Informação/ TI** tendem a ter a mediana salarial mais alta.
+*   Todas as áreas de formação apresentam uma dispersão salarial considerável, evidenciada pelos tamanhos das caixas e, principalmente, pela presença de outliers com salários significativamente altos. Isso sugere que, dentro de cada área, há profissionais que conseguem remunerações bem acima da média do seu grupo.
+*   A categoria "Outra opção" apresenta a menor mediana salarial, o que é esperado, pois agrupa diversas formações menos diretamente ligadas às habilidades centrais da área de dados.
+*   As áreas de "Outras Engenharias", "Economia/Administração/etc." e "Estatística/Matemática/etc." apresentam medianas salariais intermediárias e relativamente próximas entre si, mas com variações na dispersão dos salários.
+
+Este gráfico é útil para entender como a área de formação inicial se relaciona com os níveis salariais no campo de dados, destacando que, embora formações em TI/Computação pareçam ter uma vantagem na mediana, todas as áreas analisadas possuem profissionais alcançando altos patamares salariais.
+
+
+## Grafico Salário Estimado por Tempo de Experiência
 ### [Grafico Interativo - Clique aqui](https://htmlpreview.github.io/?https://gist.githubusercontent.com/pedrinndias/a62a1fa0a659e7a351b966759dafa417/raw/4b807c1571bb235ffa8469985f8f14d4f3c80d74/boxplot_salario_por_experiencia_plotly.html)
+![newplot](https://github.com/user-attachments/assets/3733a3c3-9327-497c-87db-1550f799e558)
+## Análise do Gráfico: Salário Estimado por Tempo de Experiência
 
-## Grafico 4
+O gráfico visualizado é um boxplot que demonstra a distribuição do "Salário Estimado (R$)" para diferentes níveis de "Tempo de Experiência na Área de Dados (Anos Estimados)"[2]. Essa representação gráfica permite comparar como a remuneração varia conforme os profissionais acumulam mais anos de experiência na área[4][5][7].
+
+**Elementos do Gráfico:**
+
+*   **Eixo Y (Vertical):** Representa as categorias de "Tempo de Experiência na Área de Dados (Anos Estimados)". As categorias são:
+    *   Menos de 1 ano (Rotulado como 0.5 no gráfico)
+    *   de 1 a 2 anos (Rotulado como 1.5)
+    *   de 3 a 4 anos (Rotulado como 3.5)
+    *   de 4 a 6 anos (Rotulado como 5.0)
+    *   de 6 a 10 anos (Rotulado como 8.0)
+    *   Mais de 10 anos (Rotulado como 10.0)
+*   **Eixo X (Horizontal):** Indica o "Salário Estimado (R$)", com valores que vão de R$0 até mais de R$30.000[2].
+*   **Boxplot (Diagrama de Caixa):** Para cada faixa de experiência, o boxplot exibe[8][10]:
+    *   A **linha central** na caixa: Representa a **mediana** salarial (50º percentil), o valor que divide os salários em duas metades iguais[4].
+    *   A **caixa**: Abrange o **intervalo interquartil (IQR)**, que contém os 50% centrais dos dados salariais (do primeiro quartil, Q1 ou 25º percentil, ao terceiro quartil, Q3 ou 75º percentil)[4][10]. A altura da caixa indica a dispersão dos salários nesse intervalo central.
+    *   Os **"bigodes" (whiskers)**: Linhas que se estendem da caixa para mostrar o alcance dos dados salariais, geralmente até 1.5 vezes o IQR. Valores além dos bigodes podem ser outliers[8].
+    *   **Outliers**: Pontos individuais (neste gráfico, parecem pequenos círculos) que se localizam fora dos bigodes, indicando salários atipicamente altos ou baixos em comparação com o restante do grupo para aquela faixa de experiência[5][8].
+
+**Observações e Interpretações por Faixa de Experiência:**
+
+1.  **Menos de 1 ano (0.5):**
+    *   **Mediana Salarial:** A mais baixa entre todas as faixas, situando-se em torno de R$2.000 - R$3.000[2].
+    *   **Dispersão (IQR):** A caixa é relativamente compacta, mas há uma concentração na parte inferior da faixa salarial.
+    *   **Outliers:** Apresenta alguns outliers, indicando que mesmo com pouca experiência, alguns profissionais conseguem salários acima da média do grupo[2].
+
+2.  **de 1 a 2 anos (1.5):**
+    *   **Mediana Salarial:** Aumenta visivelmente em relação à faixa anterior, provavelmente entre R$4.000 e R$5.000[2].
+    *   **Dispersão (IQR):** A caixa se expande, mostrando maior variabilidade salarial.
+    *   **Outliers:** Mais outliers presentes, e com valores mais altos[2].
+
+3.  **de 3 a 4 anos (3.5):**
+    *   **Mediana Salarial:** Continua a crescer, situando-se talvez em torno de R$7.000 - R$8.000[2].
+    *   **Dispersão (IQR):** A dispersão dos 50% centrais dos salários aumenta.
+    *   **Outliers:** Número significativo de outliers, alcançando salários mais elevados[2].
+
+4.  **de 4 a 6 anos (5.0):**
+    *   **Mediana Salarial:** Apresenta um salto expressivo, posicionando-se próximo ou acima de R$10.000[2].
+    *   **Dispersão (IQR):** A caixa é mais ampla, refletindo uma maior diversidade salarial.
+    *   **Outliers:** Muitos outliers, com alguns ultrapassando R$30.000[2].
+
+5.  **de 6 a 10 anos (8.0):**
+    *   **Mediana Salarial:** Continua a tendência de alta, possivelmente entre R$12.000 e R$14.000[2].
+    *   **Dispersão (IQR):** Grande dispersão salarial, com a caixa sendo bastante longa.
+    *   **Outliers:** Vários outliers com salários muito altos[2].
+
+6.  **Mais de 10 anos (10.0):**
+    *   **Mediana Salarial:** Atinge o patamar mais alto, superando R$15.000 e aproximando-se de R$18.000 - R$20.000[2].
+    *   **Dispersão (IQR):** A maior dispersão entre todas as faixas, indicando uma ampla gama de salários para os profissionais mais experientes.
+    *   **Outliers:** Presença marcante de outliers com os salários mais altos do dataset, muitos acima de R$30.000[2].
+
+**Conclusões Gerais:**
+
+*   **Impacto Positivo da Experiência:** Há uma clara e consistente tendência de aumento da mediana salarial à medida que o tempo de experiência na área de dados aumenta. Profissionais com mais anos de atuação tendem a receber salários significativamente maiores[2].
+*   **Aumento da Dispersão Salarial com a Experiência:** Não apenas a mediana, mas também a dispersão dos salários (representada pelo tamanho da caixa e pelo alcance dos bigodes e outliers) tende a aumentar com a experiência. Isso sugere que, entre os profissionais mais experientes, há uma variação salarial maior – alguns podem ter salários excepcionalmente altos, enquanto outros podem permanecer em faixas mais modestas em comparação com os "top earners" do mesmo nível de experiência[2].
+*   **Potencial de Altos Salários:** Em todas as faixas de experiência, a presença de outliers superiores indica que existem oportunidades para alcançar salários acima da média do respectivo grupo, mas essa possibilidade se torna mais pronunciada e os valores mais altos com o aumento da experiência[2].
+
+Este gráfico reforça a noção de que a experiência profissional é um fator crucial na progressão salarial dentro da área de dados no Brasil, com os profissionais mais experientes não apenas alcançando medianas salariais mais altas, mas também apresentando uma gama mais ampla de possibilidades de remuneração.
+
+
+## Grafico Salário Estimado por Tempo de Experiência em Dados
 ![boxplot_salario_por_experiencia_seaborn](https://github.com/user-attachments/assets/1ae56e9f-614e-490c-9cea-c70402bd333c)
+## Análise do Gráfico: Salário Estimado por Tempo de Experiência em Dados
 
-## Grafico 5
+O gráfico de boxplot anexado ilustra a relação entre o "Tempo de Experiência" dos profissionais de dados e o "Salário Estimado (R$)"[1]. Cada caixa no gráfico representa a distribuição salarial para uma faixa específica de anos de experiência.
+
+**Elementos do Gráfico:**
+
+*   **Eixo Y (Vertical):** "Tempo de Experiência", dividido nas seguintes categorias[1]:
+    *   Menos de 1 ano
+    *   de 1 a 2 anos
+    *   de 3 a 4 anos
+    *   de 5 a 6 anos
+    *   de 7 a 10 anos
+    *   Mais de 10 anos
+*   **Eixo X (Horizontal):** "Salário Estimado (R$)", com escala de R$0 até mais de R$40.000[1].
+*   **Boxplot (Diagrama de Caixa):** Para cada categoria de experiência[1]:
+    *   A **linha vertical dentro da caixa** indica a **mediana** salarial (o valor central que divide os salários em 50% abaixo e 50% acima).
+    *   A **caixa (box)** representa o **intervalo interquartil (IQR)**, contendo os 50% centrais dos salários (do primeiro quartil - Q1 - ao terceiro quartil - Q3). A largura da caixa mostra a dispersão desses salários centrais.
+    *   Os **"bigodes" (whiskers)** são as linhas horizontais que se estendem da caixa, mostrando o alcance principal dos salários (tipicamente 1.5 vezes o IQR).
+    *   Os **pontos individuais (losangos)** fora dos bigodes são considerados **outliers**, representando salários atipicamente altos ou baixos em relação ao grosso dos dados para aquela faixa de experiência.
+
+**Observações e Interpretações por Faixa de Experiência:**
+
+1.  **Menos de 1 ano:**
+    *   **Mediana Salarial:** A mais baixa, em torno de R$4.000[1].
+    *   **Dispersão (IQR):** Relativamente concentrada, com a maioria dos salários entre aproximadamente R$2.000 e R$6.000[1].
+    *   **Outliers:** Alguns outliers superiores, chegando até cerca de R$20.000[1].
+
+2.  **de 1 a 2 anos:**
+    *   **Mediana Salarial:** Aumenta para cerca de R$6.000[1].
+    *   **Dispersão (IQR):** A caixa se alarga um pouco, com salários centrais entre R$4.000 e R$8.000, aproximadamente[1].
+    *   **Outliers:** Mais outliers e com valores mais altos, alguns ultrapassando R$30.000[1].
+
+3.  **de 3 a 4 anos:**
+    *   **Mediana Salarial:** Um salto significativo, posicionando-se em torno de R$9.000 - R$10.000[1].
+    *   **Dispersão (IQR):** Maior variabilidade, com a caixa indo de cerca de R$6.000 a R$12.000[1].
+    *   **Outliers:** Vários outliers, com alguns alcançando e ultrapassando R$40.000[1].
+
+4.  **de 5 a 6 anos:**
+    *   **Mediana Salarial:** Continua a crescer, situando-se em torno de R$12.000[1].
+    *   **Dispersão (IQR):** A caixa é ampla, indicando diversidade salarial, aproximadamente entre R$8.000 e R$16.000[1].
+    *   **Outliers:** Presença de outliers tanto superiores (ultrapassando R$40.000) quanto inferiores (próximos a R$0)[1].
+
+5.  **de 7 a 10 anos:**
+    *   **Mediana Salarial:** Aumenta para cerca de R$14.000 - R$15.000[1].
+    *   **Dispersão (IQR):** A caixa se estende de aproximadamente R$10.000 a R$20.000[1].
+    *   **Outliers:** Similar à faixa anterior, com outliers em ambas as extremidades[1].
+
+6.  **Mais de 10 anos:**
+    *   **Mediana Salarial:** A mais alta, em torno de R$16.000 - R$18.000[1].
+    *   **Dispersão (IQR):** A maior dispersão dos salários centrais, com a caixa indo de cerca de R$12.000 a R$25.000. Isso indica uma grande variação salarial entre os profissionais mais experientes[1].
+    *   **Outliers:** Numerosos outliers, especialmente na extremidade superior, indicando que profissionais com vasta experiência podem alcançar remunerações muito elevadas. Também há outliers inferiores[1].
+
+**Conclusões Gerais:**
+
+*   **Progressão Salarial com Experiência:** O gráfico demonstra claramente que a mediana salarial tende a aumentar consistentemente com o aumento do tempo de experiência na área de dados[1].
+*   **Aumento da Variabilidade Salarial:** À medida que a experiência aumenta, não só a mediana salarial cresce, mas também a dispersão dos salários (indicada pela largura da caixa e pela presença de outliers). Isso sugere que, com mais experiência, as faixas salariais se tornam mais amplas[1].
+*   **Potencial de Alta Remuneração:** Em todos os níveis de experiência, existem profissionais (outliers) que ganham significativamente mais do que a mediana do seu grupo. Esse potencial para salários muito altos é particularmente evidente nas faixas de maior experiência[1].
+*   **Outliers Inferiores:** A presença de outliers na extremidade inferior, especialmente nas faixas de maior experiência, pode indicar diversos cenários, como transições de carreira, atuação em setores ou regiões com menor remuneração, ou outros fatores não capturados apenas pela variável "tempo de experiência".
+
+Este gráfico é uma ferramenta visual eficaz para entender como a remuneração na área de dados evolui com a experiência, destacando a valorização progressiva dos profissionais à medida que acumulam mais anos de atuação.
+
+
+## Grafico Salário Estimado por Nível de Ensino
 ### [Grafico Interativo - Clique aqui](https://htmlpreview.github.io/?https://gist.githubusercontent.com/pedrinndias/d4a35514b072e73dcb602e3c936f3324/raw/da8b4afe7bd6ce83a87a646bfc6e978bee28b69a/gistfile1.txt)
+![newplot(1)](https://github.com/user-attachments/assets/933aba1b-01fa-45fe-b4ad-6380af43469e)
+## Análise do Gráfico: Salário Estimado por Nível de Ensino
 
-## Grafico 6
+O gráfico visualizado é um boxplot que ilustra a distribuição do "Salário Estimado (R$)" para diferentes categorias de "Nível de Ensino" alcançado pelos profissionais de dados[2]. Este tipo de gráfico é uma ferramenta eficaz na análise exploratória de dados para comparar a tendência central, dispersão e identificar valores atípicos entre diferentes grupos[3][10][14].
+
+**Elementos do Gráfico:**
+
+*   **Eixo Y (Vertical):** "Nível de Ensino", apresentando as seguintes categorias[2]:
+    *   Estudante de Graduação
+    *   Graduação/Bacharelado
+    *   Pós-graduação
+    *   Mestrado
+    *   Doutorado ou Phd
+*   **Eixo X (Horizontal):** "Salário Estimado (R$)", com a escala variando de R$0 até mais de R$30.000[2].
+*   **Boxplot (Diagrama de Caixa):** Para cada nível de ensino, o boxplot resume a distribuição salarial da seguinte forma[3][5][7]:
+    *   A **linha vertical dentro da caixa** representa a **mediana** salarial (o 50º percentil), que é o valor central dividindo os salários em duas metades iguais.
+    *   A **caixa (box)** delimita o **intervalo interquartil (IQR)**, que contém os 50% centrais dos dados salariais (do primeiro quartil, Q1 ou 25º percentil, ao terceiro quartil, Q3 ou 75º percentil). A largura da caixa indica a dispersão dos salários neste intervalo.
+    *   Os **"bigodes" (whiskers)** são as linhas horizontais que se estendem a partir da caixa, mostrando o alcance dos dados salariais considerados típicos (geralmente até 1.5 vezes o IQR a partir da caixa).
+    *   Os **pontos individuais (losangos)** localizados fora dos bigodes são considerados **outliers**, indicando salários que são atipicamente altos ou baixos em comparação com o restante dos profissionais naquele nível de ensino[3].
+
+**Observações e Interpretações por Nível de Ensino:**
+
+1.  **Estudante de Graduação:**
+    *   **Mediana Salarial:** A mais baixa entre todos os níveis, situando-se em torno de R$2.000 - R$3.000[2].
+    *   **Dispersão (IQR):** A caixa é relativamente compacta, indicando que a maioria dos estudantes de graduação tem salários próximos a essa mediana baixa.
+    *   **Outliers:** Apresenta alguns outliers superiores, sugerindo que alguns estudantes já conseguem remunerações mais elevadas[2].
+
+2.  **Graduação/Bacharelado:**
+    *   **Mediana Salarial:** Aumenta consideravelmente em relação aos estudantes, posicionando-se em torno de R$7.000 - R$8.000[2].
+    *   **Dispersão (IQR):** A caixa é mais ampla, mostrando uma maior variabilidade nos salários dos graduados.
+    *   **Outliers:** Presença significativa de outliers, com alguns salários ultrapassando R$30.000[2].
+
+3.  **Pós-graduação:**
+    *   **Mediana Salarial:** Ligeiramente superior à da graduação, talvez em torno de R$8.000 - R$9.000[2].
+    *   **Dispersão (IQR):** A dispersão parece similar ou um pouco maior que a dos graduados.
+    *   **Outliers:** Muitos outliers, alcançando patamares salariais elevados[2].
+
+4.  **Mestrado:**
+    *   **Mediana Salarial:** Apresenta um aumento notável em relação à pós-graduação, situando-se acima de R$10.000, talvez próximo a R$12.000[2].
+    *   **Dispersão (IQR):** A caixa é relativamente ampla, indicando uma boa variabilidade salarial.
+    *   **Outliers:** Muitos outliers com salários altos, alguns bem acima de R$30.000[2].
+
+5.  **Doutorado ou Phd:**
+    *   **Mediana Salarial:** A mais alta entre todos os níveis de ensino, superando a do mestrado e posicionando-se em torno de R$14.000 - R$15.000[2].
+    *   **Dispersão (IQR):** A caixa é bastante extensa, refletindo uma grande dispersão salarial entre os doutores.
+    *   **Outliers:** Presença marcante de outliers com os salários mais elevados do conjunto de dados, indicando um alto potencial de ganhos para este grupo[2].
+
+**Conclusões Gerais:**
+
+*   **Impacto Positivo do Nível de Ensino:** O gráfico demonstra uma tendência clara de aumento da mediana salarial à medida que o nível de ensino aumenta. Profissionais com níveis de formação mais elevados (Mestrado, Doutorado) tendem a ter medianas salariais significativamente maiores[2].
+*   **Aumento da Dispersão Salarial em Níveis Mais Altos:** Nos níveis de ensino mais elevados, especialmente Doutorado, não apenas a mediana é maior, mas também a dispersão dos salários (o tamanho da caixa e o alcance dos outliers). Isso sugere uma gama mais ampla de remunerações, com alguns profissionais alcançando salários excepcionalmente altos[2].
+*   **Valor da Graduação:** Há um salto salarial expressivo ao se completar a graduação em comparação com o nível de estudante[2].
+*   **Outliers Significativos:** Em todos os níveis a partir da graduação, a presença de outliers superiores indica que, independentemente do nível de formação específico (pós-graduação, mestrado), existem oportunidades para alcançar salários bem acima da média do grupo[2].
+
+Este gráfico reforça a ideia de que o investimento em educação formal, especialmente em níveis mais avançados como mestrado e doutorado, está associado a um maior potencial de remuneração na área de dados no Brasil.
+
+
+## Grafico Salário Estimado por Nível de Ensino
 ![boxplot_salario_por_nivel_ensino_seaborn](https://github.com/user-attachments/assets/320b22fc-43fb-40af-be93-e02572699fec)
+## Análise do Gráfico: Salário Estimado por Nível de Ensino
 
-## Grafico 7
+O gráfico anexado é um boxplot que exibe a distribuição do "Salário Estimado (R$)" para diferentes níveis de escolaridade ("Nível de Ensino") alcançados pelos profissionais de dados[1]. Esta visualização permite comparar como a remuneração varia entre os diferentes graus de formação acadêmica.
+
+**Elementos do Gráfico:**
+
+*   **Eixo Y (Vertical):** "Nível de Ensino", com as seguintes categorias (de cima para baixo)[1]:
+    *   Estudante de Graduação
+    *   Graduação/Bacharelado
+    *   Pós-graduação
+    *   Mestrado
+    *   Doutorado ou Phd
+*   **Eixo X (Horizontal):** "Salário Estimado (R$)", com uma escala que se estende de R$0 até mais de R$40.000[1].
+*   **Boxplot (Diagrama de Caixa):** Para cada nível de ensino, o boxplot mostra[1]:
+    *   A **linha vertical dentro da caixa**: Indica a **mediana** salarial (o valor que divide a distribuição dos salários em duas metades iguais).
+    *   A **caixa**: Representa o **intervalo interquartil (IQR)**, que contém os 50% centrais dos salários (entre o primeiro quartil - Q1 - e o terceiro quartil - Q3). A largura da caixa reflete a dispersão desses salários centrais.
+    *   Os **"bigodes" (whiskers)**: Linhas horizontais que se estendem da caixa para mostrar o alcance dos salários considerados típicos.
+    *   Os **pontos individuais (losangos)**: Representam **outliers**, ou seja, salários que são atipicamente altos (ou baixos) em comparação com a maioria dos profissionais daquele nível de ensino.
+
+**Observações e Interpretações por Nível de Ensino:**
+
+1.  **Estudante de Graduação:**
+    *   **Mediana Salarial:** É a mais baixa de todas as categorias, situando-se em torno de R$4.000 - R$5.000[1].
+    *   **Dispersão (IQR):** A caixa é relativamente estreita, indicando que a maioria dos estudantes de graduação tem salários concentrados em uma faixa menor, aproximadamente entre R$2.500 e R$6.000[1].
+    *   **Outliers:** Apresenta alguns outliers superiores, com salários chegando a cerca de R$15.000, e um outlier próximo a R$20.000[1].
+
+2.  **Graduação/Bacharelado:**
+    *   **Mediana Salarial:** Aumenta significativamente em relação aos estudantes, localizando-se em torno de R$8.000 - R$9.000[1].
+    *   **Dispersão (IQR):** A caixa é consideravelmente mais larga, com os 50% centrais dos salários variando aproximadamente de R$5.000 a R$12.000, indicando maior variabilidade salarial[1].
+    *   **Outliers:** Numerosos outliers superiores, com vários profissionais alcançando salários acima de R$20.000, R$30.000 e até R$40.000[1].
+
+3.  **Pós-graduação:**
+    *   **Mediana Salarial:** Um pouco superior à da graduação, possivelmente em torno de R$9.000 - R$10.000[1].
+    *   **Dispersão (IQR):** Semelhante ou ligeiramente maior que a da graduação, com salários centrais entre aproximadamente R$6.000 e R$14.000[1].
+    *   **Outliers:** Também apresenta muitos outliers com salários elevados, ultrapassando R$40.000 em alguns casos[1].
+
+4.  **Mestrado:**
+    *   **Mediana Salarial:** Demonstra um novo aumento, situando-se em torno de R$10.000 - R$12.000[1].
+    *   **Dispersão (IQR):** A caixa é ampla, indicando uma variabilidade salarial considerável, com os 50% centrais entre aproximadamente R$7.000 e R$15.000[1].
+    *   **Outliers:** Vários outliers superiores, incluindo salários acima de R$20.000, R$30.000 e alguns próximos ou acima de R$40.000[1].
+
+5.  **Doutorado ou Phd:**
+    *   **Mediana Salarial:** A mais alta entre todos os níveis de ensino, posicionando-se em torno de R$12.000 - R$14.000[1].
+    *   **Dispersão (IQR):** A caixa é bastante larga, indicando uma grande dispersão salarial. Os 50% centrais dos salários parecem estar entre R$8.000 e R$20.000[1].
+    *   **Outliers:** Presença marcante de outliers com salários elevados, com vários profissionais superando R$30.000 e R$40.000. Há também um outlier inferior, próximo a R$0[1].
+
+**Conclusões Gerais:**
+
+*   **Valorização da Educação:** O gráfico evidencia uma tendência geral de aumento da mediana salarial conforme o nível de ensino aumenta. Profissionais com níveis de formação mais avançados, como Mestrado e Doutorado, tendem a ter medianas salariais mais altas[1].
+*   **Aumento da Dispersão com Níveis Mais Altos:** A variabilidade salarial (largura da caixa e presença de outliers) também tende a ser maior nos níveis de ensino mais elevados. Isso sugere que, embora a mediana aumente, a faixa de salários possíveis também se amplia, especialmente para cima[1].
+*   **Salto Salarial Pós-Graduação (Lato Sensu e Stricto Sensu):** Completar uma graduação representa um salto salarial significativo em relação ao status de estudante. Pós-graduações (incluindo especializações, mestrado e doutorado) continuam essa tendência de aumento na mediana salarial[1].
+*   **Potencial de Alta Remuneração:** Em todos os níveis a partir da Graduação/Bacharelado, a existência de múltiplos outliers superiores indica que há profissionais que alcançam remunerações consideravelmente acima da média de seus respectivos grupos de escolaridade. Esse potencial parece se acentuar com o Doutorado[1].
+
+Este gráfico sugere que o investimento em educação formal, particularmente em níveis mais avançados, está associado a um maior potencial de ganhos na área de dados.
+
+
+## Grafico Salário Estimado por Experiência, Agrupado por Nível de Ensino
 ![catplot_salario_exp_facet_nivel_ensino](https://github.com/user-attachments/assets/71164ccd-585b-4354-8473-631eac8a4f02)
+## Análise do Gráfico: Salário Estimado por Experiência, Agrupado por Nível de Ensino
 
-## Grafico 8
+O gráfico apresentado é um conjunto de boxplots (diagramas de caixa) que visualiza a interação entre "Tempo de Experiência" e "Nível de Ensino" na determinação do "Salário Estimado (R$)" dos profissionais de dados[1]. O gráfico é facetado por "Nível de Ensino", o que significa que para cada nível de escolaridade, há uma série de boxplots mostrando a distribuição salarial para diferentes faixas de tempo de experiência.
+
+**Elementos do Gráfico:**
+
+*   **Título Principal:** "Salário Estimado por Experiência, Agrupado por Nível de Ensino"[1].
+*   **Facetas (Subgráficos):** Cada subgráfico representa um "Nível de Ensino" específico[1]:
+    *   Estudante de Graduação
+    *   Graduação/Bacharelado
+    *   Pós-graduação
+    *   Mestrado
+    *   Doutorado ou Phd
+*   **Eixo Y (Vertical) de cada subgráfico:** "Salário Estimado (R$)", com escala de R$0 a R$40.000[1].
+*   **Eixo X (Horizontal) de cada subgráfico:** "Tempo de Experiência". Embora as categorias exatas não estejam rotuladas individualmente no eixo x de cada faceta, a progressão das caixas da esquerda para a direita (e as cores distintas das caixas) dentro de cada subgráfico representa o aumento do tempo de experiência. Podemos inferir que são as mesmas faixas de experiência usadas em gráficos anteriores (ex: <1 ano, 1-2 anos, 3-4 anos, 5-6 anos, 7-10 anos, Mais de 10 anos).
+*   **Boxplot (Diagrama de Caixa):** Para cada combinação de nível de ensino e faixa de experiência[1]:
+    *   A **linha horizontal dentro da caixa** indica a **mediana** salarial.
+    *   A **caixa** representa o **intervalo interquartil (IQR)**, contendo os 50% centrais dos salários.
+    *   Os **"bigodes" (whiskers)** mostram o alcance dos salários considerados típicos.
+    *   Os **pontos individuais (losangos)** são **outliers**, indicando salários atipicamente altos ou baixos.
+
+**Observações e Interpretações:**
+
+**Tendência Geral Dentro de Cada Nível de Ensino:**
+
+*   **Progressão Salarial com Experiência:** Em *todos* os níveis de ensino, há uma clara tendência de aumento da mediana salarial (a linha dentro da caixa) à medida que o tempo de experiência aumenta (movendo-se da esquerda para a direita dentro de cada subgráfico). Isso é visível pela subida geral das caixas[1].
+*   **Aumento da Dispersão com Experiência:** Frequentemente, a dispersão salarial (altura da caixa e alcance dos bigodes/outliers) também aumenta com mais experiência. Isso significa que, entre os mais experientes, há uma variação salarial maior[1].
+
+**Comparações Entre Níveis de Ensino para Faixas de Experiência Similares:**
+
+1.  **Início de Carreira (Faixas de Menor Experiência - caixas à esquerda):**
+    *   **Estudantes de Graduação:** Apresentam as menores medianas salariais em todas as faixas de experiência que participam[1].
+    *   **Graduação/Bacharelado e Pós-graduação:** Para pouca experiência, as medianas salariais são semelhantes e mais altas que as dos estudantes. A pós-graduação parece oferecer uma ligeira vantagem inicial sobre apenas a graduação[1].
+    *   **Mestrado e Doutorado:** Mesmo com pouca experiência, profissionais com mestrado e, especialmente, doutorado, tendem a ter medianas salariais iniciais mais altas em comparação com os níveis de ensino inferiores[1].
+
+2.  **Meio de Carreira (Faixas de Experiência Intermediárias - caixas centrais):**
+    *   A diferença salarial entre os níveis de ensino torna-se mais pronunciada.
+    *   **Graduação/Bacharelado e Pós-graduação:** A pós-graduação continua a mostrar uma vantagem sobre a graduação.
+    *   **Mestrado e Doutorado:** Apresentam medianas salariais consistentemente mais altas. Profissionais com doutorado, com experiência intermediária, já alcançam patamares salariais elevados[1].
+
+3.  **Final de Carreira (Faixas de Maior Experiência - caixas à direita):**
+    *   **Estudantes de Graduação:** Mesmo com mais experiência (se aplicável dentro do status de estudante), os salários permanecem os mais baixos[1].
+    *   **Graduação/Bacharelado e Pós-graduação:** A progressão continua, mas as medianas tendem a ser superadas pelos níveis de mestrado e doutorado.
+    *   **Mestrado:** Profissionais com mestrado e vasta experiência alcançam salários significativamente altos[1].
+    *   **Doutorado ou Phd:** Este grupo, com alta experiência, apresenta as maiores medianas salariais e também uma dispersão muito grande, com outliers indicando salários excepcionalmente altos (alguns acima de R$40.000). A caixa para o maior nível de experiência em Doutorado é notavelmente alta[1].
+
+**Interação entre Experiência e Nível de Ensino:**
+
+*   **Benefício da Experiência é Universal:** A experiência aumenta o potencial salarial em todos os níveis de ensino[1].
+*   **Nível de Ensino Potencializa o Efeito da Experiência:** O "retorno" da experiência parece ser maior para níveis de ensino mais altos. Ou seja, um ano adicional de experiência pode resultar em um aumento salarial proporcionalmente maior para quem tem mestrado ou doutorado em comparação com quem tem apenas graduação. Isso é visualizado pela inclinação mais acentuada da progressão salarial com a experiência nos níveis de ensino mais altos.
+*   **Teto Salarial Mais Alto com Maior Escolaridade e Experiência:** Os salários mais altos no dataset (outliers superiores) são geralmente encontrados entre profissionais com níveis de ensino mais elevados (Mestrado, Doutorado) *e* mais tempo de experiência[1].
+
+**Conclusões Gerais:**
+
+Este gráfico é particularmente elucidativo ao mostrar que tanto a formação acadêmica quanto a experiência profissional são fatores cruciais na determinação salarial, e eles interagem de forma positiva.
+*   Para alcançar os patamares salariais mais elevados na área de dados, a combinação de um alto nível de ensino (especialmente Mestrado ou Doutorado) com uma experiência profissional substancial parece ser o caminho mais promissor[1].
+*   Enquanto a experiência por si só eleva os salários em todos os níveis de formação, o nível de formação parece definir diferentes "faixas" ou "tetos" potenciais de remuneração que são então explorados e alcançados através da experiência.
+
+
+## Grafico Distribuição de Profissionais por Área de Formação Acadêmica
 ![distribuicao_area_formacao](https://github.com/user-attachments/assets/fd0d4cb9-5e30-4f52-8a7e-9cd074ee04c5)
+## Análise do Gráfico: Distribuição de Profissionais por Área de Formação Acadêmica
 
-## Grafico 9
+O gráfico em anexo é um gráfico de barras horizontais que ilustra a "Distribuição de Profissionais por Área de Formação Acadêmica"[1]. Ele mostra a contagem de profissionais de dados provenientes de diferentes campos de estudo.
+
+**Elementos do Gráfico:**
+
+*   **Título:** "Distribuição de Profissionais por Área de Formação Acadêmica"[1].
+*   **Eixo Y (Vertical):** "Área de Formação". Lista as diversas áreas de formação acadêmica dos profissionais[1].
+*   **Eixo X (Horizontal):** "Contagem". Indica o número de profissionais correspondente a cada área de formação, com a escala variando de 0 a mais de 1200[1].
+*   **Barras Horizontais:** O comprimento de cada barra é proporcional à quantidade de profissionais com formação naquela área específica. As áreas estão ordenadas da maior para a menor contagem, de cima para baixo[1].
+
+**Observações e Interpretações:**
+
+1.  **Computação / Engenharia de Software / Sistemas de Informação/ TI:**
+    *   Esta é, de longe, a área de formação mais comum entre os profissionais de dados no dataset, com uma contagem superior a 1200 profissionais. Isso indica uma forte predominância de backgrounds técnicos diretamente relacionados à computação e tecnologia da informação na área de dados[1].
+
+2.  **Outras Engenharias:**
+    *   A segunda área mais representativa, com aproximadamente 800 profissionais. Isso sugere que as habilidades analíticas e de resolução de problemas desenvolvidas em diversas engenharias são transferíveis e valorizadas no campo de dados[1].
+
+3.  **Economia/ Administração / Contabilidade / Finanças/ Negócios:**
+    *   Esta categoria ocupa a terceira posição, com cerca de 450 profissionais. Profissionais com formação em negócios e áreas correlatas trazem uma perspectiva de aplicação e valor de negócio para a análise de dados[1].
+
+4.  **Estatística/ Matemática / Matemática Computacional/ Ciências Atuariais:**
+    *   Com pouco mais de 200 profissionais, esta área, que possui fundamentos quantitativos essenciais para a ciência de dados, aparece em quarto lugar em termos de volume[1].
+
+5.  **Outra opção:**
+    *   Uma categoria genérica que agrupa formações não especificadas nas demais, com pouco menos de 200 profissionais[1].
+
+6.  **Áreas Menos Representadas:**
+    *   As demais áreas listadas apresentam contagens significativamente menores (abaixo de 100 profissionais cada):
+        *   Química / Física
+        *   Ciências Biológicas/ Farmácia/ Medicina/ Área da Saúde
+        *   Marketing / Publicidade / Comunicação / Jornalismo
+        *   Ciências Sociais
+    *   Isso indica que, embora profissionais dessas áreas também atuem no campo de dados, eles representam uma parcela menor do total[1].
+
+**Conclusões Gerais:**
+
+*   **Predominância de Formações Técnicas e Quantitativas:** As áreas de Computação/TI, Engenharias e, em menor grau, Estatística/Matemática, dominam o cenário de formação dos profissionais de dados, o que é esperado dada a natureza técnica e analítica da área[1].
+*   **Relevância de Formações em Negócios:** A presença significativa de profissionais com background em Economia, Administração e áreas afins destaca a importância do entendimento do contexto de negócios para a aplicação eficaz de técnicas de dados[1].
+*   **Multidisciplinaridade Crescente, Mas Concentrada:** Embora a área de dados seja conhecida por sua multidisciplinaridade, este gráfico mostra que a maioria dos profissionais ainda provém de um conjunto relativamente concentrado de formações mais tradicionais para o setor de tecnologia e análise.
+*   **Oportunidades para Diversas Formações:** A presença, mesmo que minoritária, de profissionais de áreas como Ciências Sociais, Saúde e Comunicação sugere que há espaço para diferentes perspectivas e habilidades no campo de dados, embora a transição possa ser menos comum ou exigir aquisição de habilidades técnicas adicionais.
+
+Este gráfico oferece um panorama claro sobre as origens acadêmicas mais comuns dos profissionais que atualmente trabalham com dados, ressaltando a forte base em tecnologia e engenharias.
+
+
+## Grafico Distribuição de Profissionais por Faixa Salarial Mensal
 ![distribuicao_faixa_salarial](https://github.com/user-attachments/assets/29688dff-55fd-492f-a897-ad9a4e89a657)
+## Análise do Gráfico: Distribuição de Profissionais por Faixa Salarial Mensal
 
-## Grafico 10
+O gráfico apresentado é um gráfico de barras horizontais que ilustra a "Distribuição de Profissionais por Faixa Salarial Mensal"[1]. Ele mostra quantas pessoas se enquadram em cada faixa salarial.
+
+**Elementos do Gráfico:**
+
+*   **Título:** "Distribuição de Profissionais por Faixa Salarial Mensal"[1].
+*   **Eixo Y (Vertical):** "Faixa Salarial Mensal". Lista as diferentes faixas de salários mensais[1].
+*   **Eixo X (Horizontal):** "Contagem". Indica o número de profissionais em cada faixa salarial, variando de 0 a 800[1].
+*   **Barras Horizontais:** O comprimento de cada barra representa o número de profissionais naquela faixa salarial. As barras são organizadas verticalmente, com as faixas salariais mais baixas na parte superior e as mais altas na parte inferior[1].
+
+**Observações e Interpretações:**
+
+1.  **de R$8.001/mês a R$12.000/mês:**
+    *   Esta é a faixa salarial com o maior número de profissionais, com uma contagem próxima a 800. Isso sugere que a maioria dos profissionais de dados no conjunto de dados ganha entre R$8.001 e R$12.000 por mês[1].
+
+2.  **de R$12.001/mês a R$16.000/mês:**
+    *   A segunda maior concentração está nesta faixa salarial, com uma contagem em torno de 400. Isso indica que muitos profissionais também ganham entre R$12.001 e R$16.000 por mês[1].
+
+3.  **de R$6.001/mês a R$8.000/mês:**
+    *   A terceira maior concentração está nesta faixa salarial, com uma contagem também em torno de 550[1].
+
+4.  **de R$3.001/mês a R$4.000/mês:**
+    *   A contagem é aproximadamente 300[1].
+
+5.  **de R$4.001/mês a R$6.000/mês:**
+    *   A contagem é aproximadamente 300[1].
+
+6.  **de R$2.001/mês a R$3.000/mês:**
+    *   A contagem é aproximadamente 200[1].
+
+7.  **de R$1.001/mês a R$2.000/mês:**
+    *   A contagem é pouco acima de 100[1].
+
+8.  **Faixas Salariais Mais Altas (de R$16.001/mês a Acima de R$40.001/mês):**
+    *   As faixas salariais mais altas apresentam contagens progressivamente menores. Isso indica que há menos profissionais ganhando salários mais elevados[1].
+    *   As faixas de R$16.001/mês a R$20.000/mês e de R$20.001/mês a R$25.000/mês são as mais representadas entre as faixas salariais mais altas.
+
+9.  **Menos de R$1.000/mês:**
+    *   A menor contagem é para essa categoria, indicando que poucos profissionais ganham menos de R$1.000 por mês[1].
+
+**Conclusões Gerais:**
+
+*   **Concentração em Faixas Salariais Intermediárias:** A maioria dos profissionais de dados neste conjunto de dados se concentra nas faixas salariais entre R$6.001 e R$16.000 por mês.
+*   **Distribuição Assimétrica:** A distribuição salarial é assimétrica, com uma cauda longa para a direita, indicando que, embora a maioria ganhe entre R$6.001 e R$16.000, alguns profissionais ganham significativamente mais.
+*   **Minoria nas Faixas Mais Baixas:** Poucos profissionais relatam ganhar menos de R$2.000 por mês.
+
+Este gráfico fornece uma visão geral da distribuição de salários entre os profissionais de dados, mostrando onde a maioria se concentra e como os salários se distribuem nas faixas mais altas e mais baixas.
+
+
+## Grafico Distribuição de Profissionais por Nível de Ensino
 ![distribuicao_nivel_ensino](https://github.com/user-attachments/assets/044e5446-b6bd-474d-86d4-3c8a94ca44c7)
+## Análise do Gráfico: Distribuição de Profissionais por Nível de Ensino
 
-## Grafico 11
+O gráfico anexado é um gráfico de barras horizontais que mostra a "Distribuição de Profissionais por Nível de Ensino"[1]. Ele quantifica o número de profissionais de dados em diferentes estágios de sua formação acadêmica.
+
+**Elementos do Gráfico:**
+
+*   **Título:** "Distribuição de Profissionais por Nível de Ensino"[1].
+*   **Eixo Y (Vertical):** "Nível de Ensino". Lista as categorias de escolaridade dos profissionais[1]:
+    *   Estudante de Graduação
+    *   Graduação/Bacharelado
+    *   Pós-graduação
+    *   Mestrado
+    *   Doutorado ou Phd
+*   **Eixo X (Horizontal):** "Contagem". Indica o número de profissionais correspondente a cada nível de ensino, com a escala variando de 0 a 1200[1].
+*   **Barras Horizontais:** O comprimento de cada barra é proporcional à quantidade de profissionais com aquele nível de ensino. As categorias estão ordenadas de cima para baixo, aparentemente refletindo uma progressão no nível educacional[1].
+
+**Observações e Interpretações:**
+
+1.  **Graduação/Bacharelado:**
+    *   Esta é a categoria com o maior número de profissionais, ultrapassando a marca de 1200. Isso indica que a maioria dos profissionais de dados no dataset possui, no mínimo, um diploma de graduação completo[1].
+
+2.  **Pós-graduação:**
+    *   A segunda maior concentração de profissionais está neste nível, com uma contagem superior a 1000, mas inferior à da graduação (aproximadamente 1050). Este grupo inclui provavelmente especializações e MBAs (pós-graduação lato sensu)[1].
+
+3.  **Estudante de Graduação:**
+    *   Este grupo representa a terceira maior contagem, com aproximadamente 450 profissionais. Isso mostra uma presença significativa de indivíduos que ainda estão cursando a graduação, mas já atuam na área de dados[1].
+
+4.  **Mestrado:**
+    *   Profissionais com mestrado (pós-graduação stricto sensu) somam cerca de 350, representando o quarto maior grupo[1].
+
+5.  **Doutorado ou Phd:**
+    *   Este é o grupo com a menor representatividade, com uma contagem de aproximadamente 100 profissionais. Embora seja o nível de ensino mais alto, é o menos comum entre os profissionais de dados no dataset[1].
+
+**Conclusões Gerais:**
+
+*   **Base Educacional Sólida:** A grande maioria dos profissionais de dados possui pelo menos uma graduação completa, com um número expressivo também tendo concluído algum tipo de pós-graduação (lato sensu ou stricto sensu)[1].
+*   **Entrada Precoce no Mercado:** A presença considerável de estudantes de graduação sugere que muitos iniciam suas carreiras na área de dados antes mesmo de concluir a formação universitária inicial[1].
+*   **Funil Educacional:** Observa-se um afunilamento no número de profissionais à medida que o nível de ensino se torna mais avançado (Mestrado e, especialmente, Doutorado). Isso é comum em diversas áreas, refletindo o menor número de pessoas que prosseguem para os níveis mais altos de qualificação acadêmica.
+*   **Valorização de Diferentes Níveis:** O gráfico demonstra que há profissionais de dados em todos os principais níveis de ensino, desde estudantes até doutores, indicando que o mercado absorve talentos com diferentes graus de formação.
+
+Este gráfico oferece uma visão clara do perfil educacional dos profissionais de dados, destacando a importância da graduação e da pós-graduação, ao mesmo tempo que mostra a participação de estudantes e o menor, porém qualificado, contingente de mestres e doutores.
+
+
+## Grafico Distribuição do Salário Estimado (R$)
 ![distribuicao_salario_estimado](https://github.com/user-attachments/assets/cb8d3675-ed41-4fcb-bf09-7f1c8b69cda4)
+## Análise do Gráfico: Distribuição do Salário Estimado (R$)
 
-## Grafico 12
+O gráfico anexado é um histograma que representa a "Distribuição do Salário Estimado (R$)" dos profissionais de dados[1]. Ele mostra a frequência de profissionais em diferentes intervalos de salário estimado.
+
+**Elementos do Gráfico:**
+
+*   **Título:** "Distribuição do Salário Estimado (R$)"[1].
+*   **Eixo Y (Vertical):** "Frequência". Indica o número de profissionais (contagem) para cada intervalo de salário[1]. A escala vai de 0 a mais de 800.
+*   **Eixo X (Horizontal):** "Salário Estimado (R$)". Representa os valores dos salários estimados em Reais, agrupados em intervalos (bins). A escala vai de R$0 a mais de R$40.000[1].
+*   **Barras (Histograma):** A altura de cada barra corresponde à frequência (número de profissionais) cujo salário estimado cai dentro do intervalo (bin) que a barra representa[1].
+*   **Linha Azul (Estimativa de Densidade do Kernel - KDE):** Sobreposta às barras, há uma linha curva suave que representa uma estimativa da função de densidade de probabilidade da distribuição dos salários. Ela ajuda a visualizar a forma geral da distribuição[1].
+
+**Observações e Interpretações:**
+
+1.  **Picos Principais (Modas):**
+    *   O gráfico exibe uma distribuição multimodal, com pelo menos dois picos proeminentes.
+    *   O primeiro pico, e o mais alto, ocorre na faixa salarial em torno de R$4.000 - R$6.000 (aproximadamente), onde a frequência ultrapassa 900 profissionais[1].
+    *   O segundo pico significativo está na faixa de R$10.000 - R$12.000 (aproximadamente), com uma frequência em torno de 800 profissionais[1].
+    *   Um terceiro pico menor, mas notável, aparece em torno de R$14.000 - R$16.000, com frequência próxima a 400[1].
+
+2.  **Concentração de Salários:**
+    *   A maioria dos profissionais parece se concentrar nas faixas salariais abaixo de R$16.000, com as maiores concentrações nos dois primeiros picos mencionados[1].
+
+3.  **Cauda à Direita (Assimetria Positiva):**
+    *   A distribuição é assimétrica à direita (ou positivamente assimétrica). Isso significa que, embora a maioria dos salários esteja concentrada nas faixas mais baixas e médias, há uma "cauda" de profissionais que recebem salários consideravelmente mais altos, estendendo-se para além de R$20.000, R$30.000 e até R$40.000. As frequências nessas faixas mais altas são progressivamente menores[1].
+
+4.  **Intervalos de Salário:**
+    *   A primeira barra, de R$0 a aproximadamente R$2.500, tem uma frequência em torno de 400[1].
+    *   Após o pico principal em torno de R$5.000, há uma queda na frequência antes de subir novamente para o segundo pico em torno de R$11.000[1].
+    *   Depois do terceiro pico em torno de R$15.000, as frequências diminuem consideravelmente, indicando que menos profissionais se encontram nas faixas salariais mais elevadas[1].
+
+**Conclusões Gerais:**
+
+*   **Distribuição Salarial Heterogênea:** A presença de múltiplos picos sugere que pode haver subgrupos distintos dentro da população de profissionais de dados com diferentes níveis salariais predominantes. Isso pode ser influenciado por fatores como nível de experiência, área de atuação, nível de ensino, região geográfica, etc.
+*   **Maioria em Faixas Médias-Baixas:** Uma grande proporção dos profissionais aufere salários nas faixas que vão até aproximadamente R$16.000, com picos notáveis em torno de R$5.000 e R$11.000[1].
+*   **Potencial para Altos Salários:** A cauda longa à direita indica que, embora menos comuns, existem salários significativamente altos na área de dados, ultrapassando R$40.000[1].
+*   **Necessidade de Análise Multivariada:** A forma multimodal do histograma sugere que analisar apenas a distribuição geral do salário pode não contar a história completa. Seria interessante investigar quais fatores contribuem para os diferentes picos observados, como feito nas análises anteriores que segmentaram por experiência e nível de ensino.
+
+Este histograma fornece uma visão geral da estrutura salarial dos profissionais de dados, destacando as faixas de remuneração mais comuns e a existência de um segmento com ganhos consideravelmente mais altos.
+
+
+## Grafico Distribuição de Profissionais por Tempo de Experiência em Dados
 ![distribuicao_tempo_experiencia](https://github.com/user-attachments/assets/986f2138-2838-4ff8-ae15-8495f36f0728)
+## Análise do Gráfico: Distribuição de Profissionais por Tempo de Experiência em Dados
 
-## Grafico 13
+O gráfico anexado é um gráfico de barras horizontais que ilustra a "Distribuição de Profissionais por Tempo de Experiência em Dados"[1]. Ele mostra o número de profissionais de dados classificados em diferentes faixas de tempo de experiência na área.
+
+**Elementos do Gráfico:**
+
+*   **Título:** "Distribuição de Profissionais por Tempo de Experiência em Dados"[1].
+*   **Eixo Y (Vertical):** "Tempo de Experiência". Apresenta as seguintes categorias de tempo de atuação profissional na área de dados[1]:
+    *   Menos de 1 ano
+    *   de 1 a 2 anos
+    *   de 3 a 4 anos
+    *   de 5 a 6 anos
+    *   de 7 a 10 anos
+    *   Mais de 10 anos
+*   **Eixo X (Horizontal):** "Contagem". Indica o número de profissionais correspondente a cada faixa de experiência, com a escala variando de 0 a mais de 1000[1].
+*   **Barras Horizontais:** O comprimento de cada barra é proporcional à quantidade de profissionais naquela faixa de experiência específica. As barras estão ordenadas de cima para baixo, começando com a menor experiência e progredindo para a maior[1].
+
+**Observações e Interpretações por Faixa de Experiência:**
+
+1.  **de 1 a 2 anos:**
+    *   Esta é a faixa com o maior número de profissionais, com uma contagem superior a 1000 (aproximadamente 1050-1100). Isso sugere que uma grande parcela dos profissionais de dados no dataset possui uma experiência relativamente inicial, mas já consolidada, na área[1].
+
+2.  **de 3 a 4 anos:**
+    *   A segunda maior concentração de profissionais está nesta faixa, com uma contagem próxima a 950. Juntamente com a faixa anterior, indica que a maioria dos profissionais tem entre 1 e 4 anos de experiência[1].
+
+3.  **Menos de 1 ano:**
+    *   Profissionais com menos de um ano de experiência representam o terceiro maior grupo, com uma contagem em torno de 400. Isso mostra um contingente significativo de recém-chegados à área[1].
+
+4.  **de 5 a 6 anos:**
+    *   A contagem de profissionais nesta faixa é de aproximadamente 250-280, indicando um número menor de profissionais com este nível de experiência intermediária mais longa[1].
+
+5.  **de 7 a 10 anos:**
+    *   Esta faixa possui uma contagem similar à anterior, em torno de 250-280 profissionais[1].
+
+6.  **Mais de 10 anos:**
+    *   Este é o grupo com a menor representatividade, com uma contagem visivelmente inferior às demais, parecendo ser inferior a 100 (talvez em torno de 50-80). Isso indica que profissionais com vasta experiência (mais de uma década) na área de dados são menos comuns no dataset, o que pode refletir a relativa novidade da área de "dados" como um campo formalizado ou a nomenclatura utilizada[1].
+
+**Conclusões Gerais:**
+
+*   **Concentração em Níveis Iniciais e Intermediários de Experiência:** A maioria dos profissionais de dados no dataset possui entre 1 e 4 anos de experiência, com um número também considerável de iniciantes (menos de 1 ano)[1].
+*   **Menor Representatividade de Profissionais Altamente Experientes:** Há um declínio no número de profissionais à medida que o tempo de experiência aumenta, sendo que aqueles com mais de 10 anos de experiência são os menos numerosos[1].
+*   **Perfil da Área de Dados:** A distribuição pode sugerir que a área de dados, como campo profissional distinto, tem crescido rapidamente nos últimos anos, resultando em muitos profissionais com menos anos de experiência específica "em dados". Também pode indicar uma alta rotatividade ou transição para outras funções após alguns anos.
+*   **Formato de Funil:** A distribuição se assemelha a um funil, onde muitos entram na área, mas o número de profissionais diminui nas faixas de experiência mais longas.
+
+Este gráfico fornece uma visão clara do perfil de experiência dos profissionais de dados, destacando uma concentração maior nos estágios iniciais e intermediários da carreira na área.
+
+
+## Grafico Top 10 UF de Residência dos Profissionais de Dados
 ![distribuicao_top10_uf](https://github.com/user-attachments/assets/1cf90782-fb39-475d-b70e-ac4b18bb3f7d)
+## Análise do Gráfico: Top 10 UF de Residência dos Profissionais de Dados
 
-## Grafico 14
+O gráfico em anexo é um gráfico de barras verticais que apresenta o "Top 10 UF de Residência dos Profissionais de Dados"[1]. Ele mostra a contagem de profissionais de dados que residem nas dez Unidades Federativas (estados) com maior representatividade no dataset.
+
+**Elementos do Gráfico:**
+
+*   **Título:** "Top 10 UF de Residência dos Profissionais de Dados"[1].
+*   **Eixo Y (Vertical):** "Contagem". Indica o número de profissionais de dados, com a escala variando de 0 a mais de 1200[1].
+*   **Eixo X (Horizontal):** "UF". Apresenta as siglas das Unidades Federativas. As UFs estão ordenadas da esquerda para a direita, da maior para a menor contagem de profissionais[1].
+*   **Barras Verticais:** A altura de cada barra é proporcional ao número de profissionais de dados que residem naquela UF. As barras possuem diferentes tonalidades de azul, possivelmente para melhor distinção visual ou para indicar uma hierarquia, embora a ordenação já cumpra essa função[1].
+
+**Observações e Interpretações por UF:**
+
+1.  **SP (São Paulo):**
+    *   Destaca-se como a UF com a maior concentração de profissionais de dados, com uma contagem muito superior às demais, ultrapassando 1200 (aproximadamente 1300 profissionais). Isso indica que São Paulo é o principal polo de profissionais de dados no Brasil, de acordo com este dataset[1].
+
+2.  **MG (Minas Gerais):**
+    *   A segunda UF com mais profissionais, com uma contagem em torno de 350-380. Embora seja um número significativo, é consideravelmente menor que o de São Paulo[1].
+
+3.  **PR (Paraná):**
+    *   Ocupa a terceira posição, com uma contagem próxima a 300 profissionais[1].
+
+4.  **RJ (Rio de Janeiro):**
+    *   Apresenta uma contagem muito similar à do Paraná, também em torno de 290-300 profissionais, posicionando-se como o quarto estado com mais profissionais de dados[1].
+
+5.  **RS (Rio Grande do Sul):**
+    *   A contagem de profissionais é de aproximadamente 180[1].
+
+6.  **SC (Santa Catarina):**
+    *   Possui uma contagem ligeiramente inferior ao RS, em torno de 160-170 profissionais[1].
+
+7.  **DF (Distrito Federal):**
+    *   Apresenta uma contagem próxima a 90-100 profissionais[1].
+
+8.  **BA (Bahia), CE (Ceará), PE (Pernambuco):**
+    *   Estas três UFs da região Nordeste encerram o top 10, com contagens menores e relativamente próximas entre si, todas abaixo de 100 (aproximadamente entre 70 e 85 profissionais cada)[1].
+
+**Conclusões Gerais:**
+
+*   **Concentração Regional Sudeste-Sul:** A grande maioria dos profissionais de dados está concentrada na região Sudeste (SP, MG, RJ) e Sul (PR, RS, SC), com São Paulo liderando de forma proeminente[1].
+*   **Disparidade Geográfica:** Existe uma notável disparidade na distribuição geográfica dos profissionais de dados, com um número muito maior de profissionais em São Paulo em comparação com todos os outros estados.
+*   **Presença em Outras Regiões:** Embora em menor número, o Distrito Federal (Centro-Oeste) e estados do Nordeste (BA, CE, PE) também figuram no top 10, indicando a presença de polos de profissionais de dados nessas regiões, ainda que menos expressivos em volume.
+*   **Implicações para o Mercado:** Essa concentração pode refletir onde estão as maiores oportunidades de emprego, os principais centros de formação ou os ecossistemas de inovação e tecnologia mais desenvolvidos no país.
+
+Este gráfico fornece uma visão clara da distribuição geográfica dos profissionais de dados no Brasil, destacando a liderança de São Paulo e a importância das regiões Sudeste e Sul como principais centros para esses profissionais.
+
+
+## Grafico Heatmap de Correlação entre Salário, Experiência (anos) e Nível de Ensino (ordinal)
 ![heatmap_correlacao_salario_exp_ensino](https://github.com/user-attachments/assets/2cd9887a-0a1d-4c89-b513-3a852d07b35c)
+## Análise do Gráfico: Heatmap de Correlação entre Salário, Experiência (anos) e Nível de Ensino (ordinal)
 
-## Grafico 15
+O gráfico apresentado é um heatmap (mapa de calor) que visualiza a matriz de correlação entre três variáveis quantitativas: "Salário Estimado", "Experiência (anos) Estimados" e "Nível de Ensino (ordinal)"[1]. Este tipo de gráfico utiliza cores para representar a força e a direção das correlações lineares entre pares de variáveis.
+
+**Elementos do Gráfico:**
+
+*   **Título:** "Heatmap de Correlação entre Salário, Experiência (anos) e Nível de Ensino (ordinal)"[1].
+*   **Eixos (Linhas e Colunas):** As mesmas três variáveis são listadas tanto nas linhas quanto nas colunas[1]:
+    *   Salario_Estimado
+    *   Experiencia_Anos_Estimados
+    *   Nivel_Ensino_Ordinal
+*   **Células da Matriz:** Cada célula na interseção de uma linha e uma coluna mostra o coeficiente de correlação de Pearson entre as duas variáveis correspondentes. O valor do coeficiente é exibido numericamente dentro da célula[1].
+*   **Escala de Cores (Barra Lateral):** À direita do heatmap, uma barra de cores indica como os valores de correlação são mapeados para as cores. A escala varia de aproximadamente 0.2 (azul escuro) a 1.0 (vermelho escuro)[1].
+    *   Cores mais quentes (tendendo ao vermelho) indicam correlações positivas mais fortes.
+    *   Cores mais frias (tendendo ao azul) indicam correlações positivas mais fracas (neste caso, todas as correlações são positivas).
+    *   Se houvesse correlações negativas, elas normalmente seriam representadas por uma gama diferente de cores.
+
+**Interpretação dos Coeficientes de Correlação:**
+
+Os coeficientes de correlação variam de -1 a +1:
+*   +1 indica uma correlação linear positiva perfeita.
+*   -1 indica uma correlação linear negativa perfeita.
+*   0 indica ausência de correlação linear.
+*   Valores próximos de +1 ou -1 indicam correlações fortes, enquanto valores próximos de 0 indicam correlações fracas.
+
+**Análise das Correlações Específicas:**
+
+1.  **Diagonal Principal (Vermelho Escuro - Valor 1.00):**
+    *   Salario_Estimado com Salario_Estimado: 1.00[1]
+    *   Experiencia_Anos_Estimados com Experiencia_Anos_Estimados: 1.00[1]
+    *   Nivel_Ensino_Ordinal com Nivel_Ensino_Ordinal: 1.00[1]
+    *   Isso é esperado, pois a correlação de qualquer variável consigo mesma é sempre perfeita e positiva.
+
+2.  **Salario_Estimado vs. Experiencia_Anos_Estimados:**
+    *   Coeficiente: 0.53[1]
+    *   Cor: Azul claro, tendendo para o centro da escala.
+    *   Interpretação: Existe uma correlação positiva moderada entre o salário estimado e os anos de experiência. Isso sugere que, de forma geral, à medida que os anos de experiência aumentam, o salário estimado também tende a aumentar.
+
+3.  **Salario_Estimado vs. Nivel_Ensino_Ordinal:**
+    *   Coeficiente: 0.30[1]
+    *   Cor: Azul médio.
+    *   Interpretação: Há uma correlação positiva fraca a moderada entre o salário estimado e o nível de ensino ordinal. Isso indica que, em geral, níveis de ensino mais altos estão associados a salários estimados mais altos, mas a relação é menos forte do que a observada com a experiência.
+
+4.  **Experiencia_Anos_Estimados vs. Nivel_Ensino_Ordinal:**
+    *   Coeficiente: 0.24[1]
+    *   Cor: Azul mais escuro, na parte inferior da escala de cores.
+    *   Interpretação: Existe uma correlação positiva fraca entre os anos de experiência estimados e o nível de ensino ordinal. Isso pode sugerir uma leve tendência de que profissionais com níveis de ensino mais altos também possam ter um pouco mais de tempo de experiência, ou vice-versa, mas a relação é bastante tênue.
+
+**Conclusões Gerais:**
+
+*   **Influência da Experiência no Salário:** A experiência profissional ("Experiencia_Anos_Estimados") apresenta a correlação positiva mais forte com o salário ("Salario_Estimado") entre as variáveis analisadas (0.53), indicando que é um fator importante associado à remuneração[1].
+*   **Influência do Nível de Ensino no Salário:** O nível de ensino ("Nivel_Ensino_Ordinal") também tem uma correlação positiva com o salário (0.30), mas essa relação é menos acentuada do que a da experiência[1].
+*   **Relação entre Experiência e Nível de Ensino:** A correlação entre experiência e nível de ensino é a mais fraca entre os pares (0.24), sugerindo que esses dois fatores, embora ambos influenciem o salário, não estão fortemente interligados entre si no dataset[1].
+
+Este heatmap fornece uma visão concisa de como essas três variáveis chave estão linearmente relacionadas, destacando a importância da experiência e, em menor grau, do nível de ensino, na determinação do salário estimado dos profissionais de dados.
+
+
+## Grafico Salário Médio Estimado vs. Anos de Experiência por Nível de Ensino
 ![lineplot_salario_exp_por_nivel_ensino](https://github.com/user-attachments/assets/8e847b68-732a-4df6-ac5f-3abde32e4245)
+## Análise do Gráfico: Salário Médio Estimado vs. Anos de Experiência por Nível de Ensino
 
-## Grafico 16
+O gráfico apresentado é um gráfico de linhas que ilustra a relação entre o "Salário Médio Estimado (R$)" e os "Anos de Experiência Estimados", segmentado por "Nível de Ensino"[1]. Cada linha representa um nível de formação acadêmica diferente, mostrando como a trajetória salarial se desenvolve com o aumento da experiência para cada grupo.
+
+**Elementos do Gráfico:**
+
+*   **Título:** "Salário Médio Estimado vs. Anos de Experiência por Nível de Ensino"[1].
+*   **Eixo Y (Vertical):** "Salário Médio Estimado (R$)", com a escala variando de R$2.500 a R$22.500[1].
+*   **Eixo X (Horizontal):** "Anos de Experiência Estimados", variando de aproximadamente 0.5 (representando "Menos de 1 ano") até 8 anos (representando "de 7 a 10 anos", e possivelmente agrupando "Mais de 10 anos" no ponto final, embora a imagem corte antes de mostrar o extremo dos 10+ anos de forma explícita)[1].
+*   **Linhas Coloridas:** Cada linha representa um "Nível de Ensino" diferente, conforme a legenda[1]:
+    *   **Azul escuro/Roxo:** Estudante de Graduação
+    *   **Azul médio:** Graduação/Bacharelado
+    *   **Verde-azulado (Turquesa):** Pós-graduação
+    *   **Verde:** Mestrado
+    *   **Verde claro (Lima):** Doutorado ou Phd
+*   **Pontos nas Linhas:** Marcam os valores médios de salário para faixas específicas de experiência dentro de cada nível de ensino.
+*   **Áreas Sombreadas (Intervalos de Confiança):** As faixas coloridas translúcidas ao redor de cada linha provavelmente representam intervalos de confiança para o salário médio estimado. Isso indica a variabilidade ou incerteza em torno da média estimada; quanto mais larga a faixa, maior a incerteza ou dispersão dos dados[1].
+
+**Observações e Interpretações:**
+
+1.  **Progressão Salarial com Experiência (Geral):**
+    *   Para *todos* os níveis de ensino, há uma clara tendência ascendente: o salário médio estimado aumenta consistentemente com o aumento dos anos de experiência. As linhas sobem da esquerda para a direita[1].
+
+2.  **Impacto do Nível de Ensino no Salário Inicial (Ponto de Partida):**
+    *   Mesmo com pouca ou nenhuma experiência (extrema esquerda do gráfico), os níveis de ensino mais altos tendem a começar com salários médios estimados mais elevados.
+        *   "Doutorado ou Phd" e "Mestrado" iniciam com os maiores salários médios, seguidos por "Pós-graduação", "Graduação/Bacharelado", e por último "Estudante de Graduação"[1].
+
+3.  **Diferenças Salariais Ampliadas com a Experiência:**
+    *   As linhas tendem a se divergir mais à medida que os anos de experiência aumentam. Isso significa que a diferença salarial entre os níveis de ensino se torna mais pronunciada para profissionais mais experientes.
+    *   Por exemplo, a diferença salarial entre um "Doutorado ou Phd" e um "Graduado/Bacharel" com 1 ano de experiência é menor do que a diferença entre esses mesmos dois níveis com 5 ou 8 anos de experiência[1].
+
+4.  **Hierarquia dos Níveis de Ensino:**
+    *   Ao longo da maior parte da trajetória de experiência, a hierarquia salarial geralmente segue a ordem do nível de ensino: Doutorado > Mestrado > Pós-graduação > Graduação > Estudante de Graduação.
+    *   Há um cruzamento ou proximidade muito grande entre as linhas de "Graduação/Bacharelado" e "Pós-graduação" em certos pontos, sugerindo que, para algumas faixas de experiência, a diferença salarial média entre ter apenas graduação e ter uma pós-graduação (lato sensu, provavelmente) pode não ser tão acentuada como a diferença para mestrado ou doutorado[1].
+
+5.  **Retorno da Experiência por Nível de Ensino:**
+    *   As inclinações das linhas sugerem que o "retorno" por ano adicional de experiência pode variar entre os níveis de ensino. As linhas para "Doutorado ou Phd" e "Mestrado" parecem ter inclinações consistentemente acentuadas, indicando um forte crescimento salarial com a experiência.
+
+6.  **Variabilidade (Áreas Sombreadas):**
+    *   As áreas sombreadas para "Doutorado ou Phd" e "Mestrado", especialmente nos níveis mais altos de experiência, parecem ser mais largas. Isso pode indicar uma maior variabilidade nos salários para esses grupos (ou seja, alguns doutores/mestres experientes ganham muito bem, enquanto outros podem ter salários mais próximos dos demais grupos, aumentando a dispersão) ou menor número de amostras nessas categorias, levando a maior incerteza na estimativa da média[1].
+    *   A faixa para "Estudante de Graduação" é consistentemente a mais baixa e parece ter uma variabilidade relativamente menor em comparação com os níveis superiores[1].
+
+**Conclusões Gerais:**
+
+*   **Valorização da Experiência e Educação:** O gráfico demonstra claramente que tanto o tempo de experiência quanto o nível de ensino são fatores cruciais que influenciam positivamente o salário médio estimado dos profissionais de dados.
+*   **Efeito Combinado:** O maior potencial salarial é observado em profissionais que combinam um alto nível de ensino (Mestrado ou Doutorado) com um volume significativo de anos de experiência.
+*   **Investimento em Educação:** Níveis mais altos de educação formal tendem a proporcionar um ponto de partida salarial mais elevado e mantêm uma trajetória de crescimento salarial superior ao longo da carreira, em média.
+
+Este gráfico sintetiza de forma eficaz como a formação acadêmica e a experiência profissional interagem para moldar a progressão salarial na área de dados, reforçando a importância de ambos os fatores para o desenvolvimento de carreira e potencial de ganhos.
+
+
+## Grafico Relação 3D entre Salário, Experiência e Nível de Ensino
 ### [Grafico Interativo - Clique aqui](https://htmlpreview.github.io/?https://gist.githubusercontent.com/pedrinndias/c8f65f4a0c3ba1736c5a2687f8a7c448/raw/b83fdbae94c7706b5fbc5cd2215d132558201ddb/scatter3d_salario_exp_ensino.html)
+![newplot(2)](https://github.com/user-attachments/assets/ec28770a-f3a3-4129-b517-f0fc40afd8f1)
+## Análise do Gráfico: Relação 3D entre Salário, Experiência e Nível de Ensino
 
-## Grafico 17
+O gráfico interativo apresentado é um gráfico de dispersão 3D (3D Scatter Plot) que visualiza a relação entre três variáveis principais: "Salário Estimado (R$)", "Experiência (Anos Estimados)" e "Nível de Ensino (Ordinal)"[1]. Cada ponto no espaço tridimensional representa um profissional de dados.
+
+**Elementos do Gráfico:**
+
+*   **Eixos:**
+    *   **Eixo X (Horizontal, profundidade):** "Experiencia_Anos_Estimados". Este eixo representa o tempo de experiência profissional em anos, variando de aproximadamente 0.5 (menos de 1 ano) até 10.0 (mais de 10 anos)[1].
+    *   **Eixo Y (Horizontal, largura):** "Nivel_Ensino_Ordinal". Este eixo representa o nível de formação acadêmica de forma ordinal, onde valores menores indicam níveis de ensino mais básicos (0 para Estudante de Graduação) e valores maiores indicam níveis mais avançados (4 para Doutorado ou Phd)[1].
+    *   **Eixo Z (Vertical, altura):** "Salario_Estimado". Este eixo representa a remuneração estimada em Reais, variando de R$0 até mais de R$40.000[1].
+*   **Pontos de Dados:** Cada ponto (esfera) no gráfico representa um profissional individual no dataset, posicionado de acordo com seus valores nas três variáveis mencionadas[1][3][5].
+*   **Cor dos Pontos (Nivel_Ensino_Ordinal):** Os pontos são coloridos de acordo com o "Nivel_Ensino_Ordinal", facilitando a identificação de grupos com diferentes níveis de formação[1]. A legenda de cores normalmente acompanha esse tipo de gráfico (embora não visível estaticamente na imagem fornecida, é um padrão em gráficos interativos como os do Plotly):
+    *   Estudante de Graduação (Ordinal 0): Cor específica (ex: azul)
+    *   Graduação/Bacharelado (Ordinal 1): Outra cor (ex: laranja)
+    *   Pós-graduação (Ordinal 2): Outra cor (ex: verde)
+    *   Mestrado (Ordinal 3): Outra cor (ex: vermelho)
+    *   Doutorado ou Phd (Ordinal 4): Outra cor (ex: roxo)
+
+**Observações e Interpretações (Baseadas na Interação Típica com Gráficos 3D):**
+
+1.  **Concentração de Pontos:**
+    *   Observa-se uma maior concentração de pontos nas regiões de menor "Salario_Estimado", especialmente para níveis de ensino mais baixos e menor tempo de experiência.
+    *   À medida que o "Nivel_Ensino_Ordinal" e a "Experiencia_Anos_Estimados" aumentam (movendo-se para "cima" no eixo Y e para "frente" no eixo X), os pontos tendem a se posicionar mais alto no eixo Z ("Salario_Estimado").
+
+2.  **Tendência Geral:**
+    *   Há uma tendência visual clara de que salários mais altos (pontos mais altos no eixo Z) estão associados a combinações de maior experiência e/ou níveis de ensino mais elevados.
+    *   A "nuvem" de pontos parece se inclinar para cima à medida que se avança nos eixos de experiência e nível de ensino.
+
+3.  **Impacto Combinado de Experiência e Nível de Ensino:**
+    *   **Baixa Experiência, Qualquer Nível de Ensino:** Profissionais com pouca experiência (próximo ao plano traseiro do gráfico) geralmente apresentam salários mais baixos, mesmo aqueles com níveis de ensino mais altos (ex: Doutorado com pouca experiência pode ter salário menor que um Graduado com muita experiência).
+    *   **Alta Experiência, Nível de Ensino Variado:** Profissionais com muita experiência (próximo ao plano frontal) mostram uma ampla gama de salários. No entanto, dentro desse grupo de alta experiência, aqueles com níveis de ensino mais altos (cores associadas a Mestrado/Doutorado) tendem a alcançar os patamares salariais mais elevados.
+    *   **Nível de Ensino Alto, Experiência Variada:** Profissionais com Doutorado (cor específica, ordinal 4), por exemplo, estão espalhados ao longo do eixo de experiência. Aqueles com mais experiência nesse grupo tendem a ter os salários mais altos do dataset.
+
+4.  **Visualização de Outliers:**
+    *   O gráfico 3D permite identificar visualmente outliers – profissionais que, por exemplo, têm um salário muito alto para seu nível de experiência e ensino, ou vice-versa. Esses pontos se destacariam da "nuvem" principal.
+
+5.  **Interatividade:**
+    *   A natureza interativa desses gráficos (possibilidade de girar, dar zoom) é crucial para uma exploração completa. Girar o gráfico permite observar a relação entre pares de variáveis, mantendo a terceira como referência, ou identificar clusters e padrões que não seriam óbvios em visualizações 2D separadas[5].
+
+**Conclusões Gerais:**
+
+*   O gráfico de dispersão 3D reforça as conclusões de análises 2D anteriores: tanto a experiência profissional quanto o nível de formação acadêmica são fatores importantes que influenciam positivamente o salário estimado dos profissionais de dados.
+*   A visualização tridimensional destaca a **interação** entre esses dois fatores. Para alcançar os salários mais altos, geralmente é necessária uma combinação de alto nível de ensino *e* experiência substancial.
+*   Profissionais com níveis de ensino mais baixos, mesmo com muita experiência, podem ter um "teto" salarial inferior ao de profissionais com formação mais avançada e experiência similar.
+*   Da mesma forma, profissionais com alta formação, mas pouca experiência, podem não atingir os salários mais elevados até que acumulem mais tempo de atuação no mercado.
+
+Este tipo de visualização é poderoso para entender relações multivariadas complexas, mostrando como diferentes fatores se combinam para influenciar um resultado, neste caso, o salário.
+
+
+## Grafico Salário Estimado vs. Proporção de Docentes com Doutorado na UF de Residência
 ![scatterplot_salario_vs_prop_doc_doutorado_uf](https://github.com/user-attachments/assets/004cf9f3-3691-4536-aa8a-ae2a9ec938e9)
+## Análise do Gráfico: Salário Estimado vs. Proporção de Docentes com Doutorado na UF de Residência
+
+O gráfico apresentado é um gráfico de dispersão (scatter plot) que busca explorar a relação entre o "Salário Estimado (R$)" dos profissionais de dados e a "Proporção de Docentes com Doutorado na UF de Residência"[1]. Adicionalmente, os pontos no gráfico são codificados por cor para representar o "Nível de ensino alcançado" e por tamanho para indicar os "Experiencia_Anos_Estimados".
+
+**Elementos do Gráfico:**
+
+*   **Título:** "Salário Estimado vs. Proporção de Docentes com Doutorado na UF de Residência"[1].
+*   **Eixo Y (Vertical):** "Salário Estimado (R$)", com escala de R$0 até mais de R$40.000[1].
+*   **Eixo X (Horizontal):** "Proporção de Docentes com Doutorado na UF de Residência", variando aproximadamente de 0.30 a pouco mais de 0.60[1]. Este eixo representa a fração de docentes em uma determinada Unidade Federativa que possuem doutorado.
+*   **Pontos de Dados:** Cada ponto representa um profissional de dados.
+    *   **Cor (Nível de ensino alcançado):** Conforme a legenda[1]:
+        *   Verde claro/Turquesa: Estudante de Graduação
+        *   Laranja: Graduação/Bacharelado
+        *   Azul: Pós-graduação
+        *   Roxo/Rosa: Mestrado
+        *   Verde escuro: Doutorado ou Phd
+    *   **Tamanho (Experiencia_Anos_Estimados):** Pontos maiores indicam maior tempo de experiência (0.5, 1.5, 3.5, 5.5, 8.5 anos estimados), conforme a legenda[1].
+
+**Observações e Interpretações:**
+
+1.  **Dispersão Geral dos Pontos:**
+    *   Os pontos estão amplamente dispersos pelo gráfico, não formando um padrão linear claro (positivo ou negativo) entre a proporção de docentes com doutorado na UF e o salário estimado dos profissionais de dados[1].
+    *   Isso sugere que, isoladamente, a proporção de docentes com doutorado em uma UF não parece ser um forte preditor direto do salário individual de um profissional de dados que reside naquela UF.
+
+2.  **Distribuição Salarial:**
+    *   Profissionais com salários muito variados (desde próximos a R$0 até acima de R$40.000) são encontrados em UFs com diferentes proporções de docentes com doutorado. Por exemplo, tanto em UFs com proporção em torno de 0.45 quanto em UFs com proporção em torno de 0.55, observa-se toda a gama de salários[1].
+
+3.  **Impacto do Nível de Ensino (Cor):**
+    *   **Estudantes de Graduação (Verde claro/Turquesa):** Concentram-se predominantemente nas faixas salariais mais baixas, independentemente da proporção de docentes com doutorado na UF[1].
+    *   **Outros Níveis de Ensino:** Profissionais com Graduação (Laranja), Pós-graduação (Azul), Mestrado (Roxo/Rosa) e Doutorado (Verde escuro) estão espalhados por uma ampla faixa de salários. Os salários mais altos (acima de R$30.000) são alcançados por profissionais de diversos níveis de ensino a partir da graduação, mas frequentemente associados a maior experiência[1].
+
+4.  **Impacto da Experiência (Tamanho):**
+    *   Visualmente, os pontos maiores (mais experiência) tendem a se localizar nas faixas salariais mais altas. Por exemplo, muitos dos pontos com salários acima de R$20.000 são de tamanho médio a grande. Isso reforça a observação de análises anteriores de que a experiência é um fator importante na determinação salarial[1].
+    *   Os salários mais elevados (acima de R$40.000) são consistentemente representados por pontos de tamanho médio a grande, indicando profissionais com experiência considerável (3.5 anos ou mais)[1].
+
+5.  **Ausência de Relação Clara com a Proporção de Docentes com Doutorado:**
+    *   Não se observa que UFs com maior proporção de docentes com doutorado tenham consistentemente profissionais de dados com salários mais altos, ou vice-versa.
+    *   Por exemplo, alguns dos salários mais altos (>R$40.000) aparecem em UFs com proporção de docentes com doutorado em torno de 0.45-0.50, enquanto outros salários altos também aparecem em UFs com proporção em torno de 0.55-0.60[1].
+
+**Conclusões Gerais:**
+
+*   O gráfico sugere que a proporção de docentes com doutorado na UF de residência de um profissional de dados **não é um fator determinante primário** para o salário estimado desse profissional. A qualidade do ambiente acadêmico local, se proxy pela qualificação dos docentes, não se traduz diretamente em maiores salários individuais para os profissionais de dados ali residentes.
+*   Fatores individuais como **nível de ensino alcançado e, principalmente, anos de experiência**, parecem ter uma influência mais visível na determinação salarial, como indicado pela distribuição das cores e tamanhos dos pontos em relação ao eixo do salário.
+*   Outros fatores não representados neste gráfico específico, como o setor de atuação da empresa, o cargo específico, as habilidades individuais, a demanda do mercado local na UF e o custo de vida, provavelmente desempenham papéis mais significativos na definição dos salários dos profissionais de dados.
+
+Este gráfico é útil para descartar uma relação causal ou correlacional forte entre a proporção de docentes com doutorado na UF e os salários dos profissionais de dados, direcionando a atenção para outros fatores mais diretamente ligados ao perfil do profissional e ao mercado de trabalho.
+
 
 ## Grafico 18
 ### [Grafico Interativo - Clique aqui](https://htmlpreview.github.io/?https://gist.githubusercontent.com/pedrinndias/6bdfb7fdb2be6a819758ca7b1b05d011/raw/7db0af70c340fb3c01d6a052579873f03cacbf1c/gistfile1.txt)
+![newplot(3)](https://github.com/user-attachments/assets/6ebf06b9-3667-4d2f-bb06-2802e19b8949)
+## Análise do Gráfico: Relação 3D entre Salário, Experiência e Nível de Ensino
+
+O gráfico interativo apresentado é um gráfico de dispersão 3D (3D Scatter Plot) que visualiza a relação entre três variáveis principais: "Salário Estimado (R$)", "Experiência (Anos Estimados)" e "Nível de Ensino (Ordinal)"[1][2]. Cada ponto no espaço tridimensional representa um profissional de dados. Este tipo de análise exploratória de dados (AED) ajuda a investigar conjuntos de dados e resumir suas principais características usando métodos de visualização[3][4][5].
+
+**Elementos do Gráfico:**
+
+*   **Eixos:**
+    *   **Eixo X (Horizontal, geralmente representado como profundidade ou eixo frontal):** "Experiencia_Anos_Estimados". Este eixo representa o tempo de experiência profissional em anos, variando de aproximadamente 0.5 (para "Menos de 1 ano") até 10.0 (para "Mais de 10 anos")[1][2].
+    *   **Eixo Y (Horizontal, geralmente representado como largura ou eixo lateral):** "Nivel_Ensino_Ordinal". Este eixo representa o nível de formação acadêmica de forma ordinal, onde valores menores indicam níveis de ensino mais básicos (0 para Estudante de Graduação) e valores maiores indicam níveis mais avançados (4 para Doutorado ou Phd)[1][2].
+    *   **Eixo Z (Vertical, altura):** "Salario_Estimado". Este eixo representa a remuneração estimada em Reais, variando de R$0 até valores que podem exceder R$40.000[1][2].
+*   **Pontos de Dados:** Cada ponto (esfera) no gráfico representa um profissional individual no dataset, posicionado de acordo com seus valores nas três variáveis mencionadas[1][2].
+*   **Cor dos Pontos (Nivel_Ensino_Ordinal):** Os pontos são coloridos de acordo com o "Nivel_Ensino_Ordinal", o que facilita a identificação visual de grupos com diferentes níveis de formação acadêmica[1][2]. A legenda de cores, que tipicamente acompanha esses gráficos interativos, seria (assumindo um esquema de cores padrão para variáveis ordinais):
+    *   Estudante de Graduação (Ordinal 0): Uma cor específica (ex: azul)
+    *   Graduação/Bacharelado (Ordinal 1): Outra cor (ex: laranja)
+    *   Pós-graduação (Ordinal 2): Outra cor (ex: verde)
+    *   Mestrado (Ordinal 3): Outra cor (ex: vermelho)
+    *   Doutorado ou Phd (Ordinal 4): Outra cor (ex: roxo)
+
+**Observações e Interpretações (Baseadas na Interação Típica com Gráficos 3D):**
+
+1.  **Concentração Geral dos Pontos:**
+    *   Observa-se uma maior densidade de pontos nas regiões correspondentes a menores salários estimados (parte inferior do eixo Z), especialmente para combinações de baixo nível de ensino e pouco tempo de experiência.
+    *   À medida que os valores nos eixos "Nivel_Ensino_Ordinal" e "Experiencia_Anos_Estimados" aumentam (movendo-se para valores ordinais mais altos no eixo Y e para mais anos no eixo X), os pontos tendem a se posicionar em níveis mais elevados no eixo Z ("Salario_Estimado").
+
+2.  **Tendência Global:**
+    *   Visualmente, existe uma tendência clara de que salários mais altos (pontos mais altos no eixo Z) estão associados a combinações de maior tempo de experiência e/ou níveis de ensino mais elevados. A "nuvem" de pontos parece se elevar à medida que se avança ao longo dos eixos de experiência e nível de ensino.
+
+3.  **Impacto Combinado e Interação entre Experiência e Nível de Ensino:**
+    *   **Profissionais com Baixa Experiência:** Independentemente do nível de ensino, aqueles com pouca experiência (valores baixos no eixo X) geralmente apresentam salários mais baixos. Mesmo um doutor com pouca experiência pode ter um salário menor do que um graduado com muitos anos de experiência.
+    *   **Profissionais com Alta Experiência:** Aqueles com muitos anos de experiência (valores altos no eixo X) exibem uma gama mais ampla de salários. Dentro deste grupo, os profissionais com níveis de ensino mais altos (cores associadas a Mestrado/Doutorado) tendem a alcançar os patamares salariais mais elevados.
+    *   **Profissionais com Nível de Ensino Elevado:** Por exemplo, indivíduos com Doutorado (ordinal 4, cor específica) estão distribuídos ao longo de diferentes faixas de experiência. Aqueles que combinam doutorado com mais anos de experiência tendem a estar entre os que recebem os salários mais altos do dataset.
+
+4.  **Identificação de Outliers:**
+    *   A visualização 3D pode ajudar a identificar outliers – por exemplo, profissionais com um salário muito alto para seu nível de experiência e ensino, ou o contrário. Esses pontos se destacariam da concentração principal de dados[6][8].
+
+5.  **Vantagem da Interatividade:**
+    *   A capacidade de girar, dar zoom e interagir com o gráfico 3D é fundamental para uma análise completa. Isso permite observar as relações entre pares de variáveis de diferentes ângulos, facilitando a identificação de padrões, clusters ou tendências que poderiam não ser evidentes em gráficos 2D estáticos[5][10].
+
+**Conclusões Gerais:**
+
+*   O gráfico de dispersão 3D corrobora e integra as descobertas de análises 2D anteriores: tanto a experiência profissional quanto o nível de formação acadêmica são fatores positivamente correlacionados com o salário estimado dos profissionais de dados.
+*   A principal contribuição desta visualização é destacar a **interação** entre esses dois fatores. Para alcançar os salários mais elevados, geralmente é necessária uma combinação de um alto nível de ensino *e* uma experiência profissional substancial.
+*   Profissionais com níveis de ensino mais baixos podem encontrar um "teto" salarial mais baixo, mesmo com muita experiência, em comparação com aqueles com formação mais avançada e experiência similar.
+*   Da mesma forma, profissionais com alta qualificação acadêmica, mas pouca experiência prática, podem não atingir os salários mais altos até acumularem mais tempo de atuação no mercado.
+
+Este tipo de gráfico é uma ferramenta poderosa para a análise exploratória de dados (AED), pois permite uma compreensão mais intuitiva de relações multivariadas complexas, mostrando como diferentes fatores se combinam para influenciar um resultado específico como o salário[3][9].
+
 
 # 3º Pergunta orientada a dados
 **Pergunta Orientada a Dados:**

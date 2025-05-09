@@ -2191,9 +2191,9 @@ Esta é uma **matriz de correlação** que mostra a relação linear entre difer
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
-## Indução de modelos
+# Indução de modelos
 
-### Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest
+## Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest
 ### 1º Pergunta orientada a dados
 ### *Justificativa*
 
@@ -2213,6 +2213,23 @@ Random Forest é reconhecido por seu alto desempenho em tarefas de classificaç�
 
 ### - Manejo de Features Categóricas e Numéricas:
 As features Nível de ensino alcançado e Tempo de experiência na área de dados foram transformadas em variáveis numéricas ordinais. O Random Forest lida bem com esse tipo de dado após o pré-processamento.
+
+| Atributo                                         | Nome                                      | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância |
+|--------------------------------------------------|-------------------------------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------------------------|------------|
+| P0                                               | id                 		       | Qualitativo  | Nominal                             | Para identificação da resposta                                    		            | Alta       |
+| P1l                                              | Nível de ensino alcançado                 | Qualitativo  | Ordinal                             | Nível de ensino do respondente (graduação, mestrado, etc.)                                    | Alta       |
+| P1m                                              | Área de formação acadêmica                | Qualitativo  | Nominal (Multivalorado)             | Área de formação acadêmica do respondente (TI, Economia, etc.)                                | Alta       |
+| P2h                                              | Faixa salarial mensal                     | Qualitativo  | Ordinal                             | Faixa salarial mensal do respondente                                                          | Alta       |
+| P2i                                              | Tempo de experiência na área de dados     | Quantitativo | Discreto                            | Tempo de experiência do respondente na área de dados (em anos)                                | Alta       |
+| P2g                                              | Nível de senioridade                      | Qualitativo  | Ordinal                             | Nível de senioridade do respondente (Júnior, Pleno, Sênior)                                   | Alta       |
+| P1b                                              | Gênero do profissional                    | Qualitativo  | Nominal (Multivalorado)             | Identidade de gênero do respondente                                                           | Alta       |
+| P1c                                              | Cor/Raça/Etnia                            | Qualitativo  | Nominal (Multivalorado)             | Cor ou raça do respondente                                                                    | Alta       |
+| P2b                                              | Setor de atuação da empresa               | Qualitativo  | Nominal (Multivalorado)             | Setor em que a empresa do respondente atua (Tecnologia, Finanças, etc.)                       | Alta       |
+| P1i1                                             | UF onde mora                              | Qualitativo  | Nominal (Multivalorado)             | Unidade Federativa onde o respondente reside                                                  | Alta       |
+| P2f                                              | Cargo atual                               | Qualitativo  | Nominal (Multivalorado)             | Cargo atual ocupado pelo respondente                                                          | Alta       |
+| P2o6                                             | Oportunidade de aprendizado               | Qualitativo  | Nominal (Multivalorado)             | Valorização das oportunidades de aprendizado e crescimento profissional                       | Alta       |
+| P2o10                                            | Reputação da empresa                      | Qualitativo  | Nominal (Multivalorado)             | Valorização da reputação que a empresa tem no mercado                                         | Alta       |
+
 
 ### - Interpretabilidade Parcial:
 Embora um ensemble de muitas árvores possa parecer uma "caixa preta", é possível visualizar árvores individuais (como o exemplo plotado no gráfico da árvore de decisão do notebook) para entender os caminhos de decisão. Isso oferece insights sobre como o modelo toma suas decisões com base nas interações.
@@ -2254,41 +2271,41 @@ No modelo desenvolvido para analisar a disparidade salarial dos profissionais de
 
 ### *Parâmetros utilizados*
 
-- **bootstrap:** True: Indica que o método de bootstrap foi utilizado para criar as amostras de treinamento para cada árvore da floresta. Isso significa que cada árvore é treinada em uma subamostra dos dados de treinamento, selecionada com reposição.
+- **bootstrap:** True
   
-- **ccp_alpha:** 0.0: Parâmetro de Poda de Complexidade Mínima (Minimal Cost-Complexity Pruning). Um valor de 0.0 significa que nenhuma poda baseada em complexidade-custo é aplicada além do que é controlado por outros parâmetros como min_samples_leaf, etc.
+- **ccp_alpha:** 0.0
   
-- **class_weight:** 'balanced_subsample': Este parâmetro é usado para lidar com classes desbalanceadas. A opção 'balanced_subsample' ajusta os pesos das classes inversamente proporcionais às suas frequências em cada amostra de bootstrap (subamostra usada para construir cada árvore). Isso ajuda a dar mais importância para a classe minoritária durante o treinamento de cada árvore.
+- **class_weight:** 'balanced_subsample'
   
-- **criterion:** 'gini': Define a função para medir a qualidade de uma divisão. 'gini' refere-se ao critério de Impureza Gini, que é uma medida comum para árvores de decisão em tarefas de classificação. Alternativamente, poderia ser 'entropy' para o ganho de informação.
+- **criterion:** 'gini'
   
-- **max_depth:** None: Profundidade máxima das árvores. Quando definido como None (como no código: max_depth=None), as árvores são expandidas até que todas as folhas sejam puras (contenham apenas amostras de uma única classe) ou até que todas as folhas contenham menos amostras do que min_samples_split.
+- **max_depth:** None
   
-- **max_features:** 'sqrt': O número de features a serem consideradas ao procurar a melhor divisão em cada nó. 'sqrt' significa que o número de features consideradas é a raiz quadrada do número total de features. Se fosse um valor inteiro, seria o número absoluto de features; se fosse um float, seria uma porcentagem.
+- **max_features:** 'sqrt'
   
-- **max_leaf_nodes:** None: Número máximo de nós folha. Se None, o número de nós folha é ilimitado.
+- **max_leaf_nodes:** None
   
-- **max_samples:** None: Se bootstrap for True, este parâmetro define o número de amostras a serem retiradas de X para treinar cada estimador base. Se None, então X.shape amostras são retiradas (o tamanho total do conjunto de treino).
+- **max_samples:** None
   
-- **min_impurity_decrease:** 0.0: Um nó será dividido se essa divisão induzir uma diminuição da impureza maior ou igual a este valor. Um valor de 0.0 não impõe restrições adicionais à diminuição da impureza.
+- **min_impurity_decrease:** 0.0
   
-- **min_samples_leaf: 5:** O número mínimo de amostras que devem estar presentes em um nó folha (um nó terminal da árvore). No código, foi definido como min_samples_leaf=5. Isso ajuda a regularizar o modelo, prevenindo que as árvores se ajustem demais aos dados de treinamento.
+- **min_samples_leaf: 5:** 
   
-- **min_samples_split:** 10: O número mínimo de amostras necessárias para que um nó interno seja dividido. No código, foi definido como min_samples_split=10. Se um nó tiver menos amostras do que este valor, ele não será mais dividido e se tornará uma folha.
+- **min_samples_split:** 10
   
-- **min_weight_fraction_leaf:** 0.0: A fração mínima ponderada da soma total de pesos (de todas as amostras de entrada) que deve estar em um nó folha.
+- **min_weight_fraction_leaf:** 0.0
   
-- **n_estimators: 250:** O número de árvores na floresta. No código, foi definido como n_estimators=250. Geralmente, um número maior de árvores melhora o desempenho do modelo, mas também aumenta o custo computacional.
+- **n_estimators: 250:** 
   
-- **n_jobs: -1:** O número de jobs (processos) a serem executados em paralelo para treinamento e previsão. -1 significa usar todos os processadores disponíveis. No código, foi definido como n_jobs=-1.
+- **n_jobs: -1:** 
   
-- **oob_score:** False: Se deve usar amostras "out-of-bag" (amostras não incluídas no bootstrap de uma árvore específica) para estimar a acurácia de generalização. Quando False, essa estimativa não é calculada.
+- **oob_score:** False
   
-- **random_state:** 42: Controla a aleatoriedade do processo de bootstrap (se bootstrap=True) e a seleção das features a serem consideradas ao procurar a melhor divisão em cada nó (se max_features < n_features). Um valor fixo, como 42, garante que os resultados sejam reprodutíveis.
+- **random_state:** 42
   
-- **verbose:** 0: Controla o nível de verbosidade durante o treinamento. 0 significa que nenhuma mensagem é impressa.
+- **verbose:** 0
   
-- **warm_start:** False: Quando True, reutiliza a solução da chamada anterior para fit e adiciona mais estimadores ao ensemble, caso contrário, apenas ajusta um novo modelo do zero.
+- **warm_start:** False
   
 
 - Esses parâmetros foram explicitamente definidos no código:
@@ -2308,73 +2325,28 @@ No modelo desenvolvido para analisar a disparidade salarial dos profissionais de
  ### *Explicação do Código:*
 
 
----
 
 
-### Modelo 2: Algoritmo
 
-Repita os passos anteriores para o segundo modelo.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Indução de modelos
 
-
----
-
-
-# Resultados
-
-## Resultados obtidos com o modelo 1.
-
-
-| Classe          | Precisão | Recall | F1-Score | Suporte |
-|-----------------|----------|--------|----------|---------|
-| Salário Baixo/Médio    | 0.84     | 0.65   | 0.73     | 568     |
-| Salário Alto | 0.64     | 0.84   | 0.72     | 422     |
-| accuracy |  |  | **0.73** | **990** |
-| macro avg | **0.74** | **0.74** | **0.73** | **990** |
-| weighted avg | **0.76** | **0.73** | **0.73** | **990** |
-
-Acurácia do Modelo: 0.7283
-
-**Parâmetros do Modelo Random Forest Utilizado:**
-
-	{'bootstrap': True, 'ccp_alpha': 0.0, 'class_weight': 'balanced_subsample', 'criterion': 'gini', 'max_depth': None, 'max_features': 'sqrt', 'max_leaf_nodes': None, 'max_samples': None, 'min_impurity_decrease': 0.0, 'min_samples_leaf': 5, 'min_samples_split': 10, 'min_weight_fraction_leaf': 0.0, 'n_estimators': 250, 'n_jobs': -1, 'oob_score': False, 'random_state': 42, 'verbose': 0, 'warm_start': False}
-
-### Matriz de confusão
- ![image](https://github.com/user-attachments/assets/ac4dc383-e6d3-4aee-b330-46cc07407dde)
- 
-### Interpretação dos Quadrantes:
-
-**Verdadeiros Negativos (VN = 368):**
-	- Este valor indica o número de profissionais que realmente têm "Salário Baixo/Médio" e que o modelo corretamente previu como tendo "Salário Baixo/Médio".
-	- No seu caso, o modelo acertou em 368 instâncias ao classificar corretamente os salários mais baixos.
-
-**Falsos Positivos (FP = 200):**
-	- Representa o número de profissionais que realmente têm "Salário Baixo/Médio", mas que o modelo incorretamente previu como tendo "Salário Alto".
-	- Isso é também conhecido como "Erro do Tipo I". O modelo errou 200 vezes, prevendo um salário alto para quem, na verdade, tem um salário baixo/médio.
-
-**Falsos Negativos (FN = 69):**
-	- Indica o número de profissionais que realmente têm "Salário Alto", mas que o modelo incorretamente previu como tendo "Salário Baixo/Médio".
-	- Isso é também conhecido como "Erro do Tipo II". O modelo errou 69 vezes, prevendo um salário baixo/médio para quem, na verdade, tem um salário alto.
-
-**Verdadeiros Positivos (VP = 353):**
-	- Este valor mostra o número de profissionais que realmente têm "Salário Alto" e que o modelo corretamente previu como tendo "Salário Alto".
-	- O modelo acertou em 353 instâncias ao classificar corretamente os salários mais altos.
-
-**Insights da Matriz:**
-	- O modelo parece ser melhor em identificar corretamente os casos de "Salário Alto" quando eles realmente são altos (353 VP) do que em evitar classificar erroneamente os "Salário Baixo/Médio" como altos (200 FP).
-	- Da mesma forma, o modelo identifica corretamente muitos casos de "Salário Baixo/Médio" (368 VN), mas deixa de identificar 69 casos de "Salário Alto", classificando-os erroneamente como "Salário Baixo/Médio".
-	- Essa matriz é crucial para calcular métricas de desempenho mais detalhadas, como precisão, recall (sensibilidade) e F1-score para cada classe, que foram apresentadas no "Relatório de Classificação" do seu notebook. Por exemplo:
-	- Precisão para "Salário Alto": VP / (VP + FP) = 353 / (353 + 200) ≈ 0.637 (Consistente com o 0.64 no relatório de classificação)
-	- Recall para "Salário Alto": VP / (VP + FN) = 353 / (353 + 69) ≈ 0.836 (Consistente com o 0.84 no relatório de classificação)
-
-A análise desses valores ajuda a entender os pontos fortes e fracos do seu modelo e onde ele tende a cometer mais erros, orientando possíveis melhorias.
-### Arvore de dexisão do Radom Forest
-![image](https://github.com/user-attachments/assets/be82f0f2-4978-4ccd-92f4-c72bfdad8708)
+## Modelo 2 
+### 2º Pergunta orientada a dados
+### *Justificativa*
+### *Processo de Amostragem de Dados (Particionamento e Cross-Validation)*
+### *Parâmetros utilizados*
+### *Explicação do Código:*
 
 
-### Importância das features
-![image](https://github.com/user-attachments/assets/56ce356a-8f50-45f3-b03d-c89db7ccda91)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
----
+
+
+# Indução de modelos
+
+## Modelo 3 Modelo LightGBM para Previsão de Faixa Salarial para a 3º pergunta orientada a dados
+### 3º Pergunta orientada a dados
 
 # Explicação Detalhada do Modelo LightGBM para Previsão de Faixa Salarial para a 3º pergunta orientada a dados
 
@@ -2573,7 +2545,89 @@ A análise SHAP aprofunda o entendimento de como cada feature contribui para as 
 A forte influência do gênero e da percepção de discriminação por identidade de gênero, confirmada pela análise SHAP, sugere uma importante interseccionalidade nas experiências de discriminação. Profissionais que já percebem impacto devido à sua identidade de gênero parecem ter maior probabilidade de também perceber impacto devido à sua cor/raça/etnia.
 
 Este modelo e suas análises, incluindo as visualizações SHAP e de interseccionalidade, fornecem um ponto de partida valioso para entender os complexos fatores associados à discriminação racial no campo de dados no Brasil, destacando a importância de abordagens interseccionais para compreender e combater diferentes formas de discriminação no ambiente profissional.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Indução de modelos
+
+## Modelo 4 
+### 4º Pergunta orientada a dados
+### *Justificativa*
+### *Processo de Amostragem de Dados (Particionamento e Cross-Validation)*
+### *Parâmetros utilizados*
+### *Explicação do Código:*
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Resultados
+
+
+## Resultados obtidos com o modelo 1.
+
+
+| Classe          | Precisão | Recall | F1-Score | Suporte |
+|-----------------|----------|--------|----------|---------|
+| Salário Baixo/Médio    | 0.84     | 0.65   | 0.73     | 568     |
+| Salário Alto | 0.64     | 0.84   | 0.72     | 422     |
+| accuracy |  |  | **0.73** | **990** |
+| macro avg | **0.74** | **0.74** | **0.73** | **990** |
+| weighted avg | **0.76** | **0.73** | **0.73** | **990** |
+
+Acurácia do Modelo: 0.7283
+
+**Parâmetros do Modelo Random Forest Utilizado:**
+
+	{'bootstrap': True, 'ccp_alpha': 0.0, 'class_weight': 'balanced_subsample', 'criterion': 'gini', 'max_depth': None, 'max_features': 'sqrt', 'max_leaf_nodes': None, 'max_samples': None, 'min_impurity_decrease': 0.0, 'min_samples_leaf': 5, 'min_samples_split': 10, 'min_weight_fraction_leaf': 0.0, 'n_estimators': 250, 'n_jobs': -1, 'oob_score': False, 'random_state': 42, 'verbose': 0, 'warm_start': False}
+
+### Matriz de confusão
+ ![image](https://github.com/user-attachments/assets/ac4dc383-e6d3-4aee-b330-46cc07407dde)
  
+### Interpretação dos Quadrantes:
+
+**Verdadeiros Negativos (VN = 368):**
+	- Este valor indica o número de profissionais que realmente têm "Salário Baixo/Médio" e que o modelo corretamente previu como tendo "Salário Baixo/Médio".
+	- No seu caso, o modelo acertou em 368 instâncias ao classificar corretamente os salários mais baixos.
+
+**Falsos Positivos (FP = 200):**
+	- Representa o número de profissionais que realmente têm "Salário Baixo/Médio", mas que o modelo incorretamente previu como tendo "Salário Alto".
+	- Isso é também conhecido como "Erro do Tipo I". O modelo errou 200 vezes, prevendo um salário alto para quem, na verdade, tem um salário baixo/médio.
+
+**Falsos Negativos (FN = 69):**
+	- Indica o número de profissionais que realmente têm "Salário Alto", mas que o modelo incorretamente previu como tendo "Salário Baixo/Médio".
+	- Isso é também conhecido como "Erro do Tipo II". O modelo errou 69 vezes, prevendo um salário baixo/médio para quem, na verdade, tem um salário alto.
+
+**Verdadeiros Positivos (VP = 353):**
+	- Este valor mostra o número de profissionais que realmente têm "Salário Alto" e que o modelo corretamente previu como tendo "Salário Alto".
+	- O modelo acertou em 353 instâncias ao classificar corretamente os salários mais altos.
+
+**Insights da Matriz:**
+	- O modelo parece ser melhor em identificar corretamente os casos de "Salário Alto" quando eles realmente são altos (353 VP) do que em evitar classificar erroneamente os "Salário Baixo/Médio" como altos (200 FP).
+	- Da mesma forma, o modelo identifica corretamente muitos casos de "Salário Baixo/Médio" (368 VN), mas deixa de identificar 69 casos de "Salário Alto", classificando-os erroneamente como "Salário Baixo/Médio".
+	- Essa matriz é crucial para calcular métricas de desempenho mais detalhadas, como precisão, recall (sensibilidade) e F1-score para cada classe, que foram apresentadas no "Relatório de Classificação" do seu notebook. Por exemplo:
+	- Precisão para "Salário Alto": VP / (VP + FP) = 353 / (353 + 200) ≈ 0.637 (Consistente com o 0.64 no relatório de classificação)
+	- Recall para "Salário Alto": VP / (VP + FN) = 353 / (353 + 69) ≈ 0.836 (Consistente com o 0.84 no relatório de classificação)
+
+A análise desses valores ajuda a entender os pontos fortes e fracos do seu modelo e onde ele tende a cometer mais erros, orientando possíveis melhorias.
+### Arvore de dexisão do Radom Forest
+![image](https://github.com/user-attachments/assets/be82f0f2-4978-4ccd-92f4-c72bfdad8708)
+
+
+### Importância das features
+![image](https://github.com/user-attachments/assets/56ce356a-8f50-45f3-b03d-c89db7ccda91)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Resultados obtidos com o modelo 2.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Resultados obtidos com o modelo 3.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Resultados obtidos com o modelo 4.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Interpretação dos modelos
+
 
 ### Interpretação do modelo 1
 
@@ -2582,14 +2636,37 @@ processo de 'raciocínio' (*reasoning*) do sistema inteligente. Utilize medidas 
 o *feature importances* para tentar entender quais atributos o modelo se baseia no
 processo de tomada de decisão.
 
-
-### Resultados obtidos com o modelo 2.
-
-Repita o passo anterior com os resultados do modelo 2.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Interpretação do modelo 2
 
-Repita o passo anterior com os parâmetros do modelo 2.
+Apresente os parâmetros do modelo obtido. Tentre mostrar as regras que são utilizadas no
+processo de 'raciocínio' (*reasoning*) do sistema inteligente. Utilize medidas como 
+o *feature importances* para tentar entender quais atributos o modelo se baseia no
+processo de tomada de decisão.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+### Interpretação do modelo 3
+
+Apresente os parâmetros do modelo obtido. Tentre mostrar as regras que são utilizadas no
+processo de 'raciocínio' (*reasoning*) do sistema inteligente. Utilize medidas como 
+o *feature importances* para tentar entender quais atributos o modelo se baseia no
+processo de tomada de decisão.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### Interpretação do modelo 4
+
+Apresente os parâmetros do modelo obtido. Tentre mostrar as regras que são utilizadas no
+processo de 'raciocínio' (*reasoning*) do sistema inteligente. Utilize medidas como 
+o *feature importances* para tentar entender quais atributos o modelo se baseia no
+processo de tomada de decisão.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Análise comparativa dos modelos
+
 
 
 ## Análise comparativa dos modelos
@@ -2598,12 +2675,14 @@ Discuta sobre as forças e fragilidades de cada modelo. Exemplifique casos em qu
 modelo se sairia melhor que o outro. Nesta seção é possível utilizar a sua imaginação
 e extrapolar um pouco o que os dados sugerem.
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Distribuição do modelo (opcional)
 
 Tende criar um pacote de distribuição para o modelo construído, para ser aplicado 
 em um sistema inteligente.
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 8. Conclusão
 

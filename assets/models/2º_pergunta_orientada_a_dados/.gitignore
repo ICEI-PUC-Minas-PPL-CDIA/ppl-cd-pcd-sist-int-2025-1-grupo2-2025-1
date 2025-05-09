@@ -1,0 +1,13 @@
+# Arquivos grandes de dados
+*.csv
+*.CSV
+
+# Arquivos Python compilados
+__pycache__/
+*.py[cod]
+
+# Arquivos de ambiente
+.env
+
+# Modelos pickle
+*.pkl

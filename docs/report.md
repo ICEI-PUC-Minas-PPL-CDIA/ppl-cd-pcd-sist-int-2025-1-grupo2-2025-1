@@ -2341,7 +2341,32 @@ Acurácia do Modelo: 0.7283
 ### Matriz de confusão
  ![image](https://github.com/user-attachments/assets/ac4dc383-e6d3-4aee-b330-46cc07407dde)
  
+### Interpretação dos Quadrantes:
 
+**Verdadeiros Negativos (VN = 368):**
+	- Este valor indica o número de profissionais que realmente têm "Salário Baixo/Médio" e que o modelo corretamente previu como tendo "Salário Baixo/Médio".
+	- No seu caso, o modelo acertou em 368 instâncias ao classificar corretamente os salários mais baixos.
+
+**Falsos Positivos (FP = 200):**
+	- Representa o número de profissionais que realmente têm "Salário Baixo/Médio", mas que o modelo incorretamente previu como tendo "Salário Alto".
+	- Isso é também conhecido como "Erro do Tipo I". O modelo errou 200 vezes, prevendo um salário alto para quem, na verdade, tem um salário baixo/médio.
+
+**Falsos Negativos (FN = 69):**
+	- Indica o número de profissionais que realmente têm "Salário Alto", mas que o modelo incorretamente previu como tendo "Salário Baixo/Médio".
+	- Isso é também conhecido como "Erro do Tipo II". O modelo errou 69 vezes, prevendo um salário baixo/médio para quem, na verdade, tem um salário alto.
+
+**Verdadeiros Positivos (VP = 353):**
+	- Este valor mostra o número de profissionais que realmente têm "Salário Alto" e que o modelo corretamente previu como tendo "Salário Alto".
+	- O modelo acertou em 353 instâncias ao classificar corretamente os salários mais altos.
+
+**Insights da Matriz:**
+	- O modelo parece ser melhor em identificar corretamente os casos de "Salário Alto" quando eles realmente são altos (353 VP) do que em evitar classificar erroneamente os "Salário Baixo/Médio" como altos (200 FP).
+	- Da mesma forma, o modelo identifica corretamente muitos casos de "Salário Baixo/Médio" (368 VN), mas deixa de identificar 69 casos de "Salário Alto", classificando-os erroneamente como "Salário Baixo/Médio".
+	- Essa matriz é crucial para calcular métricas de desempenho mais detalhadas, como precisão, recall (sensibilidade) e F1-score para cada classe, que foram apresentadas no "Relatório de Classificação" do seu notebook. Por exemplo:
+	- Precisão para "Salário Alto": VP / (VP + FP) = 353 / (353 + 200) ≈ 0.637 (Consistente com o 0.64 no relatório de classificação)
+	- Recall para "Salário Alto": VP / (VP + FN) = 353 / (353 + 69) ≈ 0.836 (Consistente com o 0.84 no relatório de classificação)
+
+A análise desses valores ajuda a entender os pontos fortes e fracos do seu modelo e onde ele tende a cometer mais erros, orientando possíveis melhorias.
 ### Arvore de dexisão do Radom Forest
 ![image](https://github.com/user-attachments/assets/be82f0f2-4978-4ccd-92f4-c72bfdad8708)
 

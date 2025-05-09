@@ -44,7 +44,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [1º Pergunta Orientada a Dados](#1º-pergunta-orientada-a-dados)
 	*   [3º Pergunta Orientada a Dados](#3º-pergunta-orientada-a-dados)
 *   [Indução de modelos](#indução-de-modelos)
-    *   [Modelo 1 gbm (gradient boosting machines) modelo baseado em árvore de decisão](#modelo-1-gbm-gradient-boosting-machines-modelo-baseado-em-árvore-de-decisão)
+    *   [Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-modelo-random-forest)
     *   [Modelo 2: modelo-baseado-em-árvore-de-decisão](#modelo-2-algoritmo)
 *   [Resultados](#resultados)
     *   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1)

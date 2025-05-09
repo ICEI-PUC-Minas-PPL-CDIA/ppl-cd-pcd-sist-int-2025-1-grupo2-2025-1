@@ -2193,253 +2193,120 @@ Esta é uma **matriz de correlação** que mostra a relação linear entre difer
 
 ## Indução de modelos
 
-### Modelo 1 gbm (gradient boosting machines) modelo baseado em árvore de decisão
+### Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest
 ### 1º Pergunta orientada a dados
 ### *Justificativa*
-- GBMs constroem árvores de decisão sequencialmente, onde cada nova árvore corrige os erros da anterior. Essa estrutura permite capturar interações complexas e não lineares entre as variáveis preditoras de forma natural, o que é central para responder à pergunta do projeto. Por exemplo, o modelo pode aprender que o impacto de saber Python no salário é diferente para um profissional Júnior com Graduação versus um Sênior com Doutorado.
-- Algoritmos como LightGBM e CatBoost possuem mecanismos eficientes e nativos para lidar com variáveis categóricas (P1l, P1m, P2g, P4e, etc.) sem a necessidade de one-hot encoding extensivo, o que simplifica o pré-processamento e evita o problema da alta dimensionalidade, comum em datasets com muitas categorias.
-- Embora mais complexos que modelos lineares, GBMs oferecem ferramentas robustas para interpretação:
 
-	Feature Importance: Indica quais fatores (formação, anos de experiência, habilidades específicas como SQL P4d1 ou Python P4d3) têm maior impacto geral nas previsões salariais.
+A escolha do algoritmo Random Forest para investigar a pergunta orientada a dados "Como fatores como formação acadêmica e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?" fundamenta-se nas seguintes características e vantagens do modelo:
 
-SHAP (SHapley Additive exPlanations): Permite entender a contribuição de cada fator para cada previsão individual e visualizar como as interações influenciam o resultado. Isso ajuda a detalhar como os fatores interagem.
+### - Capacidade de Capturar Interações Complexas:
+A pergunta central foca na interação entre formação acadêmica e experiência profissional. O Random Forest, por ser um ensemble de árvores de decisão, é intrinsecamente capaz de modelar relações não-lineares e interações complexas entre as variáveis independentes sem a necessidade de especificá-las explicitamente no modelo. Cada árvore no Random Forest pode aprender diferentes combinações e condições das features que levam a diferentes resultados salariais.
 
-- GBMs podem ser configurados tanto para tarefas de regressão (prevendo o ponto médio do salário) quanto para classificação (prevendo a faixa salarial), adaptando-se à forma como a variável alvo for tratada.
+### - Fornecimento de Importância das Features:
+O Random Forest oferece uma métrica de importância das features (como a "redução média de impureza Gini", visível no gráfico de importância das features do notebook). Isso permite quantificar a contribuição relativa da formacao_academica_encoded e da experiencia_profissional_encoded na previsão da disparidade salarial, ajudando a entender quais fatores têm maior influência.
+
+### - Robustez e Generalização:
+Por agregar as previsões de múltiplas árvores de decisão (250 no modelo atual), o Random Forest tende a ser mais robusto e a generalizar melhor para novos dados do que uma única árvore de decisão, reduzindo o risco de overfitting. Parâmetros como min_samples_split=10 e min_samples_leaf=5 também auxiliam na regularização.
+
+### - Bom Desempenho em Problemas de Classificação:
+Random Forest é reconhecido por seu alto desempenho em tarefas de classificação, como a que está sendo abordada (classificar a faixa salarial em "Salário Baixo/Médio" ou "Salário Alto"). A acurácia de 0.7283 obtida é um ponto de partida razoável, com potencial de otimização.
+
+### - Manejo de Features Categóricas e Numéricas:
+As features Nível de ensino alcançado e Tempo de experiência na área de dados foram transformadas em variáveis numéricas ordinais. O Random Forest lida bem com esse tipo de dado após o pré-processamento.
+
+### - Interpretabilidade Parcial:
+Embora um ensemble de muitas árvores possa parecer uma "caixa preta", é possível visualizar árvores individuais (como o exemplo plotado no gráfico da árvore de decisão do notebook) para entender os caminhos de decisão. Isso oferece insights sobre como o modelo toma suas decisões com base nas interações.
+
+### - Tratamento de Classes Desbalanceadas:
+O modelo utiliza o parâmetro class_weight='balanced_subsample', que ajusta os pesos das classes em cada subamostra (bootstrap), ajudando a mitigar o impacto de um possível desbalanceamento entre as classes de "Salário Baixo/Médio" e "Salário Alto" (observado no relatório de classificação como 568 vs 422 instâncias no conjunto de teste).
+
 
 ### *Processo de Amostragem de Dados (Particionamento e Cross-Validation)*
 
-- No desenvolvimento do modelo LightGBM para previsão salarial, o processo de amostragem de dados foi realizado em duas etapas principais: particionamento (train/test split) e, opcionalmente, validação cruzada (cross-validation).
+No modelo desenvolvido para analisar a disparidade salarial dos profissionais de dados no Brasil, o processo de amostragem de dados envolveu o particionamento do conjunto de dados em subconjuntos de treino e teste.
+
+**A técnica específica utilizada no código do notebook Kaggle foi a divisão Holdout Simples, implementada através da função train_test_split da biblioteca sklearn.model_selection.** 
+
+**Particionamento dos Dados (Método Holdout)**
+- Divisão em Treino e Teste:
+
+	- O conjunto de dados pré-processado, contendo as features (X: formacao_academica_encoded, experiencia_profissional_encoded) e a variável alvo (y: salario_alto), foi dividido em dois conjuntos distintos:
+	
+	- Conjunto de Treinamento (X_train, y_train)
+	
+	- Conjunto de Teste (X_test, y_test)
+	
+	- Esta divisão foi realizada pela linha de código:
+   
+		   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+   
+**Parâmetros da Divisão:**
+	- test_size=0.3: Este parâmetro especifica que 30% do conjunto de dados total foi reservado para o conjunto de teste, enquanto os 70% restantes foram utilizados para o treinamento do modelo. Esta é uma proporção comum para o método holdout e visa garantir que o modelo seja testado em uma quantidade significativa de dados que ele não viu durante o treinamento.
+	- random_state=42: A utilização de um random_state fixo garante que a divisão dos dados seja sempre a mesma a cada execução do código. Isso é crucial para a reprodutibilidade dos resultados do modelo.
+	- stratify=y: Este parâmetro é particularmente importante em problemas de classificação. Ele assegura que a proporção das classes da variável alvo (y, que no caso é 'Salário Baixo/Médio' e 'Salário Alto') seja mantida de forma equilibrada tanto no conjunto de treino quanto no de teste. Isso é vital para evitar que o modelo seja treinado ou avaliado com uma representação distorcida das classes, especialmente se houver desbalanceamento nos dados originais.
+
+**Utilização dos Conjuntos:**
+	- O conjunto de treinamento (X_train, y_train) foi utilizado para "ensinar" o modelo Random Forest, ou seja, para ajustar seus parâmetros internos e aprender os padrões presentes nos dados (rf_model.fit(X_train, y_train)).
+	- O conjunto de teste (X_test, y_test) foi mantido separado durante todo o processo de treinamento e utilizado exclusivamente para avaliar o desempenho do modelo treinado em dados novos e desconhecidos. As métricas como acurácia, relatório de classificação e a matriz de confusão foram calculadas com base nas previsões feitas neste conjunto. O objetivo desta separação é verificar o desempenho do modelo em dados que ele não viu, simulando uma aplicação no "mundo real".
+
+*Em resumo, o processo de amostragem adotado no projeto foi o particionamento dos dados em conjuntos de treino e teste (70% e 30%, respectivamente) de forma estratificada, utilizando o método holdout para a avaliação final do modelo Random Forest.*
+
+
+### *Parâmetros utilizados*
+
+- **bootstrap:** True: Indica que o método de bootstrap foi utilizado para criar as amostras de treinamento para cada árvore da floresta. Isso significa que cada árvore é treinada em uma subamostra dos dados de treinamento, selecionada com reposição.
+  
+- **ccp_alpha:** 0.0: Parâmetro de Poda de Complexidade Mínima (Minimal Cost-Complexity Pruning). Um valor de 0.0 significa que nenhuma poda baseada em complexidade-custo é aplicada além do que é controlado por outros parâmetros como min_samples_leaf, etc.
+  
+- **class_weight:** 'balanced_subsample': Este parâmetro é usado para lidar com classes desbalanceadas. A opção 'balanced_subsample' ajusta os pesos das classes inversamente proporcionais às suas frequências em cada amostra de bootstrap (subamostra usada para construir cada árvore). Isso ajuda a dar mais importância para a classe minoritária durante o treinamento de cada árvore.
+  
+- **criterion:** 'gini': Define a função para medir a qualidade de uma divisão. 'gini' refere-se ao critério de Impureza Gini, que é uma medida comum para árvores de decisão em tarefas de classificação. Alternativamente, poderia ser 'entropy' para o ganho de informação.
+  
+- **max_depth:** None: Profundidade máxima das árvores. Quando definido como None (como no código: max_depth=None), as árvores são expandidas até que todas as folhas sejam puras (contenham apenas amostras de uma única classe) ou até que todas as folhas contenham menos amostras do que min_samples_split.
+  
+- **max_features:** 'sqrt': O número de features a serem consideradas ao procurar a melhor divisão em cada nó. 'sqrt' significa que o número de features consideradas é a raiz quadrada do número total de features. Se fosse um valor inteiro, seria o número absoluto de features; se fosse um float, seria uma porcentagem.
+  
+- **max_leaf_nodes:** None: Número máximo de nós folha. Se None, o número de nós folha é ilimitado.
+  
+- **max_samples:** None: Se bootstrap for True, este parâmetro define o número de amostras a serem retiradas de X para treinar cada estimador base. Se None, então X.shape amostras são retiradas (o tamanho total do conjunto de treino).
+  
+- **min_impurity_decrease:** 0.0: Um nó será dividido se essa divisão induzir uma diminuição da impureza maior ou igual a este valor. Um valor de 0.0 não impõe restrições adicionais à diminuição da impureza.
+  
+- **min_samples_leaf: 5:** O número mínimo de amostras que devem estar presentes em um nó folha (um nó terminal da árvore). No código, foi definido como min_samples_leaf=5. Isso ajuda a regularizar o modelo, prevenindo que as árvores se ajustem demais aos dados de treinamento.
+  
+- **min_samples_split:** 10: O número mínimo de amostras necessárias para que um nó interno seja dividido. No código, foi definido como min_samples_split=10. Se um nó tiver menos amostras do que este valor, ele não será mais dividido e se tornará uma folha.
+  
+- **min_weight_fraction_leaf:** 0.0: A fração mínima ponderada da soma total de pesos (de todas as amostras de entrada) que deve estar em um nó folha.
+  
+- **n_estimators: 250:** O número de árvores na floresta. No código, foi definido como n_estimators=250. Geralmente, um número maior de árvores melhora o desempenho do modelo, mas também aumenta o custo computacional.
+  
+- **n_jobs: -1:** O número de jobs (processos) a serem executados em paralelo para treinamento e previsão. -1 significa usar todos os processadores disponíveis. No código, foi definido como n_jobs=-1.
+  
+- **oob_score:** False: Se deve usar amostras "out-of-bag" (amostras não incluídas no bootstrap de uma árvore específica) para estimar a acurácia de generalização. Quando False, essa estimativa não é calculada.
+  
+- **random_state:** 42: Controla a aleatoriedade do processo de bootstrap (se bootstrap=True) e a seleção das features a serem consideradas ao procurar a melhor divisão em cada nó (se max_features < n_features). Um valor fixo, como 42, garante que os resultados sejam reprodutíveis.
+  
+- **verbose:** 0: Controla o nível de verbosidade durante o treinamento. 0 significa que nenhuma mensagem é impressa.
+  
+- **warm_start:** False: Quando True, reutiliza a solução da chamada anterior para fit e adiciona mais estimadores ao ensemble, caso contrário, apenas ajusta um novo modelo do zero.
+  
+
+- Esses parâmetros foram explicitamente definidos no código:
+
+		rf_model = RandomForestClassifier(
+		    n_estimators=250,
+		    max_depth=None,
+		    min_samples_split=10,
+		    min_samples_leaf=5,
+		    class_weight='balanced_subsample',
+		    random_state=42,
+		    n_jobs=-1
+		)
+
+- Os demais parâmetros assumiram seus valores padrão conforme listado na saída de rf_model.get_params()
+
+ ### *Explicação do Código:*
 
-	- *Particionamento dos Dados (Train/Test Split)*
-		Objetivo: Garantir que o modelo seja treinado em uma parte dos dados e testado em outra, permitindo avaliar sua capacidade de generalização para dados nunca vistos.
-
-		Procedimento Utilizado:
-
-		O dataset completo foi dividido em duas partes:
-
-		Treinamento: 75% dos dados (3.559 registros).
-
-		Teste: 25% dos dados (1.187 registros).
-
-		O particionamento foi realizado com a função train_test_split do Scikit-Learn, utilizando um valor fixo de random_state para garantir reprodutibilidade.
-
-		Exemplo de código:
-
-			from sklearn.model_selection import train_test_split
-			X_train, X_test, y_train, y_test = train_test_split(
-			    X, y, test_size=0.25, random_state=42
-			)
-		Justificativa:
-
-		O particionamento 75/25 é padrão em problemas de regressão e garante que o modelo não seja avaliado nos mesmos dados em que foi treinado, prevenindo overfitting e permitindo uma estimativa realista de desempenho.
-
-	- *Validação Durante o Treinamento (Early Stopping)*
-		Objetivo: Evitar overfitting durante o treinamento do LightGBM, monitorando o desempenho em dados de validação.
-
-		Procedimento:
-
-		O conjunto de teste foi também utilizado como conjunto de validação durante o ajuste do modelo.
-
-		O parâmetro early_stopping_rounds=50 foi usado para interromper o treinamento caso o erro não melhorasse por 50 iterações consecutivas.
-
-		Exemplo de código:
-
-			lgbm.fit(
-			    X_train, y_train,
-			    eval_set=[(X_test, y_test)],
-			    eval_metric='mae',
-			    callbacks=[lgb.early_stopping(stopping_rounds=50, verbose=1)]
-			)
-Resultado:
-
-O modelo parou na iteração 291, quando atingiu o menor erro MAE no conjunto de validação.
-
-### *Parâmetros do Modelo e Processo de Raciocínio (Árvore Individual LightGBM)*
-- O modelo apresentado na imagem é um LightGBM Regressor treinado para prever o salário de profissionais de dados. Os principais parâmetros e configurações utilizados foram:
-
-  - **Objetivo:** Regressão (regression_l1), minimizando o erro absoluto médio (MAE)
-
-  - **Particionamento dos dados:** 75% treino, 25% teste (train_test_split)
-
-  - **Early Stopping:** Parada automática após 50 iterações sem melhora no MAE do conjunto de validação
-
-  - **Número de árvores (estimators):** O treinamento parou na árvore de índice 291 (early stopping)
-
-  - **Features categóricas:** Informadas explicitamente para o LightGBM (P1mreadeFormao, P4eEntreaslinguagenslistadasabaixoqualaquevocmaisutilizanotrabalho)
-
-  - **Features numéricas:** Incluem variáveis ordinais (nível de ensino, experiência, senioridade) e binárias (uso de linguagens)
-
-  - **Random State:** 42 (para reprodutibilidade)
-
-- **Processo de Raciocínio da Árvore (Regras de Decisão)**
-  - A árvore individual exibida representa uma das centenas que compõem o ensemble do LightGBM. Cada árvore é composta por nós de decisão (splits) e folhas (previsões). O processo de raciocínio segue o fluxo:
-
-  - **Exemplo de Caminho de Decisão**
-	  - Raiz:
-		P2iQuantotempodeexperincianareadedadosvoctem <= 1.5
-
-		Se o tempo de experiência na área de dados é até 1-2 anos (valor ordinal), segue à esquerda; caso contrário, à direita.
-
-	  - Segundo Split (esquerda):
-
-		P1lNiveldeEnsino <= 1.5
-
-		Se o nível de ensino é até graduação, segue à esquerda; senão, à direita.
-
-	  - Terceiro Split (direita da raiz):
-
-		P4eEntreaslinguagenslistadasabaixoqualaquevocmaisutilizanotrabalho == "Python"
-
-		Se a linguagem mais usada é Python, segue à esquerda; senão, à direita.
-
-	 - Splits subsequentes:
-
-		A árvore pode dividir ainda por senioridade (P2gNivel), uso de linguagens específicas (P4d3Python, P4d1SQL), área de formação, etc.
-
-	- Folhas:
-
-	 - Cada folha (elipse) mostra o valor previsto de salário para aquele grupo de profissionais, por exemplo:
-
-	 - leaf 0: 9350.500 (previsão: R$ 9.350,50)
-
-	 - leaf 13: 13500.000 (previsão: R$ 13.500,00)
-
-
-- **Exemplo de Regra Completa**
-		- Se o profissional tem experiência ≤ 1.5 e nível de ensino ≤ 1.5, então o salário previsto é R$ 9.350,50.
-		- Se experiência > 1.5 e linguagem mais usada é Python e senioridade ≤ 1.5, então o salário previsto é R$ 13.500,00.
-
-
-- **Feature Importances e Tomada de Decisão**
-		- O modelo LightGBM atribui maior importância às features que aparecem nos primeiros splits das árvores, pois elas segmentam grandes grupos de dados. No contexto deste projeto, as principais variáveis de decisão (segundo a feature importance e os splits das árvores) foram:
-
-	- Tempo de experiência na área de dados (P2iQuantotempodeexperincianareadedadosvoctem)
-		
-	- Nível de ensino (P1lNiveldeEnsino)
-		
-	- Senioridade (P2gNivel)
-		
-	- Linguagem mais usada no trabalho (P4eEntreaslinguagenslistadasabaixoqualaquevocmaisutilizanotrabalho)
-		
-	- Uso de Python (P4d3Python)
-		
-	- Área de formação acadêmica (P1mreadeFormao)
-		
-	- Estas variáveis são utilizadas repetidamente para dividir os dados em grupos mais homogêneos, refletindo o raciocínio do modelo para prever salários.
-
-- **Medidas de Importância das Features**
-		- Importância por ganho (gain): Mede o quanto cada feature contribuiu para a redução do erro em todas as árvores do modelo.
-
-- No modelo treinado, experiência, senioridade e uso de Python aparecem entre as mais importantes, alinhando-se com os splits iniciais das árvores individuais.
-
-- **Resumo Visual do Processo**
-	- Cada caminho da raiz até uma folha representa uma regra de decisão baseada em múltiplas variáveis.
-
-	- Os splits mais próximos da raiz indicam as variáveis mais relevantes para a previsão salarial.
-
-	- O modelo utiliza essas regras para segmentar os profissionais em grupos e prever o salário médio de cada grupo.
- 
- ### *Explicação do Código: Notebook de Modelo GBM com Árvore e Interpretação*
-
-Este notebook implementa um pipeline completo de ciência de dados para análise de disparidade salarial, utilizando o algoritmo Gradient Boosting Machine (GBM) com LightGBM, incluindo visualização de árvore individual e interpretação com SHAP . A seguir, está a explicação detalhada das principais etapas do código, organizada por blocos e funções.
-
----
-
-### **1. Configuração do Ambiente e Upload dos Dados**
-
--   **Importação de Bibliotecas**: Importa pacotes essenciais para manipulação de dados (`pandas`, `numpy`), visualização (`matplotlib`, `seaborn`, `graphviz`), pré-processamento (`sklearn`), modelagem (`lightgbm`), interpretação (`shap`) e manipulação de arquivos no Colab .
--   **Upload de Arquivos**: Utiliza `google.colab.files.upload()` para solicitar ao usuário o upload dos arquivos de dados (`survey_cleaned.csv` e, opcionalmente, um arquivo de microdados) .
--   **Leitura dos Dados**: Os arquivos são lidos diretamente da memória (`io.BytesIO`) e carregados em DataFrames do pandas (`pd.read_csv`) .
--   **Limpeza dos Nomes das Colunas**: Uma função `clean_col_names` padroniza e limpa os nomes das colunas, removendo caracteres especiais, espaços e tratando possíveis duplicatas, facilitando o uso posterior .
-
----
-
-### **2. Seleção de Features Relevantes**
-
--   **Definição de Variáveis**: Define a coluna alvo (`target_column`) e uma lista de colunas de interesse (`feature_columns`) que serão usadas como preditoras .
--   **Verificação das Colunas**: Confere se todas as colunas selecionadas existem no DataFrame e alerta caso alguma esteja ausente .
--   **Criação do DataFrame do Modelo**: Seleciona apenas as colunas relevantes (`existing_feature_columns` e `target_column`) para análise, criando `df_model` .
-
----
-
-### **3. Pré-processamento dos Dados**
-
--   **Tratamento da Variável Alvo (Salário)**: Função `get_salary_midpoint` transforma faixas salariais (texto) em valores numéricos, usando o ponto médio de cada faixa ou tratando valores específicos como "Menos de R$ 1.000" .
--   **Identificação e Tratamento de Nulos**:
-    -   Para variáveis numéricas: preenche valores nulos (`NaN`) com a mediana ou zero, dependendo da coluna .
-    -   Para variáveis categóricas: preenche nulos com a string 'Desconhecido' e converte a coluna para o tipo `category` do pandas .
--   **Codificação de Variáveis Categóricas**: Utiliza `OrdinalEncoder` da biblioteca `sklearn.preprocessing` para transformar variáveis categóricas nominais em valores numéricos ordinais, o que é adequado para modelos baseados em árvores como o LightGBM .
-
----
-
-### **4. Split dos Dados (Treino/Teste)**
-
--   **Divisão dos Dados**: Usa `train_test_split` da `sklearn.model_selection` para separar os dados (`X`, `y`) em conjuntos de treino e teste, usando uma proporção definida (`test_size`) e uma semente aleatória (`random_state`) para reprodutibilidade .
-
----
-
-### **5. Treinamento do Modelo LightGBM (GBM)**
-
--   **Configuração do Dataset**: Cria objetos `lgb.Dataset` específicos para o LightGBM, contendo os dados de treino e validação (teste), e especificando quais colunas são categóricas .
--   **Parâmetros do Modelo**: Define um dicionário `params` com hiperparâmetros para o LightGBM, como:
-    -   `objective`: 'regression_l1' (MAE - Mean Absolute Error)
-    -   `metric`: 'l1' (MAE)
-    -   `n_estimators`: Número máximo de árvores (boosting rounds).
-    -   `learning_rate`: Taxa de aprendizado.
-    -   `feature_fraction`, `bagging_fraction`, `bagging_freq`: Parâmetros de regularização para evitar overfitting.
-    -   `verbose`: Nível de log.
-    -   `n_jobs`: Número de threads.
-    -   `seed`: Semente aleatória.
-    -   `boosting_type`: 'gbdt' (Gradient Boosting Decision Tree) .
--   **Treinamento**: Executa o treinamento do modelo (`lgb.train`) usando os dados de treino, validando no conjunto de teste (`valid_sets`), e utilizando `early_stopping_rounds` para parar o treinamento se a métrica de validação não melhorar por um número definido de rodadas .
--   **Avaliação**: Após o treino, faz predições (`bst.predict`) no conjunto de teste e calcula as métricas de desempenho: MAE, RMSE (Root Mean Squared Error) e R² (R-squared) usando funções da `sklearn.metrics` .
-
----
-
-### **6. Interpretação e Visualização do Modelo**
-
-#### **6.1 Importância das Features**
-
--   **Plot de Importância**: Utiliza `lgb.plot_importance(bst, importance_type='gain', ...)` para exibir um gráfico de barras mostrando a importância das variáveis para o modelo, baseado no ganho total (redução de impureza) que cada feature proporciona ao longo de todas as árvores .
-
-#### **6.2 Visualização da Árvore Individual**
-
--   **Plot com `lgb.plot_tree`**: Mostra uma visualização textual básica de uma árvore específica (ex: árvore 0) do ensemble .
--   **Plot com `graphviz`**: Gera uma visualização gráfica mais elaborada da mesma árvore usando `lgb.create_tree_digraph` e a biblioteca `graphviz`. Isso permite ver as divisões (splits), os valores nos nós e as folhas .
-    -   *Nota*: O código também inclui comentários para usar a biblioteca `dtreeviz`, que oferece visualizações ainda mais ricas, mas está comentado .
-
-#### **6.3 Interpretação SHAP**
-
--   **Cálculo dos Valores SHAP**: Utiliza `shap.TreeExplainer(bst)` para criar um explicador e depois `.shap_values(X_test)` para calcular os valores SHAP para o conjunto de teste. SHAP (SHapley Additive exPlanations) atribui a cada feature um valor de importância para cada predição individual .
--   **Plots SHAP**:
-    -   **Resumo (dot/beeswarm)**: `shap.summary_plot(shap_values, X_test, plot_type='dot')` mostra a distribuição dos impactos de cada feature nas predições. Pontos à direita indicam contribuição positiva para a predição (maior salário), pontos à esquerda indicam contribuição negativa. A cor geralmente representa o valor original da feature (alto/baixo) .
-    -   **Resumo (bar)**: `shap.summary_plot(shap_values, X_test, plot_type='bar')` mostra a importância média absoluta de cada feature .
-    -   **Dependence Plots**: `shap.dependence_plot(feature, shap_values, X_test, interaction_index=interaction_feature)` visualiza como o valor SHAP de uma *feature* específica muda conforme o valor da própria *feature* muda. O `interaction_index` permite colorir os pontos por outra *feature* para observar interações .
--   **Tratamento de Erros**: O código inclui blocos `try...except` para os *dependence plots*, pois podem ocorrer erros (como o `KeyError: 'final_order'` visto nos outputs do notebook), imprimindo uma mensagem caso o plot falhe para uma feature específica .
-
----
-
-### **7. Encerramento**
-
--   **Mensagem Final**: Imprime "--- Fim da Análise ---" para indicar a conclusão da execução do notebook .
-
----
-
-## **Resumo do Fluxo**
-
-1.  **Setup**: Importar bibliotecas.
-2.  **Load**: Fazer upload e ler os arquivos CSV.
-3.  **Clean**: Limpar nomes das colunas.
-4.  **Select**: Escolher colunas alvo e features.
-5.  **Preprocess**: Tratar salário, nulos e codificar categóricas.
-6.  **Split**: Dividir dados em treino/teste.
-7.  **Train**: Treinar modelo LightGBM com early stopping.
-8.  **Evaluate**: Calcular MAE, RMSE, R².
-9.  **Interpret**:
-    -   Plotar importância das features (LGBM gain).
-    -   Visualizar uma árvore individual (LGBM plot, Graphviz).
-    -   Calcular e plotar valores SHAP (summary dot/bar, dependence plots).
-10. **End**: Concluir a análise.
 
 ---
 

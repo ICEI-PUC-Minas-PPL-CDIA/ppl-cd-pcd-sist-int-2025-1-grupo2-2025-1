@@ -2632,12 +2632,30 @@ Acurácia do Modelo: 0.7283
 	- Recall para "Salário Alto": VP / (VP + FN) = 353 / (353 + 69) ≈ 0.836 (Consistente com o 0.84 no relatório de classificação)
 
 A análise desses valores ajuda a entender os pontos fortes e fracos do seu modelo e onde ele tende a cometer mais erros, orientando possíveis melhorias.
+
 ### Arvore de dexisão do Radom Forest
-![image](https://github.com/user-attachments/assets/be82f0f2-4978-4ccd-92f4-c72bfdad8708)
+![arvore_decisao_exemplo](https://github.com/user-attachments/assets/45379d0c-a9e7-4fe6-9462-b81f96b8fb6d)
 
 
 ### Importância das features
-![image](https://github.com/user-attachments/assets/56ce356a-8f50-45f3-b03d-c89db7ccda91)
+![importancia_features](https://github.com/user-attachments/assets/c2dd5b9b-9731-44b8-bcf2-e7dcf1aa3883)
+
+
+### Formacao_vs_salario_alto
+![formacao_vs_salario_alto](https://github.com/user-attachments/assets/0a8d3c8c-fad6-4abe-a84a-025fbf6f33b2)
+
+
+### Experiencia vs salario alto
+![experiencia_vs_salario_alto](https://github.com/user-attachments/assets/a31803b8-bdde-4286-b738-39f443736c1d)
+
+
+### Distribuicao target
+![distribuicao_target](https://github.com/user-attachments/assets/83e11003-e020-45e6-9adf-8a4f32847f49)
+
+
+### Curva ROC
+![curva_roc](https://github.com/user-attachments/assets/09cfde9d-2103-4d2c-aec0-16f0b695525c)
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Resultados obtidos com o modelo 2.

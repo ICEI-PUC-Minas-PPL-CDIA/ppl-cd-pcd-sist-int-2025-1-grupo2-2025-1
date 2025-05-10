@@ -1,7 +1,7 @@
 # Disparidade Salarial dos Profissionais de Dados no Brasil
 
 
-**Pedro Dias Soares, [pdsoares@sga.pucminas.br]**
+**Pedro Dias Soares, [pdsoares@sga.pucminas.br]** 
 
 **Gabriel Chaves Nascimento, [gabriel.nascimento.1483087@sga.pucminas.br]**
 
@@ -65,11 +65,13 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 *   [REFERÊNCIAS](#referências)
 *   [APÊNDICES](#apêndices)
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # Resumo
 
 A disparidade salarial entre profissionais de dados no Brasil é influenciada por diversos fatores pessoais, educacionais e de mercado. Este estudo busca identificar quais variáveis impactam a remuneração desses profissionais, analisando dados da pesquisa State of Data Brazil 2023 e de bases auxiliares. Para isso, são exploradas características como experiência, formação acadêmica, setor de atuação, localização e habilidades técnicas. Através de modelagem preditiva, os resultados indicam que experiência, nível de senioridade e setor da empresa são os fatores com maior impacto na variação salarial. Esses insights podem auxiliar profissionais e empresas na tomada de decisões estratégicas sobre carreira e políticas de remuneração.
 
----
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Introdução
 
@@ -80,6 +82,8 @@ O objetivo deste estudo é identificar os principais fatores associados à dispa
 As disparidades salariais entre os profissionais de dados no Brasil são influenciadas por diversos fatores como idade, gênero dos profissionais de dados, do setor de emprego ou modelo de contratação e ainda o seu histórico educacional e experiência profissional.
 
 Este estudo investiga os principais elementos que estão associados à variação de salários no campo de dados ao utilizar o conjunto de dados State of Data Brazil 2023 e outras bases para complementar a pesquisa. Empregando métodos da ciência de dados, busca-se identificar padrões salariais e oferecer insights relevantes para profissionais e empresas. Espera-se que os resultados tragam um maior entendimento das disparidades salariais no campo, ajudando a desenvolver estratégias que incentivem a igualdade no mercado de tecnologia e ciência de dados.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ###    Contextualização
 
@@ -93,11 +97,13 @@ De acordo com o relatório State of Data Brazil 2023, profissionais que possuem 
 
 Diante do exposto, buscamos por meio desta análise de dados, investigar os fatores determinantes para a variação salarial entre os profissionais de dados no Brasil, visando compreender melhor as desigualdades no setor e identificar caminhos para um mercado mais equitativo.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ###    Problema
 
 O agente em questão busca estabelecer quais são os fatores determinantes para a variação salarial entre profissionais de dados no Brasil. Constantemente, empresas brasileiras enfrentam dificuldades em determinar um salário justo ao profissional de dados por não considerarem os requisitos e as variáveis necessárias para isso. Nesse contexto, a análise busca entender o papel de fatores como experiência e nível educacional nas diferenças salariais, visando fornecer um padrão para que o mercado profissional da área seja mais equilibrado no país.
 
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ###    Objetivo geral
 
@@ -120,15 +126,13 @@ O agente em questão busca estabelecer quais são os fatores determinantes para 
 5. **Geração de Insights para o Mercado:**
     - Fornecer recomendações baseadas nos achados, para auxiliar profissionais de dados e empresas na atribuição de salários aos profissionais da área.
 
-
-
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ###    Justificativas
 
 A desigualdade salarial na área de dados é um tema relevante, impactando profissionais e empresas. Este estudo busca identificar os principais fatores associados aos salários, com foco na experiência, senioridade e setor de atuação. O estudo se destina a profissionais da área que podem utilizar os resultados para planejar suas carreiras, e às empresas, que podem aprimorar suas políticas salariais com base em dados concretos. A pesquisa se apoia em bases de dados reconhecidas, como a State of Data Brazil 2023 da Data Hackers, garantindo a validade e confiabilidade das análises realizadas.
 
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ##    Público alvo
 
@@ -183,6 +187,7 @@ A aplicação tem como objetivo fornecer insights sobre disparidade salarial na 
 - **Objetivo:** Criar diretrizes para reduzir a disparidade salarial na tecnologia.  
 - **Desafios:** Necessita de informações claras e de fácil interpretação.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ###    Dicionário de dados
 
@@ -196,6 +201,7 @@ O banco de dados "State of Data Brazil 2023" é o resultado de uma pesquisa cond
 
 - **Empresa e Ambiente de Trabalho:**  Tipo e porte da empresa em que os profissionais trabalham; Modelo de trabalho (remoto, híbrido ou presencial); Cultura organizacional e satisfação no ambiente de trabalho.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ###    Descrição de dados
 1. State_of_Data_BR_2023
@@ -277,7 +283,7 @@ Nome: salary_midpoint, dtype: object
 **Correlação entre Experiência Total e Salário:** 0,54   
 **Correlação entre Nível Educacional e Salário:** 0,32
 
----
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 ## Preparação dos dados
@@ -376,7 +382,7 @@ profissionais de tecnologia?*
 | P2o1     | Salário               | Quantitativo | Contínuo                        | Renda mensal declarada, geralmente em reais.                          | Alta       |
 
 
----
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 ## Enriquecimento de dados
@@ -417,7 +423,7 @@ profissionais de tecnologia?*
 - [Base de dados](/assets/data/bases_principais/bases_auxiliar/)
 
 
----
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Analises exploratorias de dados 
 
@@ -1967,6 +1973,13 @@ O gráfico interativo apresentado é um gráfico de dispersão 3D (3D Scatter Pl
 
 Este tipo de gráfico é uma ferramenta poderosa para a análise exploratória de dados (AED), pois permite uma compreensão mais intuitiva de relações multivariadas complexas, mostrando como diferentes fatores se combinam para influenciar um resultado específico como o salário.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 2º Pergunta orientada a dados 
+**Pergunta Orientada a Dados:** *...*
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # 3º Pergunta orientada a dados
 **Pergunta Orientada a Dados:**
@@ -2198,8 +2211,14 @@ Esta é uma **matriz de correlação** que mostra a relação linear entre difer
 
 > Em resumo: a progressão de carreira está mais fortemente associada à experiência e educação, enquanto as percepções de impacto estão mais conectadas a fatores de identidade como gênero e raça.
 
-----------------------------------------------------------------------------------------------------------------------------------------------
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 4º Pergunta orientada a dados 
+**Pergunta Orientada a Dados:** *...*
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Indução de modelos
 
 ## Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest
@@ -2347,10 +2366,7 @@ No modelo desenvolvido para analisar a disparidade salarial dos profissionais de
 ### *Parâmetros utilizados*
 ### *Explicação do Código:*
 
-
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
 
 # Indução de modelos
 
@@ -2555,7 +2571,6 @@ A forte influência do gênero e da percepção de discriminação por identidad
 
 Este modelo e suas análises, incluindo as visualizações SHAP e de interseccionalidade, fornecem um ponto de partida valioso para entender os complexos fatores associados à discriminação racial no campo de dados no Brasil, destacando a importância de abordagens interseccionais para compreender e combater diferentes formas de discriminação no ambiente profissional.
 
-
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Indução de modelos
 
@@ -2567,7 +2582,6 @@ Este modelo e suas análises, incluindo as visualizações SHAP e de interseccio
 ### *Explicação do Código:*
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 # Resultados
 

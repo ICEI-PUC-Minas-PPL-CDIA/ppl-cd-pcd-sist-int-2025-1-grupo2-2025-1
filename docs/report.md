@@ -2598,6 +2598,9 @@ Este modelo e suas análises, incluindo as visualizações SHAP e de interseccio
 | weighted avg | **0.76** | **0.73** | **0.73** | **990** |
 
 Acurácia do Modelo: 0.7283
+Acurácia do Modelo no Conjunto de Treinamento: 0.7544
+Acurácia do Modelo no Conjunto de Teste: 0.7283
+Diferença de Acurácia (Treino - Teste): 0.0262
 
 **Parâmetros do Modelo Random Forest Utilizado:**
 

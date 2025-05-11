@@ -44,7 +44,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [1º Pergunta Orientada a Dados](#1º-pergunta-orientada-a-dados)
     *   [2º Pergunta Orientada a Dados](#2º-pergunta-orientada-a-dados)
     *   [3º Pergunta Orientada a Dados](#3º-pergunta-orientada-a-dados)
-    *   [4º Pergunta Orientada a Dados](#3º-pergunta-orientada-a-dados)
+    *   [4º Pergunta Orientada a Dados](#4º-pergunta-orientada-a-dados)
 *   [Indução de modelos](#indução-de-modelos)
     *   [Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-modelo-random-forest)
     *   [Modelo 2: ](#modelo-2-algoritmo)

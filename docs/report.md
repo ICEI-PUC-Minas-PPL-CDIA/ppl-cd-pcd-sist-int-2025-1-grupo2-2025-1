@@ -325,19 +325,18 @@ Nome: salary_midpoint, dtype: object
 ---
 
 ### Atributos relevantes da base de dados principal para 3ª pergunta orientada
-**Pergunta orientada a dados::** *Como fatores como  formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+**Pergunta orientada a dados::** *Como fatores como  formalidade no emprego , características demográficas e regionais se interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
 
 | Atributo                                           | Código de Referência | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância  |
 |----------------------------------------------------|-----------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------------------------|------------|
 | Faixa etária                                       | P1a1                  | Qualitativo  | Ordinal                             | Faixa etária do respondente                                                                   | Alta       |
 | Gênero                                             | P1b                   | Qualitativo  | Nominal (Multivalorado)             | Identidade de gênero do respondente                                                           | Alta       |
-| Raca                      |      P1c                                       | Qualitativo  | Nominal (Multivalorado)             | Indentificacao da raca do respondente          | Alta
-| Não acredito que minha experiência profissional seja afetada     | P1e1                  | Qualitativo  | Nominal (Binário)                   | Resposta indicando que o respondente não acredita que sua experiência foi afetada             | Alta       |
-| Experiência prejudicada devido à minha Cor/Raça/Etnia            | P1e2                  | Qualitativo  | Nominal (Binário)                   | Indicação de prejuízo na experiência profissional devido à cor, raça ou etnia                 | Alta       |
-| Experiência prejudicada devido à minha identidade de gênero      | P1e3                  | Qualitativo  | Nominal (Binário)                   | Indicação de prejuízo na experiência profissional devido à identidade de gênero               | Alta       |
-| Nivel de ensino alcançado                                                | P1l            | Qualitativo | Ordinal               | Nível de ensino do respondente (graduação, mestrado, etc.)                                     | Alta       |
-| Faixa salarial mensal                                              | P2h                     | Qualitativo  | Ordinal                             | Faixa salarial mensal do respondente                                                          | Alta       |
-| Tempo de experiência na área de dados                                              | P2i     | Quantitativo | Discreto                            | Tempo de experiência do respondente na área de dados (em anos)                                | Alta       |
+| Nivel de ensino alcançado                          | P1l                   | Qualitativo  | Ordinal                             | Nível de ensino do respondente (graduação, mestrado, etc.)                                    | Alta       |
+| Faixa salarial mensal                              | P2h                   | Qualitativo  | Ordinal                             | Faixa salarial mensal do respondente                                                          | Alta       |
+| Tempo de experiência na área de dados              | P2i                   | Quantitativo | Discreto                            | Tempo de experiência do respondente na área de dados (em anos)                                | Alta       |
+| UF onde mora                                       | P1i1                  | Qualitativo  | Nominal (Multivalorado)             | Unidade Federativa onde o respondente reside                                                  | Alta       |
+| Cargo atual                                        | P2f                   | Qualitativo  | Nominal (Multivalorado)             | Cargo atual ocupado pelo respondente                                                          | Alta       |
+| Nível de senioridade                               | P2g                   | Qualitativo  | Ordinal                             | Nível de senioridade do respondente (Júnior, Pleno, Sênior)                                   | Alta       |
 
 ---
 
@@ -2370,206 +2369,12 @@ No modelo desenvolvido para analisar a disparidade salarial dos profissionais de
 
 # Indução de modelos
 
-## Modelo 3 Modelo LightGBM para Previsão de Faixa Salarial para a 3º pergunta orientada a dados
+## Modelo 3 Modelo 
 ### 3º Pergunta orientada a dados
-
-# Explicação Detalhada do Modelo LightGBM para Previsão de Faixa Salarial para a 3º pergunta orientada a dados
-
-## Relatório do Modelo LightGBM para Previsão de Experiência Profissional Prejudicada por Cor/Raça/Etnia
-
-### Resumo do Modelo
-
-Este relatório detalha os resultados de um modelo preditivo desenvolvido para identificar fatores associados à percepção de ter a experiência profissional prejudicada devido à cor/raça/etnia entre profissionais de dados no Brasil. Utilizamos um modelo de classificação **LightGBM (Light Gradient Boosting Machine)**, um algoritmo eficiente e robusto baseado em árvores de decisão.
-
-O modelo foi treinado utilizando um conjunto específico de atributos, conforme solicitado:
-
-*   Faixa etária (`P1_a_1_Faixa_idade`)
-*   Gênero (`P1_b_Genero`)
-*   Não acredita que a experiência profissional seja afetada (`P1_e_1_Não_acredito_que_minha_experiência_profissional_seja_afetada`)
-*   Experiência prejudicada devido à identidade de gênero (`P1_e_3_Experiencia_prejudicada_devido_a_minha_identidade_de_gênero`)
-*   Nível de Ensino (`P1_l_Nivel_de_Ensino`)
-*   Faixa Salarial (`P2_h_Faixa_salarial`)
-*   Tempo de experiência prévia em TI/Engenharia (`P2_j_Quanto_tempo_de_experiência_na_área_de_TI_Engenharia_de_Software_você_teve_antes_de_começar_a_trabalhar_na_área_de_dados`)
-
-A variável alvo foi `P1_e_2_Experiencia_prejudicada_devido_a_minha_Cor_Raça_Etnia`, indicando se o respondente sentiu sua experiência prejudicada por este motivo (1 = Sim, 0 = Não).
-
-O pré-processamento incluiu a limpeza dos nomes das colunas, tratamento de valores ausentes (imputação pela mediana para numéricos e criação da categoria "Missing" para categóricos) e a conversão de variáveis categóricas para um formato adequado ao LightGBM. Os dados foram divididos em conjuntos de treino (80%) e teste (20%) de forma estratificada para manter a proporção da variável alvo.
-
-## Métricas de Desempenho
-
-### Acurácia Global
-
-O modelo alcançou uma **acurácia de 92.65%** no conjunto de teste. Este valor indica a proporção geral de previsões corretas realizadas pelo modelo.
-
-### Desempenho por Classe
-
-A tabela abaixo detalha o desempenho do modelo para cada classe da variável alvo (0: Não Prejudicada, 1: Prejudicada):
-
-| Classe          | Precisão | Recall | F1-Score | Suporte |
-|-----------------|----------|--------|----------|---------|
-| 0 (Não Prej.)   | 0.94     | 0.97   | 0.95     | 434     |
-| 1 (Prejudicada) | 0.85     | 0.77   | 0.81     | 110     |
-| **Média Macro** | **0.90** | **0.87** | **0.88** | **544** |
-| **Média Pond.** | **0.92** | **0.93** | **0.93** | **544** |
-
-*   **Precisão (Precision):** Das vezes que o modelo previu uma classe, quantas ele acertou. O modelo acerta 94% das vezes que prevê "Não Prejudicada" e 85% das vezes que prevê "Prejudicada".
-*   **Recall (Sensibilidade):** Das vezes que uma classe realmente ocorreu, quantas o modelo previu corretamente. O modelo identifica corretamente 97% dos casos "Não Prejudicada" e 77% dos casos "Prejudicada".
-*   **F1-Score:** Média harmônica entre Precisão e Recall, fornecendo uma métrica balanceada.
-*   **Suporte:** Número de ocorrências reais de cada classe no conjunto de teste.
-
-Observa-se que o modelo tem um desempenho ligeiramente melhor na identificação da classe majoritária (Não Prejudicada), mas ainda apresenta boa capacidade de identificar a classe minoritária (Prejudicada), com um F1-Score de 0.81.
-
-## Matriz de Confusão
-
-A matriz de confusão visualiza o desempenho do modelo comparando os valores reais com as previsões:
-
-![Matriz de Confusão](https://private-us-east-1.manuscdn.com/sessionFile/0pIzjTfZ2ej8QNlhhGhgHn/sandbox/NN8QC7oShWRzRCBMSI8ZFa-images_1746104251006_na1fn_L2hvbWUvdWJ1bnR1L3Byb2pldG8vdmlzdWFsaXphY29lcy9tYXRyaXpfY29uZnVzYW8.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMHBJempUZloyZWo4UU5saGhHaGdIbi9zYW5kYm94L05OOFFDN29TaFdSelJDQk1TSThaRmEtaW1hZ2VzXzE3NDYxMDQyNTEwMDZfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzQnliMnBsZEc4dmRtbHpkV0ZzYVhwaFkyOWxjeTl0WVhSeWFYcGZZMjl1Wm5WellXOC5wbmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NjcyMjU2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=b3Nitf5E6vr2GHFVLI-2b5p86qjAtRlX1T4CDy4ktAALfiCSEyVpMaikvFyyD5yiAXOgOKIA5C7B9WakQ8s8xlgD4lvWz2hDv3B-0zCQo8T7CYEjUQH6UOmWuNRBr8PCm-84C45YRNcZtIUKqD6VrHPS-XxEBkHKMQxRG8RDRR72OF6SvRAocby0OdB7Fm6qGlgXtNyWkC~eD9TDy0Gd1Ts~mR4YJacypqA0Zbo5zo1jUnMhGWGR2S62cXePggWZgGcEL~bHSCZ8tz1NUGHW4LtU7c8MKmD84NTfT55T4qX9JYD0AO2eDdLJEWyTBZBn2CiKdVImVrPeNS98r9aJ~g__)
-
-*   **Verdadeiros Negativos (VN):** 419 casos onde a experiência não foi prejudicada e o modelo previu corretamente.
-*   **Falsos Positivos (FP):** 15 casos onde a experiência não foi prejudicada, mas o modelo previu que foi.
-*   **Falsos Negativos (FN):** 25 casos onde a experiência foi prejudicada, mas o modelo previu que não foi.
-*   **Verdadeiros Positivos (VP):** 85 casos onde a experiência foi prejudicada e o modelo previu corretamente.
-
-A matriz confirma o bom desempenho geral, com a maioria das previsões caindo na diagonal principal (previsões corretas). Os erros (FP e FN) são relativamente baixos.
-
-## Curva ROC
-
-A curva ROC (Receiver Operating Characteristic) ilustra o desempenho do classificador em diferentes limiares de decisão:
-
-![Curva ROC](https://private-us-east-1.manuscdn.com/sessionFile/0pIzjTfZ2ej8QNlhhGhgHn/sandbox/NN8QC7oShWRzRCBMSI8ZFa-images_1746104251006_na1fn_L2hvbWUvdWJ1bnR1L3Byb2pldG8vdmlzdWFsaXphY29lcy9jdXJ2YV9yb2M.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMHBJempUZloyZWo4UU5saGhHaGdIbi9zYW5kYm94L05OOFFDN29TaFdSelJDQk1TSThaRmEtaW1hZ2VzXzE3NDYxMDQyNTEwMDZfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzQnliMnBsZEc4dmRtbHpkV0ZzYVhwaFkyOWxjeTlqZFhKMllWOXliMk0ucG5nIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzY3MjI1NjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=DCsaiz-1N10sZ2UY-8UUV9qSVW-BuCYBOHC3gDdarz6AWMBVzDHvTba6wiHSVP50ueON7qUmjZghyB~1m-aTfU8QZ3Za43u1cn9rnSq9sJrnejEXw-YpaZkvrU8p-jdZJDmNkuZmYgJ8btvYzsFEzkjRsLOTLeJkqOalfz~zN~6fNIPAQbGhsN3V5zhXCtiU54apyHIi7unOyG-ZF5zJGBQHbqzp1fe4bBDLq0qnxajQkL5fHion5cpbAKldtu3i63ZYT3Wu6C480TV0CYVH6iXqTq9jwD3Y5-5QrdS6Ts9YhjM-vwtm-Ar20EruBjziRSLh9Oiwj5bF3NvAskod8Q__)
-
-A área sob a curva ROC (AUC) é uma medida da capacidade do modelo de distinguir entre as classes. Quanto mais próximo de 1, melhor o desempenho do modelo. Nosso modelo apresenta uma AUC elevada, indicando excelente capacidade de discriminação entre experiências prejudicadas e não prejudicadas.
-
-## Importância das Variáveis
-
-O gráfico abaixo mostra quais atributos mais contribuíram para as previsões do modelo LightGBM:
-
-![Importância das Features](https://private-us-east-1.manuscdn.com/sessionFile/0pIzjTfZ2ej8QNlhhGhgHn/sandbox/NN8QC7oShWRzRCBMSI8ZFa-images_1746104251006_na1fn_L2hvbWUvdWJ1bnR1L3Byb2pldG8vdmlzdWFsaXphY29lc19jb3JyaWdpZGFzL2ltcG9ydGFuY2lhX2ZlYXR1cmVzX2NvcnJpZ2lkbw.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMHBJempUZloyZWo4UU5saGhHaGdIbi9zYW5kYm94L05OOFFDN29TaFdSelJDQk1TSThaRmEtaW1hZ2VzXzE3NDYxMDQyNTEwMDZfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzQnliMnBsZEc4dmRtbHpkV0ZzYVhwaFkyOWxjMTlqYjNKeWFXZHBaR0Z6TDJsdGNHOXlkR0Z1WTJsaFgyWmxZWFIxY21WelgyTnZjbkpwWjJsa2J3LnBuZyIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc2NzIyNTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=OwlBURnrp-rPr1KZw8DArD74arwcQNhz0SBxMqYMFQV0Dwa6TYuLtO9VV462pnIOZyDiywpUdp8tjadoopDYsrkOozoXB59mNLrUjfvWNkEIpqumt58oC3Jle4NuRqovCBJZom7XP4T74mgvaDn-FlxfjJLOAyh0-5vgKoRG95f6Vl3hFF7Fuw9WdTr3435D-SWfE0xwA27ww4w~eyh3ENyMwJiM~2atWKcUvzJRsIN8AvaozL8op2zma8iNNccv8Uk7PRhTG2CJCeHVP7xPYOK5RCtuPxHh8DWa9QE~DaJrw08Hs~ZDK3n6NkLexpLHolsMVnjC2ABXMY~lssrxfg__)
-
-As variáveis mais importantes identificadas pelo modelo foram:
-
-1.  **Gênero (`P1_b_Genero`)**: O gênero do profissional foi o fator mais influente.
-2.  **Experiência prejudicada devido à identidade de gênero (`P1_e_3_...`)**: Se o profissional sentiu impacto devido à identidade de gênero.
-3.  **Não acredita que a experiência profissional seja afetada (`P1_e_1_...`)**: Se o profissional acredita que sua experiência não é afetada por fatores externos.
-4.  **Tempo de Experiência Prévia em TI/Engenharia (`P2_j_...`)**: O tempo de experiência em áreas correlatas antes de migrar para dados.
-5.  **Faixa Salarial (`P2_h_Faixa_salarial`)**: A faixa salarial do profissional.
-6.  **Nível de Ensino (`P1_l_Nivel_de_Ensino`)**: O nível educacional formal do profissional.
-7.  **Faixa Etária (`P1_a_1_Faixa_idade`)**: A idade do profissional.
-
-## Distribuição das Previsões por Gênero
-
-O gráfico abaixo mostra como as previsões do modelo se distribuem entre os diferentes gêneros:
-
-![Previsões por Gênero](https://private-us-east-1.manuscdn.com/sessionFile/0pIzjTfZ2ej8QNlhhGhgHn/sandbox/NN8QC7oShWRzRCBMSI8ZFa-images_1746104251006_na1fn_L2hvbWUvdWJ1bnR1L3Byb2pldG8vdmlzdWFsaXphY29lcy9wcmV2aXNvZXNfcG9yX2dlbmVybw.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMHBJempUZloyZWo4UU5saGhHaGdIbi9zYW5kYm94L05OOFFDN29TaFdSelJDQk1TSThaRmEtaW1hZ2VzXzE3NDYxMDQyNTEwMDZfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzQnliMnBsZEc4dmRtbHpkV0ZzYVhwaFkyOWxjeTl3Y21WMmFYTnZaWE5mY0c5eVgyZGxibVZ5YncucG5nIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzY3MjI1NjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=KNWqcii8vxpGzyhjEFAGBGEqdGIdy418ImOoQY8XLhze2HTfXpYak2UcqUbCqnveK0XqoA0eXl6amrpaaZI2qx6EjbbG2jdtp02i7JZs77QDwFBBjltSYUhAvHvXeaNteVX-APITw5KM0owopnvbFqVms8NjcdfNzovPuRwMF1hkNBpe1tsdgRXC1TJTgKu4~Nw8CXJdq32-6pS3RoJFqfJwb8eLVB5zOUAv92EtE7Rcr5h0A56~4RzrhJhuujcnLWr2dAtWyh-6QJMyUo6XU3~DnAq9HjAa61V5n3rURNvARYc7C6LrRP6kjoMG3PalKGzKVXVe9qzAyVw-NUV~lg__)
-
-Esta visualização permite identificar se há diferenças significativas na proporção de experiências prejudicadas previstas pelo modelo entre os diferentes gêneros.
-
-## Distribuição das Previsões por Nível de Ensino
-
-O gráfico a seguir mostra a distribuição das previsões do modelo por nível de ensino:
-
-![Previsões por Nível de Ensino](https://private-us-east-1.manuscdn.com/sessionFile/0pIzjTfZ2ej8QNlhhGhgHn/sandbox/NN8QC7oShWRzRCBMSI8ZFa-images_1746104251006_na1fn_L2hvbWUvdWJ1bnR1L3Byb2pldG8vdmlzdWFsaXphY29lcy9wcmV2aXNvZXNfcG9yX25pdmVsX2Vuc2lubw.png?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvMHBJempUZloyZWo4UU5saGhHaGdIbi9zYW5kYm94L05OOFFDN29TaFdSelJDQk1TSThaRmEtaW1hZ2VzXzE3NDYxMDQyNTEwMDZfbmExZm5fTDJodmJXVXZkV0oxYm5SMUwzQnliMnBsZEc4dmRtbHpkV0ZzYVhwaFkyOWxjeTl3Y21WMmFYTnZaWE5mY0c5eVgyNXBkbVZzWDJWdWMybHVidy5wbmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NjcyMjU2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=C4VRDen~TPOd49nMRIjz5G3cxxIyp5CVtAp4gMxquhRl3xcLAvbKPlD08jku7Rs-zWotnjA23pWiFZkV3kZciohO-KJCD8P2yaugY2xeKNHU-4EPLOXZbngQye233BQShkpdRPlleqZ-LsZqS3zWFHWwYaZ2RsbVdSXDiXwrrqgZVlcel-6Lr02YUzlOs2WJd6YTEQ-XIk9MEnJvUqBzgXuPyl7WLhxMF~zT3J-aOESAvxX9eb6HEwVwTSU7uTSRBXQLnKLKCDMzGybfG0U34U9gUWzsFztuG4fR65gyAQSKBtM3BRhyvFYuWfZzj~8K8nYGgKqGmDDZmOQiTxcKJQ__)
-
-Esta visualização permite analisar se o nível de ensino está relacionado com a probabilidade de ter a experiência profissional prejudicada por cor/raça/etnia, segundo as previsões do modelo.
-
-## Principais Insights
-
-Com base na importância das variáveis e nas análises de distribuição, podemos extrair os seguintes insights:
-
-1.  **Impacto de Gênero e Identidade:**
-    *   **Gênero:** O gênero do profissional foi o fator mais influente nas previsões do modelo, sugerindo uma forte relação entre gênero e a percepção de discriminação racial.
-    *   **Percepção de Impacto por Identidade de Gênero:** A variável que mede se o profissional sentiu impacto devido à *identidade de gênero* também foi muito importante para prever o impacto devido à *cor/raça/etnia*, sugerindo uma possível interseccionalidade nas experiências de discriminação.
-
-2.  **Crença na Neutralidade da Experiência:**
-    *   A variável `P1_e_1_Não_acredito_que_minha_experiência_profissional_seja_afetada` teve uma importância significativa, indicando que a crença geral sobre a neutralidade da experiência profissional está relacionada com a percepção específica de discriminação racial.
-
-3.  **Impacto Socioeconômico e de Carreira:**
-    *   **Tempo de Experiência e Faixa Salarial:** Estas variáveis foram relevantes, sugerindo que fatores relacionados à progressão na carreira e status socioeconômico estão ligados à percepção de discriminação racial no ambiente de trabalho de dados.
-
-4.  **Educação e Idade:**
-    *   **Nível de Ensino:** O nível educacional teve um impacto moderado nas previsões do modelo.
-    *   **Faixa Etária:** A idade também figura entre os fatores relevantes, indicando possíveis diferenças geracionais na percepção ou ocorrência de discriminação.
-
-## Conclusões
-
-O modelo LightGBM demonstrou alta capacidade (92.65% de acurácia) em prever a percepção de experiência profissional prejudicada por cor/raça/etnia, utilizando um conjunto limitado de 7 atributos.
-
-Os fatores mais importantes estão ligados ao **gênero e à percepção de discriminação por identidade de gênero**, seguidos pela **crença na neutralidade da experiência profissional**, **posição na carreira (tempo de experiência prévia, faixa salarial)**, **educação e idade**.
-
-A forte influência do gênero e da percepção de discriminação por identidade de gênero sugere uma importante interseccionalidade nas experiências de discriminação. Profissionais que já percebem impacto devido à sua identidade de gênero parecem ter maior probabilidade de também perceber impacto devido à sua cor/raça/etnia.
-
-As análises de distribuição por gênero e nível de ensino fornecem insights adicionais sobre como diferentes características demográficas podem estar relacionadas à percepção de discriminação racial no campo de dados no Brasil.
-
-Este modelo e suas análises fornecem um ponto de partida valioso para entender os complexos fatores associados à discriminação racial no campo de dados no Brasil, destacando a importância de abordagens interseccionais para compreender e combater diferentes formas de discriminação no ambiente profissional.
-
-
-
-## Análise SHAP (SHapley Additive exPlanations)
-
-Para uma compreensão mais profunda de como cada atributo influencia a previsão do modelo para cada observação individual, utilizamos a análise SHAP. Os valores SHAP quantificam a contribuição de cada feature para afastar a previsão da média.
-
-### Importância Global das Features (SHAP)
-
-O gráfico de barras SHAP mostra a importância média absoluta de cada feature nas previsões do modelo. Ele confirma a ordem de importância já vista no gráfico do LightGBM, mas com uma métrica diferente.
-
-![Image](https://github.com/user-attachments/assets/2e0c3077-6eea-4a0e-a760-6dd9e6cc8d28)
-
-### Sumário SHAP
-
-O gráfico de sumário SHAP combina a importância das features com seus efeitos. Cada ponto representa um valor SHAP para uma feature e uma observação. A posição no eixo y indica a feature, no eixo x o valor SHAP, e a cor representa o valor da feature (alto ou baixo).
-
-![Image](https://github.com/user-attachments/assets/db4a7c82-6d02-4943-9345-38d82c4a4eba)-
-
-Esta visualização revela não apenas quais features são importantes, mas também *como* elas impactam a previsão. Por exemplo, podemos observar se valores altos ou baixos de uma feature tendem a aumentar ou diminuir a probabilidade de prever "Experiência Prejudicada".
-
-## Análise de Interseccionalidade (Região x Nível de Ensino)
-
-A análise de interseccionalidade explora como a combinação de diferentes atributos (neste caso, Região e Nível de Ensino) afeta a previsão do modelo.
-
-![Image](https://github.com/user-attachments/assets/ad361844-eb17-4a9c-bb8f-bc0616c0ac9c)
-
-Este gráfico mostra a probabilidade média prevista de ter a experiência prejudicada para diferentes combinações de Região e nível de ensino. Ele permite identificar se certos grupos interseccionais enfrentam um risco previsto maior ou menor.
-
-## Análise por Faixa Salarial e Gênero
-
-![Image](https://github.com/user-attachments/assets/c918d6b7-76b3-4a26-93e7-ba69d6e056b1)
-
-Exploramos também como a faixa salarial e o gênero se relacionam com a probabilidade prevista de experiência prejudicada.
-
-## Análise por faixa salarial por raça e cor
-
-![Image](https://github.com/user-attachments/assets/20cdb9d1-82c6-49d6-a656-05bc42306091)
-
-Exploramos também como a faixa salarial e o raça/cor se relacionam com a probabilidade prevista de experiência prejudicada.
-
-## Análise de interseccionalidade de faixas salarias (Gênero x Raça e cor)
-
-![Image](https://github.com/user-attachments/assets/a703a897-f9d7-4a4e-b857-b469584ca191)
-
-## Análise de Casos Específicos
-
-Analisamos a previsão do modelo para dois perfis hipotéticos:
-
-*   **Caso 1: Profissional com Doutorado (Masculino)**
-    *   Probabilidade de Experiência NÃO Prejudicada: 0.16
-    *   Probabilidade de Experiência Prejudicada: 0.84
-*   **Caso 2: Profissional com Graduação (Feminino)**
-    *   Probabilidade de Experiência NÃO Prejudicada: 0.95
-    *   Probabilidade de Experiência Prejudicada: 0.05
-
-Esses exemplos ilustram como o modelo atribui diferentes probabilidades com base nas características de entrada, refletindo os padrões aprendidos nos dados.
-
-## Conclusões Atualizadas
-
-O modelo LightGBM demonstrou alta capacidade (92.65% de acurácia) em prever a percepção de experiência profissional prejudicada por cor/raça/etnia, utilizando um conjunto limitado de 7 atributos.
-
-Os fatores mais importantes estão ligados ao **gênero e à percepção de discriminação por identidade de gênero**, seguidos pela **crença na neutralidade da experiência profissional**, **posição na carreira (tempo de experiência prévia, faixa salarial)**, **educação e idade**.
-
-A análise SHAP aprofunda o entendimento de como cada feature contribui para as previsões individuais, enquanto a análise de interseccionalidade (Gênero x Nível de Ensino) e as análises por faixa salarial e Região revelam padrões mais complexos e interações entre os atributos.
-
-A forte influência do gênero e da percepção de discriminação por identidade de gênero, confirmada pela análise SHAP, sugere uma importante interseccionalidade nas experiências de discriminação. Profissionais que já percebem impacto devido à sua identidade de gênero parecem ter maior probabilidade de também perceber impacto devido à sua cor/raça/etnia.
-
-Este modelo e suas análises, incluindo as visualizações SHAP e de interseccionalidade, fornecem um ponto de partida valioso para entender os complexos fatores associados à discriminação racial no campo de dados no Brasil, destacando a importância de abordagens interseccionais para compreender e combater diferentes formas de discriminação no ambiente profissional.
+### *Justificativa*
+### *Processo de Amostragem de Dados (Particionamento e Cross-Validation)*
+### *Parâmetros utilizados*
+### *Explicação do Código:*
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Indução de modelos

@@ -48,7 +48,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 *   [Indução de modelos](#indução-de-modelos)
     *   [Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-modelo-random-forest)
     *   [Modelo 2: ](#modelo-2-algoritmo)
-    *   [Modelo 3: modelo-baseado-em-árvore-de-decisão](#modelo-3-algoritmo)
+    *   [Modelo 3](#modelo-3)
     *   [Modelo 4: ](#modelo-4-algoritmo)
 *   [Resultados](#resultados)
     *   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1)
@@ -2935,7 +2935,7 @@ Filtra os rótulos ordenados para incluir apenas aqueles presentes nos dados
 
 # Indução de modelos
 
-# Modelo 3 Modelo 
+# Modelo 3  
 ## 3º Pergunta orientada a dados
 *  Como fatores como formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?
 ## 1. Justificativa e Objetivo

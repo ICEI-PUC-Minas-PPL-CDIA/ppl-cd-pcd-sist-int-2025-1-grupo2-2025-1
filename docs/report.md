@@ -2369,13 +2369,180 @@ No modelo desenvolvido para analisar a disparidade salarial dos profissionais de
 
 # Indução de modelos
 
-## Modelo 3 Modelo 
-### 3º Pergunta orientada a dados
-### *Justificativa*
-### *Processo de Amostragem de Dados (Particionamento e Cross-Validation)*
-### *Parâmetros utilizados*
-### *Explicação do Código:*
+# Modelo 3 Modelo 
+## 3º Pergunta orientada a dados
+*  Como fatores como formalidade no emprego e características demográficas (gênero e raça) interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?
+## 1. Justificativa e Objetivo
 
+O objetivo deste modelo é classificar a faixa salarial de indivíduos em duas categorias: "Salário Baixo" e "Salário Alto". A transição de uma classificação multiclasse (3 faixas) para uma binária visa simplificar o problema e potencialmente melhorar a distinção entre os grupos salariais, buscando um equilíbrio na distribuição das amostras entre as classes definidas por um ponto de corte específico. A última execução utilizou um ponto de corte fixo (presumivelmente R$7.500,00 com base nos resultados) para a variável `salary_numeric_lower_bound` para realizar essa divisão.
+
+## 2. Processo de Amostragem de Dados (Particionamento e Cross-Validation)
+
+O processo de amostragem e validação do modelo é crucial para garantir sua generalização e evitar overfitting. As seguintes etapas são empregadas no código:
+
+### 2.1. Particionamento Inicial (Treino e Teste Principal)
+
+* **Método**: `train_test_split` da biblioteca `sklearn.model_selection`.
+* **Divisão**: O conjunto de dados processado (`X_initial`, `y_full`) é dividido em:
+    * Conjunto de Treinamento para Optuna e RFECV (`X_train_optuna`, `y_train_optuna`): 75% dos dados.
+    * Conjunto de Teste Final (`X_test`, `y_test`): 25% dos dados.
+* **Parâmetros Utilizados**:
+    * `test_size=0.25`: Reserva 25% dos dados para o conjunto de teste final, que não é utilizado durante o treinamento ou otimização de hiperparâmetros.
+    * `random_state=42`: Garante a reprodutibilidade da divisão. O mesmo estado aleatório resultará sempre na mesma divisão dos dados.
+    * `stratify=y_full`: Realiza uma divisão estratificada. Isso significa que a proporção das classes da variável alvo (`y_full`, que contém "Salário Baixo" e "Salário Alto" codificados) é mantida tanto no conjunto de treino quanto no de teste. Isso é especialmente importante para dados desbalanceados ou quando se quer garantir que ambas as classes estejam representadas adequadamente em ambas as partições.
+
+### 2.2. Validação Cruzada Estratificada para RFECV (Recursive Feature Elimination with Cross-Validation)
+
+* **Método**: `StratifiedKFold` da `sklearn.model_selection`, utilizado dentro do `RFECV`.
+* **Objetivo**: Selecionar o subconjunto ótimo de features de forma robusta, avaliando o desempenho do modelo com diferentes combinações de features em múltiplas dobras (folds) do conjunto de treinamento.
+* **Parâmetros Utilizados no `StratifiedKFold` para `RFECV`**:
+    * `n_splits=rfecv_folds` (padrão `3` no código): O conjunto de treinamento (`X_train_optuna_for_rfecv`, `y_train_optuna`) é dividido em 3 folds.
+    * `shuffle=True`: Embaralha os dados antes de dividir em folds.
+    * `random_state=42`: Garante a reprodutibilidade do embaralhamento e da divisão em folds.
+* **Funcionamento do `RFECV`**: Treina o estimador (`lgb.LGBMClassifier`) recursivamente, removendo features e avaliando o desempenho (definido por `rfecv_scoring`, padrão `'accuracy'`) através da validação cruzada estratificada. Isso ajuda a encontrar o número de features que maximiza a métrica de scoring.
+
+### 2.3. Validação Cruzada Estratificada para Otimização de Hiperparâmetros com Optuna
+
+* **Método**: `StratifiedKFold` utilizado dentro da função `objective_optuna_cv`.
+* **Objetivo**: Avaliar o desempenho de diferentes combinações de hiperparâmetros do `lgb.LGBMClassifier` de forma robusta, treinando e validando em múltiplas dobras do conjunto de treinamento selecionado pelo RFECV (`X_train_optuna_selected`, `y_train_optuna`).
+* **Parâmetros Utilizados no `StratifiedKFold` para `Optuna`**:
+    * `n_splits=n_cv_folds_optuna`: O número de folds é determinado dinamicamente, sendo o mínimo entre 5 e a contagem da classe minoritária no conjunto `y_train_optuna` (desde que essa contagem seja >= 2). Se a contagem da classe minoritária for muito pequena, é usado um fallback para validação simples (holdout). Na sua última execução com classes mais equilibradas, provavelmente usou 5 folds.
+    * `shuffle=True`: Embaralha os dados.
+    * `random_state=trial.number`: O estado aleatório é vinculado ao número do "trial" do Optuna, promovendo diversidade nas divisões entre diferentes trials.
+* **Funcionamento**: Para cada "trial" do Optuna (combinação de hiperparâmetros), o modelo é treinado e avaliado `n_cv_folds_optuna` vezes. A métrica de desempenho (acurácia média dos folds) é retornada ao Optuna, que busca maximizá-la.
+
+### 2.4. Partição Interna para Early Stopping no Treinamento Final
+
+* **Método**: `train_test_split` para criar um conjunto de validação interna.
+* **Divisão**: O conjunto `X_train_optuna_selected` (que é 75% do total) é novamente dividido:
+    * Conjunto de Treinamento Final (`X_train_final`, `y_train_final`): 80% de `X_train_optuna_selected`.
+    * Conjunto de Validação Interna (`X_val_internal`, `y_val_internal`): 20% de `X_train_optuna_selected`.
+* **Objetivo**: Este conjunto de validação interna é usado para o mecanismo de `early_stopping` do LightGBM durante o treinamento do modelo final com os melhores hiperparâmetros encontrados pelo Optuna. O `early_stopping` monitora a métrica (`binary_logloss` para o caso binário) no conjunto de validação interna e para o treinamento quando essa métrica não melhora por um número definido de rodadas (`early_stopping_rounds=25`), ajudando a evitar overfitting no conjunto de treinamento final.
+* **Parâmetros Utilizados**:
+    * `test_size=0.20`
+    * `random_state=42`
+    * `stratify=y_train_optuna`
+
+### Justificativa das Escolhas de Amostragem:
+
+* **Divisão Treino/Teste Principal**: Essencial para avaliar o desempenho final do modelo em dados não vistos. A proporção 75/25 é comum.
+* **Estratificação**: Crucial para problemas de classificação, especialmente com classes desbalanceadas (embora o objetivo seja reduzir o desbalanceamento), para garantir que as proporções das classes sejam mantidas nas divisões, levando a estimativas de desempenho mais confiáveis.
+* **Validação Cruzada (RFECV e Optuna)**: Reduz a variância da estimativa de desempenho e torna a seleção de features e hiperparâmetros mais robusta, diminuindo a chance de escolhas baseadas em uma divisão particular dos dados. `StratifiedKFold` é usado para manter a proporção das classes em cada fold.
+* **Conjunto de Validação Interna para Early Stopping**: Permite que o modelo pare de treinar no momento ótimo, evitando o overfitting aos dados de `X_train_final`, usando `X_val_internal` como um proxy para dados não vistos durante essa fase.
+
+## 3. Parâmetros Utilizados (Principais)
+
+### 3.1.1 Criação da Variável Alvo (`target_col_agrupada_name`)
+
+* **`salary_group_labels = ["Salário Baixo", "Salário Alto"]`**: Define os nomes das duas categorias da variável alvo.
+* **`point_of_cut_fixed`**: Um valor monetário específico (ex: `7500.0` na última execução que produziu o suporte 622/567) usado para dividir `salary_numeric_lower_bound`. Salários `<= point_of_cut_fixed` são "Salário Baixo", e `> point_of_cut_fixed` são "Salário Alto". **Este é o parâmetro chave que você tem ajustado para controlar a distribuição das classes.**
+* **`pd.cut(..., include_lowest=True, duplicates='drop')`**: Usado para realizar a divisão com base no `point_of_cut_fixed`.
+
+## 3.1.2 Utilizacao das variáveis preditivas 
+
+| Atributo                                           | Código de Referência | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância  |
+|----------------------------------------------------|-----------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------------------------|------------|
+| Faixa etária                                       | P1a1                  | Qualitativo  | Ordinal                             | Faixa etária do respondente                                                                   | Alta       |
+| Gênero                                             | P1b                   | Qualitativo  | Nominal (Multivalorado)             | Identidade de gênero do respondente                                                           | Alta       |
+| Nivel de ensino alcançado                          | P1l                   | Qualitativo  | Ordinal                             | Nível de ensino do respondente (graduação, mestrado, etc.)                                    | Alta       |
+| Faixa salarial mensal                              | P2h                   | Qualitativo  | Ordinal                             | Faixa salarial mensal do respondente                                                          | Alta       |
+| Tempo de experiência na área de dados              | P2i                   | Quantitativo | Discreto                            | Tempo de experiência do respondente na área de dados (em anos)                                | Alta       |
+| UF onde mora                                       | P1i1                  | Qualitativo  | Nominal (Multivalorado)             | Unidade Federativa onde o respondente reside                                                  | Alta       |
+| Cargo atual                                        | P2f                   | Qualitativo  | Nominal (Multivalorado)             | Cargo atual ocupado pelo respondente                                                          | Alta       |
+| Nível de senioridade                               | P2g                   | Qualitativo  | Ordinal                             | Nível de senioridade do respondente (Júnior, Pleno, Sênior)                                   | Alta       |
+
+### 3.2. `RFECV`
+
+* `estimator=lgb.LGBMClassifier(random_state=42, n_jobs=-1, verbose=-1)`: Modelo base para a seleção de features.
+* `step=rfecv_step` (padrão `1`): Número de features a serem removidas em cada iteração.
+* `cv=StratifiedKFold(n_splits=rfecv_folds, ...)` (padrão `rfecv_folds=3`): Estratégia de validação cruzada.
+* `scoring=rfecv_scoring` (padrão `'accuracy'`): Métrica para avaliar o subconjunto de features.
+* `min_features_to_select=1`: Número mínimo de features a serem selecionadas.
+
+### 3.3. `Optuna` (Otimização de Hiperparâmetros para `lgb.LGBMClassifier`)
+
+* `n_trials=n_optuna_trials` (padrão `100`): Número de combinações de hiperparâmetros a serem testadas.
+* `timeout=optuna_timeout` (padrão `1800` segundos): Tempo máximo para a otimização.
+* `direction='maximize'`: O Optuna tenta maximizar a métrica retornada por `objective_optuna_cv` (que é a acurácia).
+* **Espaço de Busca dos Hiperparâmetros (exemplos da sua última execução bem-sucedida):**
+    * `n_estimators`: 1100 (valor encontrado)
+    * `learning_rate`: 0.06509... (valor encontrado)
+    * `num_leaves`: 80 (valor encontrado)
+    * `max_depth`: 12 (valor encontrado)
+    * `min_child_samples`: 25 (valor encontrado)
+    * `subsample`: 0.5 (valor encontrado)
+    * `colsample_bytree`: 0.6 (valor encontrado)
+    * `reg_alpha`: 1.567... (valor encontrado)
+    * `reg_lambda`: 14.655... (valor encontrado)
+    * `min_split_gain`: 0.385... (valor encontrado)
+    * `min_child_weight`: 0.139... (valor encontrado)
+* **Adaptação para Classificação Binária em Optuna e Modelo Final**:
+    * `objective`: Definido como `'binary'` (pois `is_binary_classification` é `True`).
+    * `metric`: Definido como `'binary_logloss'` para avaliação interna e early stopping.
+    * `num_class`: Omitido para classificação binária no LightGBM (ou definido como 1 implicitamente).
+
+### 3.4. Treinamento do Modelo Final (`best_lgbm`)
+
+* Usa os `best_params_optuna` encontrados.
+* `early_stopping(callbacks=[lgb.early_stopping(25, verbose=False)])`: Para o treinamento se a métrica no conjunto de validação interna (`X_val_internal`) não melhorar por 25 rodadas. O número de árvores final foi 105 na sua última execução.
+
+## 4. Explicação do Código (Fluxo Principal)
+
+1.  **Carregamento e Limpeza Inicial**:
+    * O arquivo Excel é carregado.
+    * Os nomes das colunas são limpos (função `clean_col_name`) para compatibilidade com LightGBM (removendo caracteres especiais, espaços, etc.).
+
+2.  **Mapeamento de Colunas e Pré-processamento Específico**:
+    * Um dicionário `col_mapping` é usado para identificar colunas chave (faixa salarial original, tempo de experiência, etc.) a partir dos nomes limpos.
+    * A coluna de tempo de experiência (`P2_i`) é convertida para formato numérico (função `clean_experience_to_numeric`).
+    * A coluna de faixa salarial original (`P2_h`) é usada para extrair o limite inferior numérico do salário (`salary_numeric_lower_bound` usando `extract_salary_lower_bound`). Linhas com valores nulos para o salário original ou o numérico são removidas.
+
+3.  **Criação da Variável Alvo Binária (`target_col_agrupada_name`)**:
+    * **Ponto de Corte Fixo**: Um valor monetário (`point_of_cut_fixed`, ex: 7500.0 na sua última execução bem-sucedida) é usado.
+    * **`pd.cut`**: Os salários numéricos são divididos em duas categorias ("Salário Baixo" para valores `<= point_of_cut_fixed` e "Salário Alto" para valores `> point_of_cut_fixed`).
+    * São implementadas lógicas para tratar casos extremos (ponto de corte fora do intervalo min/max dos salários ou resultando em apenas uma categoria) e um fallback para `pd.qcut` (divisão pela mediana) se o `pd.cut` com ponto fixo falhar.
+    * Um histograma da distribuição de `salary_numeric_lower_bound` é gerado para auxiliar na escolha do ponto de corte.
+    * Linhas com valores nulos na nova coluna alvo agrupada são removidas.
+
+4.  **Preparação de Features (`X_initial`) e Alvo (`y_full`)**:
+    * As features iniciais selecionadas (`faixa_etaria`, `genero`, `nivel_ensino`, `tempo_experiencia_P2i`, `nivel_senioridade_P2g`, `cargo_atual_P2f`, e `uf_mora_P1i1`) são copiadas para `X_initial`.
+    * A coluna UF (`uf_mora_P1i1`) é mapeada para Região Geográfica (`Regiao_Mapeada` usando `map_uf_to_region`) e a coluna UF original é removida.
+    * A variável alvo agrupada é codificada numericamente usando `LabelEncoder` (resultando em `y_full`). O código detecta se é uma classificação binária.
+
+5.  **Processamento Adicional de Features**:
+    * **Imputação de Numéricos**: Valores ausentes em features numéricas (como tempo de experiência) são preenchidos com a mediana.
+    * **Tratamento de Outliers**: Outliers em features numéricas são identificados usando o método IQR (1.5 * IQR) e as amostras contendo outliers são removidas de `X_initial` e `y_full`.
+    * **Imputação e Codificação de Categóricas**: Valores ausentes em features categóricas são preenchidos com "Missing\_Val\_Cat" e as colunas são convertidas para o tipo `category`.
+    * **Escalonamento**: Features numéricas são escalonadas usando `StandardScaler` (ajustado em `X_initial` e depois usado para transformar os conjuntos de treino/teste).
+
+6.  **Divisão Treino/Teste Principal**:
+    * `X_initial` e `y_full` são divididos em conjuntos de treino (75%) e teste (25%) de forma estratificada.
+
+7.  **Seleção de Features com `RFECV`**:
+    * Features categóricas no conjunto de treino do RFECV são codificadas numericamente (`.cat.codes`).
+    * `RFECV` é executado no conjunto de treino para selecionar o subconjunto ótimo de features usando `lgb.LGBMClassifier` e validação cruzada estratificada.
+    * Os dados de treino e teste são filtrados para conter apenas as features selecionadas.
+
+8.  **Otimização de Hiperparâmetros com `Optuna`**:
+    * A função `objective_optuna_cv` define o processo de avaliação para cada "trial" do Optuna. Ela usa validação cruzada estratificada (ou holdout se poucos dados/classes) para treinar e avaliar um `lgb.LGBMClassifier` com os hiperparâmetros sugeridos pelo Optuna.
+    * A função `objective` e `metric` do LGBM são ajustadas para `'binary'` e `'binary_logloss'` devido à detecção de classificação binária.
+    * O Optuna busca maximizar a acurácia média da validação cruzada.
+
+9.  **Treinamento do Modelo Final**:
+    * O conjunto de treino (`X_train_optuna_selected`) é novamente dividido para criar um conjunto de validação interna (`X_val_internal`) para `early_stopping`.
+    * Um `lgb.LGBMClassifier` é treinado com os melhores hiperparâmetros encontrados pelo Optuna e com `early_stopping` no conjunto de treino final (`X_train_final`).
+
+10. **Avaliação e Resultados**:
+    * O modelo final é avaliado no conjunto de teste (`X_test_selected`, `y_test`).
+    * Métricas como acurácia, relatório de classificação, matriz de confusão e ROC AUC são calculadas e impressas.
+    * Gráficos da matriz de confusão normalizada e importância das features são gerados e salvos.
+    * Um relatório de texto e um arquivo pickle contendo o modelo treinado, o `LabelEncoder`, as features selecionadas e o `StandardScaler` são salvos.
+
+11. **Bloco `if __name__ == "__main__":`**:
+    * Define o caminho do arquivo de dados e executa a função principal `train_classification_model_salary_range_v7_final`.
+    * Imprime um resumo dos resultados finais.
+
+Este fluxo demonstra uma abordagem robusta para modelagem, incluindo pré-processamento cuidadoso, seleção de features, otimização de hiperparâmetros e avaliação rigorosa usando múltiplas técnicas de particionamento de dados.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Indução de modelos
 
@@ -2470,6 +2637,191 @@ A análise desses valores ajuda a entender os pontos fortes e fracos do seu mode
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Resultados obtidos com o modelo 3.
+
+
+# Relatório de Resultados e Insights: Classificação Binária de Faixa Salarial (v7)
+
+Este relatório detalha os resultados da última execução do modelo LightGBM para classificação binária da faixa salarial ("Salário Alto" vs. "Salário Baixo"). A análise inclui métricas de desempenho, a importância das features e uma interpretação dos gráficos gerados para extrair insights.
+
+## 1. Resumo do Desempenho do Modelo
+
+O modelo final demonstrou um desempenho robusto na classificação das faixas salariais.
+
+* **Tipo de Classificação**: Binário
+* **Classes da Variável Alvo (codificadas)**: `['Salário Alto', 'Salário Baixo']` (onde "Salário Alto" é a classe 0 e "Salário Baixo" é a classe 1 após LabelEncoding)
+* **Acurácia Média no CV/Val do Optuna**: 0.8505
+* **Acurácia do Modelo Final no Conjunto de Treinamento (`X_train_final`)**: 0.8583
+* **Número de Árvores no Modelo Final (após early stopping)**: 105
+
+### 1.1. Resultados da Avaliação no Conjunto de Teste
+
+| Métrica                          | Valor  |
+| :------------------------------- | :----- |
+| **Acurácia no Teste** | 0.8335 |
+| Precisão Média (Macro Avg)       | 0.8331 |
+| Precisão Média (Weighted Avg)    | 0.8335 |
+| F1-Score (Ponderado)             | 0.8335 |
+| **ROC AUC (Binário)** | 0.9234 |
+
+**Interpretação das Métricas de Teste:**
+* A **Acurácia de 0.8335** indica que o modelo classificou corretamente aproximadamente 83.35% das instâncias no conjunto de teste.
+* O **ROC AUC de 0.9234** é um excelente indicador da capacidade do modelo de distinguir entre as classes "Salário Alto" e "Salário Baixo". Um valor próximo de 1 sugere uma alta performance na separação das classes.
+* As precisões médias e o F1-Score ponderado, todos em torno de 0.83, mostram um bom equilíbrio geral entre precisão e recall.
+
+### 1.2. Relatório de Classificação Detalhado (Conjunto de Teste)
+
+| Classe        | Precision | Recall | F1-score | Support |
+| :------------ | :-------- | :----- | :------- | :------ |
+| Salário Alto  | 0.84      | 0.84   | 0.84     | 622     |
+| Salário Baixo | 0.83      | 0.83   | 0.83     | 567     |
+|               |           |        |          |         |
+| accuracy      |           |        | 0.83     | 1189    |
+| macro avg     | 0.83      | 0.83   | 0.83     | 1189    |
+| weighted avg  | 0.83      | 0.83   | 0.83     | 1189    |
+
+**Interpretação do Relatório de Classificação:**
+* **Suporte (Support)**: Indica o número de amostras reais para cada classe no conjunto de teste. "Salário Alto" teve 622 instâncias e "Salário Baixo" teve 567. A distribuição está bem equilibrada, com uma diferença de apenas 55 amostras, o que é ótimo para a confiabilidade do modelo.
+* **Precisão (Precision)**:
+    * Para "Salário Alto" (0.84): De todas as vezes que o modelo previu "Salário Alto", ele estava correto em 84% dos casos.
+    * Para "Salário Baixo" (0.83): De todas as vezes que o modelo previu "Salário Baixo", ele estava correto em 83% dos casos.
+* **Recall (Revocação)**:
+    * Para "Salário Alto" (0.84): O modelo identificou corretamente 84% de todos os verdadeiros "Salário Alto".
+    * Para "Salário Baixo" (0.83): O modelo identificou corretamente 83% de todos os verdadeiros "Salário Baixo".
+* **F1-score**: É a média harmônica da precisão e do recall. Valores de 0.84 e 0.83 para as classes indicam um bom equilíbrio entre essas duas métricas para cada classe.
+* **Macro Avg vs Weighted Avg**: Como as classes estão bem equilibradas, as médias macro (calcula a métrica independentemente para cada classe e depois tira a média) e ponderada (leva em conta o suporte de cada classe) são muito próximas, o que é um bom sinal.
+
+## 2. Configuração do Modelo
+
+### 2.1. Features Selecionadas pelo RFECV
+As 6 features selecionadas foram: `['P1_a_1', 'P1_l', 'P2_i', 'P2_g_Nivel', 'P2_f_Cargo_Atual', 'Regiao_Mapeada']`
+*(Nota: A sua última saída do RFECV indicou 6 features, diferente de saídas anteriores que indicavam 7. Este relatório baseia-se na última informação de 6 features.)*
+
+### 2.2. Melhores Hiperparâmetros (Optuna) para LightGBM
+* `n_estimators`: 1100 (modelo final usou 105 árvores devido ao early stopping)
+* `learning_rate`: 0.06509228494862056
+* `num_leaves`: 80
+* `max_depth`: 12
+* `min_child_samples`: 25
+* `subsample`: 0.5
+* `colsample_bytree`: 0.6000000000000001
+* `reg_alpha`: 1.5671157141467156
+* `reg_lambda`: 14.655960291115573
+* `min_split_gain`: 0.3854595582770911
+* `min_child_weight`: 0.1393188921160219
+
+## 3. Análise e Insights dos Gráficos Gerados
+
+A seguir, uma interpretação dos gráficos que seu script gera. *Para incluir os gráficos diretamente neste relatório Markdown, você precisaria converter este texto para um formato que suporte a incorporação de imagens (como HTML ou PDF) e inserir os arquivos .png gerados.*
+
+### 3.1. Matriz de Confusão Normalizada (Teste)
+
+
+* **Nome do arquivo**: `matriz_confusao_norm_v7_final_teste.png`
+* **O que ela informa**: A matriz de confusão mostra o desempenho do modelo em termos de classificações corretas e incorretas para cada classe. As porcentagens na diagonal principal representam as taxas de acerto (recall) para cada classe.
+    * **Salário Alto (Verdadeiro) -> Salário Alto (Previsto)**: Aproximadamente 84.08% (diagonal superior esquerda na sua imagem `download (77).png`). O modelo acertou 84.08% dos casos que eram de fato "Salário Alto".
+    * **Salário Baixo (Verdadeiro) -> Salário Baixo (Previsto)**: Aproximadamente 82.54% (diagonal inferior direita na sua imagem `download (77).png`). O modelo acertou 82.54% dos casos que eram de fato "Salário Baixo".
+    * **Fora da diagonal**: Representam os erros.
+        * ~15.92% dos "Salário Alto" foram incorretamente classificados como "Salário Baixo".
+        * ~17.46% dos "Salário Baixo" foram incorretamente classificados como "Salário Alto".
+* **Possíveis Insights**:
+    * O modelo tem um desempenho similar e bom para ambas as classes, com recall em torno de 83-84%.
+    * Há uma taxa de erro relativamente equilibrada entre confundir "Salário Alto" com "Baixo" e vice-versa.
+    * O equilíbrio na distribuição de suporte (622 vs 567) ajuda a dar confiança de que o modelo não está excessivamente enviesado para uma classe.
+
+![Image](https://github.com/user-attachments/assets/2e9d9ea5-2a0b-42ae-bd7e-5d4cc188a293)
+
+
+## 3.2. Importância das Features
+
+**Nome do arquivo:** `feature_importance_v7_final.png`
+
+**O que ela informa:** Este gráfico de barras horizontais mostra quais features tiveram o maior impacto nas decisões do modelo LightGBM. A importância é geralmente calculada com base em quantas vezes uma feature foi usada para dividir os dados nas árvores do modelo e o quanto essa divisão melhorou a métrica (ganho).
+Na sua última saída, as features mais importantes foram:
+`P2_i` (Tempo de experiência)
+`P2_f_Cargo_Atual` (Cargo atual)
+`P2_g_Nivel` (Nível de senioridade)
+`P1_l` (Nível de ensino)
+`P1_a_1` (Faixa etária)
+`Regiao_Mapeada` (Região onde mora)
+
+**Possíveis Insights:**
+* Experiência (`P2_i`) e Cargo (`P2_f_Cargo_Atual`) são os preditores mais fortes da faixa salarial, o que é intuitivo.
+* Nível de senioridade (`P2_g_Nivel`), nível de ensino (`P1_l`) e faixa etária (`P1_a_1`) também têm contribuições significativas.
+* A `Regiao_Mapeada` tem uma importância considerável, sugerindo disparidades regionais nos salários.
+* Features como `P1_b` (Gênero), que foi eliminada pelo RFECV na última execução (6 features selecionadas), teriam menor impacto direto na predição deste modelo específico, embora possam interagir com outras features ou ter impacto em análises mais aprofundadas de equidade.
+
+![Image](https://github.com/user-attachments/assets/48fd3daf-dc28-4a8f-bc89-9459b1945aee)
+ 
+ ---
+ 
+## 3.3. Distribuição de Faixa Salarial por Top 15 Cargos
+
+**Nome do arquivo:** `insight_cargo_vs_faixa_salarial_2cat.png`
+ 
+**O que ela informa:** É um gráfico de contagem (countplot) que mostra, para os 15 cargos mais frequentes, quantas pessoas se enquadram em "Salário Baixo" e "Salário Alto".
+ 
+**Possíveis Insights:**
+* **Cargos com Predominância de "Salário Alto":** Cientista de Dados, Engenheiro/Arquiteto de Dados, Analista de Negócios/Business Analyst (embora este também tenha muitos "Salário Baixo", a proporção de "Salário Alto" é notável).
+* **Cargos com Predominância de "Salário Baixo":** Analista de Dados/Data Analyst, Analista de BI/BI Analyst, "Outra Opção", Desenvolvedor/Engenheiro de Software/Analista de Sistemas.
+* **Insights Específicos:**
+    * "Analista de Dados/Data Analyst" é um cargo muito comum, mas a grande maioria está na faixa "Salário Baixo".
+    * "Cientista de Dados/Data Scientist" tem uma proporção significativamente maior de "Salário Alto" em comparação com "Analista de Dados".
+    * Cargos como "Professor/Pesquisador" e "Estatístico" aparecem com poucas amostras no Top 15, mas os que aparecem tendem a "Salário Alto".
+* Isso pode guiar investigações sobre quais cargos estão associados a melhores remunerações e onde há maior concentração de salários mais baixos.
+ 
+![Image](https://github.com/user-attachments/assets/ba7c4d30-870f-48f7-951f-cc2263f9c65a)
+ 
+ ---
+ 
+## 3.4. Distribuição de Faixa Salarial por Nível de Senioridade
+ 
+**Nome do arquivo:** `insight_nivel_vs_faixa_salarial_2cat.png`
+ 
+**O que ela informa:** Um countplot mostrando a distribuição de "Salário Baixo" e "Salário Alto" para cada nível de senioridade (`P2_g_Nivel`).
+ 
+**Possíveis Insights:**
+* **Sênior:** Predominantemente "Salário Alto", com uma contagem quase igual de "Salário Baixo". Isso pode indicar que mesmo em níveis sênior, uma parcela considerável ainda se enquadra no que foi definido como "Salário Baixo" pelo ponto de corte.
+* **Pleno:** Uma grande maioria na categoria "Salário Baixo", com uma pequena parcela em "Salário Alto". Este é o nível com maior número de respondentes.
+* **Júnior:** Quase exclusivamente "Salário Baixo", com pouquíssimas ou nenhuma ocorrência em "Salário Alto".
+* Este gráfico claramente demonstra a progressão salarial esperada com o aumento da senioridade. O caso "Sênior" com uma quantidade relevante de "Salário Baixo" pode merecer uma investigação mais aprofundada (talvez o ponto de corte para "Salário Alto" seja muito exigente, ou há seniors em áreas/empresas que pagam menos).
+
+![Image](https://github.com/user-attachments/assets/3ee422da-3ebc-4ab5-92d0-208953caf231)
+ 
+ ---
+ 
+## 3.5. Boxplot e Violin Plot de Tempo de Experiência por Faixa Salarial
+ 
+**Nomes dos arquivos:** `insight_experiencia_vs_faixa_salarial_2cat_boxplot.png` e `insight_experiencia_vs_faixa_salarial_2cat_violin.png`.
+ 
+**O que eles informam:**
+* **Boxplot:** Mostra a distribuição do tempo de experiência (em anos) para cada faixa salarial. Exibe a mediana (linha no meio da caixa), os quartis (bordas da caixa - IQR), e possíveis outliers (pontos).
+* **Violin Plot:** Similar ao boxplot, mas também mostra a densidade da distribuição da experiência para cada faixa salarial (a "largura" do violino indica onde os dados estão mais concentrados).
+ 
+**Possíveis Insights:**
+* **Salário Baixo:**
+     * A mediana da experiência é baixa (parece estar entre 1 e 2 anos no boxplot).
+     * A maioria dos dados está concentrada em poucos anos de experiência (0-3 anos, aproximadamente, como visto pela largura do violino e a caixa do boxplot).
+     * Há alguns outliers com mais experiência que ainda estão na faixa de "Salário Baixo".
+* **Salário Alto:**
+     * A mediana da experiência é significativamente mais alta (parece estar em torno de 5 anos no boxplot).
+     * A distribuição da experiência é mais ampla e espalhada para cima, com uma concentração notável em torno de 2-3 anos e depois novamente em níveis mais altos de experiência. O violin plot mostra múltiplas "modas" ou concentrações.
+     * O IQR (caixa do boxplot) é maior, indicando maior variabilidade na experiência para quem está em "Salário Alto".
+* **Comparação:** Claramente, indivíduos com "Salário Alto" tendem a ter mais tempo de experiência. O violin plot para "Salário Alto" é interessante, pois sugere que há diferentes "grupos" de experiência que alcançam salários altos – talvez alguns com menos anos, mas em posições/empresas específicas, e um grupo maior com experiência mais consolidada. Os outliers de "Salário Baixo" com alta experiência podem ser casos de transição de carreira, atuação em setores/regiões com menor remuneração, ou outras particularidades.
+ 
+![Image](https://github.com/user-attachments/assets/390ae2c5-36e8-4af9-9eda-ba46a1abaf7b)
+![Image](https://github.com/user-attachments/assets/c8674650-d96c-4932-972b-c8d1a0ac64f9)
+ 
+ ---
+ 
+## 4. Considerações Finais
+ 
+Os resultados indicam que o modelo LightGBM tem um bom potencial para classificar faixas salariais. 
+A análise da importância das features e dos gráficos de distribuição fornece insights valiosos sobre os fatores que influenciam os salários e como eles se relacionam com as duas categorias definidas. 
+A escolha do `point_of_cut_fixed` é crucial para a definição das classes e afeta diretamente a interpretação e o balanceamento do suporte. 
+Ajustes iterativos nesse ponto de corte, com base na análise do histograma de salários e nos objetivos de balanceamento, são recomendados para refinar ainda mais o modelo e os insights.
+
+
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Resultados obtidos com o modelo 4.

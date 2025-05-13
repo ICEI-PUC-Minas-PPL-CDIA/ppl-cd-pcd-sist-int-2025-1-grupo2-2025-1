@@ -424,7 +424,14 @@ profissionais de tecnologia?*
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Analises exploratorias de dados 
+# Analises exploratorias de dados
+
+*   [1º Pergunta orientada a dados ](#1º-pergunta-orientada-a-dados)
+  	*   [Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
+*   [2º Pergunta orientada a dados ](#2º-pergunta-orientada-a-dados)
+*   [3º Pergunta orientada a dados ](#3º-pergunta-orientada-a-dados)
+*   [4º Pergunta orientada a dados ](#4º-pergunta-orientada-a-dados)
+
 
 # 1º Pergunta orientada a dados 
 **Pergunta Orientada a Dados:** *Como fatores como formação acadêmica e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?*

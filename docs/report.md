@@ -473,7 +473,7 @@ profissionais de tecnologia?*
 
 ---
 
-## Grafico Distribuição de Salários Mensais
+### Grafico Distribuição de Salários Mensais
 ![__results___0_1](https://github.com/user-attachments/assets/6204cac8-9875-4db3-b6d7-6bf52b038d49)
 ## Explicação do Gráfico: Distribuição de Salários Mensais
 

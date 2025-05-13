@@ -427,9 +427,42 @@ profissionais de tecnologia?*
 # Analises exploratorias de dados
 
 *   [1º Pergunta orientada a dados ](#1º-pergunta-orientada-a-dados)
-  	*   [Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
+	   *    [Grafico Distribuição de Salários Mensais](#grafico-distribuição-de-salários-mensais)
+	   *   	[Grafico Relação entre Salário e Tempo de Experiência](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição Salarial por Nível de Ensino](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Interação entre Escolaridade, Experiência e Salário](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Mapa de Calor de Correlações](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição por Gênero e Raça/Etnia](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição Geográfica dos Profissionais](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Salário por Nível de Senioridade](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Análise Multivariada das Relações entre Variáveis Selecionadas (Pair Plot)](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Sunburst da Distribuição de Profissionais de Dados](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição Nacional de Níveis de Formação dos Docentes](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Top 10 Estados por Nível de Formação de Docentes](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição Etária Nacional dos Docentes](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Matriz de Correlação entre Formação e Faixa Etária](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Mapa Interativo de Bolhas - Distribuição de Docentes por Nível de Formação e UF](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Gráfico de Dispersão 3D Interativo - Mestrado, Doutorado e Média de Idade dos Docentes por UF](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Salário Médio Estimado e Total de Docentes por UF](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Salário Estimado por Área de Formação (Top 5)](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Salário Estimado por Tempo de Experiência](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Salário Estimado por Tempo de Experiência em Dados](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Salário Estimado por Nível de Ensino](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Salário Estimado por Experiência, Agrupado por Nível de Ensino](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição de Profissionais por Área de Formação Acadêmica](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição de Profissionais por Faixa Salarial Mensal](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição de Profissionais por Nível de Ensino](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
+
 *   [2º Pergunta orientada a dados ](#2º-pergunta-orientada-a-dados)
+  
 *   [3º Pergunta orientada a dados ](#3º-pergunta-orientada-a-dados)
+  
 *   [4º Pergunta orientada a dados ](#4º-pergunta-orientada-a-dados)
 
 

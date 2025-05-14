@@ -460,7 +460,7 @@ profissionais de tecnologia?*
 		   *   	[Grafico Distribuição de Profissionais por Área de Formação Acadêmica](#grafico-distribuição-de-profissionais-por-área-de-formação-acadêmica) 
 		   *   	[Grafico Distribuição de Profissionais por Faixa Salarial Mensal](#grafico-distribuição-de-profissionais-por-faixa-salarial-mensal) 
 		   *   	[Grafico Distribuição de Profissionais por Nível de Ensino](#grafico-distribuição-de-profissionais-por-nível-de-ensino) 
-		   *   	[Grafico Distribuição do Salário Estimado em R$](#grafico-distribuição-do-salário-estimado-em-r$) 
+		   *   	[Grafico Distribuição do Salário Estimado](#grafico-distribuição-do-salário-estimado) 
 		   *   	[Grafico Distribuição de Profissionais por Tempo de Experiência em Dados](#grafico-distribuição-de-profissionais-por-tempo-de-experiência-em-dados)
 		   *   	[Grafico Top 10 UF de Residência dos Profissionais de Dados](#grafico-top-10-uf-de-residência-dos-profissionais-de-dados)
 		   *   	[Grafico Heatmap de Correlação entre Salário, Experiência e Nível de Ensino](#grafico-heatmap-de-correlação-entre-salário-experiência-e-nível-de-ensino)
@@ -1617,7 +1617,7 @@ O gráfico anexado é um gráfico de barras horizontais que mostra a "Distribui�
 Este gráfico oferece uma visão clara do perfil educacional dos profissionais de dados, destacando a importância da graduação e da pós-graduação, ao mesmo tempo que mostra a participação de estudantes e o menor, porém qualificado, contingente de mestres e doutores.
 
 
-## Grafico Distribuição do Salário Estimado em R$
+## Grafico Distribuição do Salário Estimado
 ![distribuicao_salario_estimado](https://github.com/user-attachments/assets/cb8d3675-ed41-4fcb-bf09-7f1c8b69cda4)
 ## Análise do Gráfico: Distribuição do Salário Estimado (R$)
 

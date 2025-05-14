@@ -434,7 +434,7 @@ profissionais de tecnologia?*
 		   *   	[Grafico Distribuição Salarial por Nível de Ensino](#grafico-distribuição-salarial-por-nível-de-ensino) 
 		   *   	[Grafico Interação entre Escolaridade, Experiência e Salário](#grafico-interação-entre-escolaridade-experiência-e-salário) 
 		   *   	[Grafico Mapa de Calor de Correlações](#grafico-mapa-de-calor-de-correlações) 
-		   *   	[Grafico Distribuição por Gênero e Raça/Etnia](#grafico-distribuição-por-gênero-e-raça-/-etnia) 
+		   *   	[Grafico Distribuição por Gênero e Raça-Etnia](#grafico-distribuição-por-gênero-e-raça---etnia) 
 		   *   	[Grafico Distribuição Geográfica dos Profissionais](#grafico-distribuição-geográfica-dos-profissionais) 
 		   *   	[Grafico Salário por Nível de Senioridade](#grafico-salário-por-nível-de-senioridade) 
 		   *   	[Grafico Análise Multivariada das Relações entre Variáveis Selecionadas (Pair Plot)](#grafico-análise-multivariada-das-relações-entre-variáveis-selecionadas-(pair-plot)) 
@@ -675,7 +675,7 @@ O gráfico apresentado é um **Mapa de Calor de Correlações** (heatmap) que vi
 **Conclusão Geral do Mapa de Calor:**
 Este mapa de calor indica que as três variáveis analisadas ("Faixa\_salarial\_num", "Oportunidade de aprendizado" e "Reputação da empresa") não possuem correlações lineares fortes entre si no contexto dos dados utilizados para esta análise. Todos os coeficientes de correlação entre pares de variáveis distintas são muito próximos de zero, sugerindo que essas variáveis são, em grande medida, linearmente independentes umas das outras. É importante notar que a correlação mede apenas relações lineares; podem existir relações não lineares que não seriam capturadas por este tipo de análise.
 
-## Grafico Distribuição por Gênero e Raça/Etnia
+## Grafico Distribuição por Gênero e Raça-Etnia
 ![__results___0_6](https://github.com/user-attachments/assets/46d749b3-6293-46b5-bca7-021d3843a544)
 ## Explicação dos Gráficos: Distribuição por Gênero e Raça/Etnia
 

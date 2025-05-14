@@ -3190,17 +3190,17 @@ Este fluxo demonstra uma abordagem robusta para modelagem, incluindo pré-proces
 # Resultados
 
 
-*   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1.)
+*   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1)
   
 	*   [Matriz de confusão](#matriz-de-confusão)
 
 
  
-*   [Resultados obtidos com o modelo 2.](#resultados-obtidos-com-o-modelo-2.)
+*   [Resultados obtidos com o modelo 2.](#resultados-obtidos-com-o-modelo-2)
 
-*   [Resultados obtidos com o modelo 3.](#resultados-obtidos-com-o-modelo-3.)
+*   [Resultados obtidos com o modelo 3.](#resultados-obtidos-com-o-modelo-3)
 
-*   [Resultados obtidos com o modelo 4.](#resultados-obtidos-com-o-modelo-4.)
+*   [Resultados obtidos com o modelo 4.](#resultados-obtidos-com-o-modelo-4)
 
 
 

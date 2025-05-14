@@ -452,22 +452,22 @@ profissionais de tecnologia?*
 
 	*   [Analise exploratoria de dados bases integradas](#analise-exploratoria-de-dados-bases-integradas) 
 		   *   	[Grafico Salário Médio Estimado e Total de Docentes por UF](#grafico-salário-médio-estimado-e-total-de-docentes-por-uf) 
-		   *   	[Grafico Salário Estimado por Área de Formação (Top 5)](#grafico-salário-estimado-por-área-de-formação-(Top-5)) 
+		   *   	[Grafico Salário Estimado por Área de Formação - Top 5](#grafico-salário-estimado-por-área-de-formação---top-5) 
 		   *   	[Grafico Salário Estimado por Tempo de Experiência](#grafico-salário-estimado-por-tempo-de-experiência) 
 		   *   	[Grafico Salário Estimado por Tempo de Experiência em Dados](#grafico-salário-estimado-por-tempo-de-experiência-em-dados)
 		   *   	[Grafico Salário Estimado por Nível de Ensino](#grafico-salário-estimado-por-nível-de-ensino) 
-		   *   	[Grafico Salário Estimado por Experiência, Agrupado por Nível de Ensino](#grafico-salário-estimado-por-experiência,-agrupado-por-nível-de-ensino) 
+		   *   	[Grafico Salário Estimado por Experiência, Agrupado por Nível de Ensino](#grafico-salário-estimado-por-experiência-agrupado-por-nível-de-ensino) 
 		   *   	[Grafico Distribuição de Profissionais por Área de Formação Acadêmica](#grafico-distribuição-de-profissionais-por-área-de-formação-acadêmica) 
 		   *   	[Grafico Distribuição de Profissionais por Faixa Salarial Mensal](#grafico-distribuição-de-profissionais-por-faixa-salarial-mensal) 
 		   *   	[Grafico Distribuição de Profissionais por Nível de Ensino](#grafico-distribuição-de-profissionais-por-nível-de-ensino) 
-		   *   	[Grafico Distribuição do Salário Estimado (R$)](#grafico-distribuição-do-salário-estimado-(r$))
+		   *   	[Grafico Distribuição do Salário Estimado em R$](#grafico-distribuição-do-salário-estimado-em-R$) 
 		   *   	[Grafico Distribuição de Profissionais por Tempo de Experiência em Dados](#grafico-distribuição-de-profissionais-por-tempo-de-experiência-em-dados)
 		   *   	[Grafico Top 10 UF de Residência dos Profissionais de Dados](#grafico-top-10-uf-de-residência-dos-profissionais-de-dados)
-		   *   	[Grafico Heatmap de Correlação entre Salário, Experiência (anos) e Nível de Ensino (ordinal)](#grafico-heatmap-de-correlação-entre-salário,-experiência-(anos)-e-nível-de-ensino-(ordinal))
-		   *   	[Grafico Salário Médio Estimado vs. Anos de Experiência por Nível de Ensino](#grafico-salário-médio-estimado-vs.-anos-de-experiência-por-nível-de-ensino)
-		   *   	[Grafico Relação 3D entre Salário, Experiência e Nível de Ensino](#grafico-relação-3d-entre-salário,-experiência-e-nível-de-ensino)
-		   *   	[Grafico Salário Estimado vs. Proporção de Docentes com Doutorado na UF de Residência](#grafico-salário-estimado-vs.-proporção-de-docentes-com-doutorado-na-uf-de-residência)
-		   *   	[Gráfico: Relação 3D entre Salário, Experiência e Nível de Ensino](#gráfico:-relação-3d-entre-salário,-experiência-e-nível-de-ensino)
+		   *   	[Grafico Heatmap de Correlação entre Salário, Experiência e Nível de Ensino](#grafico-heatmap-de-correlação-entre-salário-experiência-e-nível-de-ensino)
+		   *   	[Grafico Salário Médio Estimado vs. Anos de Experiência por Nível de Ensino](#grafico-salário-médio-estimado-vs-anos-de-experiência-por-nível-de-ensino)
+		   *   	[Grafico Relação 3D entre Salário, Experiência e Nível de Ensino](#grafico-relação-3d-entre-salári,-experiência-e-nível-de-ensino)
+		   *   	[Grafico Salário Estimado vs. Proporção de Docentes com Doutorado na UF de Residência](#grafico-salário-estimado-vs-proporção-de-docentes-com-doutorado-na-uf-de-residência)
+		   *   	[Gráfico Relação 3D entre Salário, Experiência e Nível de Ensino](#gráfico-relação-3d-entre-salário-experiência-e-nível-de-ensino)⚠️
 
 *   [2º Pergunta orientada a dados ](#2º-pergunta-orientada-a-dados)
   
@@ -1108,7 +1108,7 @@ O gráfico apresentado é uma visualização combinada que utiliza barras para r
 
 O gráfico demonstra que não há uma relação causal direta entre o número de docentes em uma UF e o salário médio dos profissionais de dados nessa mesma UF. Enquanto São Paulo apresenta um alto volume de docentes e um alto salário médio, o caso de Tocantins (alto salário médio, poucos docentes) exemplifica que outros fatores são determinantes para a remuneração na área de dados. A dinâmica salarial é complexa e moldada por múltiplas variáveis, não sendo explicada isoladamente pela infraestrutura educacional em termos de quantidade de docentes.
 
-## Grafico Salário Estimado por Área de Formação (Top 5)
+## Grafico Salário Estimado por Área de Formação - Top 5
 ![boxplot_salario_por_area_formacao_top5](https://github.com/user-attachments/assets/521f1e12-e4bb-445e-982d-733d52142401)
 ## Análise do Gráfico: Salário Estimado por Área de Formação (Top 5)
 
@@ -1617,7 +1617,7 @@ O gráfico anexado é um gráfico de barras horizontais que mostra a "Distribui�
 Este gráfico oferece uma visão clara do perfil educacional dos profissionais de dados, destacando a importância da graduação e da pós-graduação, ao mesmo tempo que mostra a participação de estudantes e o menor, porém qualificado, contingente de mestres e doutores.
 
 
-## Grafico Distribuição do Salário Estimado (R$)
+## Grafico Distribuição do Salário Estimado em R$
 ![distribuicao_salario_estimado](https://github.com/user-attachments/assets/cb8d3675-ed41-4fcb-bf09-7f1c8b69cda4)
 ## Análise do Gráfico: Distribuição do Salário Estimado (R$)
 
@@ -1758,7 +1758,7 @@ O gráfico em anexo é um gráfico de barras verticais que apresenta o "Top 10 U
 Este gráfico fornece uma visão clara da distribuição geográfica dos profissionais de dados no Brasil, destacando a liderança de São Paulo e a importância das regiões Sudeste e Sul como principais centros para esses profissionais.
 
 
-## Grafico Heatmap de Correlação entre Salário, Experiência (anos) e Nível de Ensino (ordinal)
+## Grafico Heatmap de Correlação entre Salário, Experiência e Nível de Ensino
 ![heatmap_correlacao_salario_exp_ensino](https://github.com/user-attachments/assets/2cd9887a-0a1d-4c89-b513-3a852d07b35c)
 ## Análise do Gráfico: Heatmap de Correlação entre Salário, Experiência (anos) e Nível de Ensino (ordinal)
 
@@ -1972,7 +1972,7 @@ O gráfico apresentado é um gráfico de dispersão (scatter plot) que busca exp
 Este gráfico é útil para descartar uma relação causal ou correlacional forte entre a proporção de docentes com doutorado na UF e os salários dos profissionais de dados, direcionando a atenção para outros fatores mais diretamente ligados ao perfil do profissional e ao mercado de trabalho.
 
 
-## Gráfico: Relação 3D entre Salário, Experiência e Nível de Ensino
+## Gráfico Relação 3D entre Salário, Experiência e Nível de Ensino
 ### [Grafico Interativo - Clique aqui](https://htmlpreview.github.io/?https://gist.githubusercontent.com/pedrinndias/6bdfb7fdb2be6a819758ca7b1b05d011/raw/7db0af70c340fb3c01d6a052579873f03cacbf1c/gistfile1.txt)
 ![newplot(3)](https://github.com/user-attachments/assets/6ebf06b9-3667-4d2f-bb06-2802e19b8949)
 ## Análise do Gráfico: Relação 3D entre Salário, Experiência e Nível de Ensino

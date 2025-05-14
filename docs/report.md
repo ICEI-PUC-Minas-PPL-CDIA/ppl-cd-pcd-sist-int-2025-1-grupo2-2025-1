@@ -429,7 +429,6 @@ profissionais de tecnologia?*
 *   [1º Pergunta orientada a dados ](#1º-pergunta-orientada-a-dados)
   
 	*   [Analise exploratoria de dados base de dados State of Data 2023](#analise-exploratoria-de-dados-base-de-dados-state-of-data-2023) ✅
- 
 		   *    [Grafico Distribuição de Salários Mensais](#grafico-distribuição-de-salários-mensais) ✅
 		   *   	[Grafico Relação entre Salário e Tempo de Experiência](#1º-pergunta-orientada-a-dados) ✅
 		   *   	[Grafico Distribuição Salarial por Nível de Ensino](#1º-pergunta-orientada-a-dados) ✅
@@ -440,18 +439,18 @@ profissionais de tecnologia?*
 		   *   	[Grafico Salário por Nível de Senioridade](#1º-pergunta-orientada-a-dados) ✅
 		   *   	[Grafico Análise Multivariada das Relações entre Variáveis Selecionadas (Pair Plot)](#1º-pergunta-orientada-a-dados) ✅
 		   *   	[Grafico Sunburst da Distribuição de Profissionais de Dados](#1º-pergunta-orientada-a-dados) ✅
-   
-        *   [Analise exploratoria de dados base de dados Microdados](#analise-exploratoria-de-dados-base-de-dados-microdados) ✅
 
+
+	*   [Analise exploratoria de dados base de dados Microdados](#analise-exploratoria-de-dados-base-de-dados-microdados) ✅
 		   *   	[Grafico Distribuição Nacional de Níveis de Formação dos Docentes](#1º-pergunta-orientada-a-dados) ✅
 		   *   	[Grafico Top 10 Estados por Nível de Formação de Docentes](#1º-pergunta-orientada-a-dados) ✅
 		   *   	[Grafico Distribuição Etária Nacional dos Docentes](#1º-pergunta-orientada-a-dados) ✅
 		   *   	[Grafico Matriz de Correlação entre Formação e Faixa Etária](#1º-pergunta-orientada-a-dados) ✅
 		   *   	[Grafico Mapa Interativo de Bolhas - Distribuição de Docentes por Nível de Formação e UF](#1º-pergunta-orientada-a-dados) ✅
 		   *   	[Grafico Gráfico de Dispersão 3D Interativo - Mestrado, Doutorado e Média de Idade dos Docentes por UF](#1º-pergunta-orientada-a-dados) ✅
- 
-        *   [Analise exploratoria de dados bases integradas](#analise-exploratoria-de-dados-bases-integradas) ✅
- 
+
+
+	*   [Analise exploratoria de dados bases integradas](#analise-exploratoria-de-dados-bases-integradas) ✅
 		   *   	[Grafico Salário Médio Estimado e Total de Docentes por UF](#1º-pergunta-orientada-a-dados) ✅
 		   *   	[Grafico Salário Estimado por Área de Formação (Top 5)](#1º-pergunta-orientada-a-dados) ✅
 		   *   	[Grafico Salário Estimado por Tempo de Experiência](#1º-pergunta-orientada-a-dados) ✅

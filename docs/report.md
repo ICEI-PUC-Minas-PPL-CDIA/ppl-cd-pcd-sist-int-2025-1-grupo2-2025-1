@@ -434,7 +434,7 @@ profissionais de tecnologia?*
 		   *   	[Grafico Distribuição Salarial por Nível de Ensino](#grafico-distribuição-salarial-por-nível-de-ensino) 
 		   *   	[Grafico Interação entre Escolaridade, Experiência e Salário](#grafico-interação-entre-escolaridade-experiência-e-salário) 
 		   *   	[Grafico Mapa de Calor de Correlações](#grafico-mapa-de-calor-de-correlações) 
-		   *   	[Grafico Distribuição por Gênero e Raça/Etnia](#grafico-distribuição-por-gênero-e-raça-etnia) 
+		   *   	[Grafico Distribuição por Gênero e Raça/Etnia](#grafico-distribuição-por-gênero-e-raça-/-etnia) 
 		   *   	[Grafico Distribuição Geográfica dos Profissionais](#grafico-distribuição-geográfica-dos-profissionais) 
 		   *   	[Grafico Salário por Nível de Senioridade](#grafico-salário-por-nível-de-senioridade) 
 		   *   	[Grafico Análise Multivariada das Relações entre Variáveis Selecionadas (Pair Plot)](#grafico-análise-multivariada-das-relações-entre-variáveis-selecionadas-(pair-plot)) 

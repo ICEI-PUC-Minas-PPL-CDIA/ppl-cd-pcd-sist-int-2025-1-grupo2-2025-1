@@ -2270,6 +2270,22 @@ Esta é uma **matriz de correlação** que mostra a relação linear entre difer
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Indução de modelos
 
+*   [1º Pergunta orientada a dados ](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-modelo-random-forest)
+  
+	*   [Justificativa](#justificativa)
+	*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation)](#processo-de-amostragem-de-dados-(particionamento-e-cross-validation))
+	*   [Parâmetros utilizados](#parâmetros-utilizados)
+	*   [Explicação do Código](#explicação-do-código)
+
+ 
+*   [2º Pergunta orientada a dados ](#modelo-2)
+
+*   [3º Pergunta orientada a dados ](#modelo-3)
+
+*   [4º Pergunta orientada a dados ](#modelo-4)
+
+
+
 ## Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest
 ### 1º Pergunta orientada a dados
 ### *Justificativa*
@@ -2399,7 +2415,7 @@ No modelo desenvolvido para analisar a disparidade salarial dos profissionais de
 
 - Os demais parâmetros assumiram seus valores padrão conforme listado na saída de rf_model.get_params()
 
- ### *Explicação do Código:*
+ ### *Explicação do Código*
 
 ### Importação de Bibliotecas
 

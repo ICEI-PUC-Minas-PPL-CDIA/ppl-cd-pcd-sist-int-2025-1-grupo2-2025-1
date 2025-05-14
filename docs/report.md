@@ -427,37 +427,42 @@ profissionais de tecnologia?*
 # Analises exploratorias de dados
 
 *   [1º Pergunta orientada a dados ](#1º-pergunta-orientada-a-dados)
-	   *    [Grafico Distribuição de Salários Mensais](#grafico-distribuição-de-salários-mensais)
-	   *   	[Grafico Relação entre Salário e Tempo de Experiência](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição Salarial por Nível de Ensino](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Interação entre Escolaridade, Experiência e Salário](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Mapa de Calor de Correlações](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição por Gênero e Raça/Etnia](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição Geográfica dos Profissionais](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Salário por Nível de Senioridade](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Análise Multivariada das Relações entre Variáveis Selecionadas (Pair Plot)](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Sunburst da Distribuição de Profissionais de Dados](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição Nacional de Níveis de Formação dos Docentes](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Top 10 Estados por Nível de Formação de Docentes](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição Etária Nacional dos Docentes](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Matriz de Correlação entre Formação e Faixa Etária](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Mapa Interativo de Bolhas - Distribuição de Docentes por Nível de Formação e UF](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Gráfico de Dispersão 3D Interativo - Mestrado, Doutorado e Média de Idade dos Docentes por UF](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Salário Médio Estimado e Total de Docentes por UF](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Salário Estimado por Área de Formação (Top 5)](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Salário Estimado por Tempo de Experiência](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Salário Estimado por Tempo de Experiência em Dados](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Salário Estimado por Nível de Ensino](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Salário Estimado por Experiência, Agrupado por Nível de Ensino](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição de Profissionais por Área de Formação Acadêmica](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição de Profissionais por Faixa Salarial Mensal](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição de Profissionais por Nível de Ensino](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
-	   *   	[Grafico Distribuição de Salários Mensais](#1º-pergunta-orientada-a-dados)
+*   *   [Analise exploratoria de dados base de dados State of Data 2023](#analise-exploratoria-de-dados-base-de-dados-state-of-data-2023) ✅
+	   *    [Grafico Distribuição de Salários Mensais](#grafico-distribuição-de-salários-mensais) ✅
+	   *   	[Grafico Relação entre Salário e Tempo de Experiência](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Distribuição Salarial por Nível de Ensino](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Interação entre Escolaridade, Experiência e Salário](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Mapa de Calor de Correlações](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Distribuição por Gênero e Raça/Etnia](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Distribuição Geográfica dos Profissionais](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Salário por Nível de Senioridade](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Análise Multivariada das Relações entre Variáveis Selecionadas (Pair Plot)](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Sunburst da Distribuição de Profissionais de Dados](#1º-pergunta-orientada-a-dados) ✅
+*   *   [Analise exploratoria de dados base de dados Microdados](#analise-exploratoria-de-dados-base-de-dados-microdados) ✅
+	   *   	[Grafico Distribuição Nacional de Níveis de Formação dos Docentes](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Top 10 Estados por Nível de Formação de Docentes](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Distribuição Etária Nacional dos Docentes](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Matriz de Correlação entre Formação e Faixa Etária](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Mapa Interativo de Bolhas - Distribuição de Docentes por Nível de Formação e UF](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Gráfico de Dispersão 3D Interativo - Mestrado, Doutorado e Média de Idade dos Docentes por UF](#1º-pergunta-orientada-a-dados) ✅
+*   *   [Analise exploratoria de dados bases integradas](#analise-exploratoria-de-dados-bases-integradas) ✅
+	   *   	[Grafico Salário Médio Estimado e Total de Docentes por UF](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Salário Estimado por Área de Formação (Top 5)](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Salário Estimado por Tempo de Experiência](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Salário Estimado por Tempo de Experiência em Dados](#1º-pergunta-orientada-a-dados)✅
+	   *   	[Grafico Salário Estimado por Nível de Ensino](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Salário Estimado por Experiência, Agrupado por Nível de Ensino](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Distribuição de Profissionais por Área de Formação Acadêmica](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Distribuição de Profissionais por Faixa Salarial Mensal](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Distribuição de Profissionais por Nível de Ensino](#1º-pergunta-orientada-a-dados) ✅
+	   *   	[Grafico Distribuição do Salário Estimado (R$)](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Distribuição de Profissionais por Tempo de Experiência em Dados](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Top 10 UF de Residência dos Profissionais de Dados](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Heatmap de Correlação entre Salário, Experiência (anos) e Nível de Ensino (ordinal)](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Salário Médio Estimado vs. Anos de Experiência por Nível de Ensino](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Relação 3D entre Salário, Experiência e Nível de Ensino](#1º-pergunta-orientada-a-dados)
+	   *   	[Grafico Salário Estimado vs. Proporção de Docentes com Doutorado na UF de Residência](#1º-pergunta-orientada-a-dados)
+	   *   	[Gráfico: Relação 3D entre Salário, Experiência e Nível de Ensino](#1º-pergunta-orientada-a-dados)
 
 *   [2º Pergunta orientada a dados ](#2º-pergunta-orientada-a-dados)
   
@@ -1962,7 +1967,7 @@ O gráfico apresentado é um gráfico de dispersão (scatter plot) que busca exp
 Este gráfico é útil para descartar uma relação causal ou correlacional forte entre a proporção de docentes com doutorado na UF e os salários dos profissionais de dados, direcionando a atenção para outros fatores mais diretamente ligados ao perfil do profissional e ao mercado de trabalho.
 
 
-## Grafico 18
+## Gráfico: Relação 3D entre Salário, Experiência e Nível de Ensino
 ### [Grafico Interativo - Clique aqui](https://htmlpreview.github.io/?https://gist.githubusercontent.com/pedrinndias/6bdfb7fdb2be6a819758ca7b1b05d011/raw/7db0af70c340fb3c01d6a052579873f03cacbf1c/gistfile1.txt)
 ![newplot(3)](https://github.com/user-attachments/assets/6ebf06b9-3667-4d2f-bb06-2802e19b8949)
 ## Análise do Gráfico: Relação 3D entre Salário, Experiência e Nível de Ensino

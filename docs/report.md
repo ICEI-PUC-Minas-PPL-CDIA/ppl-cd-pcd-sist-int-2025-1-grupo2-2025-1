@@ -447,7 +447,7 @@ profissionais de tecnologia?*
 		   *   	[Grafico Distribuição Etária Nacional dos Docentes](#grafico-distribuição-etária-nacional-dos-docentes) 
 		   *   	[Grafico Matriz de Correlação entre Formação e Faixa Etária](#grafico-matriz-de-correlação-entre-formação-e-faixa-etária) 
 		   *   	[Grafico Mapa Interativo de Bolhas - Distribuição de Docentes por Nível de Formação e UF](#grafico-mapa-interativo-de-bolhas---distribuição-de-docentes-por-nível-de-formação-e-uf) 
-		   *   	[Gráfico de Dispersão 3D Interativo - Mestrado, Doutorado e Média de Idade dos Docentes por UF](#gráfico-gráfico-de-dispersão-3d-interativo---mestrado,-doutorado-e-média-de-idade-dos-docentes-por-uf) 
+		   *   	[Gráfico de Dispersão 3D Interativo - Mestrado, Doutorado e Média de Idade dos Docentes por UF](#gráfico-gráfico-de-dispersão-3d-interativo---mestrado-doutorado-e-média-de-idade-dos-docentes-por-uf) 
 
 
 	*   [Analise exploratoria de dados bases integradas](#analise-exploratoria-de-dados-bases-integradas) 

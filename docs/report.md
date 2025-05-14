@@ -212,7 +212,7 @@ gênero
 Feminino           R$ 7.000,00  
 Masculino         R$ 10.000,00  
 Não Informado      R$ 7.000,00  
-Nome: salary_midpoint, dtype: object  
+Nome: `salary_midpoint`, `dtype: object`  
 
 **Salários Médio por Etnia:**  
 etnia  
@@ -222,7 +222,7 @@ Indígena           R$ 5.000,00
 Pardo              R$ 7.000,00  
 Não Informado      R$ 7.000,00  
 Branco            R$ 10.000,00  
-Nome: salary_midpoint, dtype: object  
+Nome: `salary_midpoint`, `dtype: object`  
 
 **Salários Médio por Nível de Educação:**  
 nível_educacional  
@@ -232,14 +232,14 @@ Sem Educação Formal        R$ 5.000,00
 Doutorado                 R$ 14.000,00  
 Pós-graduação             R$ 10.000,00  
 Estudante de Graduação     R$ 3.500,00  
-Nome: salary_midpoint, dtype: object  
+Nome: `salary_midpoint`, `dtype: object`  
 
 **Salários Médio por Senioridade:**  
 senioridade  
 Júnior         R$ 3.500,00  
 Pleno          R$ 7.000,00  
 Sênior        R$ 10.000,00  
-Nome: salary_midpoint, dtype: object  
+Nome: `salary_midpoint`, `dtype: object`  
 
 **Salários Médio por Função:**  
 função_atual  
@@ -252,7 +252,7 @@ Analista de Negócios           R$ 7.000,00
 Analista de Dados              R$ 7.000,00  
 Desenvolvedor de Software      R$ 7.000,00  
 Analista de BI                 R$ 5.000,00  
-Nome: salary_midpoint, dtype: object  
+Nome: `salary_midpoint`, `dtype: object`  
 
 **Salários Médio por Indústria:**  
 indústria  
@@ -264,7 +264,7 @@ Varejo                   R$ 10.000,00
 Educação                  R$ 7.000,00  
 Setor Público             R$ 7.000,00  
 Marketing                 R$ 5.000,00  
-Nome: salary_midpoint, dtype: object  
+Nome: `salary_midpoint`, `dtype: object`  
 
 **Salários Médio por Região:**  
 região  
@@ -273,7 +273,7 @@ Sudeste         R$ 10.000,00
 Nordeste         R$ 7.000,00  
 Norte            R$ 7.000,00  
 Sul              R$ 7.000,00  
-Nome: salary_midpoint, dtype: object  
+Nome: `salary_midpoint`, `dtype: object`  
 
 **Diferença Salarial por Gênero:** 42,86% (Mediana Masculino: R$ 10.000,00; Mediana Feminino: R$ 7.000,00)  
 

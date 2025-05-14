@@ -460,14 +460,14 @@ profissionais de tecnologia?*
 		   *   	[Grafico Distribuição de Profissionais por Área de Formação Acadêmica](#grafico-distribuição-de-profissionais-por-área-de-formação-acadêmica) 
 		   *   	[Grafico Distribuição de Profissionais por Faixa Salarial Mensal](#grafico-distribuição-de-profissionais-por-faixa-salarial-mensal) 
 		   *   	[Grafico Distribuição de Profissionais por Nível de Ensino](#grafico-distribuição-de-profissionais-por-nível-de-ensino) 
-		   *   	[Grafico Distribuição do Salário Estimado em R$](#grafico-distribuição-do-salário-estimado-em-R$) 
+		   *   	[Grafico Distribuição do Salário Estimado em R$](#grafico-distribuição-do-salário-estimado-em-r$) 
 		   *   	[Grafico Distribuição de Profissionais por Tempo de Experiência em Dados](#grafico-distribuição-de-profissionais-por-tempo-de-experiência-em-dados)
 		   *   	[Grafico Top 10 UF de Residência dos Profissionais de Dados](#grafico-top-10-uf-de-residência-dos-profissionais-de-dados)
 		   *   	[Grafico Heatmap de Correlação entre Salário, Experiência e Nível de Ensino](#grafico-heatmap-de-correlação-entre-salário-experiência-e-nível-de-ensino)
 		   *   	[Grafico Salário Médio Estimado vs. Anos de Experiência por Nível de Ensino](#grafico-salário-médio-estimado-vs-anos-de-experiência-por-nível-de-ensino)
-		   *   	[Grafico Relação 3D entre Salário, Experiência e Nível de Ensino](#grafico-relação-3d-entre-salári,-experiência-e-nível-de-ensino)
+		   *   	[Grafico Relação 3D entre Salário, Experiência e Nível de Ensino](#grafico-relação-3d-entre-salário-experiência-e-nível-de-ensino)
 		   *   	[Grafico Salário Estimado vs. Proporção de Docentes com Doutorado na UF de Residência](#grafico-salário-estimado-vs-proporção-de-docentes-com-doutorado-na-uf-de-residência)
-		   *   	[Gráfico Relação 3D entre Salário, Experiência e Nível de Ensino](#gráfico-relação-3d-entre-salário-experiência-e-nível-de-ensino)⚠️
+		   *   	[Gráfico Relação 3D entre Salário, Experiência e Nível de Ensino](#gráfico-relação-3d-entre-salário-experiência-e-nível-de-ensino)
 
 *   [2º Pergunta orientada a dados ](#2º-pergunta-orientada-a-dados)
   

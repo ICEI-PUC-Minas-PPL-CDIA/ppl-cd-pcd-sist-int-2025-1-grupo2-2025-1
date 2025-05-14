@@ -3255,11 +3255,11 @@ A análise desses valores ajuda a entender os pontos fortes e fracos do seu mode
 ## Resultados obtidos com o modelo 3.
 
 
-# Relatório de Resultados e Insights: Classificação Binária de Faixa Salarial (v7)
+### Relatório de Resultados e Insights: Classificação Binária de Faixa Salarial (v7)
 
 Este relatório detalha os resultados da última execução do modelo LightGBM para classificação binária da faixa salarial ("Salário Alto" vs. "Salário Baixo"). A análise inclui métricas de desempenho, a importância das features e uma interpretação dos gráficos gerados para extrair insights.
 
-## 1. Resumo do Desempenho do Modelo
+### 1. Resumo do Desempenho do Modelo
 
 O modelo final demonstrou um desempenho robusto na classificação das faixas salariais.
 

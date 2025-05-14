@@ -3067,7 +3067,9 @@ O processo de amostragem e validação do modelo é crucial para garantir sua ge
 ### 3.1.1 Criação da Variável Alvo (`target_col_agrupada_name`)
 
 * **`salary_group_labels = ["Salário Baixo", "Salário Alto"]`**: Define os nomes das duas categorias da variável alvo.
-* **`point_of_cut_fixed`**: Um valor monetário específico (ex: `7500.0` na última execução que produziu o suporte 622/567) usado para dividir `salary_numeric_lower_bound`. Salários `<= point_of_cut_fixed` são "Salário Baixo", e `> point_of_cut_fixed` são "Salário Alto". **Este é o parâmetro chave que você tem ajustado para controlar a distribuição das classes.**
+* **`point_of_cut_fixed`**: Um valor monetário específico (ex: `7500.0` na última execução que produziu o suporte 622/567) usado para dividir `salary_numeric_lower_bound`. Salários `<= point_of_cut_fixed` são "Salário Baixo/Médios", e `> point_of_cut_fixed` são "Salário Alto". **Este é o parâmetro chave que você tem ajustado para controlar a distribuição das classes.**
+* O gráfico abaixo mostra a distruibuicao da faixa salarial, onde é notável que uma divisao de `<= point_of_cut_fixed` (Salários Baixos/Medios) e `> point_of_cut_fixed` (salários Altos), produziram um suporte 622/567 .
+  ![Image](https://github.com/user-attachments/assets/cc8fdd29-49bd-4b07-82a3-803c81bcb2a7)
 * **`pd.cut(..., include_lowest=True, duplicates='drop')`**: Usado para realizar a divisão com base no `point_of_cut_fixed`.
 
 ## 3.1.2 Utilizacao das variáveis preditivas 

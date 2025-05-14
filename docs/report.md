@@ -3193,6 +3193,12 @@ Este fluxo demonstra uma abordagem robusta para modelagem, incluindo pré-proces
 *   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1)
   
 	*   [Matriz de confusão](#matriz-de-confusão)
+	*   [Arvore de decisão do Radom Forest](#arvore-de-decisão-do-radom-forest)
+	*   [Importância das features](#importância-das-features)
+	*   [Formacao_vs_salario_alto](#formacao_vs_salario_alto)
+	*   [Experiencia vs salario alto](#experiencia-vs-salario-alto)
+	*   [Distribuicao target](#distribuicao-target)
+	*   [Curva ROC](#curva-roc)
 
 
  
@@ -3254,7 +3260,7 @@ Este fluxo demonstra uma abordagem robusta para modelagem, incluindo pré-proces
 
 A análise desses valores ajuda a entender os pontos fortes e fracos do seu modelo e onde ele tende a cometer mais erros, orientando possíveis melhorias.
 
-### Arvore de dexisão do Radom Forest
+### Arvore de decisão do Radom Forest
 ![arvore_decisao_exemplo](https://github.com/user-attachments/assets/45379d0c-a9e7-4fe6-9462-b81f96b8fb6d)
 
 

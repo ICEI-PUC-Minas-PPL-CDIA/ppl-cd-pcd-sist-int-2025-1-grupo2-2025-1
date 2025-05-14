@@ -437,7 +437,7 @@ profissionais de tecnologia?*
 		   *   	[Grafico Distribuição por Gênero e Raça-Etnia](#grafico-distribuição-por-gênero-e-raça-etnia) 
 		   *   	[Grafico Distribuição Geográfica dos Profissionais](#grafico-distribuição-geográfica-dos-profissionais) 
 		   *   	[Grafico Salário por Nível de Senioridade](#grafico-salário-por-nível-de-senioridade) 
-		   *   	[Grafico Análise Multivariada das Relações entre Variáveis Selecionadas (Pair Plot)](#grafico-análise-multivariada-das-relações-entre-variáveis-selecionadas-(pair-plot)) 
+		   *   	[Grafico Análise Multivariada das Relações entre Variáveis Selecionadas](#grafico-análise-multivariada-das-relações-entre-variáveis-selecionadas) 
 		   *   	[Grafico Sunburst da Distribuição de Profissionais de Dados](#grafico-sunburst-da-distribuição-de-profissionais-de-dados) 
 
 
@@ -777,7 +777,7 @@ O gráfico de boxplot intitulado "Salário por Nível de Senioridade" ilustra a 
 
 Em resumo, o nível de senioridade é um fator importante na determinação da faixa salarial, com um aumento consistente na remuneração e na variabilidade salarial à medida que os profissionais progridem de Júnior para Pleno e Sênior.
 
-## Grafico Análise Multivariada das Relações entre Variáveis Selecionadas (Pair Plot)
+## Grafico Análise Multivariada das Relações entre Variáveis Selecionadas
 ![__results___0_11](https://github.com/user-attachments/assets/f8a270d1-8bb7-4612-9c54-0c083f46936a)
 ## Explicação do Gráfico: Análise Multivariada das Relações entre Variáveis Selecionadas (Pair Plot)
 

@@ -2273,7 +2273,7 @@ Esta é uma **matriz de correlação** que mostra a relação linear entre difer
 *   [1º Pergunta orientada a dados ](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-modelo-random-forest)
   
 	*   [Justificativa](#justificativa)
-	*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation)](#processo-de-amostragem-de-dados-(particionamento-e-cross-validation))
+	*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation)](#processo-de-amostragem-de-dados)
 	*   [Parâmetros utilizados](#parâmetros-utilizados)
 	*   [Explicação do Código](#explicação-do-código)
 
@@ -2331,7 +2331,7 @@ Embora um ensemble de muitas árvores possa parecer uma "caixa preta", é possí
 O modelo utiliza o parâmetro class_weight='balanced_subsample', que ajusta os pesos das classes em cada subamostra (bootstrap), ajudando a mitigar o impacto de um possível desbalanceamento entre as classes de "Salário Baixo/Médio" e "Salário Alto" (observado no relatório de classificação como 568 vs 422 instâncias no conjunto de teste).
 
 
-### *Processo de Amostragem de Dados (Particionamento e Cross-Validation)*
+### *Processo de Amostragem de Dados*
 
 No modelo desenvolvido para analisar a disparidade salarial dos profissionais de dados no Brasil, o processo de amostragem de dados envolveu o particionamento do conjunto de dados em subconjuntos de treino e teste.
 
@@ -3188,6 +3188,20 @@ Este fluxo demonstra uma abordagem robusta para modelagem, incluindo pré-proces
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Resultados
+
+
+*   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1.)
+  
+	*   [Matriz de confusão](#matriz-de-confusão)
+
+
+ 
+*   [Resultados obtidos com o modelo 2.](#resultados-obtidos-com-o-modelo-2.)
+
+*   [Resultados obtidos com o modelo 3.](#resultados-obtidos-com-o-modelo-3.)
+
+*   [Resultados obtidos com o modelo 4.](#resultados-obtidos-com-o-modelo-4.)
+
 
 
 ## Resultados obtidos com o modelo 1.

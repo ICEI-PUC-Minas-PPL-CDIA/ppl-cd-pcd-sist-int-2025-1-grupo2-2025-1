@@ -1,0 +1,56 @@
+Passo a Passo do Pipeline
+## 1. Carregamento e Seleção de Colunas
+O arquivo é carregado com o pandas.
+
+São selecionadas apenas as colunas essenciais para a análise: experiência, senioridade, faixa salarial, setor, UF, gênero e faixa etária.
+
+## 2. Renomeação das Colunas
+As colunas são renomeadas para nomes mais intuitivos e fáceis de manipular no restante do pipeline.
+
+## 3. Remoção de Registros Incompletos
+Registros com valores ausentes em experiência, senioridade ou faixa salarial são removidos para garantir a qualidade da análise.
+
+## 4. Padronização dos Níveis de Senioridade
+Os valores de senioridade são convertidos para caixa baixa e diferentes variações (ex: "jr.", "júnior", "sr") são padronizadas para "junior", "pleno" ou "senior".
+
+## 5. Conversão da Faixa Salarial para Valor Numérico
+Uma função extrai o ponto médio das faixas salariais, transformando textos como "R$ 3.001 a R$ 4.000" em um valor numérico médio (ex: 3500).
+
+Isso facilita análises quantitativas e modelagem.
+
+## 6. Conversão do Tempo de Experiência para Anos
+Uma função converte o tempo de experiência em anos, tratando casos como "menos de 1 ano" (0.5) e extraindo valores numéricos de textos como "3 anos".
+
+## 7. Remoção de Outliers Salariais
+O método do IQR (intervalo interquartil) é utilizado para remover salários muito fora do padrão, melhorando a robustez da análise.
+
+## 8. Criação de Variáveis Dummies (One-Hot Encoding)
+Variáveis categóricas como senioridade, setor e UF são transformadas em variáveis dummies para facilitar análises estatísticas e uso em modelos de machine learning.
+
+## 9. Exportação dos Dados Limpas
+O DataFrame limpo é salvo como dados_limpos_pergunta2.csv.
+
+O DataFrame com variáveis dummies é salvo como dados_limpos_pergunta2_encoded.csv.
+
+## 10. Resumo Final
+O script imprime o número total de registros limpos ao final do processo.
+
+Benefícios do Pipeline
+Elimina inconsistências e valores ausentes críticos.
+
+Padroniza categorias, facilitando análises e visualizações.
+
+Transforma faixas textuais em valores numéricos para modelagem.
+
+Remove outliers automaticamente, tornando as análises mais confiáveis.
+
+Pronto para ser integrado a pipelines de machine learning.
+
+Como Usar
+Coloque o script em um arquivo Python, por exemplo, limpeza_state_of_data.py.
+
+Certifique-se de que o arquivo state_of_data_br_2023.csv está no mesmo diretório.
+
+Execute o script.
+
+Os arquivos dados_limpos_pergunta2.csv e dados_limpos_pergunta2_encoded.csv serão gerados para uso posterior.

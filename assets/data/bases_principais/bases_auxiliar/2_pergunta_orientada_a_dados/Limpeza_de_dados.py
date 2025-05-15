@@ -1,6 +1,6 @@
 import pandas as pd
 
-# 1. Carregar a base
+# 1. 
 df = pd.read_csv('/content/MICRODADOS_ED_SUP_IES_2023 (1).CSV', sep=';', encoding='latin1')
 
 # 2. Visualizar as primeiras linhas e tipos de dados
@@ -22,7 +22,7 @@ limite_nulos = 0.8
 colunas_muitos_nulos = df.columns[df.isnull().mean() > limite_nulos]
 df.drop(columns=colunas_muitos_nulos, inplace=True)
 
-# 5. Remover duplicatas (se houver)
+# 5. Remover duplicatas
 df.drop_duplicates(inplace=True)
 
 # 6. Tratar valores nulos restantes

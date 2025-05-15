@@ -3813,7 +3813,7 @@ os.makedirs('visualizacoes_classificacao_salario_v7_rfecv', exist_ok=True)
 ```
 Este processo estruturado visa garantir que o modelo seja treinado de forma eficiente, otimizado para o melhor desempenho possível nos dados disponíveis e avaliado de maneira justa em dados não vistos, fornecendo insights sobre a importância das features no problema de classificação da faixa salarial.
 
-Este fluxo demonstra uma abordagem robusta para modelagem, incluindo pré-processamento cuidadoso, seleção de features, otimização de hiperparâmetros e avaliação rigorosa usando múltiplas técnicas de particionamento de dados.
+> Este fluxo demonstra uma abordagem robusta para modelagem, incluindo pré-processamento cuidadoso, seleção de features, otimização de hiperparâmetros e avaliação rigorosa usando múltiplas técnicas de particionamento de dados.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Indução de modelos
 

@@ -2034,15 +2034,1667 @@ Este tipo de gráfico é uma ferramenta poderosa para a análise exploratória d
 **Pergunta Orientada a Dados:**
 *Como fatores como formalidade no emprego , características demográficas e regionais se interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
 
+## 1. Importação de Bibliotecas
+O script inicia com a importação de diversas bibliotecas Python, cada uma com uma finalidade específica no processo de manipulação e análise de dados.
+
+* Snippet de código
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+import re
+import plotly.express as px
+# from ydata_profiling import ProfileReport
+import statsmodels.api as sm
+```
+---
+## 2. Funções de Pré-processamento
+
+O script define um conjunto de funções customizadas para realizar tarefas específicas de limpeza e transformação de dados.
+
+### 2.1. clean_col_name(col_name)
+
+Esta função é projetada para limpar e padronizar os nomes das colunas.
+
+```python
+# --- Funções de pré-processamento (Mantidas) ---
+def clean_col_name(col_name):
+    original_input = col_name
+    if isinstance(col_name, tuple):
+        col_name = "_".join(str(item).strip() for item in col_name)
+    elif not isinstance(col_name, str):
+        col_name = str(col_name)
+    col_name = re.sub(r'[^\w\s-]', '', col_name).strip()
+    col_name = re.sub(r'[-\s]+', '_', col_name)
+    col_name = re.sub(r"_+", "_", col_name)
+    col_name = col_name.strip("_")
+    if not col_name: return f"col_limpa_vazia_{hash(original_input)}"
+    if col_name and col_name[0].isdigit(): col_name = "_" + col_name
+    return col_name
+```
+
+Explicação da Função clean_col_name:  
+- Converte nomes de colunas que são tuplas em uma string única, unindo os elementos com underscores.  
+- Converte nomes de colunas que não são strings para o tipo string.  
+- Remove caracteres especiais (exceto alfanuméricos, espaços e hífens) e remove espaços em branco das extremidades.  
+- Substitui sequências de hífens e/ou espaços por um único underscore.  
+- Substitui múltiplos underscores consecutivos por um único underscore.  
+- Remove underscores no início ou fim do nome da coluna.  
+- Se, após a limpeza, o nome da coluna se tornar uma string vazia, um nome único é gerado usando um hash do nome original para evitar conflitos.  
+- Se o nome da coluna limpo começar com um dígito, um underscore é prefixado para garantir que seja um identificador válido em muitos contextos de programação e análise.
+
+### 2.2. extract_salary_lower_bound(salary_range_str)
+
+Esta função extrai o limite inferior numérico de uma string que representa uma faixa salarial.
+
+```python
+def extract_salary_lower_bound(salary_range_str):
+    if pd.isna(salary_range_str): return np.nan
+    s = str(salary_range_str).lower().replace('r$', '').replace('.', '').replace('/mês', '').strip()
+    match_de_a = re.search(r'de\s*(\d+)\s*a\s*(\d+)', s)
+    if match_de_a: return float(match_de_a.group(1))
+    match_acima_de = re.search(r'acima de\s*(\d+)', s)
+    if match_acima_de: return float(match_acima_de.group(1))
+    match_menos_de = re.search(r'menos de\s*(\d+)', s)
+    if match_menos_de: return 0
+    match_so_numeros = re.findall(r'\d+', s)
+    if match_so_numeros: return float(match_so_numeros[0])
+    return np.nan
+```
+
+Explicação da Função extract_salary_lower_bound:  
+- Retorna np.nan se a entrada for nula (ausente).  
+- Padroniza a string de entrada: converte para minúsculas, remove "R$", ".", "/mês", além de espaços em branco nas extremidades.  
+- Utiliza expressões regulares para identificar e extrair o valor numérico correspondente ao limite inferior da faixa salarial, considerando os seguintes padrões:  
+  - de X a Y: Retorna X.  
+  - acima de X: Retorna X.  
+  - menos de X: Retorna 0 (assumindo que o limite inferior é zero ou um valor mínimo).  
+- Se nenhum dos padrões acima for encontrado, extrai o primeiro conjunto de dígitos da string.  
+- Retorna np.nan se nenhum valor numérico puder ser extraído.  
+
+### 2.3. map_uf_to_region(uf_series: pd.Series) -> pd.Series
+
+Esta função mapeia uma série de siglas de Unidades Federativas (UF) do Brasil para suas respectivas regiões geográficas.
+
+```python
+def map_uf_to_region(uf_series: pd.Series) -> pd.Series:
+    mapa_regioes = {
+        'AC': 'Norte', 'AL': 'Nordeste', 'AP': 'Norte', 'AM': 'Norte', 'BA': 'Nordeste',
+        'CE': 'Nordeste', 'DF': 'Centro-Oeste', 'ES': 'Sudeste', 'GO': 'Centro-Oeste',
+        'MA': 'Nordeste', 'MT': 'Centro-Oeste', 'MS': 'Centro-Oeste', 'MG': 'Sudeste',
+        'PA': 'Norte', 'PB': 'Nordeste', 'PR': 'Sul', 'PE': 'Nordeste', 'PI': 'Nordeste',
+        'RJ': 'Sudeste', 'RN': 'Nordeste', 'RS': 'Sul', 'RO': 'Norte', 'RR': 'Norte',
+        'SC': 'Sul', 'SP': 'Sudeste', 'SE': 'Nordeste', 'TO': 'Norte'
+    }
+    uf_series_normalized = uf_series.astype(str).str.upper().str.strip()
+    siglas_uf = list(mapa_regioes.keys())
+    def extract_sigla(val):
+        if val in siglas_uf: return val
+        for sigla in siglas_uf:
+            if f"({sigla})" in val or f" {sigla} " in val or val.endswith(f" {sigla}"): return sigla
+        if "DISTRITO FEDERAL" in val: return "DF"
+        if "SAO PAULO" in val: return "SP"
+        if "RIO DE JANEIRO" in val: return "RJ"
+        if "MINAS GERAIS" in val: return "MG"
+        if "ESPIRITO SANTO" in val: return "ES"
+        if "RIO GRANDE DO SUL" in val: return "RS"
+        if "SANTA CATARINA" in val: return "SC"
+        if "PARANA" in val: return "PR"
+        return val
+    uf_series_normalized = uf_series_normalized.apply(extract_sigla)
+    mapped_series = uf_series_normalized.map(mapa_regioes)
+    return mapped_series.fillna('Desconhecida')
+```
+
+Explicação da Função map_uf_to_region:  
+- Define um dicionário `mapa_regioes` que associa cada sigla de UF à sua região correspondente.  
+- Normaliza a série de UFs de entrada, convertendo para string, maiúsculas e removendo espaços.  
+- Define uma subfunção `extract_sigla` que tenta identificar a sigla da UF dentro de uma string que pode conter informações adicionais (ex: "Nome da Cidade (SP)"). Esta subfunção também lida com nomes completos de alguns estados.  
+- Aplica `extract_sigla` para obter as UFs padronizadas.  
+- Utiliza o método `.map()` com `mapa_regioes` para traduzir as siglas das UFs para os nomes das regiões.  
+- Valores que não puderam ser mapeados são preenchidos com `'Desconhecida'`.  
+
+### 2.4. clean_experience_to_numeric(exp_val)
+
+Esta função converte descrições textuais de tempo de experiência em valores numéricos (em anos).
+
+```python
+def clean_experience_to_numeric(exp_val):
+    if pd.isna(exp_val):
+        return np.nan
+    s = str(exp_val).lower().strip()
+    if 'menos de 1 ano' in s or 'menos de um ano' in s or '< 1 ano' in s:
+        return 0.5
+    if 'não tenho experiência' in s or 'sem experiência' in s:
+        return 0
+    numbers = re.findall(r'\d+\.?\d*', s)
+    if numbers:
+        return float(numbers[0])
+    return np.nan
+```
+
+Explicação da Função clean_experience_to_numeric:  
+- Retorna `np.nan` se o valor de entrada for nulo.  
+- Padroniza a string de entrada (minúsculas, remoção de espaços).  
+- Converte expressões específicas para valores numéricos:  
+  - "menos de 1 ano" (ou variações) para 0.5 anos.  
+  - "não tenho experiência" (ou variações) para 0 anos.  
+- Se nenhum dos padrões acima for encontrado, utiliza expressões regulares para extrair o primeiro número (inteiro ou decimal) da string, que é assumido como o tempo de experiência em anos.  
+- Retorna `np.nan` se nenhum valor numérico puder ser extraído.  
+
+---
+
+## 3. Configurações da Análise Exploratória de Dados (EDA)
+Esta seção define configurações globais para o processo de EDA.
+
+```python
+eda_output_dir_script = 'visualizacoes_eda_script_univariada_final'
+os.makedirs(eda_output_dir_script, exist_ok=True)
+sns.set_style("whitegrid")
+```
+
+Explicação das Configurações:  
+- `eda_output_dir_script`: Define uma string com o nome do diretório ('visualizacoes_eda_script_univariada_final') onde as visualizações ou outros artefatos gerados durante a EDA podem ser salvos.  
+- `os.makedirs(eda_output_dir_script, exist_ok=True)`: Cria o diretório especificado. O parâmetro `exist_ok=True` impede que um erro seja levantado caso o diretório já exista.  
+- `sns.set_style("whitegrid")`: Define o estilo padrão para os gráficos gerados pela biblioteca Seaborn como "whitegrid". Este estilo adiciona uma grade clara ao fundo dos gráficos, o que pode melhorar a legibilidade.  
+
+---
+
+## 4. Pipeline de Processamento de Dados  
+O script segue um pipeline estruturado para carregar, limpar, selecionar e transformar os dados.
+
+### 4.1. Carregar Dados  
+A primeira etapa do pipeline é o carregamento do conjunto de dados a partir de um arquivo Excel.
+
+```python
+# --- 1. Carregar Dados ---
+print("--- 1. Carregando Dados ---")
+file_path = "Main_database (2).xlsx"
+if not os.path.exists(file_path):
+    print(f"ERRO: Arquivo de dados '{file_path}' não encontrado.")
+    exit()
+df_original = pd.read_excel(file_path)
+print(f"Base de dados original carregada: {df_original.shape[0]} linhas, {df_original.shape[1]} colunas.")
+```
+
+Explicação do Carregamento de Dados:  
+- O caminho para o arquivo de dados é definido na variável `file_path`.  
+- O script verifica se o arquivo existe no caminho especificado. Se não existir, uma mensagem de erro é exibida e o script é encerrado.  
+- Os dados do arquivo Excel são lidos para um DataFrame do Pandas chamado `df_original`.  
+- As dimensões (número de linhas e colunas) do DataFrame carregado são impressas para confirmação.  
+
+### 4.2. Limpeza Inicial de Nomes de Colunas  
+Após o carregamento, os nomes das colunas do DataFrame são limpos e padronizados.
+
+```python
+# --- 2. Limpeza Inicial de Nomes de Colunas ---
+print("\n--- 2. Limpando Nomes de Colunas ---")
+df_cleaned_names = df_original.copy()
+df_cleaned_names.columns = [clean_col_name(col) for col in df_original.columns]
+print("Nomes de colunas limpos.")
+```
+
+Explicação da Limpeza de Nomes de Colunas:  
+- Uma cópia do DataFrame original (`df_original`) é criada como `df_cleaned_names` para preservar os dados brutos.  
+- A função `clean_col_name` (definida anteriormente) é aplicada a cada nome de coluna do `df_cleaned_names`.  
+- Uma mensagem confirma a conclusão da limpeza dos nomes das colunas.  
+
+### 4.3. Seleção dos Atributos para EDA  
+Nesta etapa, colunas específicas são selecionadas do DataFrame para serem incluídas na Análise Exploratória de Dados.
+
+```python
+# --- 3. Selecionando Atributos para EDA ---
+print("\n--- 3. Selecionando Atributos para EDA ---")
+col_identifiers = {
+    'P1_a_1': 'P1_a_1', 'P1_b': 'P1_b', 'P1_l': 'P1_l',
+    'P2_h': 'P2_h', 'P2_i': 'P2_i', 'P1_i_1': 'P1_i_1_uf_onde_mora',
+    'P2_f': 'P2_f_Cargo_Atual', 'P2_g': 'P2_g_Nivel'
+}
+df_eda = pd.DataFrame()
+for original_key, pattern in col_identifiers.items():
+    found_col_name = next((cn for cn in df_cleaned_names.columns if pattern.lower() in cn.lower()), None)
+    if found_col_name:
+        df_eda[original_key] = df_cleaned_names[found_col_name]
+        print(f"Coluna '{original_key}' (mapeada de '{found_col_name}') selecionada.")
+    else:
+        print(f"Aviso: Padrão '{pattern}' para '{original_key}' não encontrado.")
+if df_eda.empty or 'P2_h' not in df_eda.columns:
+    print("ERRO: Colunas essenciais para EDA não encontradas ou 'P2_h' ausente.")
+    exit()
+print(f"Shape do DataFrame de EDA inicial: {df_eda.shape}")
+```
+
+Explicação da Seleção de Atributos:  
+- Um dicionário `col_identifiers` é definido para mapear nomes de chaves internas (que se tornarão os nomes das colunas no `df_eda`) para padrões de texto. Estes padrões são usados para encontrar as colunas correspondentes no `df_cleaned_names` (após a limpeza dos nomes).  
+- Um novo DataFrame vazio, `df_eda`, é inicializado.  
+- O script itera sobre `col_identifiers`, procurando por colunas no `df_cleaned_names` cujos nomes (em minúsculas) contenham o padrão especificado (também em minúsculas).  
+- Se uma coluna correspondente é encontrada, ela é adicionada ao `df_eda` com o nome da chave interna.  
+- Avisos são emitidos se padrões não forem encontrados.  
+- Uma verificação crítica é realizada para garantir que o `df_eda` não esteja vazio e que a coluna `'P2_h'` (presumivelmente uma coluna essencial, como salário) esteja presente. Se estas condições não forem atendidas, o script é encerrado.  
+- As dimensões do `df_eda` inicial são impressas.  
+
+### 4.4. Limpeza e Transformação dos Atributos Selecionados
+
+Esta é a etapa final do pré-processamento, onde as colunas selecionadas no `df_eda` passam por transformações e limpezas mais detalhadas.
+
+```python
+# --- 4. Limpando e Transformando Atributos ---
+print("\n--- 4. Limpando e Transformando Atributos ---")
+# Processamento de Salário (P2_h)
+if 'P2_h' in df_eda.columns:
+    df_eda['salary_numeric_lower_bound'] = df_eda['P2_h'].apply(extract_salary_lower_bound)
+    df_eda.dropna(subset=['salary_numeric_lower_bound'], inplace=True) # Remove linhas onde o salário não pôde ser convertido
+    if not df_eda.empty:
+        min_salary_eda = df_eda['salary_numeric_lower_bound'].min()
+        max_salary_eda = df_eda['salary_numeric_lower_bound'].max()
+        point_of_cut_eda = 7500.0
+        print(f"Usando ponto de corte para EDA: {point_of_cut_eda}")
+        eda_salary_labels = ["Salário Baixo", "Salário Alto"]
+
+        if min_salary_eda == max_salary_eda: # Caso especial: todos os salários são iguais
+            df_eda['faixa_salarial_eda_2cat'] = eda_salary_labels[0] if point_of_cut_eda >= min_salary_eda else eda_salary_labels[1]
+        else:
+            # Define bins e labels para pd.cut
+            bins_eda, labels_eda_cut = ([min_salary_eda, max_salary_eda], [eda_salary_labels[1]]) if point_of_cut_eda <= min_salary_eda else \
+                                  ([min_salary_eda, max_salary_eda], [eda_salary_labels[0]]) if point_of_cut_eda >= max_salary_eda else \
+                                  ([min_salary_eda, point_of_cut_eda, max_salary_eda], eda_salary_labels)
+
+            unique_bins_eda = sorted(list(set(bins_eda)))
+            if len(unique_bins_eda) < 2: unique_bins_eda = [min_salary_eda, max_salary_eda]
+
+            actual_labels = labels_eda_cut # Inicia com os labels determinados pela lógica de bins
+            # Ajusta 'actual_labels' se a combinação de 'unique_bins_eda' e 'labels_eda_cut' indicar um único intervalo efetivo
+            if len(unique_bins_eda) == 2: # Indica um único intervalo [bin_start, bin_end]
+                if len(labels_eda_cut) == 2: # Se havia dois labels possíveis para este intervalo
+                    # Cenário 1: O intervalo é [min_salary, point_of_cut] -> Salário Baixo
+                    if unique_bins_eda[0] == min_salary_eda and unique_bins_eda[1] == point_of_cut_eda:
+                         actual_labels = [labels_eda_cut[0]]
+                    # Cenário 2: O intervalo é [point_of_cut, max_salary] -> Salário Alto
+                    elif unique_bins_eda[0] == point_of_cut_eda and unique_bins_eda[1] == max_salary_eda:
+                         actual_labels = [labels_eda_cut[1]]
+                    # Cenário 3: O intervalo é [min_salary, max_salary] (point_of_cut fora da faixa ou na borda)
+                    elif unique_bins_eda[0] == min_salary_eda and unique_bins_eda[1] == max_salary_eda:
+                        # Aqui, labels_eda_cut já deve ser um único label determinado pela condição inicial
+                        # Esta re-verificação garante consistência se a lógica anterior de 1 label foi acionada.
+                        if point_of_cut_eda <= min_salary_eda : actual_labels = [eda_salary_labels[1]] # Todos são 'Salário Alto'
+                        elif point_of_cut_eda >= max_salary_eda : actual_labels = [eda_salary_labels[0]] # Todos são 'Salário Baixo'
+                # Se len(labels_eda_cut) == 1, 'actual_labels' já está correto.
+            
+            df_eda['faixa_salarial_eda_2cat'] = pd.cut(
+                df_eda['salary_numeric_lower_bound'], bins=unique_bins_eda,
+                labels=actual_labels, include_lowest=True, duplicates='drop'
+            )
+        df_eda.dropna(subset=['faixa_salarial_eda_2cat'], inplace=True) # Remove linhas onde a faixa não pôde ser definida
+        print(f"'faixa_salarial_eda_2cat' criada. Contas:\n{df_eda['faixa_salarial_eda_2cat'].value_counts(dropna=False)}")
+    else: print("DataFrame vazio após processar 'salary_numeric_lower_bound'.")
+else: print("ERRO: Coluna 'P2_h' não encontrada."); exit()
+```
+
+* Processamento de Experiência (P2_i):
+```python
+if 'P2_i' in df_eda.columns:
+    df_eda['experiencia_anos'] = df_eda['P2_i'].apply(clean_experience_to_numeric)
+    median_exp = df_eda['experiencia_anos'].median() # Calcula a mediana ANTES de preencher NaNs
+    df_eda['experiencia_anos'].fillna(median_exp, inplace=True)
+    print(f"'experiencia_anos' criada. Nulos preenchidos com mediana ({median_exp:.1f}).")
+
+* Processamento de UF para Região (P1_i_1)
+# Ajuste para usar o nome da coluna mapeado no passo 3, se existir, ou o nome base.
+uf_column_name_in_eda = 'P1_i_1' # Nome da chave como usado em col_identifiers
+if uf_column_name_in_eda in df_eda.columns:
+    df_eda['Regiao_Mapeada'] = map_uf_to_region(df_eda[uf_column_name_in_eda])
+    print(f"'Regiao_Mapeada' criada. Contas:\n{df_eda['Regiao_Mapeada'].value_counts(dropna=False)}")
+```
+* Processamento de Colunas Categóricas:
+```python
+categorical_cols_original_keys = ['P1_a_1', 'P1_b', 'P1_l', 'P2_f', 'P2_g']
+for key in categorical_cols_original_keys:
+    if key in df_eda.columns:
+        df_eda[key] = df_eda[key].astype(str).fillna("Não Informado").str.strip()
+        if df_eda[key].nunique() > 20: # Limita a cardinalidade
+            top_categories = df_eda[key].value_counts().nlargest(19).index
+            df_eda[key] = df_eda[key].apply(lambda x: x if x in top_categories else 'Outros')
+        print(f"Coluna categórica '{key}' processada. Valores únicos: {df_eda[key].nunique()}")
+
+print(f"Shape do DataFrame de EDA final: {df_eda.shape}")
+if df_eda.empty or 'faixa_salarial_eda_2cat' not in df_eda.columns:
+    print("ERRO: DataFrame de EDA vazio ou sem coluna alvo ('faixa_salarial_eda_2cat')."); exit()
+```
+### Explicação da Limpeza e Transformação de Atributos:  
+#### Processamento de Salário (coluna `P2_h`):
+
+- Aplica a função `extract_salary_lower_bound` para converter os valores de salário em formato numérico, criando a coluna `salary_numeric_lower_bound`.
+- Remove linhas onde a conversão do salário falhou (resultando em `NaN`).
+- Se o DataFrame não estiver vazio, categoriza os salários numéricos em **"Salário Baixo"** ou **"Salário Alto"** usando a função `pd.cut`.
+- Um ponto de corte (`point_of_cut_eda = 7500.0`) é utilizado.
+- A lógica para definir os **bins** (intervalos) e **labels** (rótulos) para `pd.cut` tenta adaptar-se à distribuição dos salários em relação ao ponto de corte.  
+  Casos especiais são tratados, como quando todos os salários são iguais ou estão todos de um lado do ponto de corte.  
+  A lógica de `actual_labels` foi refinada para garantir que o número correto de rótulos seja usado com base nos bins efetivos.
+- A nova coluna categórica é chamada `faixa_salarial_eda_2cat`. Linhas onde esta categorização falha são removidas.
+- A contagem de cada categoria de faixa salarial é impressa para validação.
+
+---
+
+### Processamento de Experiência (coluna `P2_i`):
+
+- Aplica a função `clean_experience_to_numeric` para converter as descrições de experiência em anos numéricos, criando a coluna `experiencia_anos`.
+- Calcula a mediana dos anos de experiência antes de preencher os valores ausentes, para evitar que o preenchimento influencie a mediana.
+- Valores ausentes (`NaN`) na coluna `experiencia_anos` são preenchidos com esta mediana.
+
+### Processamento de UF para Região (coluna referenciada por `P1_i_1`):
+
+- Aplica a função `map_uf_to_region` à coluna de UF (cujo nome no `df_eda` é `P1_i_1`, conforme definido em `col_identifiers`) para criar a coluna `Regiao_Mapeada`.
+- A contagem de cada região mapeada é impressa.
+
+### Processamento de Outras Colunas Categóricas:
+
+- Uma lista `categorical_cols_original_keys` define as colunas a serem tratadas.
+- Para cada uma dessas colunas:
+  - Converte os valores para string.
+  - Preenche valores `NaN` com `"Não Informado"`.
+  - Remove espaços em branco das extremidades.
+  - Se a coluna tiver mais de 20 categorias únicas (alta cardinalidade), as categorias menos frequentes são agrupadas em uma única categoria `"Outros"`, mantendo as 19 mais frequentes.  
+    Isso ajuda a simplificar a análise e a modelagem.
+- O número de valores únicos após o processamento é impresso.
+
+### Verificações Finais:
+
+- As dimensões do `df_eda` final são impressas.
+- Uma verificação final assegura que o `df_eda` não esteja vazio e que a coluna alvo `faixa_salarial_eda_2cat` exista.
+- Caso contrário, um erro é impresso e o script é encerrado.
+
+---
+
+# 5 Visualizacao dos dados (Análise Univariada)
+Esta seção do script inicializa a análise exploratória de dados univariada, onde cada variável é analisada individualmente. O foco aqui é entender a distribuição e as características de cada atributo.
+
+---
+
+**Mensagem do Script:**
 
 
+---
+
+**Análise Numérica da coluna `salary_numeric_lower_bound`:**
+
+O script exibe estatísticas descritivas para a coluna `salary_numeric_lower_bound`. Esta coluna representa o limite inferior da faixa salarial convertida para um valor numérico.
+
+| Estatística       | Valor         | Descrição                                                      |
+|-------------------|---------------|----------------------------------------------------------------|
+| count             | 4753          | Número de observações não nulas na coluna                      |
+| mean              | 8935.37       | Média do limite inferior do salário (R$ 8.935,37)              |
+| std               | 7308.44       | Desvio padrão, indicando grande dispersão dos salários         |
+| min               | 0             | Valor mínimo (pode indicar salários "menos de X")              |
+| 25% (1º Quartil)   | 4001          | 25% dos respondentes ganham até R$ 4.001                        |
+| 50% (Mediana)     | 8001          | Mediana do limite inferior do salário (metade ganha até isso)  |
+| 75% (3º Quartil)   | 12001         | 75% dos respondentes ganham até R$ 12.001                       |
+| max               | 40001         | Valor máximo registrado                                        |
+| Name & dtype      | salary_numeric_lower_bound (float64) | Nome e tipo de dado da coluna              |
+
+---
+
+**Comentários:**  
+Esta saída é típica do método `.describe()` do Pandas aplicado a séries numéricas, fornecendo um resumo estatístico essencial para entender a distribuição central, a dispersão e a amplitude dos dados salariais.
+
+---
+
+### Análise do histograma e KDE dos salarios numericos 
+
+O gráfico apresentado é uma combinação de um histograma e uma estimativa de densidade do kernel (KDE) para a variável `salary_numeric_lower_bound`, que representa o limite inferior da faixa salarial dos profissionais de dados no Brasil. Este tipo de visualização é fundamental para entendermos a distribuição dos salários e, consequentemente, as disparidades existentes.
+
+
+![Histogrma e KDE de salary_numeric_lower_bound](https://github.com/user-attachments/assets/62391c2d-14eb-4784-90a3-fc1062bda7ba)
+
+---
+
+#### Como Interpretar o Gráfico
+
+- **Eixo X (`salary_numeric_lower_bound`)**:  
+  Representa os valores do limite inferior da faixa salarial. No gráfico, varia de valores próximos a zero até acima de R$ 40.000.
+
+- **Eixo Y Esquerdo (Contagem - Histograma)**:  
+  Associado às barras azuis (histograma). Cada barra representa um intervalo de salários (bin), e a altura indica o número de profissionais de dados cujo limite inferior da faixa salarial se encontra naquele intervalo.
+
+- **Eixo Y Direito (Densidade - Linha KDE)**:  
+  Associado à linha azul escura (linha KDE estimada). A curva KDE é uma versão suavizada do histograma, mostrando a forma da distribuição salarial de forma contínua. A área sob a curva em um intervalo representa a proporção de profissionais naquela faixa salarial. Picos indicam concentrações maiores.
+
+- **Título**:  
+  "Histograma e KDE de salary_numeric_lower_bound" – indica claramente o conteúdo do gráfico.
+
+---
+
+#### Informações Extraídas do Gráfico
+
+- **Concentração Salarial**:  
+  Há uma concentração significativa de profissionais na faixa salarial mais baixa. O pico principal do histograma e da curva KDE está em torno de R$ 5.000 a R$ 10.000, indicando que a maioria dos profissionais de dados está nessa faixa de remuneração inicial.
+
+- **Assimetria Positiva (Skewness)**:  
+  A distribuição é assimétrica à direita, com a maioria dos salários em valores mais baixos, mas com uma cauda longa para valores altos. Alguns profissionais recebem salários muito superiores, elevando a média geral.
+
+- **Multimodalidade Sugerida**:  
+  A curva KDE mostra múltiplos picos (modas). Além do pico dominante na faixa baixa, há picos menores em faixas salariais superiores (ex.: em torno de R$ 15.000, R$ 20.000 e outros menos pronunciados), sugerindo diferentes grupos salariais.
+
+---
+
+#### Possíveis Insights e Conexão com a Pergunta Orientada a Dados
+
+**Pergunta central:**  
+*"Como fatores como formalidade no emprego, características demográficas e regionais se interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?"*
+
+- O gráfico evidencia que existem disparidades salariais significativas.
+- A longa cauda à direita e os múltiplos picos na distribuição mostram visualmente essa variação salarial.
+- Este ponto de partida visual ajuda a direcionar análises mais detalhadas sobre como os fatores demográficos, regionais e de proficiência técnica afetam essas disparidades.
+
+> Em resumo, o gráfico de Histograma e KDE do salary_numeric_lower_bound visualiza as disparidades salariais existentes entre profissionais de dados no Brasil. A forma da distribuição, com sua assimetria e múltiplos picos, sugere que diversos fatores, incluindo formalidade no emprego, características demográficas, regionais e, crucialmente, a proficiência técnica, estão interagindo de maneiras complexas para criar esses diferentes patamares salariais. O gráfico é a evidência do "o quê" (as disparidades), e a análise mais aprofundada dos fatores mencionados permitirá entender o "porquê" e o "como".
+
+---
+
+### Análise histograma e estimativa de densidade do kernel (KDE) de salarios:
+
+O gráfico apresentado é uma combinação de um histograma e uma estimativa de densidade do kernel (KDE) para a variável `salary_numeric_lower_bound`, que representa o limite inferior da faixa salarial dos profissionais de dados no Brasil. Este tipo de visualização é fundamental para entendermos a distribuição dos salários e, consequentemente, as disparidades existentes.
+
+![box plot salary_numeric_lower](https://github.com/user-attachments/assets/a9d63676-9522-4665-b1d4-66b716fcc70c)
+
+
+---
+
+#### Como Interpretar o Gráfico
+
+- **Eixo X (`salary_numeric_lower_bound`)**  
+  Representa os valores do limite inferior da faixa salarial. No gráfico, varia de valores próximos a zero até acima de R$ 40.000.
+
+- **Eixo Y Esquerdo (Contagem - Histograma)**  
+  Associado às barras azuis (histograma). Cada barra representa um intervalo de salários (bin), e a altura indica o número de profissionais de dados cujo limite inferior da faixa salarial se encontra naquele intervalo.
+
+- **Eixo Y Direito (Densidade - Linha KDE)**  
+  Associado à linha azul escura (linha KDE estimada). A curva KDE é uma versão suavizada do histograma, mostrando a forma da distribuição salarial de forma contínua. A área sob a curva em um intervalo representa a proporção de profissionais naquela faixa salarial. Picos indicam concentrações maiores.
+
+- **Título**  
+  "Histograma e KDE de salary_numeric_lower_bound" – indica claramente o conteúdo do gráfico.
+
+---
+
+#### Informações Extraídas do Gráfico
+
+- **Concentração Salarial**  
+  Observa-se uma concentração significativa de profissionais na faixa salarial mais baixa. O pico mais alto do histograma e da curva KDE está em torno de R$ 5.000 a R$ 10.000, indicando que a maioria dos profissionais de dados se encontra nessa faixa de remuneração inicial.
+
+- **Assimetria Positiva (Skewness)**  
+  A distribuição é assimétrica à direita (ou positiva). Isso significa que, embora a maioria dos salários esteja concentrada em valores mais baixos, existem alguns profissionais com salários consideravelmente mais altos, o que "puxa" a cauda da distribuição para a direita. Esses salários mais altos são menos frequentes, mas elevam a média geral.
+
+- **Multimodalidade Sugerida**  
+  A curva KDE apresenta múltiplos picos (modas), embora um seja dominante. Há um pico principal na faixa mais baixa já mencionada, e picos secundários menores em faixas salariais mais altas (por exemplo, em torno de R$ 15.000, R$ 20.000 e possivelmente outros menos pronunciados). Isso sugere a existência de diferentes grupos de profissionais de dados com níveis salariais distintos.
+
+---
+
+#### Possíveis Insights e Conexão com a Pergunta Orientada a Dados
+
+**Pergunta central:**  
+*"Como fatores como formalidade no emprego, características demográficas e regionais se interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?"*
+
+O gráfico, ao mostrar a distribuição e as disparidades salariais, serve como ponto de partida para investigar essa questão. Os insights abaixo conectam o gráfico à pergunta:
+
+- **Existência de Disparidades**  
+  O gráfico demonstra claramente que existem disparidades salariais significativas. A longa cauda à direita e os múltiplos picos são evidências visuais dessa variação.
+
+>Em resumo, o gráfico de Histograma e KDE do salary_numeric_lower_bound visualiza as disparidades salariais existentes entre profissionais de dados no Brasil. A forma da distribuição, com sua assimetria e múltiplos picos, sugere que diversos fatores, incluindo formalidade no emprego, características demográficas, regionais e, crucialmente, a proficiência técnica, estão interagindo de maneiras complexas para criar esses diferentes patamares salariais. O gráfico é a evidência do "o quê" (as disparidades), e a análise mais aprofundada dos fatores mencionados permitirá entender o "porquê" e o "como".
+
+---
+
+---
+
+### Análise do Gráfico ECDF de salarios 
+
+![ECDF de salary_numeric_lower](https://github.com/user-attachments/assets/45ac6402-0f8b-494a-ab58-71bef586ac65)
+
+**O que o Gráfico ECDF Mostra:**
+
+- **Eixo X (salary_numeric_lower_bound):**  
+  Representa os valores do limite inferior da faixa salarial, ordenados do menor para o maior.
+
+- **Eixo Y (Proporção Cumulativa):**  
+  Varia de 0 a 1 (ou 0% a 100%). Para qualquer valor de salário no eixo X, o valor correspondente no eixo Y indica a proporção (ou porcentagem) de profissionais de dados que ganham até aquele valor salarial.
+
+- **Forma da Curva:**  
+  A curva sobe em "degraus". Cada degrau representa um ou mais profissionais com aquele valor salarial específico. A altura de cada salto vertical corresponde à proporção de observações naquele ponto. Onde a curva é mais íngreme, há uma maior concentração de dados.
+
+**Informações Extraídas Diretamente:**
+
+- **Percentis Salariais:**  
+  É fácil ler percentis diretamente no gráfico.
+
+- **Mediana (P50):**  
+  Encontrando 0.5 no eixo Y e seguindo horizontalmente até a curva e depois verticalmente até o eixo X, observa-se que a mediana está próxima de R$ 7.500 - R$ 8.000.
+
+- **Outros Percentis:**  
+  Aproximadamente 20% (0.2 no eixo Y) dos profissionais ganham até cerca de R$ 4.000. Cerca de 80% (0.8 no eixo Y) ganham até aproximadamente R$ 12.000 - R$ 13.000. Quase 90% (0.9 no eixo Y) ganham até R$ 20.000.
+
+- **Concentração de Salários:**  
+  Degraus mais longos horizontalmente indicam faixas salariais com poucos profissionais, enquanto saltos verticais altos indicam concentrações salariais específicas. A subida rápida da curva até R$10.000-R$15.000 mostra a maioria concentrada nessa faixa.
+
+- **Dispersão e Cauda Superior:**  
+  A curva continua subindo até atingir 1.0 próximo a R$ 40.000, indicando a presença de salários elevados, embora menos frequentes.
+
+**Conexão com a Pergunta Orientada a Dados:**
+
+- A ECDF oferece uma visão quantitativa das disparidades salariais e da distribuição dos profissionais ao longo da faixa salarial.
+
+- Permite quantificar desigualdades, por exemplo: "X% dos profissionais de dados no Brasil têm um limite inferior de salário até Y reais".  
+  Exemplo: Se 90% ganham até R$ 20.000, os 10% restantes estão distribuídos em uma faixa salarial mais ampla, evidenciando disparidade entre os mais bem pagos.
+
+>Em resumo, a ECDF do salary_numeric_lower_bound oferece uma maneira clara de visualizar a proporção acumulada de profissionais em cada nível salarial. Ela quantifica as disparidades mostrando quantos profissionais estão abaixo de certos tetos salariais e destaca as faixas de concentração. Para responder à pergunta sobre a influência e interação dos fatores, seria necessário comparar ECDFs de diferentes segmentos da população de profissionais de dados, usando este gráfico como uma linha de base da distribuição geral.
+---
+
+![QQ-plot salary_numeric_lower](https://github.com/user-attachments/assets/6d31facb-2e17-410c-a524-4c3d772644d9)
+
+### Análise do Gráfico QQ-Plot de salarios 
+
+**O que o Gráfico QQ-Plot Mostra:**
+
+- **Eixo X (Quantis Teóricos - Distribuição Normal Padrão):**  
+  Valores que seriam esperados se os dados seguissem perfeitamente uma distribuição normal.
+
+- **Eixo Y (Quantis da Amostra - Ordenados):**  
+  Os valores reais do `salary_numeric_lower_bound`, ordenados do menor para o maior.
+
+- **Linha de Referência (Normal Teórica):**  
+  Linha diagonal que representa a distribuição normal perfeita. Se os pontos estivessem alinhados a esta linha, indicaria que os dados seguem uma distribuição normal.
+
+- **Pontos Azuis:**  
+  Quantis dos salários observados plotados contra os quantis teóricos de uma distribuição normal.
+
+---
+
+**Informações Extraídas do Gráfico:**
+
+- **Não Normalidade dos Dados Salariais:**  
+  Os pontos azuis não seguem a linha de referência consistentemente, indicando que a distribuição dos salários não é normal.
+
+- **Desvios da Linha:**  
+  - *Cauda Inferior (Valores Baixos de Salário):*  
+    Na extremidade esquerda, pontos estão ligeiramente abaixo da linha ou apresentam comportamento em "degraus", sugerindo concentração em salários baixos, inclusive valores zero ou próximos a zero, que não seguem uma distribuição normal.  
+  - *Corpo Central da Distribuição:*  
+    Os pontos se aproximam da linha, mas ainda com alguma curvatura.  
+  - *Cauda Superior (Valores Altos de Salário):*  
+    Na extremidade direita, os pontos desviam-se acima da linha, caracterizando uma cauda direita pesada (longa). Isso indica que os salários mais altos são mais elevados e frequentes do que o esperado numa normal.
+
+- **Assimetria Positiva:**  
+  O desvio acentuado na cauda superior reforça a presença de assimetria positiva — maioria dos salários baixos, com uma minoria recebendo salários substancialmente mais altos.
+
+---
+
+**Conexão com a Pergunta Orientada a Dados:**
+
+- O QQ-Plot ajuda a caracterizar a natureza da distribuição salarial e as disparidades associadas.
+
+- **Caracterização da Disparidade Salarial:**  
+  A não normalidade, especialmente a cauda direita pesada, evidencia visualmente a disparidade salarial. Os salários não estão distribuídos simetricamente; há uma minoria que ganha significativamente mais, impactando a média e a desigualdade no setor.
+
+>Em resumo, o QQ-Plot contra uma distribuição normal demonstra que os salários dos profissionais de dados no Brasil não seguem esse padrão teórico, exibindo notavelmente uma cauda direita mais pesada. Isso significa que os salários mais altos são consideravelmente maiores do que o esperado em uma distribuição normal. Essa característica da distribuição é uma manifestação das disparidades salariais, onde fatores como alta proficiência técnica, combinados com aspectos regionais, demográficos e de formalidade, provavelmente impulsionam os ganhos de uma minoria para níveis significativamente elevados em comparação com o restante dos profissionais.
+---
+
+![Histogrma e KDE de experiencia_anos](https://github.com/user-attachments/assets/ac711cb0-d98a-4bf8-8a0a-830b6800c5ca)
+
+---
+
+### Análise do Gráfico (Histograma e KDE de `experiencia_anos`)
+
+**O que o Gráfico Mostra:**
+
+Este gráfico exibe a distribuição dos **anos de experiência** dos profissionais de dados na amostra.
+
+- **Eixo X (`experiencia_anos`)**:  
+  Representa o número de anos de experiência.
+
+- **Eixo Y Esquerdo (Contagem - Histograma)**:  
+  Altura das barras indica o número de profissionais em cada faixa de experiência.
+
+- **Eixo Y Direito (Densidade - Linha KDE Estimada)**:  
+  Curva suavizada que mostra a forma contínua da distribuição.
+
+---
+
+**Informações Extraídas do Gráfico:**
+
+- **Picos de Concentração:**  
+  - Pico mais alto em torno de **1 ano de experiência** — grande concentração de profissionais iniciantes ou em transição.
+  - Outro pico relevante em torno de **3-4 anos**.
+  - Concentrações menores aparecem em torno de **0 anos**, **5-6 anos**, **7-8 anos** e **cerca de 10 anos**.
+
+- **Multimodalidade:**  
+  A presença de múltiplos picos sugere diferentes grupos de profissionais com perfis distintos de experiência no mercado de dados.
+
+- **Assimetria:**  
+  Leve assimetria à direita — mais profissionais com pouca experiência, mas uma cauda indicando presença significativa de profissionais experientes.
+
+- **Amplitude da Experiência:**  
+  A distribuição abrange desde iniciantes (0 anos) até profissionais com mais de 10 anos de atuação.
+
+---
+
+**Conexão com a Pergunta Orientada a Dados (Disparidades Salariais):**
+
+- A variável `experiencia_anos` é um **proxy essencial para proficiência técnica**, um dos pilares da sua pergunta de pesquisa.
+
+#### 🧠 **Fundamento para Disparidades Salariais:**
+
+- **Variabilidade na Experiência → Variabilidade Salarial**  
+  Espera-se que profissionais com mais anos de experiência possuam maior proficiência, responsabilidades e, consequentemente, salários mais elevados.
+
+- **Relacionamento com a Distribuição Salarial:**  
+  - O grupo com ~1 ano de experiência provavelmente compõe boa parte da base da distribuição salarial (faixas júnior/iniciais).  
+  - Picos em 3-4 e 5-6 anos sugerem profissionais plenos e seniores.  
+  - Picos em 10+ anos podem indicar especialistas, gestores ou profissionais altamente experientes — esses contribuem para a cauda direita da distribuição de salários.
+
+---
+
+**Interação da Experiência (Proficiência) com Outros Fatores:**
+
+- **Formalidade no Emprego:**  
+  Profissionais experientes tendem a ter mais barganha por contratos formais (ex: CLT sênior, PJ com altos valores), ou ocupam posições de liderança com estruturas salariais diferenciadas.
+
+- **Características Regionais:**  
+  O retorno financeiro por ano de experiência varia por região. Mercados maiores ou com maior demanda podem valorizar mais a senioridade.
+
+- **Características Demográficas:**  
+  Idade se correlaciona com experiência, e outros fatores como gênero e raça podem influenciar progressões salariais mesmo entre profissionais com o mesmo tempo de atuação.
+
+---
+
+**Base para Análises Segmentadas:**
+
+A distribuição de `experiencia_anos` permite formar **grupos de análise comparativa**:
+
+- Disparidade salarial entre iniciantes (0-2 anos) vs. seniores (8-10+ anos).  
+- Como **formalidade** e **região** afetam o salário em cada faixa de experiência?  
+- A experiência amplifica ou atenua desigualdades causadas por outras variáveis?
+
+  
+>Em resumo: O gráfico da distribuição de `experiencia_anos` revela a estrutura da força de trabalho em dados no Brasil em termos de tempo de atuação, um dos principais indicadores de proficiência técnica. Os múltiplos picos e ampla variação são peças-chave para entender as disparidades salariais. A experiência interage com formalidade, região e características demográficas, moldando de maneira complexa a estrutura salarial observada no setor.
+
+---
+
+![boxplot de experiencia_anos](https://github.com/user-attachments/assets/6554d62f-4069-4111-8870-6862f26c1eae)
+
+---
+
+### Análise do Gráfico (Boxplot de `experiencia_anos`)
+
+**O que o Gráfico Mostra:**
+
+Este boxplot resume visualmente a distribuição dos **anos de experiência** dos profissionais de dados na amostra.
+
+- **Caixa (Intervalo Interquartil - IQR):**  
+  Contém os 50% centrais dos dados — de Q1 a Q3.
+
+- **Linha Central (Mediana - Q2):**  
+  Divide a distribuição em duas metades. Está posicionada em **aproximadamente 3 anos**.
+
+- **Bordas da Caixa:**  
+  - **Q1 (25%)**: Cerca de **1 ano** de experiência.  
+  - **Q3 (75%)**: Cerca de **5 anos** de experiência.
+
+- **Hastes (Whiskers):**  
+  - **Inferior**: Vai até **0 anos**, indicando presença de iniciantes.  
+  - **Superior**: Vai até cerca de **10 anos**, representando os mais experientes da amostra.
+
+- **Outliers:**  
+  O gráfico não exibe explicitamente pontos além das hastes como outliers, sugerindo que valores até 10 anos são considerados dentro da faixa aceitável pela definição padrão de 1.5×IQR.
+
+---
+
+**Informações Extraídas do Gráfico:**
+
+- **Experiência Mediana:**  
+  Metade dos profissionais tem até **3 anos** de experiência.
+
+- **Concentração da Experiência:**  
+  50% da amostra está concentrada entre **1 e 5 anos** (IQR), indicando um mercado composto majoritariamente por profissionais júnior a pleno.
+
+- **Amplitude da Experiência Comum:**  
+  A maior parte da distribuição está entre **0 e 10 anos**, cobrindo a maior parte das fases da carreira técnica.
+
+- **Assimetria Positiva:**  
+  A mediana (3 anos) está mais próxima de Q1 (1 ano) do que de Q3 (5 anos), e a haste superior é mais longa — características típicas de uma assimetria à direita.  
+  Isso sugere maior concentração em níveis iniciais, com alguns profissionais se estendendo para níveis mais altos de senioridade.
+
+---
+
+**Conexão com a Pergunta Orientada a Dados (Disparidades Salariais):**
+
+O boxplot de `experiencia_anos` fornece um resumo conciso de um dos fatores centrais de sua análise: **proficiência técnica** como motor das **disparidades salariais**.
+
+#### 🧠 **Perfil de Senioridade e Disparidade Salarial:**
+
+- A mediana de 3 anos mostra que boa parte do mercado é composta por profissionais em início ou meio de carreira.
+- A variação dentro do IQR (1–5 anos) já representa um potencial de diferenciação salarial significativa, pois o acúmulo de experiência geralmente implica maior conhecimento e responsabilidades.
+- A faixa de 5 a 10 anos (acima de Q3) abrange profissionais mais seniores, que provavelmente ocupam cargos com salários mais elevados.
+
+---
+
+**Interação da Experiência com Outros Fatores:**
+
+- **Formalidade no Emprego:**  
+  Profissionais mais experientes (Q3 em diante) tendem a acessar formatos de trabalho mais estruturados (CLT sênior, PJ consultivo) com salários mais altos. Iniciantes, por outro lado, podem estar em estágios ou vínculos mais precários.
+
+- **Impacto Regional:**  
+  A valorização da experiência pode variar regionalmente. Polos tecnológicos ou regiões com alta demanda podem oferecer salários mais altos mesmo para profissionais com experiência mediana.
+
+- **Conexão com Demografia:**  
+  A experiência está fortemente relacionada à idade. Outras variáveis, como gênero, raça ou formação, podem influenciar como a experiência se converte em retorno financeiro.
+
+---
+
+**Ponto de Partida para Análises Salariais Segmentadas:**
+
+O boxplot permite a definição de **faixas de experiência** para investigar disparidades salariais:
+
+- **Q1 e abaixo (0–1 ano)**: Profissionais em início de carreira.  
+- **IQR (1–5 anos)**: Base representativa do mercado pleno.  
+- **Q3 em diante (5–10 anos)**: Profissionais seniores ou especialistas.
+
+🔍 *Exemplo de pergunta de análise:*  
+Como variam os salários de profissionais com 4 anos de experiência trabalhando como CLT em São Paulo, em comparação com profissionais com mesma experiência atuando como PJ no Nordeste?
+  
+>Em resumo: O boxplot de `experiencia_anos` mostra uma mediana de cerca de **3 anos** e uma concentração de 50% dos profissionais entre **1 e 5 anos**, indicando um mercado majoritariamente jovem, com distribuição assimétrica à direita. A variação da experiência é um componente central da proficiência técnica e um dos **principais impulsionadores das disparidades salariais**. A interação entre experiência, formalidade, localização geográfica e perfil demográfico delineia os padrões salariais observados no setor de dados no Brasil.
+
+---
+
+![Distribuicao de nivel ](https://github.com/user-attachments/assets/b15039bb-1771-4c20-a06b-a0ba54aa7cae)
+
+### Análise do Gráfico (Distribuição de `P2_g` – Nível de Senioridade)
+
+---
+
+#### **O que o Gráfico Mostra:**
+
+Este gráfico de barras horizontais exibe a **frequência de profissionais de dados** em diferentes categorias de senioridade (`P2_g`):
+
+- **Eixo Y (P2_g):** Categorias de nível de senioridade: `Júnior`, `Pleno`, `Sênior` e `nan` (não informado).
+- **Eixo X (Contagem):** Número de profissionais em cada categoria.
+
+#### **Distribuição Observada:**
+
+- **Sênior:** Categoria mais numerosa, com mais de **1.400 profissionais**.
+- **Pleno:** Segunda mais frequente, próxima de **1.350**.
+- **Júnior:** Menor grupo entre os níveis definidos, com **pouco mais de 1.000**.
+- **`nan`:** Categoria ausente ou indefinida, com cerca de **900 profissionais**, representando uma **proporção significativa** da amostra.
+
+---
+
+### Conexão com a Pergunta Orientadora (Disparidades Salariais)
+
+> *Como fatores como formalidade no emprego, características demográficas e regionais interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?*
+
+#### **1. Senioridade como Determinante Salarial:**
+
+- A hierarquia Júnior → Pleno → Sênior está geralmente associada a uma **progressão salarial crescente**.
+- Profissionais Sênior tendem a ter **maior remuneração**, dado seu nível de responsabilidade, autonomia e experiência técnica.
+
+#### **2. Correlação com Proficiência Técnica e Experiência:**
+
+- O nível de `P2_g` reflete, em muitos casos, os **anos de experiência** e o grau de **proficiência técnica**.
+- A distribuição observada (predominância de Plenos e Sêniors) é consistente com a **mediana de 3 anos** de experiência já identificada anteriormente.
+
+#### **3. Segmentação Necessária para Análise Salarial:**
+
+- Avaliar as **faixas salariais dentro de cada nível de senioridade** é essencial.
+  - Ex: Como variam os salários entre Júnior x Pleno x Sênior?
+- **`nan`** deve ser analisado separadamente:
+  - São profissionais com perfil atípico? Freelancers? Gestores? Ou apenas dados faltantes?
+  - Comparar sua remuneração com os demais pode revelar **subgrupos ocultos** no mercado.
+
+#### **4. Interações com Outros Fatores:**
+
+- **Formalidade no emprego:**
+  - Níveis mais altos de senioridade costumam vir acompanhados de **contratos mais formais** (ex: PJ de alto valor, CLT com benefícios).
+- **Região:**
+  - O mesmo cargo (ex: Pleno) pode ter **valores salariais distintos** entre São Paulo, Nordeste ou interior.
+- **Demografia:**
+  - Características como **gênero, raça, idade, escolaridade** podem impactar tanto a **progressão entre níveis** quanto a **remuneração dentro de cada nível**.
+
+#### **5. Reflexões sobre o Grupo `nan`:**
+
+- Pode conter perfis como:
+  - Autônomos/freelancers sem classificação tradicional;
+  - Profissionais em transição ou multifuncionais;
+  - Dados ausentes por falha ou omissão.
+- Deve ser avaliado com atenção para **evitar viés** ou perda de insights valiosos.
+
+>Em resumo: O gráfico de `P2_g` revela uma **estrutura de senioridade equilibrada**, com leve predominância de níveis mais experientes. Essa variável é **fundamental para entender a segmentação salarial** no setor de dados. Ao combiná-la com variáveis como **experiência, formalidade contratual, região e demografia**, é possível **compreender as múltiplas dimensões das disparidades salariais** entre os profissionais da área no Brasil.
+
+---
+
+![Distribuicao_regiao](https://github.com/user-attachments/assets/61c205ef-3dea-4c72-93f1-9435efcfa160)
+
+---
+
+### Análise do Gráfico (Distribuição de `Regiao_Mapeada`)
+
+---
+
+#### O que o Gráfico Mostra
+
+Este gráfico de barras horizontais exibe a **contagem de profissionais de dados** distribuídos pelas diferentes regiões mapeadas do Brasil, além de uma categoria "Desconhecida".
+
+- **Eixo Y (`Regiao_Mapeada`)**: Categorias regionais – Sudeste, Sul, Nordeste, Centro-Oeste, Norte e Desconhecida.  
+- **Eixo X (Contagem)**: Número de profissionais em cada uma dessas regiões.
+
+---
+
+#### Informações Extraídas do Gráfico
+
+**Concentração Regional:**
+
+- **Sudeste**: É a região com a maior concentração de profissionais, com uma contagem próxima de **3.000**.
+- **Sul**: Segunda maior representatividade, com cerca de **900 a 1.000** profissionais.
+- **Nordeste**: Terceira maior, com aproximadamente **500** profissionais.
+- **Centro-Oeste**: Cerca de **250 a 300**.
+- **Norte**: A menor contagem, abaixo de **100** profissionais.
+- **Desconhecida**: Aproximadamente **100 a 150**, com região não identificada.
+
+**Perfil Geográfico da Amostra:**  
+A maior parte dos profissionais de dados está concentrada no Sudeste, seguido pela região Sul. As demais regiões apresentam participação significativamente menor.
+
+---
+
+#### Conexão com a Pergunta Orientadora
+
+**Como fatores como formalidade no emprego, características demográficas e regionais se interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?**
+
+---
+
+#### Impactos da Região nas Disparidades Salariais
+
+**Mercados Regionais Diferenciados:**  
+Cada região do Brasil possui níveis distintos de desenvolvimento econômico, maturidade do mercado de trabalho, custo de vida e demanda por profissionais de dados, afetando diretamente as faixas salariais.
+
+**Polos Econômicos e Tecnológicos:**  
+O Sudeste e o Sul concentram os principais centros urbanos e tecnológicos, com maior volume de vagas e salários mais competitivos.
+
+**Interações com Outros Fatores:**
+
+- **Proficiência Técnica:** O retorno salarial da qualificação técnica varia conforme a região; o mesmo nível de competência pode ter maior valorização no Sudeste do que no Norte, por exemplo.
+- **Formalidade no Emprego:** A predominância de modelos como CLT ou PJ pode variar entre regiões, afetando a renda líquida e benefícios.
+- **Demografia Regional:** A distribuição de perfis demográficos (gênero, raça, escolaridade) também não é uniforme, o que impacta oportunidades salariais.
+- **Custo de Vida:** Salários nominais maiores no Sudeste podem ser compensados por custos de vida igualmente altos.
+
+---
+
+#### Considerações Analíticas
+
+- **Disparidades Intra e Inter-Regionais:**  
+  - Dentro da mesma região (ex: Sudeste), diferentes níveis de proficiência ou tipos de contrato podem gerar variações salariais relevantes.
+  - Entre regiões, a mediana salarial para a mesma senioridade pode variar substancialmente.
+
+- **Categoria “Desconhecida”:**  
+  Pode valer a pena investigar se seus salários se assemelham aos de alguma região específica ou se compõem um grupo com características distintas.
+
+>Em resumo: A forte concentração de profissionais no Sudeste pode influenciar de maneira significativa as médias salariais nacionais. Portanto, análises regionais segmentadas são fundamentais para entender as **disparidades salariais reais** no setor de dados no Brasil, considerando a **interação entre localização, qualificação técnica, tipo de contrato e perfil demográfico**.
+
+---
+
+# 6 Visualizacao dos dados (Análise Bivariada)
+
+---
+
+### Análise do Gráfico (Violin Plot)
+
+![Histograma_sobreposto_salario](https://github.com/user-attachments/assets/7e26cf54-1306-4748-a3c1-7bcd87a12005)
+
+---
+
+#### O que o Gráfico Mostra
+
+Este gráfico de violino compara a distribuição da variável `salary_numeric_lower_bound` (limite inferior da faixa salarial) entre duas categorias definidas em `faixa_salarial_eda_2cat`: **"Salário Baixo"** e **"Salário Alto"**.
+
+- **Eixo Y (`salary_numeric_lower_bound`)**: Representa os valores do limite inferior da faixa salarial.  
+- **Eixo X (`faixa_salarial_eda_2cat`)**: Mostra as duas categorias de agrupamento salarial.  
+- **Forma do Violino**: Cada violino representa uma curva de densidade espelhada (KDE), indicando a distribuição de salários. A largura em um ponto indica a densidade de profissionais com aquele salário.
+
+> **Observação**: Os violin plots geralmente contêm elementos internos como box plots com linha de mediana e quartis.
+
+---
+
+#### Informações Extraídas do Gráfico
+
+**Distribuições Salariais Distintas**  
+Como esperado, as categorias "Salário Baixo" e "Salário Alto" apresentam distribuições distintas:
+
+- **Salário Baixo**:
+  - Maior concentração de salários abaixo de R$ 10.000.
+  - Violino mais largo em faixas salariais inferiores.
+  - Mediana baixa.
+  - Distribuição possivelmente multimodal com inchaços em faixas salariais específicas.
+
+- **Salário Alto**:
+  - Distribuição ampla, alcançando salários acima de R$ 40.000.
+  - Mediana significativamente mais elevada.
+  - Cauda longa com outliers.
+  - Distribuição também multimodal, indicando subgrupos com diferentes níveis de alta remuneração.
+
+**Disparidade Visualizada**  
+O gráfico deixa clara a disparidade salarial entre os dois grupos definidos.
+
+---
+
+#### Conexão com a Pergunta Orientadora
+
+**Como fatores como formalidade no emprego, características demográficas e regionais se interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?**
+
+---
+
+#### Caracterizando os Grupos "Salário Baixo" e "Salário Alto"
+
+1. **Proficiência Técnica**  
+   - Espera-se maior proficiência (experiência, senioridade, habilidades avançadas) no grupo "Salário Alto".
+   - Grupo "Salário Baixo" pode representar perfis iniciantes ou em transição de carreira.
+
+2. **Formalidade no Emprego**  
+   - Diferenças em tipo de contrato (CLT, PJ), setor e porte da empresa podem explicar parte da diferença entre os grupos.
+
+3. **Características Regionais**  
+   - Profissionais com "Salário Alto" tendem a se concentrar em regiões com mercados mais aquecidos (ex: Sudeste).
+   - Pode haver variações regionais dentro de cada violino.
+
+4. **Características Demográficas**  
+   - Escolaridade, idade e outros fatores demográficos podem variar entre os grupos.  
+   - Grupo com salários mais altos pode ter maior proporção de profissionais com pós-graduação.
+
+---
+
+#### Interação dos Fatores Dentro de Cada Categoria
+
+Mesmo dentro de cada categoria ("Salário Alto" ou "Salário Baixo"), há variabilidade:
+
+- **No grupo "Salário Alto"**:
+  - Quem está na base do violino pode ter perfis diferentes de quem está no topo.
+  - Diferenças regionais ou contratuais (ex: PJ no Norte vs. CLT no Sudeste).
+
+- **No grupo "Salário Baixo"**:
+  - Pode haver diferenças entre iniciantes e profissionais com perfil mais técnico porém com barreiras regionais ou contratuais.
+
+---
+
+#### Considerações Adicionais
+
+- **Definição das Categorias**  
+  Importante entender o critério para definir "Salário Baixo" e "Salário Alto" — isso impacta a análise.
+
+- **Potencial para Modelagem**  
+  Essas categorias podem ser usadas como variável-alvo em um modelo preditivo para entender quais fatores são determinantes para pertencer a cada grupo.
+
+>Em resumo: O gráfico de violino evidencia de forma visual a segmentação dos profissionais entre duas grandes faixas salariais, servindo como ponto de partida para entender a disparidade salarial. O próximo passo da análise deve ser a decomposição desses grupos segundo:
+
+- Proficiência técnica  
+- Formalidade no emprego  
+- Características regionais  
+- Fatores demográficos  
+---
+### Análise do Gráfico (Gráfico de Barras Empilhadas)
+
+![proporcao de faixa salarial](https://github.com/user-attachments/assets/b83c3e0c-6bcd-4409-b363-82aabd4607cf)
+
+---
+
+#### O que o Gráfico Mostra
+
+Este gráfico de barras empilhadas 100% apresenta a **proporção de profissionais** nas categorias **"Salário Baixo"** e **"Salário Alto"** (definidas pela variável `faixa_salarial_eda_2cat`) em diferentes **faixas etárias** (`P1_a_1`).
+
+- **Eixo Y (`P1_a_1`)**: Faixas etárias dos profissionais (ex: 25-29, 30-34, ..., 55+).
+- **Eixo X (Porcentagem)**: Representa de 0% a 100% dos profissionais em cada faixa etária.
+- **Legenda (`faixa_salarial_eda_2cat`)**:
+  - **Amarelo (cor clara)**: Salário Baixo  
+  - **Azul Marinho (cor escura)**: Salário Alto
+
+Cada barra horizontal representa uma faixa etária, e a proporção de cada cor indica o percentual de profissionais naquela faixa que pertencem a cada grupo salarial.
+
+---
+
+#### Informações Extraídas do Gráfico
+
+**Tendência Geral com a Idade**  
+Há uma tendência clara: **quanto maior a faixa etária, maior a proporção de profissionais na categoria "Salário Alto"**.
+
+- **Faixas Jovens (17-21, 22-24)**:
+  - Predominância quase total de "Salário Baixo".
+  - A faixa 22-24 possui um pequeno percentual em "Salário Alto", mas ainda muito reduzido.
+
+- **Faixas Intermediárias (25-29, 30-34, 35-39)**:
+  - Proporção de "Salário Alto" aumenta gradualmente.
+  - Faixa 25-29: Cerca de 25% já em "Salário Alto".
+  - Faixa 35-39: "Salário Alto" se aproxima (ou ultrapassa) 50%.
+
+- **Faixas Maduras (40-44, 45-49, 50-54, 55+)**:
+  - "Salário Alto" torna-se predominante.
+  - Para "55+", mais de 60% já estão na categoria de alta remuneração.
+
+- **Ponto de Virada**: A faixa de 35-44 anos parece marcar a transição para quando "Salário Alto" começa a superar "Salário Baixo".
+
+---
+
+#### Conexão com a Pergunta Orientadora
+
+**Como fatores como idade, experiência, formalidade e características técnicas/demográficas influenciam as disparidades salariais entre profissionais de dados no Brasil?**
+
+Este gráfico reforça o papel da **idade** (como **proxy de experiência/proficiência**) na explicação da **disparidade salarial**.
+
+---
+
+#### Idade como Indicador de Experiência e Impacto Salarial
+
+- A forte correlação entre idade e "Salário Alto" confirma que:
+  - Profissionais mais velhos → Mais experiência acumulada → Maior proficiência técnica → Maior probabilidade de estarem em faixas salariais elevadas.
+  - Jovens → Menos tempo de carreira → Salários iniciais, frequentemente associados a cargos Júnior/Pleno.
+
+---
+
+#### Interação da Idade/Experiência com Outros Fatores
+
+- **Formalidade no Emprego**:
+  - Profissionais mais velhos podem ocupar cargos de gestão ou atuar como PJs altamente remunerados.
+
+- **Características Regionais**:
+  - A valorização da experiência pode variar conforme a região.
+  - Mercados mais aquecidos (como Sudeste) podem oferecer melhores oportunidades salariais para profissionais experientes.
+
+- **Educação**:
+  - Profissionais mais maduros também podem ter investido mais em formação (pós-graduação, certificações), o que amplia as chances de alcançar salários altos.
+
+---
+
+#### Ciclo de Carreira e Remuneração
+
+Este gráfico representa, visualmente, a progressão natural de carreira:
+
+> Início com salários baixos → Crescimento com a experiência → Consolidação salarial em estágios mais avançados.
+
+---
+
+#### Disparidades Dentro da Mesma Faixa Etária
+
+Mesmo dentro de faixas mais maduras (ex: 35-39), há divisão entre "Salário Baixo" e "Salário Alto", o que sugere que **idade/experiência não explicam tudo**.
+
+Para entender as disparidades dentro da mesma faixa etária, é preciso investigar:
+
+- **Proficiência Técnica Específica** (ex: habilidades em demanda, especializações).
+- **Tipo de Contrato e Setor** (CLT vs. PJ, privado vs. público).
+- **Região de Atuação**.
+- **Educação e Certificações**.
+
+>Em resumo: O gráfico **"Proporção de faixa_salarial_eda_2cat por P1_a_1 (Top 9)"** revela uma forte associação entre avanço da idade e maior probabilidade de estar na categoria "Salário Alto". Isso reforça a hipótese de que **experiência e proficiência acumulada** são fatores centrais nas disparidades salariais.
+---
+### Análise do Gráfico (Gráfico de Barras Agrupadas por Gênero)
+![Contagem_faixa_salarial](https://github.com/user-attachments/assets/2518b56c-80b8-45fa-b1b6-6964c63b67f3)
+
+---
+
+#### O que o Gráfico Mostra
+
+Este gráfico de barras apresenta a **contagem absoluta** de profissionais em cada faixa da variável `faixa_salarial_eda_2cat` ("Salário Baixo" e "Salário Alto") por **categoria de gênero** (`P1_b`).
+
+- **Eixo Y (`P1_b`)**: Categorias de gênero ("Masculino", "Feminino", "Prefiro não informar", "Outro").
+- **Eixo X (Contagem)**: Número de respondentes em cada combinação de gênero e faixa salarial.
+- **Legenda (`faixa_salarial_eda_2cat`)**:
+  - **Vermelho**: Salário Baixo  
+  - **Azul/Cinza**: Salário Alto
+
+Cada categoria de gênero possui duas barras (agrupadas ou sobrepostas), representando a quantidade de pessoas daquele gênero em cada faixa salarial.
+
+---
+
+#### Informações Extraídas do Gráfico
+
+**Distribuição por Gênero e Faixa Salarial:**
+
+- **Masculino**:
+  - Maior número absoluto de respondentes.
+  - Cerca de 2.400 homens estão na faixa de **Salário Baixo** e 1.200 em **Salário Alto**.
+  - Proporcionalmente: ~1/3 dos homens estão em "Salário Alto".
+
+- **Feminino**:
+  - Número total significativamente menor que o masculino.
+  - Cerca de 850 mulheres estão em **Salário Baixo** e 250 em **Salário Alto**.
+  - Proporcionalmente: A fração de mulheres na faixa "Salário Alto" é **menor que a dos homens**, indicando possível desigualdade.
+
+- **"Prefiro não informar" e "Outro"**:
+  - Contagens muito pequenas (praticamente invisíveis no gráfico).
+  - A maioria aparenta estar em "Salário Baixo".
+
+---
+
+#### Disparidade de Gênero Sugerida
+
+O gráfico indica duas dimensões de possível desigualdade:
+
+1. **Representatividade**:
+   - Homens são maioria na amostra.
+   - Mulheres e outras identidades de gênero aparecem em número muito inferior.
+
+2. **Distribuição Salarial**:
+   - Apesar de a maioria dos profissionais (de ambos os gêneros) estar em "Salário Baixo", **homens têm uma proporção maior em "Salário Alto"** do que mulheres.
+   - Isso pode indicar **disparidade salarial de gênero** no setor de dados.
+
+---
+
+#### Conexão com a Pergunta Orientadora
+
+> Como fatores como características demográficas (como gênero), formalidade no emprego e proficiência técnica influenciam as disparidades salariais entre profissionais de dados no Brasil?
+
+Este gráfico contribui diretamente para essa investigação, ao evidenciar uma **diferença na distribuição de salários entre gêneros** — um ponto-chave para compreender disparidades estruturais.
+
+---
+
+#### Gênero como Fator nas Disparidades Salariais
+
+- A **menor proporção de mulheres** em "Salário Alto" pode refletir uma combinação de fatores, como:
+  - Menor tempo de mercado ou acesso limitado a oportunidades de progressão.
+  - Diferenças na formalidade do emprego.
+  - Barreiras estruturais e vieses de gênero no setor de tecnologia/dados.
+
+---
+
+#### Interações Possíveis a Serem Investigadas
+
+1. **Proficiência Técnica e Experiência**:
+   - As mulheres da amostra possuem, em média, menos anos de experiência?
+   - Estão em cargos mais júnior?
+   - Mesmo nível de proficiência técnica leva à mesma remuneração entre homens e mulheres?
+
+2. **Formalidade no Emprego**:
+   - Há diferenças significativas nos tipos de contrato (CLT vs PJ) entre gêneros?
+
+3. **Características Regionais**:
+   - A diferença de salários por gênero se mantém constante entre regiões?  
+     Ou em algumas regiões a desigualdade é mais acentuada?
+
+4. **Educação e Idade**:
+   - Mulheres com o mesmo nível de formação e idade que os homens estão sendo remuneradas de forma equivalente?
+
+---
+
+#### Necessidade de Análise Proporcional e Controle de Variáveis
+
+- Este gráfico mostra **contagens absolutas**, mas para compreender as **disparidades reais**, é necessário:
+  - Calcular proporções dentro de cada gênero.
+  - Utilizar **análises multivariadas** que controlem fatores como:
+    - Experiência
+    - Escolaridade
+    - Região
+    - Formalidade
+    - Carga horária
+
+Isso permitirá isolar o **efeito do gênero** sobre o salário.
+
+---
+
+#### Representatividade e Grupos Minoritários
+
+- As categorias **"Prefiro não informar"** e **"Outro"** têm amostras muito pequenas, limitando a análise.
+- A baixa resposta desses grupos pode refletir:
+  - Falta de segurança para se identificar.
+  - Invisibilidade estatística.
+- Reforça a importância de promover **ambientes mais inclusivos** e **coletas mais sensíveis** a essas realidades.
+
+>Em resumo: O gráfico **"Contagem de faixa_salarial_eda_2cat por P1_b (Top 4)"** sugere que:
+
+- Existe uma **desigualdade de gênero** na **representação** e **distribuição de salários** entre profissionais de dados no Brasil.
+- Mulheres são minoria e, dentro do grupo, **menos propensas a alcançar a faixa de "Salário Alto"**.
+- Para compreender essa desigualdade, é necessário investigar:
+  - Experiência e proficiência técnica
+  - Tipo de contrato e setor
+  - Região
+  - Educação
+- A **interação entre esses fatores** será essencial para entender por que, mesmo com idade ou experiência similares, homens e mulheres têm salários distintos.
+---
+### Análise do Gráfico (Gráfico de Barras Agrupadas: Senioridade por Escolaridade)
+
+![Distribuicao de Senioridade](https://github.com/user-attachments/assets/b6cd4f6c-91cf-479f-a153-fd04f3ecb6d9)
+---
+
+#### O que o Gráfico Mostra
+
+Este gráfico exibe a **contagem absoluta** de profissionais para diferentes níveis de senioridade (`P2_g`) dentro de cada categoria de nível de escolaridade (`P1_l`).
+
+- **Eixo Y (`P1_l`)**: Níveis de escolaridade (ex.: Pós-graduação, Graduação/Bacharelado, Mestrado, Estudante de Graduação, Doutorado/PhD, Não tenho graduação formal, Prefiro não informar).
+- **Eixo X (Contagem)**: Número de profissionais em cada combinação escolaridade × senioridade.
+- **Legenda (`P2_g`)**: Cores indicando níveis de senioridade:
+  - Azul Escuro: Sênior  
+  - Azul Claro: Pleno  
+  - Laranja Escuro: Júnior  
+  - Laranja Claro: nan (não especificado/ausente)
+
+Cada nível de escolaridade possui barras que indicam a distribuição dos profissionais pelos níveis de senioridade.
+
+---
+
+#### Informações Extraídas do Gráfico
+
+- **Pós-graduação e Graduação/Bacharelado** são os níveis mais comuns, concentrando a maior parte dos profissionais em todos os níveis de senioridade.
+- **Distribuição de Senioridade por Escolaridade**:
+  - **Pós-graduação**: forte concentração nos níveis Sênior e Pleno, mas também presença considerável em Júnior e nan.
+  - **Graduação/Bacharelado**: ampla distribuição em Sênior, Pleno e Júnior, com representação similar ou maior em nan comparada à Pós-graduação.
+  - **Mestrado**: predominância em Sênior, Pleno e nan, menos em Júnior.
+  - **Estudante de Graduação**: maioria em Júnior e nan, pouca ou nenhuma presença em Sênior.
+  - **Doutorado ou PhD**: embora menos numerosos, proporcionalmente muitos estão em Sênior e Pleno; nan também relevante.
+  - **Não tenho graduação formal / Prefiro não informar**: pequenas contagens, maior concentração em Júnior e nan.
+
+- **Categoria "nan" (Senioridade)** aparece em todos os níveis, especialmente em Pós-graduação, Graduação/Bacharelado e Mestrado, indicando necessidade de investigar quem são esses profissionais (ex: consultores, autônomos, gestores).
+
+---
+
+#### Conexão com a Pergunta Orientadora (Disparidades Salariais)
+
+- O gráfico relaciona escolaridade (característica demográfica) com senioridade (proxy para proficiência técnica/experiência), ambos fatores chave que impactam salário.
+- Níveis educacionais mais elevados (Pós, Mestrado, Doutorado) tendem a se associar a níveis mais altos de senioridade (Sênior e Pleno), sugerindo que educação avançada pode facilitar posições de maior responsabilidade e remuneração.
+- Contudo, profissionais com apenas graduação também alcançam senioridade elevada, indicando que experiência e outros fatores são relevantes.
+
+---
+
+#### Interações e Implicações para Disparidades Salariais
+
+- **Proficiência Técnica Específica**: Salários podem variar dentro de mesmo nível educacional e senioridade, dependendo da especialização e habilidades.
+- **Formalidade no Emprego**: Tipo de contrato e setor podem influenciar salários mesmo para profissionais similares em escolaridade/senioridade.
+- **Características Regionais**: O valor salarial da escolaridade e senioridade pode variar por região do Brasil.
+- **Idade e Experiência**: Escolaridade interage com tempo de experiência — um Doutorado com pouca experiência pode ter remuneração diferente de um graduado experiente.
+
+---
+
+#### Considerações Importantes
+
+- O prêmio salarial da educação formal avançada deve ser analisado controlando senioridade e experiência.
+- A presença expressiva da categoria "nan" em senioridade, principalmente em níveis altos de escolaridade, sugere perfis diversos que merecem análise detalhada (ex: autônomos, gestores).
+- Análises posteriores devem comparar salários para combinações específicas (ex: Sênior com graduação vs. Sênior com pós-graduação) para quantificar impacto real.
+
+>Em resumo: O gráfico **"Distribuição de senioridade (P2_g) por escolaridade (P1_l)"** mostra que:
+
+- Senioridade ocorre em todos os níveis educacionais, mas níveis mais altos de escolaridade concentram profissionais em níveis superiores (Sênior e Pleno).
+- Esta interação entre educação e senioridade é fundamental para compreender as disparidades salariais no setor de dados.
+- A análise salarial deve aprofundar-se nas diferenças dentro desses grupos para entender o impacto isolado da escolaridade e da senioridade.
+
+---
+
+# 7 Visualizacao dos dados (Análise multivariada)
+
+### Análise do Gráfico de Dispersão: Experiência vs. Limite Inferior do Salário por Nível de Senioridade
+
+![Experiencia vs Salario por nivel de senioridade](https://github.com/user-attachments/assets/cf0500fa-2de4-44c6-8e5d-f6d040b2fed1)
+
+---
+
+#### O que o Gráfico Mostra
+
+- **Variáveis representadas:**
+  - Eixo X: Anos de Experiência
+  - Eixo Y: Limite Inferior do Salário
+- **Cores indicam o Nível de Senioridade (`P2_g`):**
+  - Verde Claro: Sênior
+  - Verde Azulado/Turquesa: Pleno
+  - Azul Escuro/Roxo: Júnior
+  - Cinza/Azul muito escuro: nan (não especificado/ausente)
+- Cada ponto representa um profissional, mostrando sua experiência, salário mínimo estimado e senioridade.
+
+---
+
+#### Informações Extraídas do Gráfico
+
+- **Tendência geral positiva:**  
+  Salários tendem a aumentar com o crescimento da experiência.
+  
+- **Dispersão salarial ampla:**  
+  Para um mesmo número de anos de experiência, salários podem variar bastante, indicando que experiência sozinha não explica tudo.
+
+- **Distribuição por senioridade:**
+  - **Júnior:** Concentrados em experiências baixas (0-4 anos) e salários baixos (muitos abaixo de R$5.000, quase todos abaixo de R$10.000).
+  - **Pleno:** Abrangem faixa intermediária de experiência (0-10 anos, concentração em 1-7 anos) e salários (até cerca de R$15.000–R$20.000). Sobreposição significativa com Júnior em experiência baixa e com Sênior em experiência alta.
+  - **Sênior:** Geralmente mais experientes (a partir de 2-3 anos), dominando os salários mais altos (acima de R$10.000, chegando a R$40.000). Presentes em quase toda faixa de experiência, exceto zero absoluto.
+  - **nan:** Dispersos em vários níveis, frequentemente sobrepostos a Júnior e Pleno em salários baixos e médios, indicando grupo heterogêneo.
+
+- **Salários máximos:**
+  - Faixa alta (R$30.000–R$40.000) quase exclusivamente de Sêniores, com experiência variando bastante (3-4 anos a mais de 10 anos).
+
+- **Casos notáveis:**
+  - Alguns profissionais com pouca experiência (0-2 anos) alcançam salários altos, especialmente se Pleno ou Sênior, sugerindo rápida progressão, habilidades muito demandadas ou critérios internos de senioridade flexíveis.
+
+---
+
+#### Conexão com a Pergunta Orientadora (Disparidades Salariais)
+
+- **Experiência e senioridade como fatores principais:**  
+  Ambos são fortes determinantes dos salários, com combinação mais alta em experiência e senioridade resultando em maiores remunerações.
+
+- **Variabilidade dentro de mesma experiência:**  
+  A dispersão vertical mostra que experiência isolada não explica disparidades; senioridade adiciona uma camada explicativa importante.
+
+- **Interação experiência-senioridade:**  
+  Relação não perfeita — há Júniores com vários anos e Sêniores com relativamente poucos anos, indicando que critérios de senioridade são influenciados por outros fatores além do tempo.
+
+---
+
+#### Influência de Outros Fatores (implícitos)
+
+- **Formalidade no emprego:**  
+  Regimes PJ, CLT, empresas grandes e pequenas afetam salários mesmo para profissionais similares.
+
+- **Região geográfica:**  
+  Mercados regionais podem valorizar experiência e senioridade de forma diferente.
+
+- **Características demográficas e educacionais:**  
+  Escolaridade, gênero, idade influenciam salários além de experiência e senioridade.
+
+- **Especialização técnica:**  
+  Habilidades específicas (ex.: IA, Big Data, linguagens) impactam fortemente remuneração.
+
+---
+
+#### Pontos para Investigar
+
+- **Sêniores com pouca experiência e alto salário:**  
+  O que explica essa combinação? Educação, setor, empresa, região?
+
+- **Júniores/Plenos com experiência e salário baixos:**  
+  Barreiras regionais, setoriais ou formais que limitam progressão?
+
+- **Perfil e impacto dos "nan":**  
+  Grupo heterogêneo que pode incluir autônomos, consultores ou iniciantes sem classificação definida.
+
+>Em resumo: O gráfico evidencia a complexa interação entre:
+
+- **Anos de experiência (proxy para proficiência técnica)**
+- **Nível de senioridade (proxy para proficiência e posição)**
+- **Salário**
+
+Essa tríade é central para compreender disparidades salariais, mas as variações dentro de níveis semelhantes indicam a necessidade de considerar fatores adicionais para explicar plenamente os diferentes padrões salariais observados.
+
+---
+
+### Análise do Gráfico de Dispersão: Experiência vs. Limite Inferior do Salário  
+
+![Experiencia vs Salario por nivel de ensino e faixa salarial](https://github.com/user-attachments/assets/f474a8f4-8245-4b02-9f80-f4650fbc7eb4)
+
+---
+
+#### O que o Gráfico Mostra
+
+- **Eixo X:** Anos de Experiência  
+- **Eixo Y:** Limite Inferior do Salário  
+- **Cores:**  
+  - Vermelho = Faixa Salarial Alta ("Salário Alto")  
+  - Azul = Faixa Salarial Baixa ("Salário Baixo")  
+- **Formas (Marcadores):** Diferenciam o Nível de Ensino (P1_l)  
+  - Pós-graduação, Graduação/Bacharelado, Mestrado, Estudante de Graduação  
+- **Legenda:** Explica as cores e as formas usadas.
+
+---
+
+#### Informações Extraídas
+
+- **Separação clara por faixa salarial:**  
+  Pontos vermelhos concentram-se na parte superior (salários altos), azuis na inferior (salários baixos).
+
+- **Tendência geral:**  
+  Salários maiores tendem a se associar a mais anos de experiência, mas há grande variabilidade.
+
+- **Distribuição do nível de ensino dentro das faixas salariais:**
+
+  - **Faixa Salário Baixo (Azul):**  
+    - Presentes em toda faixa de experiência.  
+    - Todos os níveis de ensino aparecem, incluindo pós-graduação e mestrado, especialmente em níveis iniciais de experiência.  
+    - Estudantes de graduação quase exclusivos dessa faixa e com pouca experiência (0-3 anos).  
+    - Pós-graduação e mestrado aparecem aqui, mostrando que a educação avançada isolada não garante salários altos, principalmente no começo da carreira.
+
+  - **Faixa Salário Alto (Vermelho):**  
+    - Geralmente profissionais com mais experiência, mas há pontos com 0-2 anos.  
+    - Graduação/Bacharelado já pode levar a faixa alta em vários níveis de experiência.  
+    - Pós-graduação e mestrado fortemente representados em toda a faixa de experiência, especialmente entre os salários mais altos.  
+    - Estudantes de graduação praticamente ausentes nesta faixa.
+
+- **Educação e teto salarial:**  
+  Profissionais com pós-graduação e mestrado aparecem em maior proporção nas faixas salariais mais elevadas (ex: R$30.000 - R$40.000), embora graduados também alcancem esses patamares.
+
+- **Salários altos com pouca experiência:**  
+  Indivíduos com graduação, pós-graduação ou mestrado e poucos anos de experiência que já recebem salários altos indicam aceleração possível por educação, demanda de mercado ou outras vantagens.
+
+---
+
+#### Conexão com a Pergunta Orientadora (Disparidades Salariais)
+
+- **Educação como potencializadora:**  
+  Para mesma experiência, níveis educacionais mais altos aumentam a probabilidade de estar na faixa de salário alto.
+
+- **Experiência ainda essencial:**  
+  Salários muito altos tendem a requerer também alguns anos de experiência.
+
+- **Presença de pós-graduados e mestres em faixa salarial baixa:**  
+  Educação avançada não garante salário alto imediato — fatores adicionais entram em jogo.
+
+---
+
+#### Fatores Adicionais (não visíveis no gráfico, mas sugeridos pela dispersão)
+
+- **Proficiência técnica e qualidade da experiência:** Relevância e especialização das habilidades.  
+- **Formalidade no emprego:** Tipo de contrato, porte e setor da empresa.  
+- **Características regionais:** Diferenças salariais regionais significativas.  
+- **Demografia:** Gênero, idade e senioridade interagem com experiência e educação.
+
+---
+
+#### Implicações para Disparidades Salariais
+
+- Disparidades são resultado da interação complexa entre experiência, nível de ensino e outros fatores.  
+- Educação avançada pode acelerar a entrada em faixas salariais altas, mas não é suficiente isoladamente.  
+- Profissionais com formação sólida podem permanecer em faixas baixas por motivos ligados a local de trabalho, contrato, região, entre outros.  
+- Profissionais com pouca experiência e salário alto provavelmente atuam em nichos muito demandados ou têm diferenciais específicos.
+
+>Em resumo: O gráfico revela como **experiência e nível de ensino** interagem para moldar a faixa salarial dos profissionais de dados no Brasil.  
+Apesar da experiência ser um fator crucial, níveis mais elevados de escolaridade (pós-graduação, mestrado) facilitam o acesso a salários mais altos, especialmente quando combinados com experiência.  
+No entanto, a ampla dispersão e a presença de todas as formações em ambas as faixas salariais indicam que variáveis adicionais, como proficiência técnica específica, formalidade no emprego, região e outras características demográficas, são fundamentais para compreender plenamente as disparidades salariais observadas.
+
+---
+### Análise do Gráfico de Boxplots: Limite Inferior do Salário por Nível de Ensino e Faixa Salarial (Alvo)
+
+![Salario por nivel de ensino e faixa salarial](https://github.com/user-attachments/assets/03c2160b-f21f-442b-ab0d-d5b31d3292da)
+
+---
+
+#### O que o Gráfico Mostra
+
+- **Eixo X:** Nível de Ensino (P1_l)  
+- **Eixo Y:** Limite Inferior do Salário  
+- Para cada nível de ensino, há dois boxplots lado a lado, correspondendo a:  
+  - **Vermelho:** Faixa "Salário Baixo"  
+  - **Azul:** Faixa "Salário Alto"  
+- Cada boxplot exibe mediana, quartis (Q1, Q3), hastes (whiskers) e outliers da distribuição salarial naquela combinação.
+
+---
+
+#### Informações Extraídas
+
+- **Separação clara por faixa salarial:**  
+  Boxplots vermelhos ("Salário Baixo") apresentam níveis salariais significativamente mais baixos que os azuis ("Salário Alto") em todos os níveis de ensino, validando a variável "Faixa Salarial (Alvo)".
+
+- **Distribuição para "Salário Baixo":**  
+  - Medianas geralmente próximas de R$ 5.000 para Pós-graduação, Graduação, Mestrado, Doutorado.  
+  - Estudantes de Graduação possuem a mediana mais baixa, refletindo salários de entrada ou estágio.  
+  - Indivíduos sem graduação formal ou que preferem não informar mostram medianas baixas, com alguma variabilidade.
+
+- **Distribuição para "Salário Alto":**  
+  - Medianas tipicamente entre R$ 15.000 e R$ 20.000 para os níveis mais comuns (Pós-graduação, Graduação, Mestrado, Doutorado).  
+  - Mestrado e Doutorado apresentam medianas ligeiramente superiores, com maior dispersão indicando maior variabilidade salarial.  
+  - Estudantes de Graduação têm boxplot azul achatado com poucos dados, indicando que poucos alcançam essa faixa alta — provavelmente dados pouco representativos.  
+  - Pessoas sem graduação formal ou que preferem não informar mostram medianas elevadas e grande dispersão, mas o baixo número de casos pode influenciar.
+
+- **Outliers:**  
+  Presentes especialmente nos boxplots de "Salário Alto" para níveis mais comuns, sugerindo profissionais que atingem salários excepcionalmente altos.
+
+---
+
+#### Conexão com a Pergunta Orientadora (Disparidades Salariais)
+
+- **Educação e remuneração:**  
+  Níveis de ensino mais elevados estão associados a medianas salariais maiores dentro da faixa "Salário Alto", indicando que educação formal facilita acesso a salários mais altos.
+
+- **Pouca variação entre níveis na faixa "Salário Baixo":**  
+  Isso sugere que, para salários menores, o nível de escolaridade formal é menos determinante, e outros fatores podem ter papel mais relevante.
+
+- **Dispersão maior na faixa "Salário Alto":**  
+  Indica que, ao alcançar patamares salariais altos, a educação pode definir um piso salarial, mas outras variáveis (experiência, senioridade, setor, localização) são fundamentais para a variação salarial dentro desse grupo.
+
+---
+
+#### Considerações sobre Casos Atípicos
+
+- "Salário Alto" para estudantes ou sem graduação formal podem ser casos reais de profissionais com alta proficiência técnica, habilidades diferenciadas, ou empreendedorismo, mas o baixo número desses casos torna as inferências cautelosas.
+
+---
+
+#### Interação entre Educação e Proficiência Técnica
+
+- A educação formal atua como base para o desenvolvimento profissional, mas o avanço salarial até níveis elevados depende também de proficiência técnica adquirida via experiência e aprendizado contínuo.
+
+>Em resumo: O gráfico confirma que a educação formal é um fator importante para o alcance da faixa de "Salário Alto" e está associada a medianas salariais maiores.  
+Porém, a significativa variabilidade salarial dentro de cada nível de ensino — mesmo segmentada pela faixa salarial — indica que fatores como experiência, senioridade, formalidade no emprego e características regionais são essenciais para explicar as disparidades salariais entre profissionais de dados no Brasil.  
+A educação pode garantir um “piso” mais alto para salários, mas não determina sozinha o teto salarial.
+
+---
+### Análise do Gráfico de Violin Plots Divididos: Experiência (anos) por Nível de Senioridade e Faixa Salarial (Alvo)
+
+![Experiencia por seneridade e faixa salarial (Alvo)](https://github.com/user-attachments/assets/7cb4de01-50f5-439c-9baa-42b91cdb7a58)
+
+---
+
+#### O que o Gráfico Mostra
+
+- **Eixo X:** Nível de Senioridade (P2_g) — Sênior, Pleno, Júnior, nan (não especificado).  
+- **Eixo Y:** Experiência (anos).  
+- Cada violino está dividido verticalmente em duas metades:  
+  - **Vermelho (esquerda):** Distribuição da experiência para profissionais na faixa "Salário Baixo".  
+  - **Azul (direita):** Distribuição da experiência para profissionais na faixa "Salário Alto".  
+- A largura do violino em determinado ponto indica a densidade de profissionais com aquela experiência.
+
+---
+
+#### Informações Extraídas
+
+- **Júnior:**  
+  - Salário Baixo: Maioria concentrada entre 0 e 2-3 anos de experiência, com alta densidade em níveis muito baixos.  
+  - Salário Alto: Poucos Júniores, com experiência ligeiramente maior (2-4 anos), porém baixa densidade, indicando raridade desse caso.
+
+- **Pleno:**  
+  - Salário Baixo: Distribuição ampla até 5-6 anos, com picos entre 1-3 anos.  
+  - Salário Alto: Distribuição deslocada para mais experiência (3-7 anos), mostrando que mais experiência é necessária para atingir salário alto nesta senioridade.
+
+- **Sênior:**  
+  - Salário Baixo: Grupo menor, concentrado entre 2-6 anos de experiência.  
+  - Salário Alto: Distribuição ampla, de 3-4 até 10+ anos, com densidade maior em experiências elevadas.
+
+- **nan (senioridade não informada):**  
+  - Ambos os grupos apresentam ampla variação em anos de experiência, com tendência de maior experiência para o grupo de salário alto, mas heterogeneidade alta.
+
+---
+
+#### Tendências e Interpretações
+
+- Para cada nível de senioridade, a distribuição azul ("Salário Alto") tende a deslocar-se para mais anos de experiência e maior densidade em faixas elevadas, em comparação com a distribuição vermelha ("Salário Baixo").  
+- Isso reforça que, mesmo com o mesmo título de senioridade, mais experiência costuma estar associada a salários mais altos.  
+- A progressão natural da carreira reflete-se: Júniores com pouca experiência geralmente ganham salários baixos; para Plenos e Seniores, experiência crescente é correlacionada com faixas salariais elevadas.
+
+---
+
+#### Conexão com a Pergunta Orientadora (Disparidades Salariais)
+
+- **Experiência como diferencial dentro da senioridade:**  
+  O gráfico destaca que o título de senioridade por si só não explica as diferenças salariais. A profundidade da experiência (anos no campo) é fundamental para compreender a faixa salarial dentro de cada nível.
+
+- **Interação Proficiência Técnica e Salário:**  
+  Anos de experiência e reconhecimento formal (senioridade) juntos explicam grande parte das disparidades salariais observadas.
+
+- **Fatores adicionais para variações restantes:**  
+  - **Formalidade no emprego:** Contrato CLT, PJ, setor e tamanho da empresa impactam salários.  
+  - **Características regionais:** Mercado local, custo de vida e demanda influenciam remuneração.  
+  - **Demografia e formação:** Gênero, raça, nível de educação e suas interações com o mercado.  
+  - **Qualidade da experiência:** Tecnologias, responsabilidades e escopo de atuação, que não são capturados só por anos ou título.
+
+- **Grupo nan:**  
+  Alta heterogeneidade sugere perfis diversos, possivelmente freelancers ou profissionais fora das classificações tradicionais.
+
+>Em resumo: O gráfico "Experiência por Senioridade e Faixa Salarial" evidencia que, dentro de cada título profissional, mais anos de experiência tendem a associar-se a salários mais altos, reforçando a importância da proficiência técnica aprofundada.  
+As diferenças que permanecem após controlar senioridade e experiência apontam para a necessidade de incluir análise de formalidade no emprego, fatores regionais e demográficos para compreender plenamente as disparidades salariais no setor de dados brasileiro.
+
+---
+
+# Análise do Gráfico "Nível de Ensino por Região e Faixa Salarial (Alvo)"
+![Nivel de ensino por regiao e faixa salarial (alvo)](https://github.com/user-attachments/assets/65516cef-91cd-4308-a150-582c26d0bb50)
+
+---
+
+## O que o Gráfico Mostra:
+
+Este gráfico consiste em múltiplos subplots, cada um representando uma região do Brasil (Sudeste, Sul, Nordeste, Centro-Oeste).  
+A região Norte e "Desconhecida" não aparecem nestes subplots, provavelmente devido a um menor número de respondentes ou por decisão de focar nas regiões com mais dados.  
+Dentro de cada subplot regional, são exibidas barras horizontais que mostram a contagem de profissionais para diferentes Níveis de Ensino (P1_l).  
+Cada barra de nível de ensino é dividida (ou acompanhada) por cores que representam a faixa_salarial_eda_2cat ("Salário Baixo" em vermelho e "Salário Alto" em azul).  
+Eixo Y (Comum aos subplots, implícito dentro de cada um): Nível de Ensino (P1_l) (Pós-graduação, Graduação/Bacharelado, Mestrado, Estudante de Graduação, Doutorado ou Phd).  
+Eixo X (Dentro de cada subplot): Contagem de profissionais.  
+Legenda (Comum ao gráfico geral):  
+- Vermelho: "Salário Baixo"  
+- Azul: "Salário Alto"  
+
+## Interpretação:
+
+Para cada região, pode-se observar quantos profissionais de cada nível de ensino se enquadram na faixa de "Salário Baixo" versus "Salário Alto".
+
+## Informações Extraídas do Gráfico (Comparando as Regiões):
+
+- **Predominância da Região Sudeste:**  
+O eixo X da contagem para o Sudeste vai até valores muito mais altos (ex: 1000) em comparação com as outras regiões (Sul até ~400, Nordeste e Centro-Oeste até ~200 ou menos), refletindo a maior concentração de profissionais nesta região, como visto em gráficos anteriores.
+
+- **Padrão Geral (Salário Baixo vs. Salário Alto por Escolaridade):**  
+Em todas as regiões, para a maioria dos níveis de ensino, a contagem de profissionais em "Salário Baixo" (vermelho) é geralmente maior ou comparável à de "Salário Alto" (azul).  
+Estudantes de Graduação: Consistentemente, em todas as regiões, estão quase que exclusivamente na faixa de "Salário Baixo". A barra azul para "Salário Alto" é inexistente ou minúscula.  
+Graduação/Bacharelado e Pós-graduação: São os níveis de ensino com maior número de profissionais em todas as regiões. Em ambos, há representação tanto em "Salário Baixo" quanto em "Salário Alto".
+
+- **Diferenças Regionais na Proporção Salário Alto/Baixo (Análise Visual Aproximada):**  
+Sudeste: Para Pós-graduação e Graduação/Bacharelado, embora a contagem absoluta em "Salário Baixo" seja alta, a contagem em "Salário Alto" (azul) também é muito significativa. A proporção de profissionais com Pós-graduação em "Salário Alto" parece ser relativamente boa. Para Mestrado e Doutorado, a barra azul ("Salário Alto") é proeminente, muitas vezes superando ou igualando a vermelha, apesar das contagens absolutas serem menores.  
+Sul: O padrão é similar ao Sudeste, mas com contagens menores. Para Pós-graduação e Graduação, há uma boa representação em "Salário Alto". Mestrado e Doutorado também mostram uma tendência a "Salário Alto", proporcionalmente.  
+Nordeste: As barras azuis ("Salário Alto") são visivelmente menores em comparação com as vermelhas ("Salário Baixo") para a maioria dos níveis de ensino, mesmo para Pós-graduação e Graduação. Proporcionalmente, parece haver uma menor chance de estar na faixa de "Salário Alto" nesta região em comparação com Sudeste e Sul para um mesmo nível de escolaridade.  
+Centro-Oeste: Similar ao Nordeste, as contagens em "Salário Alto" são mais modestas. Para Pós-graduação e Graduação, a barra vermelha é dominantemente maior que a azul.
+
+- **Impacto do Mestrado e Doutorado:**  
+Em regiões como Sudeste e Sul, ter Mestrado ou Doutorado parece estar mais consistentemente associado à faixa de "Salário Alto" (barras azuis proporcionalmente grandes ou maiores que as vermelhas).  
+Nas regiões Nordeste e Centro-Oeste, o número absoluto de profissionais com Mestrado/Doutorado é menor, mas aqueles que existem também tendem a estar em "Salário Alto", embora a oportunidade geral pareça mais restrita.
+
+## Conexão com a Pergunta Orientada a Dados (Disparidades Salariais):
+
+- **Região como Moduladora do Retorno da Educação:**  
+Fica claro que o "retorno" salarial (chance de estar em "Salário Alto") para um determinado nível de ensino não é o mesmo em todas as regiões. Profissionais com Pós-graduação no Sudeste ou Sul parecem ter uma probabilidade maior de alcançar salários altos do que seus pares com a mesma formação no Nordeste ou Centro-Oeste.  
+Isso sugere que o mercado de trabalho regional (demanda por qualificações, tipos de indústrias presentes, custo de vida e capacidade de pagamento das empresas) influencia significativamente o valor atribuído à educação formal.
+
+- **Interação com Proficiência Técnica (Implícita):**  
+Embora a proficiência técnica (experiência, senioridade, habilidades específicas) não esteja explicitada neste gráfico, ela interage com a educação e a região. Por exemplo, a disponibilidade de vagas que exigem alta proficiência (e pagam mais) pode ser maior no Sudeste, beneficiando aqueles com alta escolaridade e experiência relevante naquela região.  
+Pode ser que, para atingir "Salário Alto" no Nordeste ou Centro-Oeste com um diploma de Graduação, seja necessário um nível de proficiência técnica/experiência ainda maior do que no Sudeste, ou que as oportunidades simplesmente sejam mais escassas.
+
+- **Formalidade no Emprego (Implícita):**  
+A natureza das vagas (CLT, PJ, tamanho da empresa, setor) também varia regionalmente e pode interagir com a escolaridade. Regiões com mais empresas de grande porte ou setores tecnológicos podem oferecer mais vagas formais com salários mais altos para profissionais qualificados.
+
+- **Disparidades Salariais Explicadas pela Interação:**  
+Um profissional com Pós-graduação (demografia/educação) trabalhando no Sudeste (região) tem um perfil de chance salarial diferente de um com a mesma Pós-graduação no Nordeste.  
+Para entender completamente a disparidade, precisaríamos adicionar a camada de proficiência técnica (quantos anos de experiência tem o pós-graduado no Sudeste vs. Nordeste para estar em "Salário Alto"?) e a formalidade do emprego.
+
+- **Concentração de Oportunidades:**  
+A maior contagem de profissionais em "Salário Alto" (barras azuis) no Sudeste e Sul, em diversos níveis de escolaridade, sugere uma maior concentração de oportunidades de alta remuneração nessas regiões.
+
+>Em resumo: O gráfico "Nível de Ensino por Região e Faixa Salarial (Alvo)" é fundamental para ilustrar que a região é um fator crucial que interage com o nível de ensino para influenciar a probabilidade de um profissional de dados alcançar uma faixa salarial mais alta.  
+As disparidades salariais no Brasil para profissionais de dados não podem ser entendidas sem considerar o contexto regional, que modula o valor da educação e, provavelmente, da proficiência técnica.  
+Para uma análise mais completa, seria ideal cruzar esses dados também com a experiência/senioridade e a formalidade do emprego dentro de cada combinação de região e nível de ensino.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 4º Pergunta orientada a dados 
 **Pergunta Orientada a Dados:** *...*
 
-
-
+---
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Indução de modelos
 

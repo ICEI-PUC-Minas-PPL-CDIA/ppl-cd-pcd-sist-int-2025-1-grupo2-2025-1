@@ -3702,17 +3702,17 @@ Para uma análise mais completa, seria ideal cruzar esses dados também com a ex
   
 	*   [Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-modelo-random-forest)
   
-		*   [Justificativa](#justificativa)
-		*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation)](#processo-de-amostragem-de-dados)
-		*   [Parâmetros utilizados](#parâmetros-utilizados)
-		*   [Explicação do Código](#explicação-do-código)
+		*   [Justificativa1.1](#justificativa1-1)
+		*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation1.1)](#processo-de-amostragem-de-dados)
+		*   [Parâmetros utilizados1.1](#parâmetros-utilizados)
+		*   [Explicação do Código1.1](#explicação-do-código)
 
 	*   [Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Arvore de decisão por classificação](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-arvore-de-decisão-por-classificação)
   
-		*   [Justificativa](#justificativa)
-		*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation)](#processo-de-amostragem-de-dados)
-		*   [Parâmetros utilizados](#parâmetros-utilizados)
-		*   [Explicação do Código](#explicação-do-código)
+		*   [Justificativa1.2](#justificativa)
+		*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation1.2)](#processo-de-amostragem-de-dados)
+		*   [Parâmetros utilizados1.2](#parâmetros-utilizados)
+		*   [Explicação do Código1.2](#explicação-do-código)
 
  
 *   [2º Pergunta orientada a dados ](#modelo-2)
@@ -3724,7 +3724,7 @@ Para uma análise mais completa, seria ideal cruzar esses dados também com a ex
 
 ## 1º Pergunta orientada a dados
 ### Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest
-### *Justificativa*
+### *Justificativa1.1*
 
 A escolha do algoritmo Random Forest para investigar a pergunta orientada a dados "Como fatores como formação acadêmica e experiência profissional interagem para influenciar a disparidade salarial entre profissionais de dados no Brasil?" fundamenta-se nas seguintes características e vantagens do modelo:
 

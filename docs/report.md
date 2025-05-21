@@ -3702,17 +3702,17 @@ Para uma análise mais completa, seria ideal cruzar esses dados também com a ex
   
 	*   [Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-modelo-random-forest)
   
-		*   [Justificativa1.1](#justificativa1-1)
-		*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation1.1)](#processo-de-amostragem-de-dados)
-		*   [Parâmetros utilizados1.1](#parâmetros-utilizados)
-		*   [Explicação do Código1.1](#explicação-do-código)
+		*   [Justificativa1.1](#justificativa1.1)
+		*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation1.1)](#processo-de-amostragem-de-dados1.1)
+		*   [Parâmetros utilizados1.1](#parâmetros-utilizados1.1)
+		*   [Explicação do Código1.1](#explicação-do-código1.1)
 
 	*   [Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Arvore de decisão por classificação](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-arvore-de-decisão-por-classificação)
   
-		*   [Justificativa1.2](#justificativa)
-		*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation1.2)](#processo-de-amostragem-de-dados)
-		*   [Parâmetros utilizados1.2](#parâmetros-utilizados)
-		*   [Explicação do Código1.2](#explicação-do-código)
+		*   [Justificativa1.2](#justificativa1.2)
+		*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation1.2)](#processo-de-amostragem-de-dados1.2)
+		*   [Parâmetros utilizados1.2](#parâmetros-utilizados1.2)
+		*   [Explicação do Código1.2](#explicação-do-código1.2)
 
  
 *   [2º Pergunta orientada a dados ](#modelo-2)
@@ -3767,7 +3767,7 @@ Embora um ensemble de muitas árvores possa parecer uma "caixa preta", é possí
 O modelo utiliza o parâmetro class_weight='balanced_subsample', que ajusta os pesos das classes em cada subamostra (bootstrap), ajudando a mitigar o impacto de um possível desbalanceamento entre as classes de "Salário Baixo/Médio" e "Salário Alto" (observado no relatório de classificação como 568 vs 422 instâncias no conjunto de teste).
 
 
-### *Processo de Amostragem de Dados*
+### *Processo de Amostragem de Dados1.1*
 
 No modelo desenvolvido para analisar a disparidade salarial dos profissionais de dados no Brasil, o processo de amostragem de dados envolveu o particionamento do conjunto de dados em subconjuntos de treino e teste.
 
@@ -3798,7 +3798,7 @@ No modelo desenvolvido para analisar a disparidade salarial dos profissionais de
 *Em resumo, o processo de amostragem adotado no projeto foi o particionamento dos dados em conjuntos de treino e teste (70% e 30%, respectivamente) de forma estratificada, utilizando o método holdout para a avaliação final do modelo Random Forest.*
 
 
-### *Parâmetros utilizados*
+### *Parâmetros utilizados1.1*
 
 - **bootstrap:** True
   
@@ -3851,7 +3851,7 @@ No modelo desenvolvido para analisar a disparidade salarial dos profissionais de
 
 - Os demais parâmetros assumiram seus valores padrão conforme listado na saída de rf_model.get_params()
 
- ### *Explicação do Código*
+ ### *Explicação do Código1.1*
 
 ### Importação de Bibliotecas
 
@@ -4423,10 +4423,10 @@ Filtra os rótulos ordenados para incluir apenas aqueles presentes nos dados
 
 
 ### Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Arvore de decisão por classificação
-### *Justificativa*
-### *Processo de Amostragem de Dados (Particionamento e Cross-Validation)*
-### *Parâmetros utilizados*
-### *Explicação do Código:*
+### *Justificativa1.2*
+### *Processo de Amostragem de Dados (Particionamento e Cross-Validation)1.2*
+### *Parâmetros utilizados1.2*
+### *Explicação do Código:1.2*
 
 
 

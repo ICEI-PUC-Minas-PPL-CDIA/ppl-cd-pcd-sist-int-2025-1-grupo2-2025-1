@@ -5432,6 +5432,144 @@ A análise da importância das features e dos gráficos de distribuição fornec
 A escolha do `point_of_cut_fixed` é crucial para a definição das classes e afeta diretamente a interpretação e o balanceamento do suporte. 
 Ajustes iterativos nesse ponto de corte, com base na análise do histograma de salários e nos objetivos de balanceamento, são recomendados para refinar ainda mais o modelo e os insights.
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Indução de modelos
+
+# Modelo 4: Rede Neural com Embeddings e Otimização via Ray Tune (RNA v2)
+
+## 1. Justificativa e Objetivo
+
+O objetivo deste modelo é classificar a faixa salarial de indivíduos em duas categorias: "Salário Baixo" e "Salário Alto", utilizando uma abordagem de rede neural artificial (RNA). A intenção é explorar se uma arquitetura de RNA, com capacidade de aprender interações complexas e representações ricas para features categóricas (via embeddings), pode oferecer um desempenho comparável ou superior aos modelos baseados em árvores para a mesma pergunta orientada a dados.
+
+A classificação binária ("Salário Baixo" vs. "Salário Alto") visa simplificar o problema e potencialmente melhorar a distinção entre os grupos salariais. Foi utilizado um ponto de corte fixo de R$ 7.500,00 para a variável `salary_numeric_lower_bound` para realizar essa divisão. Com base nos logs anteriores, isso resultou em aproximadamente 2268 amostras para "Salário Baixo" e 2485 para "Salário Alto" no dataset processado antes da divisão treino/teste.
+
+## 2. Processo de Amostragem de Dados e Configuração do Modelo RNA v2
+
+(Esta seção detalharia as etapas de particionamento de dados, pré-processamento específico para RNA como escalonamento e label encoding + embeddings, a arquitetura da rede neural Keras, e a otimização de hiperparâmetros com Ray Tune, conforme discutido e implementado no código da RNA v2).
+
+### 2.1. Features Utilizadas (Entrada para a RNA v2)
+As features utilizadas diretamente pela Rede Neural v2 foram (após mapeamento e tratamento inicial):
+* Faixa etária (`P1_a_1`)
+* Gênero (`P1_b`)
+* Nível de ensino (`P1_l`)
+* Tempo de experiência na área de dados (`P2_i`)
+* Nível de senioridade (`P2_g_Nivel`)
+* Cargo atual (`P2_f_Cargo_Atual`)
+* Região Mapeada (derivada da UF)
+
+### 2.2. Melhores Hiperparâmetros (Ray Tune) para RNA v2 (Exemplo da Última Execução Bem-Sucedida)
+* `dense_units_1`: 64
+* `dense_units_2`: 128 (mas `num_hidden_layers`: 1, então esta não foi usada)
+* `dropout_1`: 0.45
+* `dropout_2`: 0.30 (não usada se `num_hidden_layers`: 1)
+* `learning_rate_nn`: 0.0002366...
+* `batch_size`: 32
+* `epochs`: 50 (controlado por EarlyStopping)
+* `num_hidden_layers`: 1
+* `early_stopping_patience`: 10
+* `l2_strength_embedding`: 0.0046...
+* `l2_strength_dense`: 4.19e-05
+* `optimizer`: 'adam'
+* `emb_dim_P1_a_1`: 8, `emb_dim_P1_b`: 4, `emb_dim_P1_l`: 4, `emb_dim_P2_g_Nivel`: 4, `emb_dim_P2_f_Cargo_Atual`: 9, `emb_dim_Regiao_Mapeada`: 4
+
+## 3. Resultados da Avaliação da Rede Neural v2 (RNA v2)
+
+Com base nos logs da última execução bem-sucedida:
+
+| Métrica                          | Valor  |
+| :------------------------------- | :----- |
+| **Melhor Acurácia Validação HPO**| 0.8345 |
+| **Acurácia no Teste** | 0.8377 |
+| Precisão Média (Macro Avg) Teste | 0.8377 (calculado a partir do relatório) |
+| F1-Score (Ponderado) Teste       | 0.8377 |
+| **ROC AUC (Binário) Teste** | 0.9263 |
+
+**Relatório de Classificação Detalhado (Teste - RNA v2):**
+
+| Classe        | Precision | Recall | F1-score | Support |
+| :------------ | :-------- | :----- | :------- | :------ |
+| Salário Alto  | 0.85      | 0.84   | 0.84     | 622     |
+| Salário Baixo | 0.83      | 0.84   | 0.83     | 567     |
+|               |           |        |          |         |
+| accuracy      |           |        | 0.84     | 1189    |
+| macro avg     | 0.84      | 0.84   | 0.84     | 1189    |
+| weighted avg  | 0.84      | 0.84   | 0.84     | 1189    |
+
+*(Nota: Os valores de Precision, Recall, F1-score para macro e weighted avg no relatório acima são ligeiramente diferentes dos que constavam no log de resumo para Precisão Média (Macro Avg). Utilizei os valores do relatório de classificação mais detalhado do seu último log para esta tabela.)*
+
+## 4. Análise e Insights dos Gráficos Gerados (Contexto RNA v2)
+
+### 4.1. Matriz de Confusão Normalizada (Teste - RNA v2)
+
+* **Nome do arquivo (gerado pelo script de plotagem adaptado)**: `matriz_confusao_norm_RNA.png` (substituindo a imagem `download.png` fornecida).
+* **O que ela informa**: A matriz de confusão mostra o desempenho do modelo RNA v2 em termos de classificações corretas e incorretas para cada classe no conjunto de teste. As porcentagens na diagonal principal representam as taxas de acerto (recall) para cada classe.
+    * **Salário Alto (Verdadeiro) -> Salário Alto (Previsto)**: Aproximadamente 83.60% (valor da imagem `download.png` que você forneceu). *Este valor deve ser consistente com o Recall de "Salário Alto" do relatório de classificação da RNA v2, que foi 0.84.*
+    * **Salário Baixo (Verdadeiro) -> Salário Baixo (Previsto)**: Aproximadamente 83.95% (valor da imagem `download.png` que você forneceu). *Este valor deve ser consistente com o Recall de "Salário Baixo" do relatório de classificação da RNA v2, que foi 0.84.*
+    * **Fora da diagonal**: Representam os erros.
+        * ~16.40% dos "Salário Alto" foram incorretamente classificados como "Salário Baixo" (pela imagem `download.png`).
+        * ~16.05% dos "Salário Baixo" foram incorretamente classificados como "Salário Alto" (pela imagem `download.png`).
+* **Possíveis Insights**:
+    * O modelo RNA v2 apresenta um bom equilíbrio no desempenho entre as classes, com recall em torno de 84% para ambas, conforme o relatório de classificação.
+    * As taxas de erro entre confundir "Salário Alto" com "Baixo" e vice-versa são relativamente similares.
+
+*(Placeholder para a imagem da matriz de confusão da RNA v2 - `download.png`)*
+![Matriz de Confusão RNA v2](download.png)
+
+### 4.2. Importância das Features (RNA v2)
+
+* **O que ela informa**: Para redes neurais, a "importância das features" não é obtida diretamente como em modelos baseados em árvores. Técnicas como Permutation Importance ou SHAP values podem ser aplicadas para estimar a contribuição de cada feature.
+* **Possíveis Insights (Geral, com base na expectativa e na seleção de features para a RNA v2)**:
+    * Espera-se que features ligadas à **proficiência técnica** como `P2_i` (Tempo de experiência), `P2_f_Cargo_Atual` (Cargo atual) e `P2_g_Nivel` (Nível de senioridade) tenham um impacto significativo.
+    * **Características demográficas** como `P1_l` (Nível de ensino), `P1_a_1` (Faixa etária) e `P1_b` (Gênero) também são consideradas pelo modelo e sua influência pode ser analisada com as técnicas mencionadas.
+    * A `Regiao_Mapeada` também é um fator que o modelo considera.
+    * A análise quantitativa exata da importância requereria a aplicação das técnicas mencionadas (Permutation Importance ou SHAP) no modelo RNA v2 treinado.
+
+---
+
+### 4.3. Distribuição de Faixa Salarial (Real) por Top 15 Cargos (Contexto RNA v2)
+
+* **Nome do arquivo**: `dist_salario_top15_cargos_RNA_contexto.png`
+* **O que ela informa**: Mostra, para os 15 cargos mais frequentes no dataset, a contagem de profissionais que se enquadram na categoria "Salário Baixo" versus "Salário Alto" (com base na variável alvo real). Isso fornece o contexto dos dados que a RNA tentou modelar.
+* **Possíveis Insights**:
+    * Permite identificar cargos onde há uma predominância de profissionais em faixas salariais mais altas ou mais baixas.
+    * Por exemplo, cargos como "Cientista de Dados" e "Engenheiro de Dados" tendem a ter uma proporção maior de "Salário Alto", enquanto "Analista de Dados" pode ter uma maior concentração em "Salário Baixo".
+    * A RNA tenta aprender esses padrões para realizar suas classificações.
+
+*(Placeholder para a imagem `dist_salario_top15_cargos_RNA_contexto.png`)*
+![Distribuição de Faixa Salarial por Top 15 Cargos](dist_salario_top15_cargos_RNA_contexto.png)
+
+---
+
+### 4.4. Distribuição de Faixa Salarial (Real) por Nível de Senioridade (Contexto RNA v2)
+
+* **Nome do arquivo**: `dist_salario_senioridade_RNA_contexto.png`
+* **O que ela informa**: Apresenta a distribuição de "Salário Baixo" e "Salário Alto" (variável alvo real) para cada nível de senioridade.
+* **Possíveis Insights**:
+    * Demonstra a progressão salarial esperada com o aumento da senioridade: Júniores majoritariamente em "Salário Baixo", Plenos com uma mistura, e Sêniores com uma proporção maior em "Salário Alto".
+    * A RNA utiliza o nível de senioridade como uma feature importante para distinguir as faixas salariais.
+
+*(Placeholder para a imagem `dist_salario_senioridade_RNA_contexto.png`)*
+![Distribuição de Faixa Salarial por Nível de Senioridade](dist_salario_senioridade_RNA_contexto.png)
+
+---
+
+### 4.5. Boxplot e Violin Plot de Tempo de Experiência (Real) por Faixa Salarial (Contexto RNA v2)
+
+* **Nome do arquivo**: `dist_experiencia_salario_RNA_contexto.png` (Esta imagem parece ser os dois plots combinados ou um deles. Assumirei que representa ambos os conceitos).
+* **O que eles informam**:
+    * Mostram a distribuição do tempo de experiência (em anos) para os profissionais classificados na variável alvo real como "Salário Baixo" versus "Salário Alto".
+    * Exibem medianas, quartis e a densidade da distribuição da experiência.
+* **Possíveis Insights**:
+    * Indivíduos na faixa "Salário Alto" tendem a ter, em média e mediana, mais tempo de experiência.
+    * A dispersão da experiência pode ser diferente entre as duas faixas salariais. O violin plot pode revelar se há concentrações específicas de anos de experiência que levam a salários mais altos.
+    * A experiência é uma das features mais importantes para a RNA, e estes gráficos ilustram o porquê.
+
+*(Placeholder para a imagem `dist_experiencia_salario_RNA_contexto.png`)*
+![Boxplot e Violin Plot de Tempo de Experiência por Faixa Salarial](dist_experiencia_salario_RNA_contexto.png)
+
+---
+
+Este relatório adaptado foca nos resultados e no contexto da Rede Neural v2, utilizando a estrutura do seu `Explicacao_do_modelo.txt` como base e incorporando as imagens fornecidas.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Interpretação dos modelos

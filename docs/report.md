@@ -40,22 +40,18 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [1º Pergunta Orientada a Dados](#1º-pergunta-orientada-a-dados)
     *   [2º Pergunta Orientada a Dados](#2º-pergunta-orientada-a-dados)
     *   [3º Pergunta Orientada a Dados](#3º-pergunta-orientada-a-dados)
-    *   [4º Pergunta Orientada a Dados](#4º-pergunta-orientada-a-dados)
 *   [Indução de modelos](#indução-de-modelos)
     *   [Modelo 1:](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-modelo-random-forest)
     *   [Modelo 2:](#modelo-2-algoritmo)
     *   [Modelo 3](#modelo-3)
-    *   [Modelo 4:](#modelo-4-algoritmo)
 *   [Resultados](#resultados)
     *   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1)
     *   [Resultados obtidos com o modelo 2.](#resultados-obtidos-com-o-modelo-2)
     *   [Resultados obtidos com o modelo 3.](#resultados-obtidos-com-o-modelo-3)
-    *   [Resultados obtidos com o modelo 4.](#resultados-obtidos-com-o-modelo-4)
 *   [Interpretação do modelo](#interpretação-dos-modelos)
     *   [Interpretação do modelo 1](#interpretação-do-modelo-1)
     *   [Interpretação do modelo 2](#interpretação-do-modelo-2)
     *   [Interpretação do modelo 3](#interpretação-do-modelo-3)
-    *   [Interpretação do modelo 4](#interpretação-do-modelo-4)
 *   [Análise comparativa dos modelos](#analise-comparativa-dos-modelos)
 *   [Conclusão](#8-conclusão)
 *   [REFERÊNCIAS](#referências)
@@ -334,48 +330,6 @@ Nome: `salary_midpoint`, `dtype: object`
 | Cargo atual                                        | P2f                   | Qualitativo  | Nominal (Multivalorado)             | Cargo atual ocupado pelo respondente                                                          | Alta       |
 | Nível de senioridade                               | P2g                   | Qualitativo  | Ordinal                             | Nível de senioridade do respondente (Júnior, Pleno, Sênior)                                   | Alta       |
 
----
-
-### Atributos relevantes da base de dados principal para 4ª pergunta orientada
-**Pergunta orientada a dados:** *Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os
-profissionais de tecnologia?*
-
-| Atributo                                         | Nome                                      | Tipo         | Subtipo                             | Descrição                                                                                     | Relevância |
-|--------------------------------------------------|-------------------------------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------------------------|------------|
-| P2h      | Faixa Salarial | Qualitativo | Ordinal | Classificação salarial em faixas | Alta |
-| P1l                                              | Nível de ensino alcançado                 | Qualitativo  | Ordinal                             | Nível de ensino do respondente (graduação, mestrado, etc.)                                    | Alta       |
-| P1m                                              | Área de formação acadêmica                | Qualitativo  | Nominal (Multivalorado)             | Área de formação acadêmica do respondente (TI, Economia, etc.)                                | Alta       |
-| P2h                                              | Faixa salarial mensal                     | Qualitativo  | Ordinal                             | Faixa salarial mensal do respondente                                                          | Alta       |
-| P2i                                              | Tempo de experiência na área de dados     | Quantitativo | Discreto                            | Tempo de experiência do respondente na área de dados (em anos)                                | Alta       |
-| P2g                                              | Nível de senioridade                      | Qualitativo  | Ordinal             
-| P4d1                                             | SQL                                       | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Alta       |
-| P4d2                                             | R                                         | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Alta       |
-| P4d3                                             | Python                                    | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Alta       |
-| P4d4                                             | C/C++/C#                                  | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Média      |
-| P4d5                                             | .NET                                      | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Média      |
-| P4d6                                             | Java                                      | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Média      |
-| P4d7                                             | Julia                                     | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Baixa      |
-| P4d8                                             | SAS/Stata                                 | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Média      |
-| P4d9                                             | Visual Basic/VBA                          | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Baixa      |
-| P4d10                                            | Scala                                     | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Média      |
-| P4d11                                            | Matlab                                    | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Baixa      |
-| P4d12                                            | Rust                                      | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Baixa      |
-| P4d13                                            | PHP                                       | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Baixa      |
-| P4d14                                            | JavaScript                                | Qualitativo  | Nominal (Multivalorado)             | Linguagem de programação utilizada no trabalho                                                | Alta       |
-| P4d15                                            | Não utilizo nenhuma linguagem             | Qualitativo  | Nominal (Binário)                   | Indicação se o respondente não utiliza nenhuma linguagem de programação                       | Média      |  
-
----
-
-### Atributos relevantes da base de dados principal para 5ª pergunta orientada
-**Pergunta orientada a dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área?*
-
-| Atributo | Nome                  | Tipo         | Subtipo                         | Descrição                                                             | Relevância |
-|----------|-----------------------|-------------|---------------------------------|------------------------------------------------------------------------|------------|
-| P1a      | Idade                 | Quantitativo | Contínuo                        | Idade dos respondentes em anos completos.                             | Alta       |
-| P2i      | Tempo de experiência  | Quantitativo | Contínuo                        | Tempo de atuação na área de dados, geralmente em anos.                | Alta       |
-| P1m      | Área de formação      | Qualitativo  | Nominal (Multivalorado)         | Curso ou campo de estudo principal (ex: Ciência da Computação, Estatística). | Alta       |
-| P2o1     | Salário               | Quantitativo | Contínuo                        | Renda mensal declarada, geralmente em reais.                          | Alta       |
-
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -403,19 +357,6 @@ profissionais de tecnologia?*
 - Link: https://basedosdados.org/dataset/9fa532fb-5681-4903-b99d-01dc45fd527a?table=a04fc85d-908a-4393-b51d-1bd517a40210
   
 - [Base de dados](/assets/data/bases_principais/bases_auxiliar/3_pergunta_orientada_a_dados/bq-results-20250422-030542-1745291209599.zip)
-
-### Base de dados auxiliar para 4º pergunta orientada a dados
-**Pergunta orientada a dados:** Como o domínio de diferentes linguagens de programação influencia a disparidade salarial entre os
-profissionais de tecnologia?*
-  
-- [Base de dados](/assets/data/bases_principais/bases_auxiliar/)
-
-### Base de dados auxiliar para 5º pergunta orientada a dados
-**Pergunta orientada a dados:** *De que forma a especialização em áreas de dados, como inteligência artificial ou engenharia de dados, considerando graduações e pós-graduaçōes, pode influenciar na desigualdade salarial entre os profissionais da área?*
-- Escolaridade, Especialização e Remuneração de Profissionais da Área de Dados no Brasil
-- Link: https://www.salario.com.br/
-  
-- [Base de dados](/assets/data/bases_principais/bases_auxiliar/)
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -468,8 +409,6 @@ profissionais de tecnologia?*
 *   [2º Pergunta orientada a dados ](#2º-pergunta-orientada-a-dados)
   
 *   [3º Pergunta orientada a dados ](#3º-pergunta-orientada-a-dados)
-  
-*   [4º Pergunta orientada a dados ](#4º-pergunta-orientada-a-dados)
 
 
 # 1º Pergunta orientada a dados 
@@ -3687,11 +3626,7 @@ As disparidades salariais no Brasil para profissionais de dados não podem ser e
 Para uma análise mais completa, seria ideal cruzar esses dados também com a experiência/senioridade e a formalidade do emprego dentro de cada combinação de região e nível de ensino.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 4º Pergunta orientada a dados 
-**Pergunta Orientada a Dados:** *...*
 
----
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Indução de modelos
 
 *   [1º Pergunta orientada a dados ](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-modelo-random-forest)
@@ -3714,8 +3649,6 @@ Para uma análise mais completa, seria ideal cruzar esses dados também com a ex
 *   [2º Pergunta orientada a dados ](#modelo-2)
 
 *   [3º Pergunta orientada a dados ](#modelo-3)
-
-*   [4º Pergunta orientada a dados ](#modelo-4)
 
 
 ## 1º Pergunta orientada a dados

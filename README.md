@@ -12,10 +12,6 @@ Para isso, são exploradas características como experiência, formação acadê
 
 **Gabriel Chaves Nascimento, [gabriel.nascimento.1483087@sga.pucminas.br]**
 
-**Gian Henrique Ticon e Silva Carvalho , [ghtscarvalho@sga.pucminas.br]**
-
-**Rafael Hashimoto Sanches Barbosa, [rafael.barbosa.1593862@sga.pucminas.br]**
-
 **Enzo Alves Barcelos Gripp, [eabgripp@sga.pucminas.br]**
 
 

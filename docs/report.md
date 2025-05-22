@@ -3691,12 +3691,8 @@ Para uma análise mais completa, seria ideal cruzar esses dados também com a ex
 
  ### *Explicação do Código1-1*
 
-# Explicação Detalhada do Código 
 
-Explicação Detalhada do Código de Machine Learning para Predição Salarial
----
-
-# Etapa 0: Configuração Inicial
+**Etapa 0: Configuração Inicial**
    
 import pandas as pd
 import numpy as np

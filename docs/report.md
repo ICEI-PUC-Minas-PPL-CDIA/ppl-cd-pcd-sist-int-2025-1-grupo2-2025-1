@@ -4614,11 +4614,25 @@ Este processo estruturado visa garantir que o modelo seja treinado de forma efic
 # Resultados
 
 
-*   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1)
+*   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1) 
+	*   [top3_features](#top3_features)
+	*   [precision_recall_curve](#precision_recall_curve)
+ 	*   [matriz_confusao_otimizada](#matriz_confusao_otimizada) 
+	*   [interacao_formacao_experiencia](#interacao_formacao_experiencia)
+	*   [importancia_features_top20](#importancia_features_top20)
+	*   [importancia_features_grupo_UF onde mora](#importancia_features_grupo_uf-onde-mora)
+	*   [importancia_features_grupo_Setor de atuação da empresa](#importancia_features_grupo_setor-de-atuação-da-empresa)
+	*   [importancia_features_grupo_senioridade](#importancia_features_grupo_senioridade)
+	*   [importancia_features_grupo_formacao](#importancia_features_grupo_formacao)
+	*   [importancia_features_grupo_experiencia](#importancia_features_grupo_experiencia)
+	*   [importancia_features_grupo_Área de formação acadêmica](#importancia_features_grupo_área-de-formação-acadêmica)
+	*   [distribuicao_probabilidades](#distribuicao_probabilidades)
+	*   [dispersao_top2_features](#dispersao_top2_features)
+	*   [curva_roc_otimizada](#curva_roc_otimizada)
+	*   [arvore_exemplo_simplificada](#arvore_exemplo_simplificada)
+	*   [arvore_exemplo_melhorada](#arvore_exemplo_melhorada)
 
 
-  
- 
 *   [Resultados obtidos com o modelo 2.](#resultados-obtidos-com-o-modelo-2)
 
 *   [Resultados obtidos com o modelo 3.](#resultados-obtidos-com-o-modelo-3)
@@ -4632,411 +4646,67 @@ Este processo estruturado visa garantir que o modelo seja treinado de forma efic
 
 | Classe          | Precisão | Recall | F1-Score | Suporte |
 |-----------------|----------|--------|----------|---------|
-| Salário Baixo/Médio    | 0.84     | 0.65   | 0.73     | 568     |
-| Salário Alto | 0.64     | 0.84   | 0.72     | 422     |
-| accuracy |  |  | **0.73** | **990** |
-| macro avg | **0.74** | **0.74** | **0.73** | **990** |
-| weighted avg | **0.76** | **0.73** | **0.73** | **990** |
+| Salário Baixo/Médio    | 0.84     | 0.84   | 0.84     | 568     |
+| Salário Alto | 0.79     | 0.78   | 0.78     | 422     |
+| accuracy |  |  | **0.82** | **990** |
+| macro avg | **0.81** | **0.81** | **0.81** | **990** |
+| weighted avg | **0.81** | **0.82** | **0.82** | **990** |
 
-- Acurácia do Modelo: 0.7283
-- Acurácia do Modelo no Conjunto de Treinamento: 0.7544
-- Acurácia do Modelo no Conjunto de Teste: 0.7283
-- Diferença de Acurácia (Treino - Teste): 0.0262
+- Acurácia do Modelo: 0.82
+- Acurácia do Modelo no Conjunto de Treinamento: -
+- Acurácia do Modelo no Conjunto de Teste: -
+- Diferença de Acurácia (Treino - Teste): -
 
 **Parâmetros do Modelo Random Forest Utilizado:**
 
-	{'bootstrap': True, 'ccp_alpha': 0.0, 'class_weight': 'balanced_subsample', 'criterion': 'gini', 'max_depth': None, 'max_features': 'sqrt', 'max_leaf_nodes': None, 'max_samples': None, 'min_impurity_decrease': 0.0, 'min_samples_leaf': 5, 'min_samples_split': 10, 'min_weight_fraction_leaf': 0.0, 'n_estimators': 250, 'n_jobs': -1, 'oob_score': False, 'random_state': 42, 'verbose': 0, 'warm_start': False}
+### top3_features
+![top3_features](https://github.com/user-attachments/assets/02f25d1b-4639-4cd9-a357-7a89297bff03)
 
-### Matriz de confusão
- ![image](https://github.com/user-attachments/assets/ac4dc383-e6d3-4aee-b330-46cc07407dde)
- 
-### Interpretação dos Quadrantes:
+### precision_recall_curve
+![precision_recall_curve (1)](https://github.com/user-attachments/assets/c74124a4-f6b4-4592-9011-bba7013e93f4)
 
-**Verdadeiros Negativos (VN = 368):**
-	- Este valor indica o número de profissionais que realmente têm "Salário Baixo/Médio" e que o modelo corretamente previu como tendo "Salário Baixo/Médio".
-	- No seu caso, o modelo acertou em 368 instâncias ao classificar corretamente os salários mais baixos.
+### matriz_confusao_otimizada
+![matriz_confusao_otimizada (1)](https://github.com/user-attachments/assets/44b373ea-b840-4d47-afd7-804967449a49)
 
-**Falsos Positivos (FP = 200):**
-	- Representa o número de profissionais que realmente têm "Salário Baixo/Médio", mas que o modelo incorretamente previu como tendo "Salário Alto".
-	- Isso é também conhecido como "Erro do Tipo I". O modelo errou 200 vezes, prevendo um salário alto para quem, na verdade, tem um salário baixo/médio.
+### interacao_formacao_experiencia
+![interacao_formacao_experiencia (1)](https://github.com/user-attachments/assets/c6c03e66-554e-42db-a435-e5e909bb9857)
 
-**Falsos Negativos (FN = 69):**
-	- Indica o número de profissionais que realmente têm "Salário Alto", mas que o modelo incorretamente previu como tendo "Salário Baixo/Médio".
-	- Isso é também conhecido como "Erro do Tipo II". O modelo errou 69 vezes, prevendo um salário baixo/médio para quem, na verdade, tem um salário alto.
+### importancia_features_top20
+![importancia_features_top20](https://github.com/user-attachments/assets/cbfc487f-4a48-45e1-8a0a-b5ccdf0b2bb5)
 
-**Verdadeiros Positivos (VP = 353):**
-	- Este valor mostra o número de profissionais que realmente têm "Salário Alto" e que o modelo corretamente previu como tendo "Salário Alto".
-	- O modelo acertou em 353 instâncias ao classificar corretamente os salários mais altos.
+### importancia_features_grupo_UF onde mora
+![importancia_features_grupo_UF onde mora](https://github.com/user-attachments/assets/45719ffa-d305-41f2-b595-4bb70ee884bc)
 
-**Insights da Matriz:**
-	- O modelo parece ser melhor em identificar corretamente os casos de "Salário Alto" quando eles realmente são altos (353 VP) do que em evitar classificar erroneamente os "Salário Baixo/Médio" como altos (200 FP).
-	- Da mesma forma, o modelo identifica corretamente muitos casos de "Salário Baixo/Médio" (368 VN), mas deixa de identificar 69 casos de "Salário Alto", classificando-os erroneamente como "Salário Baixo/Médio".
-	- Essa matriz é crucial para calcular métricas de desempenho mais detalhadas, como precisão, recall (sensibilidade) e F1-score para cada classe, que foram apresentadas no "Relatório de Classificação" do seu notebook. Por exemplo:
-	- Precisão para "Salário Alto": VP / (VP + FP) = 353 / (353 + 200) ≈ 0.637 (Consistente com o 0.64 no relatório de classificação)
-	- Recall para "Salário Alto": VP / (VP + FN) = 353 / (353 + 69) ≈ 0.836 (Consistente com o 0.84 no relatório de classificação)
+### importancia_features_grupo_Setor de atuação da empresa
+![importancia_features_grupo_Setor de atuação da empresa](https://github.com/user-attachments/assets/af6a6298-28fc-4629-890e-c645aa54ca47)
 
-A análise desses valores ajuda a entender os pontos fortes e fracos do seu modelo e onde ele tende a cometer mais erros, orientando possíveis melhorias.
+### importancia_features_grupo_senioridade
+![importancia_features_grupo_senioridade](https://github.com/user-attachments/assets/88a8e6a4-5bff-4e58-a613-523fe4915bed)
 
-### Arvore de decisão do Radom Forest
-![arvore_decisao_exemplo](https://github.com/user-attachments/assets/45379d0c-a9e7-4fe6-9462-b81f96b8fb6d)
-## Análise da Árvore de Decisão Gerada
+### importancia_features_grupo_formacao
+![importancia_features_grupo_formacao](https://github.com/user-attachments/assets/e9180d58-b603-4e09-9f57-a94ecc4d824f)
 
-A visualização que você compartilhou representa uma única árvore de decisão extraída do modelo Random Forest. Esta árvore é construída com uma profundidade limitada (provavelmente `max_depth=3` ou similar, como é comum para visualização) para facilitar a interpretação.
+### importancia_features_grupo_experiencia
+![importancia_features_grupo_experiencia](https://github.com/user-attachments/assets/bffd0e4f-bc56-42d1-802c-ea1b22b872b7)
 
-### Estrutura Geral da Árvore Visualizada
+### importancia_features_grupo_Área de formação acadêmica
+![importancia_features_grupo_Área de formação acadêmica](https://github.com/user-attachments/assets/17e5dd69-f141-4fc0-b0e5-fbb180912aeb)
 
-*   **Nós de Decisão (Retângulos Internos):** Cada retângulo representa um ponto de decisão baseado em uma condição de uma *feature*.
-    *   **Condição de Divisão:** A primeira linha dentro do nó (ex: `tempo_experiencia_cod <= 2.5`) indica a regra usada para dividir os dados. Amostras que satisfazem a condição seguem para o galho da esquerda (True), e as que não satisfazem vão para a direita (False).
-    *   **Índice de Gini:** Mede a impureza do nó. Um valor de Gini igual a 0 indica que todas as amostras no nó pertencem à mesma classe (nó puro). Quanto maior o Gini, mais misturadas estão as classes.
-    *   **Samples:** Número total de amostras de treinamento que chegam a este nó.
-    *   **Value:** Mostra a distribuição das amostras entre as classes. Por exemplo, `value = [286, 79]` indica que, das amostras que chegaram a este nó, 286 pertencem à classe 0 (Salário Baixo/Médio) e 79 à classe 1 (Salário Alto).
-    *   **Class:** Indica a classe majoritária neste nó. Esta seria a predição se o nó fosse uma folha.
+### distribuicao_probabilidades
+![distribuicao_probabilidades (1)](https://github.com/user-attachments/assets/f7ed3668-f41f-486f-87bd-dbac9fcd74f1)
 
-*   **Nós Folha (Retângulos nas Extremidades Inferiores):** São os nós finais da árvore onde uma predição é feita. Eles não têm mais divisões. A cor do nó geralmente indica a classe predominante (por exemplo, laranja para Salário Baixo/Médio e azul para Salário Alto, ou vice-versa, dependendo da paleta de cores).
+### dispersao_top2_features
+![dispersao_top2_features](https://github.com/user-attachments/assets/99eb2c9f-d3ef-47d7-b337-5431c00d0571)
 
-*   **Arestas (Setas):** Conectam os nós e representam os caminhos de decisão. A condição "True" geralmente leva ao filho da esquerda, e "False" ao da direita.
+### curva_roc_otimizada
+![curva_roc_otimizada (1)](https://github.com/user-attachments/assets/2bd509b0-24c8-46ad-9bb0-b18203609795)
 
-### Interpretação de um Caminho Exemplo (Raiz para Folha)
+### arvore_exemplo_simplificada
+![arvore_exemplo_simplificada](https://github.com/user-attachments/assets/a4d395fd-d40a-43e0-a655-1cc5eece761e)
 
-Analisando o nó raiz (o mais superior):
+### arvore_exemplo_melhorada
+![arvore_exemplo_melhorada](https://github.com/user-attachments/assets/410ea2af-736a-4cbf-9541-d0edb1ac49d1)
 
-1.  **Nó Raiz:**
-    *   `tempo_experiencia_cod <= 2.5`
-    *   `gini = 0.489` (Indica uma mistura considerável de classes no início)
-    *   `samples = 791` (Total de amostras de treinamento)
-    *   `value = [453, 338]` (453 com salário baixo/médio, 338 com salário alto)
-    *   `class = salario_baixo_medio` (Classe majoritária no início)
-
-Se uma nova amostra tem `tempo_experiencia_cod = 1` (que é `<= 2.5`), ela seguirá para o filho da esquerda. Se tiver `tempo_experiencia_cod = 4` (que não é `<= 2.5`), seguirá para o filho da direita.
-
-Vamos supor que seguimos para a esquerda (`tempo_experiencia_cod <= 2.5` é Verdadeiro):
-
-2.  **Nó Filho Esquerdo (Nível 1):**
-    *   `nivel_formacao_cod <= 1.5`
-    *   `gini = 0.356` (Impureza diminuiu em relação ao nó pai)
-    *   `samples = 365`
-    *   `value = [278, 87]`
-    *   `class = salario_baixo_medio`
-
-E assim por diante, até chegar a um nó folha. Por exemplo, um nó folha poderia ter:
-
-*   `gini = 0.096`
-*   `samples = 153`
-*   `value = [145, 8]`
-*   `class = salario_baixo_medio`
-
-Isso significaria que para as 153 amostras que seguiram esse caminho específico de decisões, 145 foram classificadas como "salário baixo/médio" e apenas 8 como "salário alto". A predição para qualquer nova amostra que chegue a esta folha seria "salário baixo/médio".
-
-### Insights Principais da Árvore
-
-*   **Importância das Features:** A feature no nó raiz (`tempo_experiencia_cod`) é geralmente a mais importante para a divisão inicial dos dados naquela árvore específica. Outras features como `nivel_formacao_cod` aparecem em níveis subsequentes, indicando sua contribuição para refinar as predições.
-*   **Regras de Decisão:** A árvore pode ser traduzida em um conjunto de regras "SE-ENTÃO". Por exemplo:
-    *   **SE** `tempo_experiencia_cod <= 2.5` **E** `nivel_formacao_cod <= 1.5` **E** ... **ENTÃO** `classe = salario_baixo_medio`.
-*   **Limitações de uma Única Árvore:** É importante lembrar que esta é apenas *uma* das muitas árvores no Random Forest. O Random Forest combina as predições de múltiplas árvores (geralmente centenas) para fazer uma predição final mais robusta e precisa, mitigando o risco de overfitting que uma única árvore profunda pode ter.
-
-### Conclusão da Análise da Imagem
-
-A árvore visualizada mostra claramente como o modelo aprende a distinguir entre salários altos e baixos/médios com base nos dados de tempo de experiência e nível de formação. A experiência profissional (`tempo_experiencia_cod`) aparece como um divisor primário, e o nível de formação (`nivel_formacao_cod`) ajuda a refinar essas divisões. A cor e o valor de Gini nos nós folha indicam quão "confiante" é a predição para aquele segmento específico dos dados.
-
-
-### Importância das features
-![importancia_features](https://github.com/user-attachments/assets/c2dd5b9b-9731-44b8-bcf2-e7dcf1aa3883)
-## Análise do Gráfico de Importância das Features (Random Forest)
-
-O gráfico de barras intitulado "Importância das Features (Random Forest)" ilustra a relevância relativa de cada variável de entrada (feature) na capacidade do modelo Random Forest de fazer previsões corretas. Neste caso, o modelo está prevendo se um profissional da área de dados terá um salário alto ou baixo/médio.
-
-### Componentes do Gráfico
-
-*   **Título:** "Importância das Features (Random Forest)"
-    *   Indica que o gráfico mostra quais features o modelo Random Forest considerou mais importantes para suas decisões.
-
-*   **Eixo Y (Vertical): "Redução média de impureza (Gini)"**
-    *   Esta é a métrica usada para quantificar a importância de cada feature.
-    *   **Impureza de Gini:** Mede a probabilidade de classificar incorretamente uma amostra escolhida aleatoriamente se ela fosse rotulada aleatoriamente de acordo com a distribuição das classes no nó. Um valor de Gini de 0 significa que o nó é "puro" (todas as amostras pertencem à mesma classe).
-    *   **Redução Média da Impureza:** Para cada feature, o gráfico mostra o quanto, em média, essa feature contribui para diminuir a impureza dos nós (ou seja, para tornar os nós mais "puros") sempre que ela é usada para fazer uma divisão em *todas as árvores* do Random Forest.
-    *   Quanto maior a barra (maior a redução média de impureza), mais importante é a feature para o modelo. Os valores no eixo Y variam de 0.0 a aproximadamente 0.8.
-
-*   **Eixo X (Horizontal): Features**
-    *   Lista as variáveis de entrada que foram usadas para treinar o modelo. Neste gráfico, temos duas features:
-        1.  "Tempo de Experiência"
-        2.  "Nível de Formação"
-
-### Interpretação das Barras
-
-Cada barra no gráfico representa uma feature e sua altura corresponde à sua importância calculada.
-
-1.  **Barra "Tempo de Experiência":**
-    *   **Valor Aproximado:** A altura desta barra está em torno de 0.81 (ou 81%).
-    *   **Significado:** Esta é, de longe, a feature mais importante para o modelo Random Forest ao prever a faixa salarial. Isso indica que as divisões nas árvores de decisão baseadas no tempo de experiência dos profissionais resultaram na maior redução média da impureza (Gini). Em outras palavras, saber o tempo de experiência de um profissional ajuda significativamente o modelo a separar aqueles com salários altos daqueles com salários baixos/médios.
-
-2.  **Barra "Nível de Formação":**
-    *   **Valor Aproximado:** A altura desta barra está em torno de 0.19 (ou 19%).
-    *   **Significado:** O nível de formação também é uma feature relevante, mas consideravelmente menos importante que o tempo de experiência, de acordo com este modelo. Embora contribua para a pureza dos nós e ajude na classificação, seu impacto médio na redução da impureza é menor.
-
-### Como o Random Forest Calcula a Importância (Baseado em Gini)
-
-O Random Forest é um conjunto de muitas árvores de decisão. Para cada árvore:
-1.  Quando uma feature é usada para dividir um nó, a redução na impureza de Gini (impureza do nó pai menos a soma ponderada das impurezas dos nós filhos) é calculada.
-2.  A importância de uma feature em uma única árvore é a soma de todas as reduções de impureza que ela proporciona em todas as suas divisões naquela árvore, normalizada pela quantidade de amostras.
-3.  A importância final da feature no modelo Random Forest (a que é mostrada no gráfico) é a média dessas importâncias calculadas em todas as árvores do "ensemble" (conjunto de árvores).
-
-### Insights Principais do Gráfico
-
-*   **Dominância da Experiência:** O "Tempo de Experiência" é o fator predominante que o modelo utiliza para distinguir entre as faixas salariais.
-*   **Relevância Secundária da Formação:** O "Nível de Formação" tem um papel secundário, mas ainda contribui para o poder preditivo do modelo.
-*   **Foco do Modelo:** O modelo aprendeu que as variações no tempo de experiência são mais discriminatórias para prever salários altos do que as variações no nível de formação, dentro do contexto dos dados fornecidos.
-
-### Implicações Práticas
-
-*   **Seleção de Features:** Se fosse necessário simplificar o modelo, o "Tempo de Experiência" seria a feature indispensável a ser mantida.
-*   **Entendimento do Problema:** Confirma a intuição comum de que a experiência é um fator crucial na determinação de salários na área de dados.
-*   **Coleta de Dados Futura:** Se novas features fossem consideradas, elas seriam comparadas em importância a estas para avaliar seu valor agregado.
-
-Em resumo, este gráfico fornece uma visão clara e quantificada de quais características dos profissionais de dados o modelo Random Forest considera mais influentes ao prever se eles terão um salário acima ou abaixo de R$8.000/mês.
-
-
-### Formacao_vs_salario_alto
-![formacao_vs_salario_alto](https://github.com/user-attachments/assets/0a8d3c8c-fad6-4abe-a84a-025fbf6f33b2)
-
-## Análise do Gráfico: Proporção de Profissionais com Salário Alto por Nível de Ensino
-
-Este gráfico de barras compara a proporção de profissionais que recebem salários altos (presumivelmente acima de R$8.000/mês, conforme o contexto anterior) em diferentes níveis de ensino alcançados.
-
-### Componentes do Gráfico
-
-*   **Título:** "Proporção de Profissionais com Salário Alto por Nível de Ensino"
-    *   Indica claramente que o gráfico relaciona o nível educacional com a probabilidade de obter um salário considerado alto.
-
-*   **Eixo Y (Vertical): "Proporção de Salário Alto (%)"**
-    *   Representa a porcentagem de indivíduos, dentro de cada categoria de nível de ensino, que se enquadram na faixa de salário alto.
-    *   A escala varia de 0% a 80%.
-
-*   **Eixo X (Horizontal): "Nível de Ensino Alcançado"**
-    *   Apresenta as categorias dos diferentes níveis de formação acadêmica dos profissionais. As categorias são:
-        1.  Estudante de Graduação
-        2.  Graduação/Bacharelado
-        3.  Pós-graduação
-        4.  Mestrado
-        5.  Doutorado ou Phd
-
-*   **Barras:**
-    *   Cada barra colorida corresponde a um nível de ensino específico.
-    *   A altura da barra indica a proporção (em porcentagem) de profissionais daquele nível de ensino que possuem salário alto.
-
-*   **Linhas de Erro (Pequenas Linhas Verticais Pretas no Topo das Barras):**
-    *   Estas linhas geralmente representam o intervalo de confiança (por exemplo, 95% IC) ou o erro padrão da média para a proporção estimada em cada categoria.
-    *   Elas fornecem uma indicação da variabilidade ou incerteza nos dados. Barras de erro menores sugerem maior precisão na estimativa da proporção para aquela categoria.
-
-### Interpretação das Barras e Tendências
-
-O gráfico demonstra uma tendência clara e positiva: à medida que o nível de ensino alcançado aumenta, a proporção de profissionais com salários altos também tende a aumentar.
-
-1.  **Estudante de Graduação:**
-    *   **Proporção Aproximada:** Cerca de 12% dos estudantes de graduação na amostra possuem salário alto.
-    *   **Interpretação:** É a categoria com a menor proporção, o que é esperado, já que muitos ainda não estão no mercado de trabalho em posições plenas ou estão em estágios/níveis iniciais.
-
-2.  **Graduação/Bacharelado:**
-    *   **Proporção Aproximada:** Em torno de 39%.
-    *   **Interpretação:** Ter um diploma de graduação ou bacharelado aumenta significativamente a chance de um salário alto em comparação com estudantes. Quase quadruplica a proporção.
-
-3.  **Pós-graduação:**
-    *   **Proporção Aproximada:** Aproximadamente 51%.
-    *   **Interpretação:** Profissionais com pós-graduação (especialização, MBA, etc.) têm uma proporção ainda maior de salários altos, superando a marca dos 50%. Isso indica um retorno perceptível para a educação continuada após a graduação.
-
-4.  **Mestrado:**
-    *   **Proporção Aproximada:** Cerca de 63%.
-    *   **Interpretação:** O mestrado eleva ainda mais a proporção de profissionais com altos salários, mostrando um ganho substancial em relação à pós-graduação lato sensu.
-
-5.  **Doutorado ou Phd:**
-    *   **Proporção Aproximada:** Aproximadamente 73%.
-    *   **Interpretação:** É a categoria com a maior proporção de salários altos. Mais de 7 em cada 10 profissionais com doutorado ou PhD na amostra atingem a faixa salarial elevada, destacando o alto valor percebido para o nível mais alto de formação acadêmica.
-
-### Insights Principais do Gráfico
-
-*   **Correlação Positiva Clara:** Existe uma forte correlação positiva entre o nível de ensino e a probabilidade de obter um salário alto na área de dados, conforme os dados apresentados.
-*   **Valor da Educação Continuada:** Cada degrau adicional na escada educacional parece traduzir-se em um aumento na proporção de indivíduos com remuneração elevada.
-*   **Saltos Significativos:** Os maiores "saltos" proporcionais parecem ocorrer ao passar de "Estudante de Graduação" para "Graduação/Bacharelado" e, posteriormente, cada nível de pós-graduação stricto sensu (Mestrado, Doutorado) também adiciona um incremento considerável.
-*   **Consistência:** A tendência de aumento é consistente em todos os níveis de ensino.
-
-### Implicações
-
-*   **Tomada de Decisão de Carreira:** Para profissionais da área de dados que visam salários mais altos, investir em níveis de educação mais avançados parece ser uma estratégia estatisticamente vantajosa, de acordo com estes dados.
-*   **Mercado de Trabalho:** O mercado parece valorizar e recompensar financeiramente níveis mais altos de especialização e qualificação acadêmica formal na área de dados.
-
-Em resumo, o gráfico ilustra de forma eficaz que, para o grupo de profissionais analisado, um maior nível de escolaridade está associado a uma maior chance de alcançar um patamar salarial elevado.
-
-
-### Experiencia vs salario alto
-![experiencia_vs_salario_alto](https://github.com/user-attachments/assets/a31803b8-bdde-4286-b738-39f443736c1d)
-## Análise do Gráfico: Proporção de Profissionais com Salário Alto por Tempo de Experiência
-
-Este gráfico de barras mostra a relação entre o tempo de experiência na área de dados e a proporção de profissionais que alcançam salários altos (considerados acima de R$8.000/mês, com base no contexto anterior).
-
-### Componentes do Gráfico
-
-*   **Título:** "Proporção de Profissionais com Salário Alto por Tempo de Experiência"
-    *   Indica o propósito do gráfico: analisar como o tempo de experiência influencia a probabilidade de se obter um salário alto.
-
-*   **Eixo Y (Vertical): "Proporção de Salário Alto (%)"**
-    *   Representa a porcentagem de profissionais em cada categoria de tempo de experiência que possuem salário alto.
-    *   A escala varia de 0% a 80%.
-
-*   **Eixo X (Horizontal): "Tempo de Experiência na Área de Dados"**
-    *   Divide os profissionais em categorias com base em seu tempo de experiência na área de dados:
-        1.  Menos de 1 ano
-        2.  de 1 a 2 anos
-        3.  de 3 a 4 anos
-        4.  de 7 a 10 anos
-
-*   **Barras:**
-    *   Cada barra representa uma categoria de tempo de experiência.
-    *   A altura da barra indica a proporção (em porcentagem) de profissionais dentro daquela categoria que possuem um salário alto.
-
-*   **Linhas de Erro (Pequenas Linhas Verticais Pretas no Topo das Barras):**
-    *   Representam a variabilidade ou incerteza na estimativa da proporção para cada categoria.
-    *   Barras de erro menores indicam maior precisão na estimativa da proporção.
-
-### Interpretação das Barras e Tendências
-
-O gráfico demonstra uma clara tendência de aumento na proporção de profissionais com salários altos à medida que o tempo de experiência aumenta.
-
-1.  **Menos de 1 ano:**
-    *   **Proporção Aproximada:** Cerca de 8% dos profissionais com menos de 1 ano de experiência têm salário alto.
-    *   **Interpretação:** É a categoria com a menor proporção, o que é esperado, dado o nível inicial de suas carreiras.
-
-2.  **de 1 a 2 anos:**
-    *   **Proporção Aproximada:** Em torno de 18%.
-    *   **Interpretação:** A proporção mais que dobra em comparação com a categoria anterior, indicando um aumento significativo nas chances de um salário alto após um ano de experiência.
-
-3.  **de 3 a 4 anos:**
-    *   **Proporção Aproximada:** Aproximadamente 51%.
-    *   **Interpretação:** Um salto considerável ocorre nesta categoria, com mais da metade dos profissionais alcançando salários altos. Isso sugere que 3-4 anos é um ponto crucial na progressão salarial.
-
-4.  **de 7 a 10 anos:**
-    *   **Proporção Aproximada:** Aproximadamente 83%.
-    *   **Interpretação:** A maioria dos profissionais nesta categoria tem salários altos, mostrando que a experiência contínua leva a uma alta probabilidade de remuneração elevada.
-
-### Insights Principais do Gráfico
-
-*   **Forte Correlação Positiva:** Há uma forte correlação positiva entre o tempo de experiência e a proporção de profissionais com salários altos.
-*   **Experiência é Valiosa:** O gráfico destaca a importância da experiência na progressão salarial na área de dados.
-*   **Ponto de Inflexão:** A categoria "de 3 a 4 anos" parece ser um ponto de inflexão, onde a proporção de salários altos aumenta drasticamente.
-
-### Implicações
-
-*   **Planejamento de Carreira:** Para aqueles que buscam salários mais altos na área de dados, focar no acúmulo de experiência relevante é crucial.
-*   **Mercado de Trabalho:** O mercado valoriza significativamente a experiência, recompensando-a com salários mais altos.
-*   **Estratégias de Retenção:** Empresas podem usar esses dados para criar estratégias de retenção de talentos, especialmente após o período de 3-4 anos, quando os profissionais se tornam mais propensos a alcançar faixas salariais mais altas.
-
-Em resumo, o gráfico demonstra claramente a importância do tempo de experiência na área de dados para alcançar um salário alto.
-
-
-### Distribuicao target
-![distribuicao_target](https://github.com/user-attachments/assets/83e11003-e020-45e6-9adf-8a4f32847f49)
-## Análise do Gráfico: Distribuição da Variável Alvo
-
-Este gráfico de barras ilustra a distribuição da variável alvo do modelo de machine learning, que é a categoria salarial dos profissionais de dados. Ele mostra a contagem de profissionais em cada uma das duas categorias salariais definidas.
-
-### Componentes do Gráfico
-
-*   **Título:** "Distribuição da Variável Alvo (0: Salário Baixo/Médio, 1: Salário Alto)"
-    *   Indica que o gráfico mostra como a variável que o modelo tenta prever (salário alto ou baixo/médio) está distribuída no conjunto de dados.
-    *   A notação "(0: Salário Baixo/Médio, 1: Salário Alto)" refere-se à codificação numérica dessas categorias, comum em problemas de classificação binária.
-
-*   **Eixo Y (Vertical): "Contagem"**
-    *   Representa o número absoluto de profissionais (amostras) em cada categoria salarial.
-    *   A escala visual vai de 0 até um pouco acima de 1750, mas a primeira barra ultrapassa visivelmente este valor.
-
-*   **Eixo X (Horizontal): "Categoria Salarial"**
-    *   Apresenta as duas categorias definidas para a variável alvo:
-        1.  "Salário Baixo/Médio (<= R$8k)": Profissionais com renda mensal igual ou inferior a R$8.000.
-        2.  "Salário Alto (> R$8k)": Profissionais com renda mensal superior a R$8.000.
-
-*   **Barras:**
-    *   Cada barra representa uma categoria salarial.
-    *   A altura da barra indica a quantidade total de profissionais que se enquadram naquela categoria no conjunto de dados analisado.
-
-### Interpretação das Barras
-
-1.  **Barra Azul (Esquerda) - "Salário Baixo/Médio (<= R$8k)":**
-    *   **Contagem Aproximada:** A altura desta barra está visivelmente acima da marca de 1750, estimando-se em torno de 1880 a 1900 profissionais.
-    *   **Significado:** Indica que a maioria dos profissionais no conjunto de dados se enquadra na categoria de salário baixo ou médio.
-
-2.  **Barra Verde (Direita) - "Salário Alto (> R$8k)":**
-    *   **Contagem Aproximada:** A altura desta barra está na marca dos 1400 profissionais.
-    *   **Significado:** Representa o número de profissionais no conjunto de dados que possuem um salário considerado alto.
-
-### Insights Principais do Gráfico
-
-*   **Distribuição das Classes:** O conjunto de dados possui mais profissionais na categoria "Salário Baixo/Médio" do que na categoria "Salário Alto".
-    *   **Proporção Estimada (Salário Baixo/Médio):** Aproximadamente 1900 / (1900 + 1400) ≈ 1900 / 3300 ≈ 57.6%
-    *   **Proporção Estimada (Salário Alto):** Aproximadamente 1400 / (1900 + 1400) ≈ 1400 / 3300 ≈ 42.4%
-*   **Desbalanceamento Moderado:** Embora haja uma diferença na contagem entre as classes, ela não é extremamente acentuada. A classe majoritária ("Salário Baixo/Médio") tem cerca de 1,35 vezes mais amostras que a classe minoritária ("Salário Alto"). Este nível de desbalanceamento é comum e pode ser tratado com técnicas específicas em machine learning, como o uso de `class_weight='balanced'` (que foi mencionado no código), para evitar que o modelo seja enviesado para a classe majoritária.
-
-### Implicações para Modelagem
-
-*   **Representatividade:** O gráfico mostra que ambas as classes estão razoavelmente bem representadas no conjunto de dados, o que é bom para treinar um modelo de classificação.
-*   **Métricas de Avaliação:** Dada a leve diferença nas proporções, além da acurácia, métricas como precisão, recall, F1-score (especialmente para a classe minoritária "Salário Alto") e a AUC da curva ROC são importantes para avaliar o desempenho do modelo de forma abrangente.
-*   **Estratégia de Amostragem:** Para a divisão entre treino e teste, uma amostragem estratificada (como a que foi utilizada no código) é recomendada para garantir que as proporções das classes sejam mantidas em ambos os conjuntos, o que ajuda a obter uma avaliação mais realista do desempenho do modelo.
-
-Em resumo, este gráfico fornece uma visão geral da composição do conjunto de dados em relação à variável alvo, mostrando a frequência de cada categoria salarial. Ele é fundamental para entender a natureza do problema de classificação e para informar decisões sobre o pré-processamento dos dados e a avaliação do modelo.
-
-
-### Curva ROC
-![curva_roc](https://github.com/user-attachments/assets/09cfde9d-2103-4d2c-aec0-16f0b695525c)
-## Análise do Gráfico: Curva ROC (Receiver Operating Characteristic)
-
-Este gráfico exibe a Curva ROC (Característica de Operação do Receptor) para avaliar o desempenho do modelo de classificação binária. A curva ROC plota a taxa de verdadeiros positivos (TPR) contra a taxa de falsos positivos (FPR) em vários limiares de classificação.
-
-### Componentes do Gráfico
-
-*   **Título:** "Curva ROC (Receiver Operating Characteristic)"
-    *   Indica que o gráfico mostra a Curva ROC, uma ferramenta comum para avaliar a capacidade de um modelo de discriminar entre duas classes.
-
-*   **Eixo Y (Vertical): "Taxa de Verdadeiros Positivos (TPR)"**
-    *   Também conhecida como Sensibilidade ou Recall.
-    *   Representa a proporção de profissionais com salários altos que foram corretamente identificados pelo modelo.
-    *   TPR = Verdadeiros Positivos / (Verdadeiros Positivos + Falsos Negativos)
-    *   A escala varia de 0.0 a 1.0.
-
-*   **Eixo X (Horizontal): "Taxa de Falsos Positivos (FPR)"**
-    *   Representa a proporção de profissionais com salários baixos/médios que foram incorretamente classificados como tendo salários altos.
-    *   FPR = Falsos Positivos / (Falsos Positivos + Verdadeiros Negativos)
-    *   A escala varia de 0.0 a 1.0.
-
-*   **Curva ROC (Linha Laranja):**
-    *   Esta linha representa o desempenho do modelo em diferentes limiares de classificação.
-    *   Um modelo perfeito teria uma curva que sobe rapidamente para o topo esquerdo (TPR = 1 e FPR = 0).
-    *   Quanto mais próxima a curva estiver do canto superior esquerdo, melhor será o desempenho do modelo.
-
-*   **Linha Diagonal (Linha Azul Tracejada):**
-    *   Representa o desempenho de um classificador aleatório (sem habilidade de discriminação).
-    *   Serve como linha de base. Um modelo útil deve ter uma curva ROC acima desta linha.
-
-*   **AUC (Area Under the Curve):**
-    *   Valor numérico que quantifica a área sob a curva ROC.
-    *   Varia de 0 a 1.
-    *   Um AUC de 0.5 indica um desempenho semelhante ao de um classificador aleatório.
-    *   Um AUC de 1 indica um classificador perfeito.
-
-### Interpretação da Curva e do AUC
-
-*   **Formato da Curva:** A curva laranja se eleva rapidamente no início e depois se estabiliza, indicando que o modelo tem uma boa capacidade de discriminação, especialmente em limiares mais baixos de FPR.
-*   **AUC = 0.82:**
-    *   Significa que a probabilidade de o modelo classificar corretamente um profissional com salário alto em relação a um profissional com salário baixo/médio escolhidos aleatoriamente é de 82%.
-    *   Um AUC de 0.82 indica um bom desempenho geral do modelo na tarefa de classificação.
-
-### Insights Principais do Gráfico
-
-*   **Bom Desempenho:** O modelo tem um bom poder de discriminação entre as classes salariais, como evidenciado pelo AUC de 0.82.
-*   **Melhor que Aleatório:** A curva ROC está significativamente acima da linha diagonal, indicando que o modelo é muito melhor do que um classificador aleatório.
-
-### Implicações
-
-*   **Avaliação do Modelo:** A Curva ROC e o valor de AUC fornecem uma medida quantitativa do quão bem o modelo está generalizando para dados não vistos.
-*   **Seleção de Limiar:** Dependendo dos custos relativos de falsos positivos e falsos negativos, um limiar específico pode ser escolhido para otimizar o desempenho do modelo para um determinado caso de uso.
-
-Em resumo, o gráfico da Curva ROC demonstra que o modelo possui uma boa capacidade de distinguir entre profissionais com salários altos e baixos/médios, com um AUC de 0.82 indicando um desempenho sólido.
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -224,3 +224,213 @@ Divisão estratificada dos dados mantendo a proporção das classes nos conjunto
 - min_samples_leaf: Mínimo de amostras em folhas
 
 - class_weight: Estratégias de balanceamento automático
+
+      rf_base = RandomForestClassifier(random_state=42, n_jobs=-1)
+      balanced_acc_scorer = 'balanced_accuracy'
+      grid_search = GridSearchCV(estimator=rf_base, param_grid=param_grid,
+                                cv=5, n_jobs=-1, verbose=1, scoring=balanced_acc_scorer)
+
+**Configuração do GridSearchCV utilizando:**
+
+- Validação cruzada: 5 folds para avaliação robusta
+
+- Métrica balanceada: balanced_accuracy para lidar com desbalanceamento
+
+- Paralelização: n_jobs=-1 para usar todos os cores disponíveis
+      
+      grid_search.fit(X_train, y_train, sample_weight=sample_weights_train)
+      best_rf_model = grid_search.best_estimator_
+
+Treinamento e seleção do melhor modelo aplicando os pesos de amostra durante o treinamento para reforçar o balanceamento.
+
+# Etapa 5: Calibração de Probabilidades
+
+      calibrated_model = CalibratedClassifierCV(
+          base_estimator=best_rf_model,
+          method='isotonic',
+          cv=5
+      )
+      calibrated_model.fit(X_train, y_train, sample_weight=sample_weights_train)
+
+**Calibração isotônica das probabilidades melhorando a confiabilidade das estimativas de probabilidade do modelo através de:**
+
+- Método isotônico: Mais flexível que calibração sigmoid
+
+- Validação cruzada: 5 folds para calibração robusta
+
+# Etapa 6: Otimização de Limiar de Classificação
+
+      y_pred_proba_test = calibrated_model.predict_proba(X_test)[:, 1]
+      thresholds = [0.3, 0.4, 0.5, 0.6, 0.7]
+      results = []
+
+Teste de múltiplos limiares avaliando diferentes pontos de corte para otimizar o desempenho em métricas específicas.
+Pesos de amostra: Mantendo o balanceamento durante calibração
+
+      for threshold in thresholds:
+          y_pred_custom = (y_pred_proba_test >= threshold).astype(int)
+    
+    acc = accuracy_score(y_test, y_pred_custom)
+    bal_acc = balanced_accuracy_score(y_test, y_pred_custom)
+    f1 = f1_score(y_test, y_pred_custom)
+    
+    tn, fp, fn, tp = confusion_matrix(y_test, y_pred_custom).ravel()
+
+**Avaliação abrangente para cada limiar calculando múltiplas métricas:**
+
+- Acurácia simples e balanceada
+
+- F1-score
+
+- Componentes da matriz de confusão
+
+- Precisão e recall por classe
+
+
+      best_threshold_idx = max(range(len(results)), key=lambda i: results[i]['balanced_accuracy'])
+      best_threshold = results[best_threshold_idx]['threshold']
+      y_pred_final = (y_pred_proba_test >= best_threshold).astype(int)
+
+Seleção do limiar ótimo baseado na acurácia balanceada, que é mais apropriada para datasets desbalanceados.
+
+# Etapa 7: Avaliação Final e Relatórios
+      print("\nRelatório de Classificação Final (com limiar otimizado):")
+      print(classification_report(y_test, y_pred_final, target_names=['Salário Baixo/Médio', 'Salário Alto']))
+
+Relatório detalhado de classificação apresentando precisão, recall, F1-score e suporte para cada classe com o limiar otimizado.
+
+# Etapa 8: Geração de Visualizações Avançadas
+
+**8.1 Matriz de Confusão Otimizada**
+      
+      cm = confusion_matrix(y_test, y_pred_final)
+      plt.figure(figsize=(10, 8))
+      sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+                  xticklabels=['Salário Baixo/Médio', 'Salário Alto'],
+                  yticklabels=['Salário Baixo/Médio', 'Salário Alto'],
+                  annot_kws={"size": 14})
+
+Visualização da matriz de confusão com formatação profissional usando heatmap do seaborn, incluindo rótulos descritivos e anotações em tamanho legível.
+
+**8.2 Curva ROC com Limiar Otimizado**
+
+      fpr, tpr, _ = roc_curve(y_test, y_pred_proba_test)
+      roc_auc = auc(fpr, tpr)
+      plt.plot(fpr, tpr, color='darkorange', lw=3, label=f'Curva ROC (AUC = {roc_auc:.2f})')
+      plt.axvline(x=fpr[np.argmin(np.abs(tpr - best_threshold))], color='green', linestyle='--', 
+                  label=f'Limiar Ótimo = {best_threshold}')
+
+**Curva ROC aprimorada incluindo:**
+
+- Área sob a curva (AUC) como métrica de desempenho
+
+- Linha vertical indicando o limiar otimizado
+
+- Formatação profissional com cores contrastantes e legendas
+
+**8.3 Análise de Importância das Features**
+
+      importances = best_rf_model.feature_importances_
+      feature_names = X.columns
+      indices = np.argsort(importances)[::-1]
+      n_features_to_show = min(20, len(indices))
+      top_indices = indices[:n_features_to_show]
+Ranking de importância das features limitado às 20 mais relevantes para melhor visualização e interpretabilidade.
+
+      # Agrupar features por prefixo para melhor organização
+      prefixes = {}
+      for i in indices:
+          feature = feature_names[i]
+          prefix = feature.split('_')[0] if '_' in feature else feature
+          if prefix not in prefixes:
+              prefixes[prefix] = []
+          prefixes[prefix].append((i, importances[i]))
+Agrupamento inteligente por categorias organizando features por prefixos (formação, localização, setor) para análise estruturada da importância por domínio.
+
+**8.4 Agrupamento por Categorias**
+
+      prefixes = {}
+      for i in indices:
+          feature = feature_names[i]
+          prefix = feature.split('_')[0] if '_' in feature else feature
+          if prefix not in prefixes:
+              prefixes[prefix] = []
+          prefixes[prefix].append((i, importances[i]))
+
+Agrupamento inteligente por categorias organizando features por prefixos (formação, localização, setor) para análise estruturada da importância por domínio.
+
+**8.5 Distribuição das Probabilidades Preditas**
+
+      plt.figure(figsize=(12, 8))
+      sns.histplot(y_pred_proba_test, bins=50, kde=True)
+      plt.axvline(x=best_threshold, color='red', linestyle='--', linewidth=2,
+                 label=f'Limiar Ótimo = {best_threshold}')
+
+Análise da distribuição das probabilidades geradas pelo modelo calibrado com marcação do limiar ótimo, permitindo visualizar quantas amostras ficam de cada lado do ponto de corte.
+
+**8.6 Visualização de Árvores de Decisão**
+      
+      plt.figure(figsize=(24, 18))
+      plot_tree(best_rf_model.estimators_[0], 
+                feature_names=X.columns, 
+                class_names=['Salário Baixo/Médio', 'Salário Alto'],
+                filled=True, 
+                rounded=True, 
+                fontsize=12,
+                max_depth=4)
+
+- Visualização detalhada de árvore individual do Random Forest com:
+
+- Tamanho expandido: 24x18 polegadas para máxima legibilidade
+
+- Profundidade controlada: max_depth=4 para mostrar detalhes sem complexidade excessiva
+
+- Formatação aprimorada: Nós preenchidos, bordas arredondadas e fonte de tamanho 12
+
+**8.7 Análise de Interação entre Formação e Experiência**
+
+      pivot_table = pd.crosstab(
+          index=df_limpo['formacao_academica_encoded'], 
+          columns=df_limpo['experiencia_profissional_encoded'],
+          values=df_limpo['salario_alto'],
+          aggfunc=np.mean
+      )
+
+Tabela cruzada avançada utilizando pd.crosstab para calcular a probabilidade média de salário alto para cada combinação de formação acadêmica e experiência profissional.
+
+      formacao_labels = {v: k for k, v in nivel_ensino_map.items()}
+      experiencia_labels = {v: k for k, v in experiencia_map.items()}
+      
+      pivot_table.index = [formacao_labels.get(i, i) for i in pivot_table.index]
+      pivot_table.columns = [experiencia_labels.get(i, i) for i in pivot_table.columns]
+
+Mapeamento reverso dos rótulos convertendo os valores numéricos codificados de volta para suas descrições originais, tornando o heatmap mais interpretável.
+
+**8.8 Visualização das Top 3 Features**
+
+      top3_indices = indices[:3]
+      top3_features = [feature_names[i] for i in top3_indices]
+      top3_importances = importances[top3_indices]
+      
+      plt.figure(figsize=(10, 6))
+      bars = plt.barh(range(3), top3_importances, align='center', color=['#1f77b4', '#ff7f0e', '#2ca02c'])
+
+Gráfico especializado para as 3 features mais importantes com cores diferenciadas e valores anotados nas barras para facilitar a interpretação.
+
+**8.9 Gráfico de Dispersão das Features Principais**
+      
+      if len(indices) >= 2:
+          top2_indices = indices[:2]
+          feature1 = feature_names[top2_indices[0]]
+          feature2 = feature_names[top2_indices[1]]
+          
+          scatter = plt.scatter(X_test[feature1], X_test[feature2], 
+                               c=y_pred_proba_test, cmap='coolwarm', 
+                               alpha=0.7, s=100, edgecolors='k')
+
+Visualização da relação entre as duas features mais importantes colorido pelas probabilidades preditas, revelando padrões espaciais na classificação e permitindo identificar regiões de alta e baixa probabilidade de salário alto.
+
+**8.10 Finalização e Salvamento**
+print(f"\nTodos os gráficos foram salvos no diretório: {output_dir}")
+
+

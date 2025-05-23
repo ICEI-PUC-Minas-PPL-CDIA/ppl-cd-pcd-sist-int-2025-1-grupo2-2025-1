@@ -4270,7 +4270,7 @@ print(f"\nTodos os gráficos foram salvos no diretório: {output_dir}")
 
 -------------------------------------------
 
-### Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Arvore de decisão por classificação
+### Modelo 2 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Arvore de decisão por classificação
 ### *Justificativa1-2*
 
 O modelo escolhido foi o Gradient Boosting Classifier, uma técnica de ensemble baseada em árvores de decisão. A escolha se justifica porque o problema envolve múltiplas variáveis categóricas, relações não-lineares e a necessidade de interpretar a influência de fatores como formação acadêmica e experiência profissional sobre faixas salariais. O Gradient Boosting é reconhecido por sua eficácia em tarefas de classificação com dados tabulares e mistos, como é o caso do dataset analisado
@@ -5424,7 +5424,8 @@ O fluxo de execução do código para o modelo de Rede Neural (RNA v2) é:
 # Resultados
 
 
-*   [Resultados obtidos com o modelo 1.](#resultados-obtidos-com-o-modelo-1) 
+*   [Resultados obtidos com os modelos 1° pergunta orietada a dados](#resultados-obtidos-com-os-modelos-1°-pergunta-orietada-a-dados)
+*   [Resultados obtidos com o modelo 1 da 1° pergunta orietada a dados.](#resultados-obtidos-com-o-modelo-1-da-1°-pergunta-orietada-a-dados.)
 	*   [top3_features](#top3_features)
 	*   [precision_recall_curve](#precision_recall_curve)
  	*   [matriz_confusao_otimizada](#matriz_confusao_otimizada) 
@@ -5442,7 +5443,7 @@ O fluxo de execução do código para o modelo de Rede Neural (RNA v2) é:
 	*   [arvore_exemplo_simplificada](#arvore_exemplo_simplificada)
 	*   [arvore_exemplo_melhorada](#arvore_exemplo_melhorada)
 
-*   [Resultados obtidos com o modelo 1.2.](#resultados-obtidos-com-o-modelo-1-2) 
+*   [Resultados obtidos com o modelo 2 da 1° pergunta orietada a dados.](#resultados-obtidos-com-o-modelo-2-da-1°-pergunta-orietada-a-dados.) 
 	*   [matriz_confusao 1-2](#matriz_confusao_1_2)
 	*   [distribuicao_faixas_salariais_originais 1-2](#distribuicao_faixas_salariais_originais_1_2)
  	*   [distribuicao_faixas_salariais_agrupadas 1-2](#distribuicao_faixas_salariais_agrupadas_1_2) 
@@ -5450,14 +5451,14 @@ O fluxo de execução do código para o modelo de Rede Neural (RNA v2) é:
 
 
 
-*   [Resultados obtidos com o modelo 2.](#resultados-obtidos-com-o-modelo-2)
+*   [Resultados obtidos com os modelos 2° pergunta orietada a dados](#resultados-obtidos-com-o-modelo-2)
 
-*   [Resultados obtidos com o modelo 3.](#resultados-obtidos-com-o-modelo-3)
-
-
+*   [Resultados obtidos com os modelos 3° pergunta orietada a dados****](#resultados-obtidos-com-o-modelo-3)
 
 
-## Resultados obtidos com o modelo 1.
+# Resultados obtidos com os modelos 1° pergunta orietada a dados
+
+## Resultados obtidos com o modelo 1 da 1° pergunta orietada a dados.
 
 
 | Classe          | Precisão | Recall | F1-Score | Suporte |
@@ -5525,7 +5526,8 @@ O fluxo de execução do código para o modelo de Rede Neural (RNA v2) é:
 
 
 
-## Resultados obtidos com o modelo 1-2
+## Resultados obtidos com o modelo 2 da 1° pergunta orietada a dados.
+
 ### Modelo Árvore de Decisão Classificatória
 
 | Classe          | Precisão | Recall | F1-Score | Suporte |

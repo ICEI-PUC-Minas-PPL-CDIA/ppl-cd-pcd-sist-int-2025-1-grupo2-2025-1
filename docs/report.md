@@ -5368,10 +5368,10 @@ O fluxo de execução do código para o modelo de Rede Neural (RNA v2) é:
 	*   [arvore_exemplo_melhorada](#arvore_exemplo_melhorada)
 
 *   [Resultados obtidos com o modelo 1.2.](#resultados-obtidos-com-o-modelo-1-2) 
-	*   [matriz_confusao 1-2](#matriz_confusao_1-2)
-	*   [distribuicao_faixas_salariais_originais 1-2](#distribuicao_faixas_salariais_originais_1-2)
- 	*   [distribuicao_faixas_salariais_agrupadas 1-2](#distribuicao_faixas_salariais_agrupadas_1-2) 
-	*   [correlacao_variaveis_faixa_salarial 1-2](#correlacao_variaveis_faixa_salarial_1-2)
+	*   [matriz_confusao 1-2](#matriz_confusao_1_2)
+	*   [distribuicao_faixas_salariais_originais 1-2](#distribuicao_faixas_salariais_originais_1_2)
+ 	*   [distribuicao_faixas_salariais_agrupadas 1-2](#distribuicao_faixas_salariais_agrupadas_1_2) 
+	*   [correlacao_variaveis_faixa_salarial 1-2](#correlacao_variaveis_faixa_salarial_1_2)
 
 
 
@@ -5471,16 +5471,16 @@ O fluxo de execução do código para o modelo de Rede Neural (RNA v2) é:
 - Diferença de Acurácia (Treino - Teste): -
 
 
-### matriz_confusao 1-2
+### matriz_confusao 1_2
 ![matriz_confusao](https://github.com/user-attachments/assets/ac19812f-ecd2-47b0-a08b-f8b7b0db1732)
 
-### distribuicao_faixas_salariais_originais 1-2
+### distribuicao_faixas_salariais_originais 1_2
 ![distribuicao_faixas_salariais_originais](https://github.com/user-attachments/assets/9f135a05-dc93-4d26-8b6c-45c32f05a136)
 
-### distribuicao_faixas_salariais_agrupadas 1-2
+### distribuicao_faixas_salariais_agrupadas 1_2
 ![distribuicao_faixas_salariais_agrupadas](https://github.com/user-attachments/assets/0844c00b-371f-49c3-82d2-505ec0830728)
 
-### correlacao_variaveis_faixa_salarial 1-2
+### correlacao_variaveis_faixa_salarial 1_2
 ![correlacao_variaveis_faixa_salarial](https://github.com/user-attachments/assets/18aea812-9bdf-42a8-ae94-46dd2d18a141)
 
 

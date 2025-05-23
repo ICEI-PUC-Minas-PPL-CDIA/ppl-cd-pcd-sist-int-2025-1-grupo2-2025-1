@@ -2028,7 +2028,9 @@ df['Habilidades'] = df['SQL'] + df['Python']
 
 **Faixa Salarial por Grau de Escolaridade**
 
-docs/imagens/graficos_analise_exploratoria_2_pergunta_orientada_a_dados/Faixa_Slarial_Por_Grau_Escolaridade.png
+**O gráfico abaixo apresenta a distribuição das faixas salariais por grau de escolaridade dos profissionais de dados no Brasil, utilizando boxplots para visualizar medianas, dispersão e outliers. De forma geral, observa-se que níveis mais altos de escolaridade, como mestrado e doutorado, tendem a estar associados a faixas salariais superiores, embora haja sobreposição entre categorias e variações dentro de cada grupo.**
+
+![Faixa Salarial por Grau de Escolaridade](docs/imagens/graficos_analise_exploratoria_2_pergunta_orientada_a_dados/Faixa_Salarial_Por_Grau_Escolaridade.png)
 
 ```python
 # Importando bibliotecas necessárias
@@ -2062,6 +2064,10 @@ plt.show()
 
 ## Distribuição Salarial por Estado (UF)
 
+**O gráfico abaixo apresenta uma matriz de calor com a distribuição das faixas salariais por estado no Brasil. Observa-se uma forte concentração de salários mais altos nos estados de São Paulo, Rio de Janeiro e Minas Gerais, indicando que esses centros urbanos oferecem mais oportunidades ou melhor remuneração para profissionais de dados. A visualização também evidencia disparidades regionais significativas, com muitos estados apresentando predominância de faixas salariais mais baixas.**
+
+![Distribuica_Faixa_salarial_por_Estado](docs/imagens/graficos_analise_exploratoria_2_pergunta_orientada_a_dados/Distribuica_Faixa_salarial_por_Estado.png)
+
 ```python
 uf_stats = df.groupby('UF')['Salario_Medio'].agg(['median', 'count']).reset_index()
 uf_stats = uf_stats[uf_stats['count'] >= 10].sort_values('median', ascending=False)
@@ -2071,6 +2077,10 @@ sns.barplot(x='UF', y='median', data=uf_stats)
 *Insight: Estados como SP, RJ e MG concentram os maiores salários. Há disparidade relevante entre estados do Norte/Nordeste e Sul/Sudeste, refletindo desigualdade estrutural no setor de tecnologia.*
 
 ## Linguagens de Programação Mais Utilizadas
+
+**O gráfico abaixo mostra as 10 linguagens de programação mais utilizadas no trabalho entre profissionais de dados no Brasil. Destacam-se SQL e Python como as mais utilizadas, refletindo seu papel essencial em tarefas de manipulação de dados, análise e machine learning. Linguagens como R, Visual Basic/VBA e JavaScript aparecem com menor frequência, indicando uso mais específico ou nichado. O domínio de SQL e Python se confirma como requisito central na área.**
+
+![10_linguagens_mais_utilizadas](docs/imagens/graficos_analise_exploratoria_2_pergunta_orientada_a_dados/10_linguagens_mais_utilizadas.png)
 
 ```python
 tech_counts = df[['SQL', 'Python']].sum().sort_values(ascending=False)

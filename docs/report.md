@@ -5385,6 +5385,58 @@ O fluxo de execução do código para o modelo de Rede Neural (RNA v2) é:
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Resultados obtidos com o modelo 2.
 
+# Resultados do Modelo Random Forest Regressor
+
+Este modelo foi desenvolvido para prever a **faixa salarial média (R$/mês)** de profissionais da área de dados no Brasil. Ele utiliza como base a junção de duas fontes de dados:
+
+- **[State of Data BR 2023 - Kaggle](https://www.kaggle.com/datasets)**: informações de profissionais atuando na área de dados.
+- **[MICRODADOS_ED_SUP_IES_2023 - MEC](http://inep.gov.br/microdados)**: características da infraestrutura educacional por região do país.
+
+## 🧠 Modelo
+
+Utilizamos o algoritmo **Random Forest Regressor**, com os seguintes hiperparâmetros:
+
+```python
+RandomForestRegressor(
+    max_depth=None,
+    max_features='sqrt',
+    min_samples_leaf=2,
+    min_samples_split=5,
+    n_estimators=100,
+    random_state=42
+)
+```
+## Métricas de Avaliação
+
+| **Métrica**                          | **Valor**    |
+| :----------------------------------- | :----------- |
+| **MAE (Erro Médio Absoluto)**        | R\$ 2.882,21 |
+| **R² (Coeficiente de Determinação)** | 0.38         |
+
+## Importância das Variáveis
+
+| **Variável**                            | **Importância (%)** |
+| :-------------------------------------- | :-----------------: |
+| **nivel\_cod (Nível de cargo)**         |        73.29%       |
+| experiencia\_num (Tempo de experiência) |        23.72%       |
+| docentes\_mestrado\_regiao              |        0.82%        |
+| tecnicos\_regiao                        |        0.78%        |
+| docentes\_regiao                        |        0.70%        |
+| num\_ies\_regiao                        |        0.70%        |
+
+##  Interpretação
+
+| **Insight**         | **Descrição**                                                    |
+| :------------------ | :--------------------------------------------------------------- |
+| Fator Principal     | O nível do cargo é o fator mais relevante para a faixa salarial. |
+| Experiência         | O tempo de experiência também tem peso significativo.            |
+| Variáveis Regionais | Impacto reduzido na predição salarial.                           |
+
+🧾 Conclusão
+**Embora o modelo apresente desempenho moderado (R² = 0.38), ele oferece bons insights sobre os fatores que mais influenciam o salário na área de dados no Brasil. A predominância das variáveis individuais em relação às regionais sugere que decisões salariais estão mais associadas a fatores pessoais do que à estrutura educacional da região.**
+
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Resultados obtidos com o modelo 3.
 

@@ -5392,7 +5392,7 @@ Este modelo foi desenvolvido para prever a **faixa salarial média (R$/mês)** d
 - **[State of Data BR 2023 - Kaggle](https://www.kaggle.com/datasets)**: informações de profissionais atuando na área de dados.
 - **[MICRODADOS_ED_SUP_IES_2023 - MEC](http://inep.gov.br/microdados)**: características da infraestrutura educacional por região do país.
 
-## 🧠 Modelo
+## Modelo
 
 Utilizamos o algoritmo **Random Forest Regressor**, com os seguintes hiperparâmetros:
 
@@ -5432,7 +5432,7 @@ RandomForestRegressor(
 | Experiência         | O tempo de experiência também tem peso significativo.            |
 | Variáveis Regionais | Impacto reduzido na predição salarial.                           |
 
-🧾 Conclusão
+## 🧾 Conclusão
 **Embora o modelo apresente desempenho moderado (R² = 0.38), ele oferece bons insights sobre os fatores que mais influenciam o salário na área de dados no Brasil. A predominância das variáveis individuais em relação às regionais sugere que decisões salariais estão mais associadas a fatores pessoais do que à estrutura educacional da região.**
 
 

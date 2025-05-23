@@ -3793,9 +3793,12 @@ Para uma análise mais completa, seria ideal cruzar esses dados também com a ex
 ### Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest
 ### *Justificativa1-1*
 
+
 ### - Capacidade de Capturar Interações Complexas:
 
+
 ### - Fornecimento de Importância das Features:
+
 
 ### - Robustez e Generalização:
 
@@ -4267,8 +4270,77 @@ print(f"\nTodos os gráficos foram salvos no diretório: {output_dir}")
 
 ### Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Arvore de decisão por classificação
 ### *Justificativa1-2*
+
+O modelo escolhido foi o Gradient Boosting Classifier, uma técnica de ensemble baseada em árvores de decisão. A escolha se justifica porque o problema envolve múltiplas variáveis categóricas, relações não-lineares e a necessidade de interpretar a influência de fatores como formação acadêmica e experiência profissional sobre faixas salariais. O Gradient Boosting é reconhecido por sua eficácia em tarefas de classificação com dados tabulares e mistos, como é o caso do dataset analisado
+
 ### *Processo de Amostragem de Dados (Particionamento e Cross-Validation)1-2*
+
+## Processo de Amostragem de Dados (Particionamento e Cross-Validation)
+
+### 1. Particionamento dos Dados (Train-Test Split)
+
+- **Divisão Estratificada:**  
+  O conjunto de dados foi dividido em 70% para treinamento e 30% para teste, utilizando `train_test_split` com o parâmetro `stratify` baseado na variável alvo (faixa salarial agrupada).  
+  Isso garante que a proporção de cada classe salarial seja mantida tanto no treino quanto no teste, evitando viés na avaliação do modelo.
+
+- **Reprodutibilidade:**  
+  O parâmetro `random_state=42` foi utilizado para garantir que a divisão dos dados seja sempre a mesma em diferentes execuções, permitindo reprodutibilidade dos resultados.
+
+---
+
+### 2. Cross-Validation Estratificada (Stratified K-Fold)
+
+- **Validação Cruzada Estratificada:**  
+  Durante a otimização de hiperparâmetros (`RandomizedSearchCV`), foi empregada a validação cruzada estratificada (`StratifiedKFold`) com 3 folds.  
+  Em cada iteração, o conjunto de treino é novamente dividido em 3 subconjuntos, mantendo a proporção das classes em cada fold. O modelo é treinado em dois folds e avaliado no terceiro, repetindo o processo para todos os folds.
+
+- **Vantagens da Estratificação:**  
+  - Garante que todas as classes estejam representadas de forma proporcional em cada fold, o que é crucial para problemas com classes desbalanceadas.
+  - Reduz o risco de variações indesejadas nos resultados devido à distribuição das classes.
+
+
+3. **Estratificação:**  
+   Mantém a distribuição das faixas salariais em todas as etapas, tanto no split inicial quanto na validação cruzada, assegurando comparabilidade e evitando viés de classe.
+
+
+### **Capacidade de Capturar Interações Complexas**
+
+Modelos de árvores, especialmente ensembles como o Gradient Boosting, capturam automaticamente interações complexas entre variáveis sem a necessidade de especificá-las manualmente. Isso é fundamental para o contexto, pois a relação entre formação acadêmica, experiência e salário não é linear nem independente: o impacto de um fator depende do outro. O modelo constrói sucessivas árvores que corrigem os erros das anteriores, ajustando-se a padrões e interações sutis presentes nos dados
+
+
+### **Fornecimento de Importância das Features**
+
+O Gradient Boosting permite extrair a importância relativa de cada variável para a predição, facilitando a interpretação dos fatores que mais influenciam o salário. O código calcula e reporta métricas como o coeficiente de Cramer's V para variáveis categóricas antes do treinamento, e a própria biblioteca do modelo possibilita gerar rankings de importância das features após o ajuste. Isso é essencial para análises orientadas a dados e para justificar decisões baseadas nos resultados do modelo
+
+
+### **Robustez e Generalização**
+
+O Gradient Boosting é robusto a outliers e a diferentes escalas de variáveis, além de apresentar boa capacidade de generalização quando parametrizado corretamente. O pipeline do código inclui validação cruzada estratificada, balanceamento de classes e busca de hiperparâmetros (RandomizedSearchCV), o que reduz o risco de overfitting e melhora a performance em dados não vistos. Isso garante que as conclusões sobre disparidade salarial sejam confiáveis e replicáveis em outros conjuntos de dados semelhantes
+
+### **Bom Desempenho em Problemas de Classificação**
+
+Modelos baseados em Gradient Boosting frequentemente apresentam desempenho superior em benchmarks de classificação com dados tabulares, especialmente quando há múltiplas classes e desbalanceamento, como no caso das faixas salariais. O modelo atingiu acurácia de 52,7% e acurácia balanceada de 40,1%, valores considerados competitivos para um problema de alta complexidade e múltiplas categorias. Além disso, o modelo lida bem com variáveis categóricas codificadas via OneHotEncoder e com a necessidade de interpretar resultados para diferentes grupos
+
+### 
+
 ### *Parâmetros utilizados1-2*
+
+## Parâmetros Utilizados no Modelo GradientBoostingClassifier
+
+Abaixo estão os principais hiperparâmetros definidos após otimização com RandomizedSearchCV:
+
+| Parâmetro           | Valor   | Descrição                                                                                           |
+|---------------------|---------|-----------------------------------------------------------------------------------------------------|
+| `subsample`         | 0.8     | Proporção de amostras usadas em cada árvore (80%). Ajuda a reduzir overfitting e aumenta robustez. |
+| `n_estimators`      | 100     | Número de árvores no ensemble. Equilibra desempenho e custo computacional.                          |
+| `min_samples_split` | 2       | Mínimo de amostras para dividir um nó. Permite divisões detalhadas, capturando padrões sutis.      |
+| `min_samples_leaf`  | 2       | Mínimo de amostras em cada folha. Evita que folhas pequenas capturem apenas ruído.                 |
+| `max_depth`         | 6       | Profundidade máxima das árvores. Limita a complexidade e controla overfitting.                     |
+| `learning_rate`     | 0.2     | Taxa de aprendizado. Controla o quanto cada árvore corrige os erros das anteriores.                |
+
+Esses parâmetros foram escolhidos para equilibrar desempenho, capacidade de generalização e evitar overfitting, garantindo que o modelo seja capaz de capturar padrões relevantes dos dados salariais sem se ajustar demais ao conjunto de treino.
+
+
 ### *Explicação do Código:1-2*
 
 

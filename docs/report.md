@@ -1959,7 +1959,133 @@ Este tipo de gráfico é uma ferramenta poderosa para a análise exploratória d
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 2º Pergunta orientada a dados 
-**Pergunta Orientada a Dados:** *...*
+**Pergunta Orientada a Dados:**
+*Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
+
+##Objetivo
+
+Investigar as relações entre os principais fatores da carreira de profissionais de dados no Brasil e suas faixas salariais, utilizando dados da base survey_cleaned.csv. Esta análise busca entender como variáveis como experiência, senioridade, formação acadêmica, estado (UF) e habilidades técnicas (ex: Python, SQL) influenciam a remuneração.
+
+##Dicionário de Dados
+
+*Análise Numérica da coluna `salary_numeric_lower_bound`*
+
+O script exibe estatísticas descritivas para a coluna `salary_numeric_lower_bound`. Esta coluna representa o limite inferior da faixa salarial convertida para um valor numérico.
+
+| Estatística     | Valor     | Descrição                                       |
+|-----------------|-----------|-------------------------------------------------|
+| count           | 4753      | Número de observações não nulas na coluna       |
+| mean            | 8935.37   | Média do limite inferior do salário (R$ 8.935,37)|
+| std             | 7308.44   | Desvio padrão, indicando grande dispersão dos salários |
+| min             | 0         | Valor mínimo (pode indicar salários \"menos de X\") |
+| 25% (1º Quartil)| 4001      | 25% dos respondentes ganham até R$ 4.001        |
+| 50% (Mediana)   | 8001      | Mediana do limite inferior do salário           |
+| 75% (3º Quartil)| 12001     | 75% dos respondentes ganham até R$ 12.001       |
+| max             | 40001     | Valor máximo registrado                         |
+
+**Comentários:**  
+Esta saída é típica do método `.describe()` do Pandas aplicado a séries numéricas, fornecendo um resumo estatístico essencial.
+
+
+##Comandos e Visualizações Utilizadas
+
+1. Importação e preparo dos dados
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+# Configuração de estilo
+plt.style.use('seaborn')
+sns.set_palette("viridis")
+
+# Leitura da base de dados
+df = pd.read_csv("survey_cleaned.csv")
+
+# Função para converter faixas salariais em valores médios
+def convert_salary_range(salary_range):
+    conversions = {
+        'de R$ 4.001/mês a R$ 6.000/mês': 5000.50,
+        'de R$ 6.001/mês a R$ 8.000/mês': 7000.50,
+        'de R$ 8.001/mês a R$ 12.000/mês': 10000.50,
+        'de R$ 12.001/mês a R$ 16.000/mês': 14000.50,
+        'de R$ 16.001/mês a R$ 20.000/mês': 18000.50,
+        'de R$ 20.001/mês a R$ 25.000/mês': 22500.50,
+        'Acima de R$ 25.001/mês': 27500.50
+    }
+    return conversions.get(salary_range, np.nan)
+
+# Aplicação da função e criação da coluna 'Salario_Medio'
+df['Salario_Medio'] = df['Faixa_Salarial'].apply(convert_salary_range)
+
+# Criação da coluna 'Habilidades' (soma de conhecimento em SQL e Python)
+df['Habilidades'] = df['SQL'] + df['Python']
+```
+
+##Resultados e Gráficos
+
+**Faixa Salarial por Grau de Escolaridade**
+
+```python
+# Importando bibliotecas necessárias
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Ordem desejada para o eixo x (níveis de ensino)
+order = ['Estudante de Graduação', 'Graduação/Bacharelado', 'Pós-graduação', 'Mestrado', 'Doutorado ou Phd']
+
+# Configuração da figura com tamanho personalizado
+plt.figure(figsize=(14, 7))
+
+# Criando o boxplot para faixa salarial por grau de escolaridade
+sns.boxplot(
+    x='Nivel_Ensino',
+    y='Salario_Medio',
+    data=df,
+    order=order
+)
+
+# Adicionando título e ajustes visuais
+plt.title('Faixa Salarial por Grau de Escolaridade')
+plt.xticks(rotation=45)  # Rotaciona os rótulos do eixo x para melhor leitura
+plt.tight_layout()       # Ajusta o layout para evitar cortes
+
+# Exibindo o gráfico
+plt.show()
+```
+
+*Insight: Profissionais com médias salariais mais altas tendem a possuir formação em pós-graduação, mestrado ou doutorado. Contudo, a dispersão salarial é ampla em todos os níveis, indicando variação mesmo entre indivíduos com mesma formação.*
+
+Distribuição Salarial por Estado (UF)
+
+```python
+uf_stats = df.groupby('UF')['Salario_Medio'].agg(['median', 'count']).reset_index()
+uf_stats = uf_stats[uf_stats['count'] >= 10].sort_values('median', ascending=False)
+sns.barplot(x='UF', y='median', data=uf_stats)
+```
+
+*Insight: Estados como SP, RJ e MG concentram os maiores salários. Há disparidade relevante entre estados do Norte/Nordeste e Sul/Sudeste, refletindo desigualdade estrutural no setor de tecnologia.*
+
+Linguagens de Programação Mais Utilizadas
+
+```python
+tech_counts = df[['SQL', 'Python']].sum().sort_values(ascending=False)
+tech_counts.plot(kind='barh')
+```
+
+*Insight: As linguagens SQL e Python dominam a atuação dos profissionais de dados. São amplamente mais utilizadas que outras tecnologias, sugerindo que o conhecimento nelas é quase obrigatório no setor.*
+
+##Conclusões
+
+#Escolaridade influencia positivamente a remuneração, embora haja grande variabilidade dentro de cada grupo.
+
+#Região geográfica (UF) é um dos maiores fatores de desigualdade salarial. SP lidera com folga, seguido de RJ, MG e SC.
+
+#Proeficiência técnica, principalmente em SQL e Python, está presente nos perfis com maiores salários.
+
+#A experiência e senioridade contribuem diretamente para a progressão salarial — o que está de acordo com o esperado.
 
 
 

@@ -5367,6 +5367,13 @@ O fluxo de execução do código para o modelo de Rede Neural (RNA v2) é:
 	*   [arvore_exemplo_simplificada](#arvore_exemplo_simplificada)
 	*   [arvore_exemplo_melhorada](#arvore_exemplo_melhorada)
 
+*   [Resultados obtidos com o modelo 1.2.](#resultados-obtidos-com-o-modelo-1-2) 
+	*   [matriz_confusao 1-2](#matriz_confusao_1-2)
+	*   [distribuicao_faixas_salariais_originais 1-2](#distribuicao_faixas_salariais_originais_1-2)
+ 	*   [distribuicao_faixas_salariais_agrupadas 1-2](#distribuicao_faixas_salariais_agrupadas_1-2) 
+	*   [correlacao_variaveis_faixa_salarial 1-2](#correlacao_variaveis_faixa_salarial_1-2)
+
+
 
 *   [Resultados obtidos com o modelo 2.](#resultados-obtidos-com-o-modelo-2)
 
@@ -5441,6 +5448,40 @@ O fluxo de execução do código para o modelo de Rede Neural (RNA v2) é:
 ### arvore_exemplo_melhorada
 ![arvore_exemplo_melhorada](https://github.com/user-attachments/assets/410ea2af-736a-4cbf-9541-d0edb1ac49d1)
 
+
+
+## Resultados obtidos com o modelo 1-2
+### Modelo Árvore de Decisão Classificatória
+
+| Classe          | Precisão | Recall | F1-Score | Suporte |
+|-----------------|----------|--------|----------|---------|
+| Acima de R$ 30.000/mês    | 0.12     | 0.10   | 0.11     | 10     |
+| Até R$ 2.000/mês | 0.28     | 0.41   | 0.33     | 56     | 
+| R$ 16.001/mês a R$ 30.000/mês  | 0.40     | 0.31   | 0.35     | 59     |
+| R$ 2.001/mês a R$ 4.000/mês | 0.42     | 0.42   | 0.42     | 160     |
+| R$ 4.001/mês a R$ 8.000/mês | 0.57     | 0.45   | 0.50     | 352     |
+| R$ 8.001/mês a R$ 16.000/mês | 0.61     | 0.72   | 0.66     | 353     |
+| accuracy |  |  | **0.53** | **990** |
+| macro avg | **0.40** | **0.40** | **0.40** | **990** |
+| weighted avg | **0.53** | **0.53** | **0.52** | **990** |
+
+- Acurácia do Modelo: 0.53
+- Acurácia do Modelo no Conjunto de Treinamento: -
+- Acurácia do Modelo no Conjunto de Teste: -
+- Diferença de Acurácia (Treino - Teste): -
+
+
+### matriz_confusao 1-2
+![matriz_confusao](https://github.com/user-attachments/assets/ac19812f-ecd2-47b0-a08b-f8b7b0db1732)
+
+### distribuicao_faixas_salariais_originais 1-2
+![distribuicao_faixas_salariais_originais](https://github.com/user-attachments/assets/9f135a05-dc93-4d26-8b6c-45c32f05a136)
+
+### distribuicao_faixas_salariais_agrupadas 1-2
+![distribuicao_faixas_salariais_agrupadas](https://github.com/user-attachments/assets/0844c00b-371f-49c3-82d2-505ec0830728)
+
+### correlacao_variaveis_faixa_salarial 1-2
+![correlacao_variaveis_faixa_salarial](https://github.com/user-attachments/assets/18aea812-9bdf-42a8-ae94-46dd2d18a141)
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------

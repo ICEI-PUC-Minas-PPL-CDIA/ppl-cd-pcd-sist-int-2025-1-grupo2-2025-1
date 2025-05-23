@@ -4282,6 +4282,7 @@ print(f"\nTodos os gráficos foram salvos no diretório: {output_dir}")
 **Este modelo foi utilizado para prever a faixa salarial média (R$/mês) de profissionais da área de dados no Brasil, a partir da junção de duas bases:**
 
 *State of Data BR 2023 (Kaggle): informações profissionais.*
+
 *MICRODADOS_ED_SUP_IES_2023 (MEC): características regionais da educação.*
 
 ## 2º Pergunta orientada a dados:

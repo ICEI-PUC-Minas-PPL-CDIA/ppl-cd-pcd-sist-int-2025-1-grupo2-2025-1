@@ -4276,12 +4276,72 @@ print(f"\nTodos os gráficos foram salvos no diretório: {output_dir}")
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Indução de modelos
 
-## Modelo 2 
-### 2º Pergunta orientada a dados
-### *Justificativa*
-### *Processo de Amostragem de Dados (Particionamento e Cross-Validation)*
-### *Parâmetros utilizados*
-### *Explicação do Código:*
+# Modelo 2 
+
+## Random Forest Regressor
+**Este modelo foi utilizado para prever a faixa salarial média (R$/mês) de profissionais da área de dados no Brasil, a partir da junção de duas bases:
+
+State of Data BR 2023 (Kaggle): informações profissionais.
+MICRODADOS_ED_SUP_IES_2023 (MEC): características regionais da educação.**
+
+## 2º Pergunta orientada a dados:
+* Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?
+  
+## Objetivo
+
+Investigar as relações entre os principais fatores da carreira de profissionais de dados no Brasil e suas faixas salariais, utilizando dados da base survey_cleaned.csv. Esta análise busca entender como variáveis como experiência, senioridade, formação acadêmica, estado (UF) e habilidades técnicas (ex: Python, SQL) influenciam a remuneração.
+
+## Justificativa
+
+A escolha desta pergunta se justifica pela necessidade de entender quais variáveis impactam mais os salários na área de dados. Além disso, identificar o peso de fatores individuais (como experiência e nível) versus regionais (como estrutura educacional) pode orientar políticas educacionais e decisões de carreira.
+
+## Processo de Amostragem de Dados (Particionamento e Cross-Validation)
+
+| **Etapa**            | **Descrição**                                                                                                                 |
+| :------------------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| **Particionamento**  | Divisão dos dados em **treinamento** e **teste** utilizando `train_test_split`, com `random_state=42` para reprodutibilidade. |
+| **Treinamento**      | O modelo foi treinado com a amostra de treinamento (`X_train`, `y_train`).                                                    |
+| **Validação**        | Avaliação realizada na amostra de teste (`X_test`, `y_test`) com métricas como MAE e R².                                      |
+| **Cross-Validation** | Não foi implementada neste código, mas poderia ser adicionada para uma avaliação mais robusta da generalização do modelo.     |
+
+## Parâmetros utilizados
+
+```
+RandomForestRegressor(
+    max_depth=None,
+    max_features='sqrt',
+    min_samples_leaf=2,
+    min_samples_split=5,
+    n_estimators=100,
+    random_state=42
+)
+```
+
+| **Parâmetro**         | **Descrição**                                                                               |
+| :-------------------- | :------------------------------------------------------------------------------------------ |
+| `max_depth=None`      | Sem limitação de profundidade, permitindo que as árvores cresçam até parar automaticamente. |
+| `max_features='sqrt'` | Seleção de número de atributos igual à raiz quadrada do total, para cada divisão.           |
+| `min_samples_leaf=2`  | Mínimo de 2 amostras por folha, evitando árvores muito complexas.                           |
+| `min_samples_split=5` | Mínimo de 5 amostras para dividir um nó, reduzindo overfitting.                             |
+| `n_estimators=100`    | Uso de 100 árvores na floresta.                                                             |
+| `random_state=42`     | Semente fixa para garantir reprodutibilidade.                                               |
+
+
+## Explicação do Código:
+
+| **Etapa**                            | **Descrição**                                                                                                             |
+| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| **Importação de bibliotecas**        | Importa pandas, numpy, ferramentas de pré-processamento, modelo RandomForest, particionamento e métricas.                 |
+| **Leitura dos dados**                | `pd.read_csv` lê os dois datasets: State of Data (profissionais) e MEC (educação).                                        |
+| **Pré-processamento State of Data**  | Seleção e renomeação de colunas, mapeamento numérico para experiência e salário, codificação do nível com `LabelEncoder`. |
+| **Agregação dos dados educacionais** | Agrupamento por região, somando docentes, técnicos, mestres e contando IES.                                               |
+| **Merge das bases**                  | `pd.merge` junta a base profissional com a educacional, cruzando pela região.                                             |
+| **Preparação para modelagem**        | Seleção das variáveis explicativas e variável alvo (`salario_num`).                                                       |
+| **Particionamento**                  | Separação em treino e teste com `train_test_split`.                                                                       |
+| **Treinamento do modelo**            | Criação e ajuste do `RandomForestRegressor` com hiperparâmetros definidos.                                                |
+| **Avaliação**                        | Cálculo do **MAE** e do **R²** com `mean_absolute_error` e `r2_score`.                                                    |
+| **Importância das variáveis**        | Extração das importâncias com `model.feature_importances_` e exibição percentual.                                         |
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

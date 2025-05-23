@@ -1962,11 +1962,11 @@ Este tipo de gráfico é uma ferramenta poderosa para a análise exploratória d
 **Pergunta Orientada a Dados:**
 *Qual é a relação entre o tempo de experiência na área de dados, o nível de senioridade e a faixa salarial dos profissionais no Brasil?*
 
-##Objetivo
+## Objetivo
 
 Investigar as relações entre os principais fatores da carreira de profissionais de dados no Brasil e suas faixas salariais, utilizando dados da base survey_cleaned.csv. Esta análise busca entender como variáveis como experiência, senioridade, formação acadêmica, estado (UF) e habilidades técnicas (ex: Python, SQL) influenciam a remuneração.
 
-##Dicionário de Dados
+## Dicionário de Dados
 
 *Análise Numérica da coluna `salary_numeric_lower_bound`*
 
@@ -1987,7 +1987,7 @@ O script exibe estatísticas descritivas para a coluna `salary_numeric_lower_bou
 Esta saída é típica do método `.describe()` do Pandas aplicado a séries numéricas, fornecendo um resumo estatístico essencial.
 
 
-##Comandos e Visualizações Utilizadas
+## Comandos e Visualizações Utilizadas
 
 1. Importação e preparo dos dados
 
@@ -2024,9 +2024,11 @@ df['Salario_Medio'] = df['Faixa_Salarial'].apply(convert_salary_range)
 df['Habilidades'] = df['SQL'] + df['Python']
 ```
 
-##Resultados e Gráficos
+## Resultados e Gráficos
 
 **Faixa Salarial por Grau de Escolaridade**
+
+docs/imagens/graficos_analise_exploratoria_2_pergunta_orientada_a_dados/Faixa_Slarial_Por_Grau_Escolaridade.png
 
 ```python
 # Importando bibliotecas necessárias
@@ -2058,7 +2060,7 @@ plt.show()
 
 *Insight: Profissionais com médias salariais mais altas tendem a possuir formação em pós-graduação, mestrado ou doutorado. Contudo, a dispersão salarial é ampla em todos os níveis, indicando variação mesmo entre indivíduos com mesma formação.*
 
-Distribuição Salarial por Estado (UF)
+## Distribuição Salarial por Estado (UF)
 
 ```python
 uf_stats = df.groupby('UF')['Salario_Medio'].agg(['median', 'count']).reset_index()
@@ -2068,7 +2070,7 @@ sns.barplot(x='UF', y='median', data=uf_stats)
 
 *Insight: Estados como SP, RJ e MG concentram os maiores salários. Há disparidade relevante entre estados do Norte/Nordeste e Sul/Sudeste, refletindo desigualdade estrutural no setor de tecnologia.*
 
-Linguagens de Programação Mais Utilizadas
+## Linguagens de Programação Mais Utilizadas
 
 ```python
 tech_counts = df[['SQL', 'Python']].sum().sort_values(ascending=False)

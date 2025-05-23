@@ -41,9 +41,9 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
     *   [2º Pergunta Orientada a Dados](#2º-pergunta-orientada-a-dados)
     *   [3º Pergunta Orientada a Dados](#3º-pergunta-orientada-a-dados)
 *   [Indução de modelos](#indução-de-modelos)
-    *   [Modelos 1° pergunta orietada a dados](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-modelo-random-forest)
-    *   [Modelos 2° pergunta orietada a dados](#modelo-2-algoritmo)
-    *   [Modelos 3° pergunta orietada a dados](#modelo-3)
+    *   [Modelos 1° pergunta orietada a dados](#modelos_1°_pergunta_orietada_a_dados)
+    *   [Modelos 2° pergunta orietada a dados](#modelos_2°_pergunta_orietada_a_dados)
+    *   [Modelos 3° pergunta orietada a dados](#modelos_3°_pergunta_orietada_a_dados)
 *   [Resultados](#resultados)
     *   [Resultados obtidos com os Modelos 1° pergunta orietada a dados](#resultados-obtidos-com-o-modelo-1)
     *   [Resultados obtidos com os Modelos 2° pergunta orietada a dados](#resultados-obtidos-com-o-modelo-2)
@@ -3776,7 +3776,7 @@ Para uma análise mais completa, seria ideal cruzar esses dados também com a ex
 		*   [Parâmetros utilizados1.1](#parâmetros-utilizados1-1)
 		*   [Explicação do Código1.1](#explicação-do-código1-1)
 
-	*   [Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Arvore de decisão por classificação](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-arvore-de-decisão-por-classificação)
+	*   [Modelo 2 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Arvore de decisão por classificação](#modelo-1-análise-de-disparidade-salarial-de-profissionais-de-dados-no-brasil-utilizando-o-arvore-de-decisão-por-classificação)
   
 		*   [Justificativa1.2](#justificativa1-2)
 		*   [Processo de Amostragem de Dados (Particionamento e Cross-Validation1.2)](#processo-de-amostragem-de-dados1-2)
@@ -3789,8 +3789,10 @@ Para uma análise mais completa, seria ideal cruzar esses dados também com a ex
 *   [3º Pergunta orientada a dados ](#modelo-3)
 
 
-## 1º Pergunta orientada a dados
-### Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest
+# Modelos 1° pergunta orietada a dados
+
+## Modelo 1 Análise de Disparidade Salarial de Profissionais de Dados no Brasil Utilizando o Modelo Random Forest
+
 ### *Justificativa1-1*
 
 
@@ -4348,7 +4350,7 @@ Esses parâmetros foram escolhidos para equilibrar desempenho, capacidade de gen
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Indução de modelos
 
-# Modelo 2 
+# Modelos 2° pergunta orietada a dados
 
 ## Random Forest Regressor
 **Este modelo foi utilizado para prever a faixa salarial média (R$/mês) de profissionais da área de dados no Brasil, a partir da junção de duas bases:**
@@ -4420,7 +4422,8 @@ RandomForestRegressor(
 
 # Indução de modelos
 
-# Modelo 3  
+# Modelos 3° pergunta orietada a dados 
+
 ## 3º Pergunta orientada a dados
 *  Como fatores como formalidade no emprego , características demográficas e regionais se interagem com a proficiência técnica para influenciar as disparidades salariais entre profissionais de dados no Brasil?
 ## 1. Justificativa e Objetivo
